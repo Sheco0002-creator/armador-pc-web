@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nivel de presupuesto — ArmaPC</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="description" content="Catálogo de componentes recomendados para armar tu PC gamer según tu presupuesto.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="../index.html" class="logo">Arma<span>PC</span></a>
+    <nav class="main-nav" id="main-nav">
+      <a href="../configurador.html">Configurador</a>
+      <a href="../index.html#presupuestos">Presupuestos</a>
+      <a href="../guias.html">Guías</a>
+      <a href="../sobre.html">Sobre</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="level-hero">
+    <div class="container">
+      <nav class="breadcrumb mono">
+        <a href="../index.html">Inicio</a> / <a href="../index.html#presupuestos">Presupuestos</a> / <span id="crumb-name">…</span>
+      </nav>
+      <p class="eyebrow mono" id="level-price">…</p>
+      <h1 id="level-name">Cargando…</h1>
+      <p class="hero-sub" id="level-target"></p>
+      <a href="../configurador.html" class="btn btn-primary">Armar esta build en el configurador</a>
+    </div>
+  </section>
+
+  <section class="level-body">
+    <div class="container">
+      <div id="moneda-container"></div>
+
+      <div id="components"></div>
+
+      <p class="level-total mono" id="level-total"></p>
+
+      <div class="ad-slot mono">Espacio publicitario</div>
+
+      <div class="level-note" id="level-note"></div>
+
+      <div class="level-nav" id="level-nav"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>© 2026 ArmaPC</span>
+    <div class="footer-links">
+      <a href="../sobre.html">Sobre</a>
+      <a href="../contacto.html">Contacto</a>
+      <a href="../privacidad.html">Privacidad</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script src="../js/moneda.js"></script>
+<script src="../js/nivel.js"></script>
+<script src="../js/previews.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "updated": "2026-07",
+  "guides": [
+    {
+      "slug": "glosario",
+      "file": "guias/glosario.html",
+      "tag": "BÁSICOS",
+      "title": "Glosario para principiantes",
+      "summary": "Qué es cada pieza de una PC, explicado en palabras simples: CPU, GPU, RAM, placa madre y el resto, sin tecnicismos.",
+      "readMinutes": 7
+    },
+    {
+      "slug": "compatibilidad",
+      "file": "guias/compatibilidad.html",
+      "tag": "GUÍA",
+      "title": "Compatibilidad de componentes",
+      "summary": "Las reglas que hacen que las piezas encajen entre sí: socket, tipo de RAM, tamaño del gabinete y potencia de la fuente. Lo mismo que revisa el configurador.",
+      "readMinutes": 9
+    },
+    {
+      "slug": "elegir-gpu",
+      "file": "guias/elegir-gpu.html",
+      "tag": "GPU",
+      "title": "Cómo elegir tu tarjeta gráfica",
+      "summary": "La pieza que más define tu experiencia gamer. Cómo elegirla según la resolución a la que juegas, sin pagar de más ni quedarte corto.",
+      "readMinutes": 8
+    }
+  ]
+}

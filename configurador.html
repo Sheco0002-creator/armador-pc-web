@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Configurador — ArmaPC</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="description" content="Arma tu PC gamer pieza por pieza con verificación de compatibilidad en tiempo real.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">Arma<span>PC</span></a>
+    <nav class="main-nav" id="main-nav">
+      <a href="configurador.html">Configurador</a>
+      <a href="index.html#presupuestos">Presupuestos</a>
+      <a href="guias.html">Guías</a>
+      <a href="sobre.html">Sobre</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="config-intro">
+    <div class="container">
+      <h1>Arma tu PC pieza por pieza</h1>
+      <p class="hero-sub">Elige cada componente y el sistema verifica la compatibilidad al instante. Empieza desde un nivel recomendado o desde cero.</p>
+
+      <div class="config-toolbar">
+        <div class="preset-buttons" id="preset-buttons">
+          <span class="mono preset-label">Empezar desde:</span>
+          <button data-preset="entrada">Entrada</button>
+          <button data-preset="media">Media</button>
+          <button data-preset="alta">Alta</button>
+          <button data-preset="extrema">Extrema</button>
+          <button data-preset="" class="preset-clear">Desde cero</button>
+        </div>
+        <div id="moneda-container"></div>
+      </div>
+      <div id="precios-fecha" class="precios-fecha"></div>
+    </div>
+  </section>
+
+  <section class="config-body">
+    <div class="container config-layout">
+
+      <div class="config-main" id="config-categories">
+        <!-- Las categorías se generan por JavaScript -->
+        <p class="loading mono">Cargando componentes…</p>
+      </div>
+
+      <aside class="config-summary" id="config-summary">
+        <div class="summary-inner">
+          <h2>Tu build</h2>
+          <div id="summary-status" class="summary-status"></div>
+          <ul id="summary-list" class="summary-list"></ul>
+          <div class="summary-total">
+            <span>Total</span>
+            <div id="summary-total-value" class="mono">US$0</div>
+          </div>
+          <button id="export-btn" class="btn btn-primary summary-export" disabled>Copiar mi build</button>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>© 2026 ArmaPC</span>
+    <div class="footer-links">
+      <a href="sobre.html">Sobre</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="privacidad.html">Privacidad</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/moneda.js"></script>
+<script src="js/compatibilidad.js"></script>
+<script src="js/configurador.js"></script>
+<script src="js/previews.js"></script>
+</body>
+</html>

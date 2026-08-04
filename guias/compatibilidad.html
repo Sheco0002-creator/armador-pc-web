@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compatibilidad de componentes — ArmaPC</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="description" content="Las reglas que hacen que las piezas de una PC encajen: socket, tipo de RAM, tamaño del gabinete, potencia de la fuente y refrigeración. Explicado con ejemplos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="../index.html" class="logo">Arma<span>PC</span></a>
+    <nav class="main-nav" id="main-nav">
+      <a href="../configurador.html">Configurador</a>
+      <a href="../index.html#presupuestos">Presupuestos</a>
+      <a href="../guias.html">Guías</a>
+      <a href="../sobre.html">Sobre</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <article class="guide-article">
+    <div class="container container-narrow">
+      <nav class="breadcrumb mono">
+        <a href="../index.html">Inicio</a> / <a href="../guias.html">Guías</a> / Compatibilidad
+      </nav>
+      <span class="guide-tag mono">GUÍA</span>
+      <h1>Compatibilidad de componentes</h1>
+      <p class="guide-meta mono">9 min de lectura</p>
+
+      <p class="guide-intro">El error más común al armar una PC por primera vez es comprar piezas que no encajan entre sí. La buena noticia: las reglas de compatibilidad son pocas y lógicas. Estas son exactamente las mismas que revisa nuestro configurador en tiempo real, así que después de leer esto vas a entender <em>por qué</em> te avisa lo que te avisa.</p>
+
+      <h2 class="hoverable" data-preview="socket-match">1. El socket: procesador ↔ placa madre</h2>
+      <p>El <strong>socket</strong> es el conector físico donde entra el procesador en la placa madre. Es la regla número uno: el socket del procesador y el de la placa <strong>tienen que ser el mismo</strong>, o el procesador literalmente no entra.</p>
+      <p>Por ejemplo, los procesadores AMD Ryzen actuales usan socket <strong class="hoverable-inline" data-preview="socket" data-preview-label="Socket AM5">AM5</strong>, así que necesitan una placa madre AM5 (como las B650 o X870). Los Intel Core Ultra usan socket <strong class="hoverable-inline" data-preview="socket" data-preview-label="Socket LGA1851">LGA1851</strong> y necesitan placas de esa familia (como las Z890). Un Ryzen no entra en una placa Intel, y viceversa. Siempre revisa que coincidan.</p>
+
+      <h2 class="hoverable" data-preview="ram-slot">2. El tipo de RAM: memoria ↔ placa madre</h2>
+      <p>La memoria RAM viene en generaciones, y la actual es <strong class="hoverable-inline" data-preview="ram" data-preview-label="Memoria DDR5">DDR5</strong>. La placa madre está diseñada para un tipo específico: una placa DDR5 solo acepta RAM DDR5. No son intercambiables — ni siquiera entran físicamente en la ranura equivocada. Como casi todo lo actual es DDR5, esto rara vez da problemas hoy, pero es bueno saberlo si comparas piezas de distintas épocas.</p>
+
+      <h2 class="hoverable" data-preview="board-fit">3. El tamaño: placa madre ↔ gabinete</h2>
+      <p>Las placas madre vienen en tamaños estándar (el "factor de forma"): <strong class="hoverable-inline" data-preview="factor-forma" data-preview-label="ATX (grande)">ATX</strong> (grande), <strong class="hoverable-inline" data-preview="factor-forma" data-preview-label="Micro-ATX (mediana)">Micro-ATX</strong> (mediana) e <strong class="hoverable-inline" data-preview="factor-forma" data-preview-label="Mini-ITX (compacta)">Mini-ITX</strong> (compacta). El gabinete indica qué tamaños admite. La regla es simple: la placa debe caber en el gabinete.</p>
+      <p>Un gabinete grande (mid-tower o full-tower) suele admitir los tres tamaños. Uno compacto solo admite las placas pequeñas. Si eliges una placa ATX, necesitas un gabinete que la soporte.</p>
+
+      <div class="ad-slot mono">Espacio publicitario</div>
+
+      <h2 class="hoverable" data-preview="gpu-fit">4. El espacio físico: tarjeta gráfica ↔ gabinete</h2>
+      <p>Las tarjetas gráficas modernas son grandes, y las de gama alta pueden ser enormes. Cada gabinete tiene un largo máximo de GPU que admite (en milímetros). Si la tarjeta es más larga que ese máximo, no cierra la tapa — o directamente no entra.</p>
+      <p>Es un detalle que mucha gente pasa por alto y descubre tarde. Por eso el configurador compara el largo de la GPU con el espacio del gabinete y te avisa antes de que sea un problema.</p>
+
+      <h2 class="hoverable" data-preview="power-fit">5. La potencia: fuente ↔ todo el sistema</h2>
+      <p>La fuente de poder debe entregar suficientes <strong>watts</strong> para alimentar a todas las piezas, con margen de sobra. Las que más consumen son el procesador y, sobre todo, la tarjeta gráfica.</p>
+      <p>La forma sencilla de calcularlo: suma el consumo del procesador y la GPU, agrégale unos 100 W para el resto del sistema, y elige una fuente que supere ese número con holgura (idealmente un 40% más, para que no trabaje al límite). Una fuente al límite se estresa, hace ruido y dura menos. El configurador hace esta cuenta por ti y te recomienda un mínimo de watts.</p>
+
+      <h2 class="hoverable" data-preview="cooler-fit">6. La refrigeración: cooler ↔ procesador ↔ gabinete</h2>
+      <p>La refrigeración tiene que cumplir tres cosas a la vez:</p>
+      <ul>
+        <li>Ser compatible con el <strong>socket</strong> del procesador (la mayoría soporta varios, pero conviene confirmarlo).</li>
+        <li>Poder <strong>disipar el calor</strong> que genera ese procesador (un CPU potente necesita una refrigeración a su altura).</li>
+        <li>Si es de aire, <strong>caber en altura</strong> dentro del gabinete (los disipadores grandes no entran en gabinetes compactos).</li>
+      </ul>
+
+      <h2>El equilibrio general: evitar cuellos de botella</h2>
+      <p>Más allá de que las piezas "encajen", hay una compatibilidad más sutil: que estén <strong>equilibradas</strong> entre sí. Poner una tarjeta gráfica carísima junto a un procesador muy débil hace que la GPU no rinda al máximo, porque el procesador no le sigue el ritmo. Eso se llama <em>cuello de botella</em>. No rompe nada, pero es dinero desaprovechado. La idea es que ninguna pieza quede muy por debajo del resto.</p>
+
+      <div class="guide-cta">
+        <h3>Deja que el sistema lo revise por ti</h3>
+        <p>El configurador aplica todas estas reglas en tiempo real: elige tus piezas y te marca cualquier incompatibilidad con una explicación clara.</p>
+        <a href="../configurador.html" class="btn btn-primary">Ir al configurador</a>
+      </div>
+
+      <div class="guide-related">
+        <h3>Sigue aprendiendo</h3>
+        <div class="related-cards">
+          <a href="glosario.html" class="guide-card">
+            <span class="guide-tag mono">BÁSICOS</span>
+            <h4>Glosario para principiantes</h4>
+          </a>
+          <a href="elegir-gpu.html" class="guide-card">
+            <span class="guide-tag mono">GPU</span>
+            <h4>Cómo elegir tu tarjeta gráfica</h4>
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>© 2026 ArmaPC</span>
+    <div class="footer-links">
+      <a href="../sobre.html">Sobre</a>
+      <a href="../contacto.html">Contacto</a>
+      <a href="../privacidad.html">Privacidad</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script src="../js/previews.js"></script>
+</body>
+</html>

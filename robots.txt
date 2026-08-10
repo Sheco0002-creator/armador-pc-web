@@ -2,6 +2,5 @@
 User-agent: *
 Allow: /
 
-# Cuando tengas tu dominio o la URL final de GitHub Pages, agrega aquí la
-# línea del sitemap para ayudar a Google a indexar el sitio, por ejemplo:
-# Sitemap: https://tu-usuario.github.io/armador-pc-web/sitemap.xml
+# Ubicación del mapa del sitio, para ayudar a Google a indexar todo.
+Sitemap: https://sheco0002-creator.github.io/armador-pc-web/sitemap.xml

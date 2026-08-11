@@ -31,6 +31,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://sheco0002-creator.github.io/armador-pc-web/guias/errores-comunes.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://sheco0002-creator.github.io/armador-pc-web/niveles/entrada.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

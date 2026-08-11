@@ -32,6 +32,30 @@
       "title": "Errores comunes al armar tu primera PC",
       "summary": "Los tropiezos más frecuentes al armar tu primer equipo — fuente barata, mal presupuesto, olvidar la refrigeración — y cómo evitarlos todos.",
       "readMinutes": 8
+    },
+    {
+      "slug": "cuanta-ram",
+      "file": "guias/cuanta-ram.html",
+      "tag": "RAM",
+      "title": "¿Cuánta RAM necesito?",
+      "summary": "16 GB, 32 GB o más: cuánta memoria necesitas de verdad según lo que hagas con tu PC, sin gastar de más ni quedarte corto.",
+      "readMinutes": 6
+    },
+    {
+      "slug": "fuente-de-poder",
+      "file": "guias/fuente-de-poder.html",
+      "tag": "FUENTE",
+      "title": "Guía de fuentes de poder",
+      "summary": "Cuántos watts necesitas, qué significa la certificación 80+ y por qué la fuente es la pieza donde no conviene ahorrar.",
+      "readMinutes": 7
+    },
+    {
+      "slug": "elegir-cpu",
+      "file": "guias/elegir-cpu.html",
+      "tag": "CPU",
+      "title": "Cómo elegir tu procesador",
+      "summary": "Núcleos, caché y socket: en qué fijarte de verdad al elegir el cerebro de tu PC, y por qué el más caro no siempre es el mejor para jugar.",
+      "readMinutes": 8
     }
   ]
 }

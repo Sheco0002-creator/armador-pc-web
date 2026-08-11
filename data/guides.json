@@ -24,6 +24,14 @@
       "title": "Cómo elegir tu tarjeta gráfica",
       "summary": "La pieza que más define tu experiencia gamer. Cómo elegirla según la resolución a la que juegas, sin pagar de más ni quedarte corto.",
       "readMinutes": 8
+    },
+    {
+      "slug": "errores-comunes",
+      "file": "guias/errores-comunes.html",
+      "tag": "CONSEJOS",
+      "title": "Errores comunes al armar tu primera PC",
+      "summary": "Los tropiezos más frecuentes al armar tu primer equipo — fuente barata, mal presupuesto, olvidar la refrigeración — y cómo evitarlos todos.",
+      "readMinutes": 8
     }
   ]
 }

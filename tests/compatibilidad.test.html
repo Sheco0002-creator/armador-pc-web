@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Pruebas — Motor de compatibilidad — ArmaPC</title>
+<style>
+  body { background:#0D1512; color:#EDEDE6; font-family: monospace; padding: 24px; line-height: 1.6; }
+  h1 { font-size: 18px; }
+  .pass { color: #5FAE8C; }
+  .fail { color: #e08a6a; font-weight: bold; }
+  .caso { border-bottom: 1px solid #2A3B32; padding: 10px 0; }
+  .detalle { color: #9CA89E; font-size: 12px; margin-left: 20px; white-space: pre-wrap; }
+  #resumen { margin-top: 20px; padding: 12px; border: 1px solid #2A3B32; }
+</style>
+</head>
+<body>
+<h1>Pruebas del motor de compatibilidad (js/compatibilidad.js real, sin reimplementar)</h1>
+<div id="resultados">Ejecutando…</div>
+<div id="resumen"></div>
+
+<!-- Carga el motor REAL del sitio, no una copia -->
+<script src="../js/compatibilidad.js"></script>
+<script>
+// ===== Fixtures de prueba =====
+// IMPORTANTE: algunas piezas de estos fixtures son sintéticas (inventadas
+// SOLO para esta prueba, ej. una RAM "DDR4" para poder probar el caso
+// incompatible) — el catálogo real del sitio (data/components.json) NO
+// contiene ninguna pieza DDR4 hoy, así que este caso no puede armarse con
+// datos reales. Es una práctica normal de testing: aislar la regla con un
+// objeto mínimo, sin tocar el catálogo público que ve el usuario.
+
+const cpuAM5 = { socket: 'AM5', tdp: 65 };
+const cpuAM5AltoTDP = { socket: 'AM5', tdp: 170 };
+const cpuLGA = { socket: 'LGA1851', tdp: 125 };
+
+const mbAM5 = { socket: 'AM5', ramType: 'DDR5', formFactor: 'ATX', chipset: 'X870' };
+const mbLGA = { socket: 'LGA1851', ramType: 'DDR5', formFactor: 'ATX', chipset: 'Z890' };
+
+const ramDDR5 = { ramType: 'DDR5', modules: 2 };
+const ramDDR4 = { ramType: 'DDR4', modules: 2 }; // sintética, no existe en el catálogo real
+
+const caseChico = { supports: ['ATX', 'mATX', 'ITX'], maxGpuLength: 320, maxCoolerHeight: 165 };
+const caseGrande = { supports: ['ATX', 'mATX', 'ITX'], maxGpuLength: 400, maxCoolerHeight: 180 };
+
+const gpuChica = { length: 245, powerDraw: 145, recommendedPsu: 550 };
+const gpuGrande = { length: 340, powerDraw: 360, recommendedPsu: 850 }; // no cabe en caseChico (320mm)
+
+const coolerBajo = { type: 'aire', socketSupport: ['AM5', 'LGA1851'], height: 155, tdpCapacity: 95 };
+const coolerAlto = { type: 'aire', socketSupport: ['AM5', 'LGA1851'], height: 200, tdpCapacity: 180 }; // no cabe en caseChico (165mm)
+
+const psuChica = { wattage: 450 };  // insuficiente para gpuGrande + cpuAM5AltoTDP
+const psuGrande = { wattage: 850 }; // suficiente
+
+const storageNVMe = { interface: 'NVMe' };
+
+// ===== Marco de pruebas mínimo =====
+let pasaron = 0, fallaron = 0;
+const cont = document.getElementById('resultados');
+cont.innerHTML = '';
+
+function caso(nombre, fn) {
+  let ok, detalle;
+  try {
+    const r = fn();
+    ok = r.ok;
+    detalle = r.detalle;
+  } catch (e) {
+    ok = false;
+    detalle = 'Excepción: ' + e.message;
+  }
+  if (ok) pasaron++; else fallaron++;
+  const div = document.createElement('div');
+  div.className = 'caso';
+  div.innerHTML = `<span class="${ok ? 'pass' : 'fail'}">${ok ? '✓ PASS' : '✗ FAIL'}</span> — ${nombre}` +
+    (detalle ? `<div class="detalle">${detalle}</div>` : '');
+  cont.appendChild(div);
+}
+
+function tieneNivel(problemas, nivel, contieneTexto) {
+  return problemas.some((p) => p.nivel === nivel && (!contieneTexto || p.texto.includes(contieneTexto)));
+}
+
+// ===== 1. CPU incompatible (socket distinto) =====
+caso('1. CPU incompatible: socket AM5 en placa LGA1851', () => {
+  const build = { cpu: cpuAM5, motherboard: mbLGA };
+  const p = revisarCompatibilidad(build);
+  const encontrado = tieneNivel(p, 'incompatible', 'socket');
+  return { ok: encontrado, detalle: JSON.stringify(p.filter(x => x.nivel === 'incompatible')) };
+});
+
+// ===== 2. CPU compatible (mismo socket) =====
+caso('2. CPU compatible: socket AM5 en placa AM5', () => {
+  const build = { cpu: cpuAM5, motherboard: mbAM5 };
+  const p = revisarCompatibilidad(build);
+  const sinIncompatibleDeSocket = !tieneNivel(p, 'incompatible', 'socket');
+  return { ok: sinIncompatibleDeSocket, detalle: JSON.stringify(p) };
+});
+
+// ===== 3. RAM incompatible (DDR4 en placa DDR5) =====
+caso('3. RAM incompatible: DDR4 en placa DDR5', () => {
+  const build = { motherboard: mbAM5, ram: ramDDR4 };
+  const p = revisarCompatibilidad(build);
+  const encontrado = tieneNivel(p, 'incompatible', 'DDR5') || tieneNivel(p, 'incompatible', 'DDR4');
+  return { ok: encontrado, detalle: JSON.stringify(p.filter(x => x.nivel === 'incompatible')) };
+});
+
+// ===== 4. RAM compatible (DDR5 en placa DDR5) =====
+caso('4. RAM compatible: DDR5 en placa DDR5', () => {
+  const build = { motherboard: mbAM5, ram: ramDDR5 };
+  const p = revisarCompatibilidad(build);
+  const sinIncompatibleDeTipo = !tieneNivel(p, 'incompatible');
+  return { ok: sinIncompatibleDeTipo, detalle: JSON.stringify(p.map(x => x.nivel)) };
+});
+
+// ===== 5. GPU demasiado grande =====
+caso('5. GPU demasiado grande: 340mm en gabinete de 320mm', () => {
+  const build = { gpu: gpuGrande, case: caseChico };
+  const p = revisarCompatibilidad(build);
+  const mensaje = p.find(x => x.nivel === 'incompatible' && x.texto.includes('340') && x.texto.includes('320'));
+  return { ok: !!mensaje, detalle: mensaje ? mensaje.texto : JSON.stringify(p) };
+});
+
+// ===== 6. GPU compatible (entra en el gabinete) =====
+caso('6. GPU compatible: 245mm en gabinete de 320mm', () => {
+  const build = { gpu: gpuChica, case: caseChico };
+  const p = revisarCompatibilidad(build);
+  const sinIncompatibleDeLargo = !tieneNivel(p, 'incompatible', 'GPU incompatible');
+  return { ok: sinIncompatibleDeLargo, detalle: JSON.stringify(p.map(x => x.nivel)) };
+});
+
+// ===== 7. Cooler demasiado alto =====
+caso('7. Cooler demasiado alto: 200mm en gabinete de 165mm', () => {
+  const build = { cooling: coolerAlto, case: caseChico, cpu: cpuAM5 };
+  const p = revisarCompatibilidad(build);
+  const mensaje = p.find(x => x.nivel === 'incompatible' && x.texto.includes('200') && x.texto.includes('165'));
+  return { ok: !!mensaje, detalle: mensaje ? mensaje.texto : JSON.stringify(p) };
+});
+
+// ===== 8. Cooler compatible =====
+caso('8. Cooler compatible: 155mm en gabinete de 165mm', () => {
+  const build = { cooling: coolerBajo, case: caseChico, cpu: cpuAM5 };
+  const p = revisarCompatibilidad(build);
+  const sinIncompatibleDeAltura = !tieneNivel(p, 'incompatible');
+  return { ok: sinIncompatibleDeAltura, detalle: JSON.stringify(p.map(x => x.nivel)) };
+});
+
+// ===== 9. PSU insuficiente =====
+caso('9. PSU insuficiente: 450W para un sistema que consume más', () => {
+  const build = { cpu: cpuAM5AltoTDP, gpu: gpuGrande, psu: psuChica };
+  const p = revisarCompatibilidad(build);
+  const mensaje = p.find(x => x.nivel === 'incompatible' && x.texto.toLowerCase().includes('no alcanza'));
+  return { ok: !!mensaje, detalle: mensaje ? mensaje.texto : JSON.stringify(p) };
+});
+
+// ===== 10. PSU suficiente =====
+caso('10. PSU suficiente: 850W para el mismo sistema', () => {
+  const build = { cpu: cpuAM5AltoTDP, gpu: gpuGrande, psu: psuGrande };
+  const p = revisarCompatibilidad(build);
+  const sinIncompatibleDePotencia = !tieneNivel(p, 'incompatible', 'no alcanza');
+  return { ok: sinIncompatibleDePotencia, detalle: JSON.stringify(p.filter(x=>x.nivel!=='no_verificado')) };
+});
+
+// ===== 11. Build completa válida (con el catálogo REAL, no sintético) =====
+caso('11. Build completa válida (preset real "entrada" de data/components.json)', () => {
+  // Se arma a mano con los MISMOS ids que usa el preset real "entrada", para
+  // no depender de un fetch asíncrono dentro de la prueba.
+  const build = {
+    cpu: { socket: 'AM5', tdp: 65 },                                   // Ryzen 5 9600X
+    motherboard: { socket: 'AM5', ramType: 'DDR5', formFactor: 'ATX', chipset: 'B650' }, // B650
+    ram: { ramType: 'DDR5', modules: 2 },                              // 32GB DDR5
+    gpu: { length: 245, powerDraw: 145, recommendedPsu: 550 },         // RTX 5060
+    storage: { interface: 'SATA' },                                    // SSD SATA 1TB
+    psu: { wattage: 550 },                                             // 550W
+    case: caseChico,                                                   // Mid-tower (usa el mismo shape)
+    cooling: { type: 'aire', socketSupport: ['AM5','LGA1851'], height: 155, tdpCapacity: 95 }, // torre simple
+  };
+  const p = revisarCompatibilidad(build);
+  const incompatibles = p.filter(x => x.nivel === 'incompatible');
+  const avisos = p.filter(x => x.nivel === 'aviso');
+  const ok = incompatibles.length === 0 && avisos.length === 0;
+  return { ok, detalle: `incompatibles=${incompatibles.length} avisos=${avisos.length} no_verificados=${p.filter(x=>x.nivel==='no_verificado').length}` };
+});
+
+// ===== 12. Build con múltiples incompatibilidades simultáneas =====
+caso('12. Build con múltiples incompatibilidades (socket + RAM + GPU + PSU a la vez)', () => {
+  const build = {
+    cpu: cpuLGA,            // LGA1851
+    motherboard: mbAM5,     // AM5 -> choca con el socket del cpu
+    ram: ramDDR4,           // DDR4 -> choca con la placa (DDR5)
+    gpu: gpuGrande,         // 340mm -> choca con el gabinete (320mm)
+    case: caseChico,
+    psu: psuChica,          // 450W -> no alcanza para gpuGrande
+  };
+  const p = revisarCompatibilidad(build);
+  const incompatibles = p.filter(x => x.nivel === 'incompatible');
+  // Deben detectarse las 4 incompatibilidades simultáneas, ninguna se pisa con otra.
+  const tieneSocket = incompatibles.some(x => x.texto.includes('socket'));
+  const tieneRam = incompatibles.some(x => x.texto.includes('DDR'));
+  const tieneGpu = incompatibles.some(x => x.texto.includes('340'));
+  const tienePsu = incompatibles.some(x => x.texto.toLowerCase().includes('no alcanza'));
+  const ok = tieneSocket && tieneRam && tieneGpu && tienePsu && incompatibles.length >= 4;
+  return { ok, detalle: `Total incompatibles=${incompatibles.length}\n` + incompatibles.map(x=>'- '+x.texto).join('\n') };
+});
+
+// ===== Resumen =====
+document.getElementById('resumen').innerHTML =
+  `<strong>${pasaron} de ${pasaron + fallaron} pruebas pasaron</strong>` +
+  (fallaron > 0 ? `<span class="fail"> — ${fallaron} fallaron</span>` : '<span class="pass"> — todas OK</span>');
+</script>
+</body>
+</html>

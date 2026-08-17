@@ -1,3 +1,19 @@
+// ===== Escapar HTML =====
+// Convierte texto a HTML seguro antes de insertarlo con innerHTML — evita que
+// un nombre o texto con caracteres especiales (<, >, ", ', &) rompa el layout
+// o inyecte HTML/atributos no deseados. Hoy todos los datos son propios
+// (components.json, guides.json), pero esto protege de raíz cuando en el
+// futuro se conecten datos externos (ej. Amazon).
+function escapeHtml(texto) {
+  if (texto === null || texto === undefined) return '';
+  return String(texto)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 // Abre y cierra el menú de navegación en pantallas chicas (celular)
 const navToggle = document.getElementById('nav-toggle');
 const mainNav = document.getElementById('main-nav');

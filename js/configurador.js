@@ -1,6 +1,8 @@
 // ===== Lógica del configurador =====
 
 let CATALOGO = null;        // data/components.json completo
+let CATEGORIAS_ORDENADAS = []; // categorías ordenadas UNA sola vez al cargar
+                                // (antes se re-ordenaban en cada render)
 let BUILD = {};             // piezas elegidas: { cpu: {..}, gpu: {..}, ... }
 let CATEGORIA_ABIERTA = null;
 let TASAS = {};
@@ -20,35 +22,45 @@ function buscarPieza(categoriaId, piezaId) {
   return cat.items.find((i) => i.id === piezaId) || null;
 }
 
+// --- Precio total de la build actual (una sola función; antes se sumaba por
+// separado en dibujarResumen y en copiarBuild) ---
+function totalBuild() {
+  return Object.values(BUILD).reduce((suma, pieza) => suma + pieza.price, 0);
+}
+
 // --- Dibujar una categoría (tarjeta que se abre para elegir) ---
-function dibujarCategoria(cat) {
+// 'antesIncompatibles' viene precalculado desde dibujarCategorias para no
+// recomputar el estado "antes" de la build en cada una de las N piezas de
+// la categoría (antes se recalculaba una vez por pieza, siempre con el
+// mismo resultado dentro del mismo render).
+function dibujarCategoria(cat, antesIncompatibles) {
   const elegida = BUILD[cat.id];
   const abierta = CATEGORIA_ABIERTA === cat.id;
 
   // Cabecera de la categoría
   let html = `<div class="cat-card${abierta ? ' open' : ''}" data-cat="${cat.id}">`;
-  html += `<button class="cat-head" data-toggle="${cat.id}">
+  html += `<button class="cat-head" data-toggle="${cat.id}" aria-expanded="${abierta}" aria-controls="opciones-${cat.id}">
     <span class="cat-order mono">${String(cat.order).padStart(2, '0')}</span>
-    <span class="cat-label">${cat.label}</span>
-    <span class="cat-chosen">${elegida ? elegida.name : '<em>Sin elegir</em>'}</span>
+    <span class="cat-label">${escapeHtml(cat.label)}</span>
+    <span class="cat-chosen">${elegida ? escapeHtml(elegida.name) : '<em>Sin elegir</em>'}</span>
     <span class="cat-arrow">${abierta ? '▲' : '▼'}</span>
   </button>`;
 
   // Lista de opciones (solo si está abierta)
   if (abierta) {
-    html += '<div class="cat-options">';
+    html += `<div class="cat-options" id="opciones-${cat.id}">`;
     for (const pieza of cat.items) {
       const seleccionada = elegida && elegida.id === pieza.id;
-      const compat = piezaCompatible(BUILD, cat.id, pieza);
+      const compat = piezaCompatible(BUILD, cat.id, pieza, antesIncompatibles);
       const clases = ['option'];
       if (seleccionada) clases.push('selected');
       if (!compat.ok) clases.push('incompatible');
 
       html += `<button class="${clases.join(' ')}" data-pick="${cat.id}:${pieza.id}"${!compat.ok ? ' disabled' : ''}>
-        <span class="option-main" data-preview="${cat.id}" data-preview-label="${pieza.name}">
-          <span class="option-name">${pieza.name}</span>
-          ${pieza.specs ? `<span class="option-specs">${pieza.specs}</span>` : ''}
-          ${!compat.ok ? `<span class="option-reason">⚠ ${compat.razon}</span>` : ''}
+        <span class="option-main" data-preview="${cat.id}" data-preview-label="${escapeHtml(pieza.name)}">
+          <span class="option-name">${escapeHtml(pieza.name)}</span>
+          ${pieza.specs ? `<span class="option-specs">${escapeHtml(pieza.specs)}</span>` : ''}
+          ${!compat.ok ? `<span class="option-reason">⚠ ${escapeHtml(compat.razon)}</span>` : ''}
         </span>
         <span class="option-price mono">${precioTexto(pieza.price)}</span>
       </button>`;
@@ -61,17 +73,32 @@ function dibujarCategoria(cat) {
 }
 
 // --- Dibujar todas las categorías ---
-function dibujarCategorias() {
+// 'categoriaAEnfocar' es la categoría a la que se le debe devolver el foco de
+// teclado después del re-render (el innerHTML de abajo destruye y recrea
+// todos los botones, así que sin esto quien navega con teclado perdería su
+// lugar y volvería a <body> después de cada elección).
+function dibujarCategorias(categoriaAEnfocar) {
   const cont = document.getElementById('config-categories');
-  const ordenadas = [...CATALOGO.categories].sort((a, b) => a.order - b.order);
-  cont.innerHTML = ordenadas.map(dibujarCategoria).join('');
+  // El estado "antes" de la build es el mismo para las N piezas de cada
+  // categoría — se calcula una sola vez aquí, no dentro de cada pieza.
+  const antesIncompatibles = revisarCompatibilidad(BUILD).filter((p) => p.nivel === 'incompatible');
+  cont.innerHTML = CATEGORIAS_ORDENADAS.map((cat) => dibujarCategoria(cat, antesIncompatibles)).join('');
+
+  // Preferimos devolver el foco a la categoría que quedó abierta (para poder
+  // seguir eligiendo de inmediato); si ninguna quedó abierta, lo devolvemos
+  // a la categoría con la que se acaba de interactuar, para no perder el lugar.
+  const idAEnfocar = CATEGORIA_ABIERTA || categoriaAEnfocar;
+  if (idAEnfocar) {
+    const boton = cont.querySelector(`[data-toggle="${idAEnfocar}"]`);
+    if (boton) boton.focus();
+  }
 
   // Conectar clicks de abrir/cerrar categoría
   cont.querySelectorAll('[data-toggle]').forEach((btn) => {
     btn.addEventListener('click', () => {
       const id = btn.getAttribute('data-toggle');
       CATEGORIA_ABIERTA = (CATEGORIA_ABIERTA === id) ? null : id;
-      dibujarCategorias();
+      dibujarCategorias(id);
     });
   });
 
@@ -88,30 +115,27 @@ function dibujarCategorias() {
       }
       // Avanzar: abrir la siguiente categoría sin elegir, para guiar al usuario
       abrirSiguientePendiente();
-      dibujarTodo();
+      dibujarTodo(catId);
     });
   });
 }
 
 // --- Abrir automáticamente la siguiente categoría que falte ---
 function abrirSiguientePendiente() {
-  const ordenadas = [...CATALOGO.categories].sort((a, b) => a.order - b.order);
-  const pendiente = ordenadas.find((c) => !BUILD[c.id]);
+  const pendiente = CATEGORIAS_ORDENADAS.find((c) => !BUILD[c.id]);
   CATEGORIA_ABIERTA = pendiente ? pendiente.id : null;
 }
 
 // --- Dibujar el panel de resumen ---
 function dibujarResumen() {
   const lista = document.getElementById('summary-list');
-  const ordenadas = [...CATALOGO.categories].sort((a, b) => a.order - b.order);
 
-  let total = 0;
-  lista.innerHTML = ordenadas.map((cat) => {
+  const total = totalBuild();
+  lista.innerHTML = CATEGORIAS_ORDENADAS.map((cat) => {
     const pieza = BUILD[cat.id];
-    if (pieza) total += pieza.price;
     return `<li class="${pieza ? 'filled' : 'empty'}">
-      <span class="sum-cat mono">${cat.label}</span>
-      <span class="sum-piece">${pieza ? pieza.name : '—'}</span>
+      <span class="sum-cat mono">${escapeHtml(cat.label)}</span>
+      <span class="sum-piece">${pieza ? escapeHtml(pieza.name) : '—'}</span>
       <span class="sum-price mono">${pieza ? precioTexto(pieza.price) : ''}</span>
     </li>`;
   }).join('');
@@ -121,20 +145,21 @@ function dibujarResumen() {
 
   // Estado de compatibilidad
   const problemas = revisarCompatibilidad(BUILD);
-  const errores = problemas.filter((p) => p.nivel === 'error');
+  const incompatibles = problemas.filter((p) => p.nivel === 'incompatible');
   const avisos = problemas.filter((p) => p.nivel === 'aviso');
+  const noVerificados = problemas.filter((p) => p.nivel === 'no_verificado');
   const elegidas = Object.keys(BUILD).length;
-  const totalCats = CATALOGO.categories.length;
+  const totalCats = CATEGORIAS_ORDENADAS.length;
 
   const estado = document.getElementById('summary-status');
-  if (errores.length > 0) {
+  if (incompatibles.length > 0) {
     estado.className = 'summary-status status-error';
-    estado.innerHTML = `<strong>⚠ ${errores.length} problema(s) de compatibilidad</strong>` +
-      errores.map((e) => `<span>${e.texto}</span>`).join('');
+    estado.innerHTML = `<strong>⚠ ${incompatibles.length} incompatibilidad(es)</strong>` +
+      incompatibles.map((e) => `<span>${escapeHtml(e.texto)}</span>`).join('');
   } else if (avisos.length > 0) {
     estado.className = 'summary-status status-warn';
     estado.innerHTML = `<strong>Compatible, con ${avisos.length} recomendación(es)</strong>` +
-      avisos.map((a) => `<span>${a.texto}</span>`).join('');
+      avisos.map((a) => `<span>${escapeHtml(a.texto)}</span>`).join('');
   } else if (elegidas === 0) {
     estado.className = 'summary-status status-neutral';
     estado.innerHTML = `<span>Aún no has elegido piezas. Empieza por el procesador o carga un nivel recomendado.</span>`;
@@ -146,22 +171,74 @@ function dibujarResumen() {
     estado.innerHTML = `<strong>✓ Build completa y compatible</strong>`;
   }
 
-  // Botón exportar: activo solo si la build está completa y sin errores
+  // "No verificado": nunca bloquea ni se mezcla con el estado principal, pero
+  // se muestra siempre que exista, para ser honestos sobre lo que no pudimos
+  // comprobar por falta de datos (nunca lo tratamos como incompatible).
+  const bloqueNoVerif = document.getElementById('summary-unverified');
+  if (bloqueNoVerif) {
+    if (noVerificados.length > 0) {
+      bloqueNoVerif.innerHTML = `<strong>ℹ No verificado (${noVerificados.length})</strong>` +
+        noVerificados.map((n) => `<span>${escapeHtml(n.texto)}</span>`).join('');
+      bloqueNoVerif.hidden = false;
+    } else {
+      bloqueNoVerif.hidden = true;
+      bloqueNoVerif.innerHTML = '';
+    }
+  }
+
+  // Botón exportar: activo solo si la build está completa y sin incompatibilidades
   const btn = document.getElementById('export-btn');
-  btn.disabled = !(elegidas === totalCats && errores.length === 0);
+  btn.disabled = !(elegidas === totalCats && incompatibles.length === 0);
 }
 
-function dibujarTodo() {
-  dibujarCategorias();
+// --- Consumo estimado y margen de la fuente (usa las mismas funciones que
+// ya usa el motor de compatibilidad — no se recalcula por separado) ---
+function dibujarConsumo() {
+  const cont = document.getElementById('summary-power');
+  if (!cont) return;
+  const { cpu, gpu, psu } = BUILD;
+
+  if (!cpu && !gpu) {
+    cont.innerHTML = `<p class="power-empty">Elige el procesador y la tarjeta gráfica para estimar el consumo.</p>`;
+    return;
+  }
+
+  const consumo = consumoEstimado(BUILD);
+  let html = `<div class="power-row"><span>Consumo estimado</span><span class="mono">~${consumo}W</span></div>`;
+
+  if (!psu) {
+    html += `<p class="power-empty">Elige una fuente de poder para ver su margen.</p>`;
+  } else {
+    const recomendada = fuenteRecomendada(BUILD);
+    const margen = psu.wattage - consumo;
+    let clase = 'power-ok';
+    let etiqueta = `Buen margen (+${margen}W)`;
+    if (psu.wattage < consumo) {
+      clase = 'power-bad';
+      etiqueta = `Insuficiente (faltan ${consumo - psu.wattage}W)`;
+    } else if (psu.wattage < recomendada) {
+      clase = 'power-warn';
+      etiqueta = `Margen ajustado (+${margen}W, se recomienda ${recomendada}W)`;
+    }
+    html += `<div class="power-row"><span>Fuente elegida</span><span class="mono">${psu.wattage}W</span></div>`;
+    html += `<div class="power-row ${clase}"><span>Margen</span><span class="mono">${etiqueta}</span></div>`;
+  }
+
+  cont.innerHTML = html;
+}
+
+function dibujarTodo(categoriaAEnfocar) {
+  dibujarCategorias(categoriaAEnfocar);
   dibujarResumen();
+  dibujarConsumo();
 }
 
 // --- Cargar un preset (nivel recomendado) ---
 function cargarPreset(nombre) {
   BUILD = {};
-  if (nombre && CATALOGO.presets[nombre]) {
-    const preset = CATALOGO.presets[nombre];
-    for (const [catId, piezaId] of Object.entries(preset)) {
+  const tier = nombre ? CATALOGO.tiers.find((t) => t.id === nombre) : null;
+  if (tier) {
+    for (const [catId, piezaId] of Object.entries(tier.components)) {
       const pieza = buscarPieza(catId, piezaId);
       if (pieza) BUILD[catId] = pieza;
     }
@@ -173,34 +250,27 @@ function cargarPreset(nombre) {
 
 // --- Copiar la build al portapapeles ---
 function copiarBuild() {
-  const ordenadas = [...CATALOGO.categories].sort((a, b) => a.order - b.order);
   let texto = 'Mi PC gamer (armado en ArmaPC)\n\n';
-  let total = 0;
-  for (const cat of ordenadas) {
+  for (const cat of CATEGORIAS_ORDENADAS) {
     const p = BUILD[cat.id];
-    if (p) {
-      texto += `- ${cat.label}: ${p.name} (US$${p.price})\n`;
-      total += p.price;
-    }
+    if (p) texto += `- ${cat.label}: ${p.name} (US$${p.price})\n`;
   }
+  const total = totalBuild();
   texto += `\nTotal aproximado: US$${total.toLocaleString('en-US')}`;
   if (MONEDA_ACTIVA !== 'USD') texto += ` (${convertir(total, MONEDA_ACTIVA, TASAS)})`;
 
+  const btn = document.getElementById('export-btn');
+  const original = btn.textContent;
+
   navigator.clipboard.writeText(texto).then(() => {
-    const btn = document.getElementById('export-btn');
-    const original = btn.textContent;
     btn.textContent = '¡Copiado!';
     setTimeout(() => { btn.textContent = original; }, 1800);
+  }).catch(() => {
+    // El navegador puede negar el permiso de portapapeles (ej. contexto no
+    // seguro o restricción del usuario) — avisamos en vez de fallar en silencio.
+    btn.textContent = 'No se pudo copiar';
+    setTimeout(() => { btn.textContent = original; }, 1800);
   });
-}
-
-// --- Selector de moneda ---
-function selectorMoneda() {
-  const opciones = MonedaConfig.monedas.map((m) =>
-    `<option value="${m.code}"${m.code === MONEDA_ACTIVA ? ' selected' : ''}>${m.code} — ${m.name}</option>`
-  ).join('');
-  return `<label class="moneda-selector"><span class="mono">Moneda</span>
-    <select id="moneda-select">${opciones}</select></label>`;
 }
 
 // --- Arranque ---
@@ -213,12 +283,15 @@ async function iniciar() {
     return;
   }
 
+  // Ordenar las categorías UNA sola vez (antes se reordenaba en cada render).
+  CATEGORIAS_ORDENADAS = [...CATALOGO.categories].sort((a, b) => a.order - b.order);
+
   MONEDA_ACTIVA = monedaElegida();
   TASAS = (await obtenerTasas()).tasas;
 
-  // Selector de moneda
+  // Selector de moneda (función compartida en moneda.js)
   const cont = document.getElementById('moneda-container');
-  cont.innerHTML = selectorMoneda();
+  cont.innerHTML = selectorMonedaHTML(MONEDA_ACTIVA);
   document.getElementById('moneda-select').addEventListener('change', (e) => {
     MONEDA_ACTIVA = e.target.value;
     guardarMonedaElegida(MONEDA_ACTIVA);
@@ -228,7 +301,7 @@ async function iniciar() {
   // Badge de fecha de precios (transparencia)
   const badge = document.getElementById('precios-fecha');
   if (badge && CATALOGO.updated) {
-    badge.innerHTML = `<span class="mono">Precios de referencia · actualizados en ${fechaPreciosLegible(CATALOGO.updated)}</span>`;
+    badge.innerHTML = `<span class="mono">Precios de referencia · actualizados en ${escapeHtml(fechaPreciosLegible(CATALOGO.updated))}</span>`;
   }
 
   // Botones de preset
@@ -242,7 +315,7 @@ async function iniciar() {
   // Si venimos con ?preset=alta en la URL, cargarlo
   const params = new URLSearchParams(window.location.search);
   const presetUrl = params.get('preset');
-  if (presetUrl && CATALOGO.presets[presetUrl]) {
+  if (presetUrl && CATALOGO.tiers.some((t) => t.id === presetUrl)) {
     cargarPreset(presetUrl);
   } else {
     CATEGORIA_ABIERTA = 'cpu'; // abrir la primera categoría por defecto

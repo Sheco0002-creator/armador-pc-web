@@ -98,22 +98,22 @@ function convertir(montoUSD, codigoDestino, tasas) {
   return `${simbolo}${numero}`;
 }
 
-// Recuerda la moneda que el usuario eligió, para que al volver siga elegida.
+// ===== Selector de moneda (HTML compartido) =====
+// Antes esta función vivía duplicada, casi idéntica, en configurador.js y en
+// nivel.js. Al estar en un solo lugar, un cambio futuro al selector se hace
+// una sola vez y no puede desalinearse entre páginas.
+function selectorMonedaHTML(monedaActiva) {
+  const opciones = MonedaConfig.monedas.map((m) =>
+    `<option value="${m.code}"${m.code === monedaActiva ? ' selected' : ''}>${m.code} — ${m.name}</option>`
+  ).join('');
+  return `<label class="moneda-selector"><span class="mono">Moneda</span>
+    <select id="moneda-select">${opciones}</select></label>`;
+}
 function guardarMonedaElegida(codigo) {
   localStorage.setItem('armapc_moneda', codigo);
 }
 function monedaElegida() {
   return localStorage.getItem('armapc_moneda') || 'USD';
-}
-
-// Convierte "2026-07" en "julio 2026" para mostrar la fecha de los precios.
-function fechaLegible(aaaaMm) {
-  if (!aaaaMm) return '';
-  const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
-    'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-  const [anio, mes] = aaaaMm.split('-');
-  const nombreMes = meses[parseInt(mes, 10) - 1] || '';
-  return `${nombreMes} ${anio}`;
 }
 
 // ===== Ayudante: formatear la fecha de actualización de precios =====

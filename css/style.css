@@ -151,6 +151,8 @@ a:focus-visible, button:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   * { transition: none !important; }
+  .hp-art { animation: none; }
+  .hover-preview { transform: none; }
 }
 
 /* ===== Responsive / móvil ===== */
@@ -170,6 +172,10 @@ a:focus-visible, button:focus-visible {
   }
   .main-nav.open { transform: translateY(0); }
   .nav-toggle { display: flex; }
+  .comp-row { grid-template-columns: 1fr; gap: 6px; }
+  .comp-price { text-align: left; }
+  .level-total { text-align: left; }
+  .comp-price-wrap { text-align: left; }
 }
 
 /* ===== Páginas de nivel ===== */
@@ -224,12 +230,6 @@ a:focus-visible, button:focus-visible {
 .level-pill:hover { border-color: var(--accent-mint); color: var(--text); }
 .level-pill.active { border-color: var(--accent); color: var(--accent); }
 
-@media (max-width: 720px) {
-  .comp-row { grid-template-columns: 1fr; gap: 6px; }
-  .comp-price { text-align: left; }
-  .level-total { text-align: left; }
-}
-
 /* ===== Selector de moneda ===== */
 .moneda-selector {
   display: inline-flex;
@@ -261,10 +261,6 @@ a:focus-visible, button:focus-visible {
   margin-top: 2px;
 }
 .total-local { color: var(--accent-mint); font-size: 15px; }
-
-@media (max-width: 720px) {
-  .comp-price-wrap { text-align: left; }
-}
 
 /* ===== Configurador ===== */
 .config-intro { padding: 48px 0 32px; border-bottom: 1px solid var(--border); }
@@ -495,11 +491,6 @@ a:focus-visible, button:focus-visible {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-6px); }
 }
-@media (prefers-reduced-motion: reduce) {
-  .hp-art { animation: none; }
-  .hover-preview { transition: opacity 0.18s ease; transform: none; }
-}
-
 /* ===== Páginas institucionales ===== */
 .info-page { padding: 48px 0 80px; }
 .info-page h1 { font-family: var(--font-display); font-size: clamp(28px, 4.5vw, 42px); font-weight: 600; margin: 12px 0 8px; }
@@ -537,3 +528,39 @@ a:focus-visible, button:focus-visible {
 .contact-label { font-size: 12px; color: var(--accent-mint); }
 .contact-email { font-family: var(--font-display); font-size: 22px; font-weight: 600; color: var(--text) !important; text-decoration: none; }
 .contact-card .btn { margin-top: 8px; }
+
+/* ===== Bloque "no verificado" (tercer estado del motor de compatibilidad) ===== */
+/* Deliberadamente neutro, no alarmante: no es un problema, es honestidad sobre
+   un dato que todavía no tenemos. Nunca usa el rojo/ámbar de error o aviso. */
+.summary-unverified {
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  background: var(--bg);
+  border: 1px dashed var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.summary-unverified strong { color: var(--text-secondary); font-size: 12px; }
+.summary-unverified span { color: var(--text-secondary); line-height: 1.4; opacity: 0.85; }
+.summary-unverified[hidden] { display: none; }
+
+/* ===== Consumo estimado y margen de la fuente ===== */
+.summary-power {
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-bottom: 20px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.power-row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+.power-row span:first-child { color: var(--text-secondary); }
+.power-empty { font-size: 12px; color: var(--text-secondary); opacity: 0.8; }
+.power-ok span:last-child { color: var(--accent-mint); }
+.power-warn span:last-child { color: var(--accent); }
+.power-bad span:last-child { color: #e08a6a; }

@@ -2,11 +2,20 @@
 // Contiene las reglas que deciden si dos piezas funcionan juntas.
 // Cada función recibe la build actual (objeto con las piezas elegidas por
 // categoría) y devuelve una lista de problemas encontrados. Un problema tiene
-// { nivel: 'error'|'aviso', texto: '...' }.
+// { nivel: 'incompatible' | 'aviso' | 'no_verificado', texto: '...' }.
 //
-// 'error' = no funciona / no encaja físicamente. 'aviso' = funciona pero no es
-// lo ideal (ej: fuente algo justa). Esto es lo que hace educativo al sitio:
-// no solo dice "no", explica el porqué.
+// Tres estados posibles para cada verificación:
+//   'incompatible'  = no funciona / no encaja físicamente (dato real que lo confirma).
+//   'aviso'         = funciona pero no es lo ideal (ej: fuente algo justa).
+//   'no_verificado' = no tenemos el dato necesario para confirmar ni descartar.
+//                     NUNCA se trata como incompatible ni bloquea la selección —
+//                     solo informa con honestidad que no lo pudimos comprobar.
+//
+// La ausencia de un problema para una pareja de piezas significa COMPATIBLE.
+//
+// Regla de diseño: si el dato no existe en components.json, este motor jamás
+// lo inventa. O hay dato real para comparar (-> incompatible/aviso/compatible),
+// o no lo hay (-> no_verificado). Nunca a mitad de camino.
 
 // Consumo estimado del sistema: CPU + GPU + ~100W del resto (placa, discos,
 // ventiladores, etc.). Es una estimación de referencia, no un cálculo exacto.
@@ -28,75 +37,139 @@ function fuenteRecomendada(build) {
   return Math.max(porConsumo, porGpu);
 }
 
-// Revisa TODA la build y devuelve la lista de problemas.
+// Revisa TODA la build y devuelve la lista de problemas (incompatibilidades,
+// avisos y verificaciones que no se pudieron hacer por falta de datos).
 function revisarCompatibilidad(build) {
   const problemas = [];
-  const { cpu, motherboard, ram, gpu, psu, case: gab, cooling } = build;
+  const { cpu, motherboard: mb, ram, gpu, psu, case: gab, cooling, storage } = build;
 
-  // 1. Socket CPU ↔ placa madre
-  if (cpu && motherboard && cpu.socket !== motherboard.socket) {
+  // ===== CPU ↔ Placa madre =====
+
+  // Socket + chipset + "compatibilidad conocida": en este catálogo el socket
+  // determina la familia de chipset (AM5 -> B650/X870/X870E, LGA1851 -> Z890),
+  // así que revisar el socket cubre las tres cosas a la vez con dato real.
+  if (cpu && mb && cpu.socket !== mb.socket) {
     problemas.push({
-      nivel: 'error',
-      texto: `El procesador usa socket ${cpu.socket} pero la placa madre es ${motherboard.socket}. No encajan.`,
+      nivel: 'incompatible',
+      texto: `Incompatible: el procesador usa socket ${cpu.socket} y la placa madre (chipset ${mb.chipset}, socket ${mb.socket}) no lo acepta.`,
     });
   }
 
-  // 2. Tipo de RAM ↔ placa madre
-  if (ram && motherboard && ram.ramType !== motherboard.ramType) {
+  // TDP "cuando sea relevante": no tenemos el dato de cuánta potencia soporta
+  // el VRM de cada placa, así que para procesadores de consumo alto lo decimos
+  // en vez de asumir que sí (o que no) aguanta.
+  if (cpu && mb && cpu.socket === mb.socket && cpu.tdp >= 120) {
     problemas.push({
-      nivel: 'error',
-      texto: `La RAM es ${ram.ramType} pero la placa madre usa ${motherboard.ramType}.`,
+      nivel: 'no_verificado',
+      texto: `No verificado: el procesador consume ${cpu.tdp}W y no tenemos datos de la capacidad de entrega de energía (VRM) de esta placa madre para confirmar que lo soporta sin límites.`,
     });
   }
 
-  // 3. Factor de forma de la placa ↔ gabinete
-  if (motherboard && gab && !gab.supports.includes(motherboard.formFactor)) {
+  // Nota: la compatibilidad de BIOS no se revisa porque no existe ningún dato
+  // de versiones de BIOS en el catálogo — no se muestra un aviso genérico
+  // repetido en cada par CPU+placa porque no aportaría información específica.
+
+  // ===== RAM ↔ Placa madre =====
+
+  if (ram && mb && ram.ramType !== mb.ramType) {
     problemas.push({
-      nivel: 'error',
-      texto: `La placa ${motherboard.formFactor} no entra en el gabinete ${gab.name} (soporta ${gab.supports.join(', ')}).`,
+      nivel: 'incompatible',
+      texto: `Incompatible: esta placa madre utiliza ${mb.ramType} y la memoria seleccionada es ${ram.ramType}.`,
     });
   }
 
-  // 4. Largo de la GPU ↔ espacio del gabinete
+  // Capacidad máxima, frecuencia soportada y cantidad de slots: ninguna placa
+  // madre del catálogo tiene estos datos todavía, así que no podemos
+  // confirmarlo — lo decimos en vez de asumir que encaja.
+  if (ram && mb && ram.ramType === mb.ramType) {
+    problemas.push({
+      nivel: 'no_verificado',
+      texto: 'No verificado: no tenemos la cantidad de slots, la capacidad máxima ni la frecuencia máxima soportada de esta placa madre para confirmar que acepta esta memoria más allá del tipo (DDR5).',
+    });
+  }
+
+  // ===== Placa madre ↔ Gabinete =====
+
+  if (mb && gab && !(gab.supports || []).includes(mb.formFactor)) {
+    problemas.push({
+      nivel: 'incompatible',
+      texto: `Incompatible: la placa madre es formato ${mb.formFactor} y el gabinete ${gab.name} solo admite ${(gab.supports || []).join(', ') || 'ningún formato conocido'}.`,
+    });
+  }
+
+  // ===== GPU ↔ Gabinete =====
+
   if (gpu && gab && gpu.length > gab.maxGpuLength) {
     problemas.push({
-      nivel: 'error',
-      texto: `La tarjeta gráfica mide ${gpu.length}mm y el gabinete admite hasta ${gab.maxGpuLength}mm. No cabe.`,
+      nivel: 'incompatible',
+      texto: `GPU incompatible: ${gpu.length} mm. El gabinete admite hasta ${gab.maxGpuLength} mm.`,
     });
   }
 
-  // 5. Socket soportado por la refrigeración ↔ CPU
-  if (cooling && cpu && !cooling.socketSupport.includes(cpu.socket)) {
+  // Altura de la GPU (clearance vertical contra el gabinete): no tenemos la
+  // altura de ninguna tarjeta ni el espacio vertical disponible del gabinete.
+  if (gpu && gab && gpu.length <= gab.maxGpuLength) {
     problemas.push({
-      nivel: 'error',
-      texto: `La refrigeración no es compatible con el socket ${cpu.socket} del procesador.`,
+      nivel: 'no_verificado',
+      texto: 'No verificado: no tenemos la altura de la tarjeta gráfica ni el espacio vertical del gabinete para confirmar que no choca con otras piezas.',
     });
   }
 
-  // 6. Capacidad térmica de la refrigeración ↔ calor del CPU
-  if (cooling && cpu && cooling.tdpCapacity < cpu.tdp) {
+  // ===== Refrigeración ↔ CPU =====
+
+  if (cooling && cpu && !(cooling.socketSupport || []).includes(cpu.socket)) {
+    problemas.push({
+      nivel: 'incompatible',
+      texto: `Incompatible: esta refrigeración no tiene kit de montaje para el socket ${cpu.socket} del procesador.`,
+    });
+  }
+
+  if (cooling && cpu && (cooling.socketSupport || []).includes(cpu.socket) && cooling.tdpCapacity < cpu.tdp) {
     problemas.push({
       nivel: 'aviso',
       texto: `La refrigeración está pensada para hasta ${cooling.tdpCapacity}W y el procesador genera ${cpu.tdp}W. Puede quedar corta bajo carga.`,
     });
   }
 
-  // 7. Altura del disipador de aire ↔ gabinete
+  // ===== Refrigeración ↔ Gabinete =====
+
   if (cooling && cooling.type === 'aire' && gab && cooling.height > gab.maxCoolerHeight) {
     problemas.push({
-      nivel: 'error',
-      texto: `El disipador mide ${cooling.height}mm de alto y el gabinete admite hasta ${gab.maxCoolerHeight}mm.`,
+      nivel: 'incompatible',
+      texto: `Incompatible: el disipador mide ${cooling.height} mm de alto y el gabinete admite hasta ${gab.maxCoolerHeight} mm.`,
     });
   }
 
-  // 8. Potencia de la fuente ↔ consumo del sistema
+  // Radiador de refrigeración líquida: no tenemos el tamaño del radiador ni
+  // las posiciones de montaje que admite cada gabinete, así que no podemos
+  // confirmar que entre (antes esto se pasaba por alto en silencio).
+  if (cooling && cooling.type === 'liquida' && gab) {
+    problemas.push({
+      nivel: 'no_verificado',
+      texto: 'No verificado: no tenemos el tamaño del radiador ni las posiciones de montaje que admite este gabinete para confirmar que la refrigeración líquida entra.',
+    });
+  }
+
+  // ===== Almacenamiento ↔ Placa madre =====
+
+  // M.2 / NVMe / SATA / PCIe / cantidad de slots: ninguna placa madre del
+  // catálogo tiene todavía el detalle de sus ranuras de almacenamiento.
+  if (storage && mb) {
+    problemas.push({
+      nivel: 'no_verificado',
+      texto: `No verificado: no tenemos la cantidad ni el tipo de ranuras de almacenamiento (M.2/NVMe/SATA) de esta placa madre para confirmar que admite un SSD ${storage.interface}.`,
+    });
+  }
+
+  // ===== Fuente de poder ↔ sistema =====
+
   if (psu && (cpu || gpu)) {
     const recomendada = fuenteRecomendada(build);
     const consumo = consumoEstimado(build);
     if (psu.wattage < consumo) {
       problemas.push({
-        nivel: 'error',
-        texto: `La fuente de ${psu.wattage}W no alcanza: el sistema consume alrededor de ${consumo}W.`,
+        nivel: 'incompatible',
+        texto: `Incompatible: la fuente de ${psu.wattage}W no alcanza. El sistema consume alrededor de ${consumo}W.`,
       });
     } else if (psu.wattage < recomendada) {
       problemas.push({
@@ -106,25 +179,40 @@ function revisarCompatibilidad(build) {
     }
   }
 
+  // Conectores de la fuente hacia la GPU: no tenemos el detalle de qué
+  // conectores trae cada fuente ni cuáles necesita cada tarjeta.
+  if (psu && gpu) {
+    problemas.push({
+      nivel: 'no_verificado',
+      texto: 'No verificado: no tenemos el detalle de los conectores de esta fuente ni los que requiere la tarjeta gráfica (por ejemplo PCIe de 12 pines) para confirmar que incluye el correcto.',
+    });
+  }
+
   return problemas;
 }
 
 // Comprueba si una pieza candidata sería compatible con lo ya elegido.
 // Sirve para marcar/deshabilitar opciones incompatibles ANTES de elegirlas.
-// Devuelve { ok: true } o { ok: false, razon: '...' } (solo mira ERRORES,
-// no avisos — un aviso no impide elegir).
-function piezaCompatible(build, categoria, pieza) {
-  // Simulamos la build con esta pieza puesta y vemos si aparece un error nuevo
-  // que involucre a esta categoría.
+// Solo el nivel 'incompatible' bloquea — un 'aviso' o un 'no_verificado'
+// nunca deshabilitan una opción, porque no son un "no" confirmado.
+// Devuelve { ok: true } o { ok: false, razon: '...' } con TODAS las razones
+// nuevas concatenadas (no solo la última), para que la explicación sea completa.
+//
+// 'antesPrecalculado' es opcional: si quien llama ya calculó los incompatibles
+// de la build actual (por ejemplo, para revisar varias piezas de la misma
+// categoría seguidas), lo puede pasar para no recalcularlo cada vez — el
+// resultado es idéntico porque 'build' no cambia entre esas llamadas.
+function piezaCompatible(build, categoria, pieza, antesPrecalculado) {
   const simulada = { ...build };
   simulada[categoria] = pieza;
 
-  const problemasAntes = revisarCompatibilidad(build).filter((p) => p.nivel === 'error').length;
-  const problemasDespues = revisarCompatibilidad(simulada).filter((p) => p.nivel === 'error');
+  const antes = antesPrecalculado || revisarCompatibilidad(build).filter((p) => p.nivel === 'incompatible');
+  const antesTextos = new Set(antes.map((p) => p.texto));
+  const despues = revisarCompatibilidad(simulada).filter((p) => p.nivel === 'incompatible');
+  const nuevas = despues.filter((p) => !antesTextos.has(p.texto));
 
-  if (problemasDespues.length > problemasAntes) {
-    // Devolvemos el primer error como razón.
-    return { ok: false, razon: problemasDespues[problemasDespues.length - 1].texto };
+  if (nuevas.length > 0) {
+    return { ok: false, razon: nuevas.map((p) => p.texto).join(' ') };
   }
   return { ok: true };
 }

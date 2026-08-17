@@ -263,6 +263,7 @@ const ARTE_COMPONENTES = {
 const preview = document.createElement('div');
 preview.className = 'hover-preview';
 preview.setAttribute('hidden', '');
+preview.setAttribute('aria-hidden', 'true');
 preview.innerHTML = '<div class="hp-art"></div><div class="hp-label mono"></div>';
 document.body.appendChild(preview);
 const hpArt = preview.querySelector('.hp-art');

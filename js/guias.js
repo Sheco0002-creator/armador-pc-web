@@ -12,11 +12,11 @@ async function cargarGuias() {
   }
 
   cont.innerHTML = datos.guides.map((g) => `
-    <a href="${g.file}" class="guide-list-card">
-      <span class="guide-tag mono">${g.tag}</span>
-      <h2>${g.title}</h2>
-      <p>${g.summary}</p>
-      <span class="guide-meta mono">${g.readMinutes} min de lectura</span>
+    <a href="${escapeHtml(g.file)}" class="guide-list-card">
+      <span class="guide-tag mono">${escapeHtml(g.tag)}</span>
+      <h2>${escapeHtml(g.title)}</h2>
+      <p>${escapeHtml(g.summary)}</p>
+      <span class="guide-meta mono">${escapeHtml(g.readMinutes)} min de lectura</span>
     </a>
   `).join('');
 }

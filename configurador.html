@@ -6,17 +6,36 @@
 <title>Configurador — ArmaPC</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <meta name="description" content="Arma tu PC gamer pieza por pieza con verificación de compatibilidad en tiempo real.">
+<link rel="canonical" href="https://sheco0002-creator.github.io/armador-pc-web/configurador.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ArmaPC">
+<meta property="og:title" content="Configurador — ArmaPC">
+<meta property="og:description" content="Arma tu PC gamer pieza por pieza con verificación de compatibilidad en tiempo real.">
+<meta property="og:url" content="https://sheco0002-creator.github.io/armador-pc-web/configurador.html">
+<meta property="og:locale" content="es_PE">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Configurador — ArmaPC">
+<meta name="twitter:description" content="Arma tu PC gamer pieza por pieza con verificación de compatibilidad en tiempo real.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GH7D533JHR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GH7D533JHR');
+</script>
 </head>
 <body>
 
 <header class="site-header">
   <div class="container header-inner">
     <a href="index.html" class="logo">Arma<span>PC</span></a>
-    <nav class="main-nav" id="main-nav">
+    <nav class="main-nav" id="main-nav" aria-label="Principal">
       <a href="configurador.html">Configurador</a>
       <a href="index.html#presupuestos">Presupuestos</a>
       <a href="guias.html">Guías</a>
@@ -60,7 +79,9 @@
       <aside class="config-summary" id="config-summary">
         <div class="summary-inner">
           <h2>Tu build</h2>
-          <div id="summary-status" class="summary-status"></div>
+          <div id="summary-status" class="summary-status" aria-live="polite"></div>
+          <div id="summary-unverified" class="summary-unverified" aria-live="polite" hidden></div>
+          <div id="summary-power" class="summary-power"></div>
           <ul id="summary-list" class="summary-list"></ul>
           <div class="summary-total">
             <span>Total</span>

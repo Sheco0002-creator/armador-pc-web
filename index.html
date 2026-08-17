@@ -6,17 +6,36 @@
 <title>ArmaPC — Arma tu PC gamer ideal, sin importar tu presupuesto</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <meta name="description" content="Aprende a armar tu propia PC gamer, desde el modelo más económico hasta el más caro, con un configurador que verifica la compatibilidad en tiempo real.">
+<link rel="canonical" href="https://sheco0002-creator.github.io/armador-pc-web/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ArmaPC">
+<meta property="og:title" content="ArmaPC — Arma tu PC gamer ideal, sin importar tu presupuesto">
+<meta property="og:description" content="Aprende a armar tu propia PC gamer, desde el modelo más económico hasta el más caro, con un configurador que verifica la compatibilidad en tiempo real.">
+<meta property="og:url" content="https://sheco0002-creator.github.io/armador-pc-web/">
+<meta property="og:locale" content="es_PE">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ArmaPC — Arma tu PC gamer ideal, sin importar tu presupuesto">
+<meta name="twitter:description" content="Aprende a armar tu propia PC gamer, desde el modelo más económico hasta el más caro, con un configurador que verifica la compatibilidad en tiempo real.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GH7D533JHR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GH7D533JHR');
+</script>
 </head>
 <body>
 
 <header class="site-header">
   <div class="container header-inner">
     <a href="/" class="logo">Arma<span>PC</span></a>
-    <nav class="main-nav" id="main-nav">
+    <nav class="main-nav" id="main-nav" aria-label="Principal">
       <a href="configurador.html">Configurador</a>
       <a href="#presupuestos">Presupuestos</a>
       <a href="guias.html">Guías</a>
@@ -58,25 +77,25 @@
       <h2><span class="mono accent">04</span> niveles de presupuesto</h2>
       <div class="tier-grid">
         <article class="tier-card">
-          <span class="tier-price mono">US$850–1,050</span>
+          <span class="tier-price mono" data-tier-price="entrada">…</span>
           <h3>Entrada</h3>
           <p>Tu primer PC gamer serio</p>
           <a href="niveles/entrada.html">Ver catálogo →</a>
         </article>
         <article class="tier-card">
-          <span class="tier-price mono">US$1,350–1,700</span>
+          <span class="tier-price mono" data-tier-price="media">…</span>
           <h3>Media</h3>
           <p>El punto dulce</p>
           <a href="niveles/media.html">Ver catálogo →</a>
         </article>
         <article class="tier-card">
-          <span class="tier-price mono">US$2,200–2,800</span>
+          <span class="tier-price mono" data-tier-price="alta">…</span>
           <h3>Alta</h3>
           <p>1440p sin concesiones</p>
           <a href="niveles/alta.html">Ver catálogo →</a>
         </article>
         <article class="tier-card">
-          <span class="tier-price mono">US$3,800+</span>
+          <span class="tier-price mono" data-tier-price="extrema">…</span>
           <h3>Extrema</h3>
           <p>Sin límites</p>
           <a href="niveles/extrema.html">Ver catálogo →</a>
@@ -146,5 +165,6 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/home.js"></script>
 </body>
 </html>

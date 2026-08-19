@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Ubicación del mapa del sitio, para ayudar a Google a indexar todo.
-Sitemap: https://sheco0002-creator.github.io/armador-pc-web/sitemap.xml
+Sitemap: https://tupcgamer.com/sitemap.xml

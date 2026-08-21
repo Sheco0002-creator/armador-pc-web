@@ -63,6 +63,7 @@ a { color: inherit; }
   box-shadow: 0 8px 24px rgba(0,0,0,0.35);
   overflow: hidden;
 }
+.lang-menu[hidden] { display: none; }
 .lang-menu a { display: block; padding: 10px 14px; color: var(--text-secondary); text-decoration: none; }
 .lang-menu a:hover { background: var(--bg); color: var(--text); }
 

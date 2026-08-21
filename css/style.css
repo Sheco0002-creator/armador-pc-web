@@ -442,6 +442,7 @@ a:focus-visible, button:focus-visible {
 .guide-article p { font-size: 16px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 16px; }
 .guide-article p strong { color: var(--text); font-weight: 600; }
 .guide-article a { color: var(--accent-mint); }
+.guide-article a.btn-primary { color: #1A1206; }
 .guide-article ul { margin: 0 0 20px; padding-left: 24px; }
 .guide-article li { font-size: 16px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 8px; }
 .guide-article li strong { color: var(--text); }

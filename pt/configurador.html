@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Configurador — ArmaPC</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="description" content="Monte seu PC gamer peça por peça com verificação de compatibilidade em tempo real.">
+<link rel="canonical" href="https://tupcgamer.com/pt/configurador.html">
+<link rel="alternate" hreflang="es" href="https://tupcgamer.com/configurador.html">
+<link rel="alternate" hreflang="en" href="https://tupcgamer.com/en/configurador.html">
+<link rel="alternate" hreflang="pt" href="https://tupcgamer.com/pt/configurador.html">
+<link rel="alternate" hreflang="x-default" href="https://tupcgamer.com/configurador.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ArmaPC">
+<meta property="og:title" content="Configurador — ArmaPC">
+<meta property="og:description" content="Monte seu PC gamer peça por peça com verificação de compatibilidade em tempo real.">
+<meta property="og:url" content="https://tupcgamer.com/pt/configurador.html">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Configurador — ArmaPC">
+<meta name="twitter:description" content="Monte seu PC gamer peça por peça com verificação de compatibilidade em tempo real.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GH7D533JHR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GH7D533JHR');
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">Arma<span>PC</span></a>
+    <nav class="main-nav" id="main-nav" aria-label="Principal">
+      <a href="configurador.html">Configurador</a>
+      <a href="index.html#presupuestos">Orçamentos</a>
+      <a href="guias.html">Guias</a>
+      <a href="sobre.html">Sobre</a>
+      <span class="lang-switch mono">
+        <a href="../configurador.html">ES</a><a href="../en/configurador.html">EN</a><a href="configurador.html" class="lang-current" aria-current="true">PT</a>
+      </span>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="config-intro">
+    <div class="container">
+      <h1>Monte seu PC peça por peça</h1>
+      <p class="hero-sub">Escolha cada componente e o sistema verifica a compatibilidade na hora. Comece de um nível recomendado ou do zero.</p>
+
+      <div class="config-toolbar">
+        <div class="preset-buttons" id="preset-buttons">
+          <span class="mono preset-label">Começar de:</span>
+          <button data-preset="entrada">Entrada</button>
+          <button data-preset="media">Média</button>
+          <button data-preset="alta">Alta</button>
+          <button data-preset="extrema">Extrema</button>
+          <button data-preset="" class="preset-clear">Do zero</button>
+        </div>
+        <div id="moneda-container"></div>
+      </div>
+      <div id="precios-fecha" class="precios-fecha"></div>
+    </div>
+  </section>
+
+  <section class="config-body">
+    <div class="container config-layout">
+
+      <div class="config-main" id="config-categories">
+        <!-- As categorias são geradas por JavaScript -->
+        <p class="loading mono">Carregando componentes…</p>
+      </div>
+
+      <aside class="config-summary" id="config-summary">
+        <div class="summary-inner">
+          <h2>Sua build</h2>
+          <div id="summary-status" class="summary-status" aria-live="polite"></div>
+          <div id="summary-unverified" class="summary-unverified" aria-live="polite" hidden></div>
+          <div id="summary-power" class="summary-power"></div>
+          <ul id="summary-list" class="summary-list"></ul>
+          <div class="summary-total">
+            <span>Total</span>
+            <div id="summary-total-value" class="mono">US$0</div>
+          </div>
+          <button id="export-btn" class="btn btn-primary summary-export" disabled>Copiar minha build</button>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>© 2026 ArmaPC</span>
+    <div class="footer-links">
+      <a href="sobre.html">Sobre</a>
+      <a href="contacto.html">Contato</a>
+      <a href="privacidad.html">Privacidade</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script src="../js/moneda.js"></script>
+<script src="../js/compatibilidad.js"></script>
+<script src="../js/configurador.js"></script>
+<script src="../js/previews.js"></script>
+</body>
+</html>

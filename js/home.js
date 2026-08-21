@@ -10,7 +10,7 @@ async function cargarPreciosDeNiveles() {
   const verCatalogo = t({ es: 'Ver catálogo', en: 'View catalog', pt: 'Ver catálogo' });
   let catalogo;
   try {
-    catalogo = await (await fetch(rutaLocalizada('data/components.json'))).json();
+    catalogo = await (await fetch(rutaLocalizada('/data/components.json'))).json();
   } catch (e) {
     spans.forEach((s) => { s.textContent = verCatalogo; });
     return;

@@ -97,7 +97,7 @@ async function cargarNivel() {
   const idNivel = obtenerIdNivel();
 
   try {
-    CATALOGO = await (await fetch(rutaLocalizada('../data/components.json'))).json();
+    CATALOGO = await (await fetch(rutaLocalizada('/data/components.json'))).json();
   } catch (e) {
     document.getElementById('level-name').textContent = t({ es: 'No se pudo cargar el catálogo', en: 'Could not load the catalog', pt: 'Não foi possível carregar o catálogo' });
     return;

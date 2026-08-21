@@ -5,7 +5,7 @@ async function cargarGuias() {
   const cont = document.getElementById('guides-list');
   let datos;
   try {
-    datos = await (await fetch(rutaLocalizada('data/guides.json'))).json();
+    datos = await (await fetch(rutaLocalizada('/data/guides.json'))).json();
   } catch (e) {
     cont.innerHTML = `<p class="loading">${escapeHtml(t({ es: 'No se pudieron cargar las guías.', en: 'Could not load the guides.', pt: 'Não foi possível carregar os guias.' }))}</p>`;
     return;

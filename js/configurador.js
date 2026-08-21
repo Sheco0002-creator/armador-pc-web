@@ -289,7 +289,7 @@ function copiarBuild() {
 // --- Arranque ---
 async function iniciar() {
   try {
-    CATALOGO = await (await fetch(rutaLocalizada('data/components.json'))).json();
+    CATALOGO = await (await fetch(rutaLocalizada('/data/components.json'))).json();
   } catch (e) {
     const errorMsg = t({ es: 'No se pudieron cargar los componentes.', en: 'Could not load the components.', pt: 'Não foi possível carregar os componentes.' });
     document.getElementById('config-categories').innerHTML = `<p class="loading">${errorMsg}</p>`;

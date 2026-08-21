@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compatibilidade de componentes — ArmaPC</title>
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<meta name="description" content="As regras que fazem as peças de um PC se encaixarem: soquete, tipo de RAM, tamanho do gabinete, potência da fonte e refrigeração. Explicado com exemplos.">
+<link rel="canonical" href="https://tupcgamer.com/pt/guias/compatibilidad.html">
+<link rel="alternate" hreflang="es" href="https://tupcgamer.com/guias/compatibilidad.html">
+<link rel="alternate" hreflang="en" href="https://tupcgamer.com/en/guias/compatibilidad.html">
+<link rel="alternate" hreflang="pt" href="https://tupcgamer.com/pt/guias/compatibilidad.html">
+<link rel="alternate" hreflang="x-default" href="https://tupcgamer.com/guias/compatibilidad.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ArmaPC">
+<meta property="og:title" content="Compatibilidade de componentes — ArmaPC">
+<meta property="og:description" content="As regras que fazem as peças de um PC se encaixarem: soquete, tipo de RAM, tamanho do gabinete, potência da fonte e refrigeração. Explicado com exemplos.">
+<meta property="og:url" content="https://tupcgamer.com/pt/guias/compatibilidad.html">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Compatibilidade de componentes — ArmaPC">
+<meta name="twitter:description" content="As regras que fazem as peças de um PC se encaixarem: soquete, tipo de RAM, tamanho do gabinete, potência da fonte e refrigeração. Explicado com exemplos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/style.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GH7D533JHR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GH7D533JHR');
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="../index.html" class="logo">Arma<span>PC</span></a>
+    <nav class="main-nav" id="main-nav" aria-label="Principal">
+      <a href="../configurador.html">Configurador</a>
+      <a href="../index.html#presupuestos">Orçamentos</a>
+      <a href="../guias.html">Guias</a>
+      <a href="../sobre.html">Sobre</a>
+      <span class="lang-switch mono">
+        <a href="../../guias/compatibilidad.html">ES</a><a href="../../en/guias/compatibilidad.html">EN</a><a href="compatibilidad.html" class="lang-current" aria-current="true">PT</a>
+      </span>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <article class="guide-article">
+    <div class="container container-narrow">
+      <nav class="breadcrumb mono" aria-label="Caminho de navegação">
+        <a href="../index.html">Início</a> / <a href="../guias.html">Guias</a> / Compatibilidade
+      </nav>
+      <span class="guide-tag mono">GUIA</span>
+      <h1>Compatibilidade de componentes</h1>
+      <p class="guide-meta mono">9 min de leitura</p>
+
+      <p class="guide-intro">O erro mais comum ao montar um PC pela primeira vez é comprar peças que não se encaixam. A boa notícia: as regras de compatibilidade são poucas e lógicas. São exatamente as mesmas que nosso configurador verifica em tempo real, então depois de ler isto você vai entender <em>por que</em> ele avisa o que avisa.</p>
+
+      <h2 class="hoverable" data-preview="socket-match">1. O soquete: processador ↔ placa-mãe</h2>
+      <p>O <strong>soquete</strong> é o conector físico onde o processador entra na placa-mãe. É a regra número um: o soquete do processador e o da placa <strong>precisam ser o mesmo</strong>, ou o processador literalmente não entra.</p>
+      <p>Por exemplo, os processadores AMD Ryzen atuais usam soquete <strong class="hoverable-inline" data-preview="socket" data-preview-label="Soquete AM5">AM5</strong>, então precisam de uma placa-mãe AM5 (como as B650 ou X870). Os Intel Core Ultra usam soquete <strong class="hoverable-inline" data-preview="socket" data-preview-label="Soquete LGA1851">LGA1851</strong> e precisam de placas dessa família (como as Z890). Um Ryzen não entra numa placa Intel, e vice-versa. Sempre confira se coincidem.</p>
+
+      <h2 class="hoverable" data-preview="ram-slot">2. O tipo de RAM: memória ↔ placa-mãe</h2>
+      <p>A memória RAM vem em gerações, e a atual é <strong class="hoverable-inline" data-preview="ram" data-preview-label="Memória DDR5">DDR5</strong>. A placa-mãe é projetada para um tipo específico: uma placa DDR5 só aceita RAM DDR5. Não são intercambiáveis — nem entram fisicamente no slot errado. Como quase tudo atual é DDR5, isso raramente dá problema hoje, mas é bom saber se você comparar peças de épocas diferentes.</p>
+
+      <h2 class="hoverable" data-preview="board-fit">3. O tamanho: placa-mãe ↔ gabinete</h2>
+      <p>As placas-mãe vêm em tamanhos padrão (o "fator de forma"): <strong class="hoverable-inline" data-preview="factor-forma" data-preview-label="ATX (grande)">ATX</strong> (grande), <strong class="hoverable-inline" data-preview="factor-forma" data-preview-label="Micro-ATX (médio)">Micro-ATX</strong> (médio) e <strong class="hoverable-inline" data-preview="factor-forma" data-preview-label="Mini-ITX (compacto)">Mini-ITX</strong> (compacto). O gabinete indica quais tamanhos ele admite. A regra é simples: a placa precisa caber no gabinete.</p>
+      <p>Um gabinete grande (mid-tower ou full-tower) costuma admitir os três tamanhos. Um compacto só admite as placas pequenas. Se você escolher uma placa ATX, precisa de um gabinete que a suporte.</p>
+
+      <div class="ad-slot mono">Espaço publicitário</div>
+
+      <h2 class="hoverable" data-preview="gpu-fit">4. O espaço físico: placa de vídeo ↔ gabinete</h2>
+      <p>As placas de vídeo modernas são grandes, e as de ponta podem ser enormes. Cada gabinete tem um comprimento máximo de GPU que admite (em milímetros). Se a placa for mais longa que esse máximo, a tampa não fecha — ou simplesmente não entra.</p>
+      <p>É um detalhe que muita gente ignora e descobre tarde. Por isso o configurador compara o comprimento da GPU com o espaço do gabinete e avisa antes que seja um problema.</p>
+
+      <h2 class="hoverable" data-preview="power-fit">5. A potência: fonte ↔ todo o sistema</h2>
+      <p>A fonte de alimentação precisa entregar <strong>watts</strong> suficientes para alimentar todas as peças, com margem de sobra. As que mais consomem são o processador e, principalmente, a placa de vídeo.</p>
+      <p>A forma simples de calcular: some o consumo do processador e da GPU, adicione uns 100 W para o resto do sistema, e escolha uma fonte que supere esse número com folga (idealmente 40% a mais, para não trabalhar no limite). Uma fonte no limite se estressa, faz barulho e dura menos. O configurador faz essa conta por você e recomenda um mínimo de watts.</p>
+
+      <h2 class="hoverable" data-preview="cooler-fit">6. A refrigeração: cooler ↔ processador ↔ gabinete</h2>
+      <p>A refrigeração precisa cumprir três coisas ao mesmo tempo:</p>
+      <ul>
+        <li>Ser compatível com o <strong>soquete</strong> do processador (a maioria suporta vários, mas vale confirmar).</li>
+        <li>Conseguir <strong>dissipar o calor</strong> que aquele processador gera (um CPU potente precisa de uma refrigeração à altura).</li>
+        <li>Se for a ar, <strong>caber em altura</strong> dentro do gabinete (dissipadores grandes não entram em gabinetes compactos).</li>
+      </ul>
+
+      <h2>O equilíbrio geral: evitar gargalos</h2>
+      <p>Além das peças "se encaixarem", existe uma compatibilidade mais sutil: estarem <strong>equilibradas</strong> entre si. Colocar uma placa de vídeo caríssima junto a um processador muito fraco faz com que a GPU não renda ao máximo, porque o processador não acompanha o ritmo. Isso se chama <em>gargalo</em>. Não quebra nada, mas é dinheiro desperdiçado. A ideia é que nenhuma peça fique muito abaixo das demais.</p>
+
+      <div class="guide-cta">
+        <h3>Deixe o sistema verificar por você</h3>
+        <p>O configurador aplica todas essas regras em tempo real: escolha suas peças e ele marca qualquer incompatibilidade com uma explicação clara.</p>
+        <a href="../configurador.html" class="btn btn-primary">Ir para o configurador</a>
+      </div>
+
+            <div class="guide-related">
+        <h3>Continue aprendendo</h3>
+        <div class="related-cards">
+          <a href="elegir-cpu.html" class="guide-card">
+            <span class="guide-tag mono">CPU</span>
+            <h4>Como escolher seu processador</h4>
+          </a>
+          <a href="cuanta-ram.html" class="guide-card">
+            <span class="guide-tag mono">RAM</span>
+            <h4>Quanta RAM eu preciso?</h4>
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>© 2026 ArmaPC</span>
+    <div class="footer-links">
+      <a href="../sobre.html">Sobre</a>
+      <a href="../contacto.html">Contato</a>
+      <a href="../privacidad.html">Privacidade</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../js/main.js"></script>
+<script src="../../js/previews.js"></script>
+</body>
+</html>

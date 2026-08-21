@@ -56,6 +56,14 @@
       "title": "Cómo elegir tu procesador",
       "summary": "Núcleos, caché y socket: en qué fijarte de verdad al elegir el cerebro de tu PC, y por qué el más caro no siempre es el mejor para jugar.",
       "readMinutes": 8
+    },
+    {
+      "slug": "almacenamiento",
+      "file": "guias/almacenamiento.html",
+      "tag": "SSD",
+      "title": "Guía de almacenamiento (SSD)",
+      "summary": "NVMe vs SATA, cuántos GB o TB necesitas y por qué la velocidad importa más para cargar juegos que para tu FPS.",
+      "readMinutes": 6
     }
   ]
 }

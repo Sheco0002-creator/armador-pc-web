@@ -271,6 +271,33 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://tupcgamer.com/guias/elegir-cpu.html"/>
   </url>
   <url>
+    <loc>https://tupcgamer.com/guias/almacenamiento.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tupcgamer.com/guias/almacenamiento.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tupcgamer.com/en/guias/almacenamiento.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tupcgamer.com/pt/guias/almacenamiento.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tupcgamer.com/guias/almacenamiento.html"/>
+  </url>
+  <url>
+    <loc>https://tupcgamer.com/en/guias/almacenamiento.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tupcgamer.com/guias/almacenamiento.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tupcgamer.com/en/guias/almacenamiento.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tupcgamer.com/pt/guias/almacenamiento.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tupcgamer.com/guias/almacenamiento.html"/>
+  </url>
+  <url>
+    <loc>https://tupcgamer.com/pt/guias/almacenamiento.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tupcgamer.com/guias/almacenamiento.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tupcgamer.com/en/guias/almacenamiento.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tupcgamer.com/pt/guias/almacenamiento.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tupcgamer.com/guias/almacenamiento.html"/>
+  </url>
+  <url>
     <loc>https://tupcgamer.com/niveles/entrada.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

@@ -64,6 +64,14 @@
       "title": "Storage guide (SSD)",
       "summary": "NVMe vs SATA, how many GB or TB you need, and why speed matters more for loading games than for your FPS.",
       "readMinutes": 6
+    },
+    {
+      "slug": "gabinete-refrigeracion",
+      "file": "guias/gabinete-refrigeracion.html",
+      "tag": "CASE",
+      "title": "Case and cooling guide",
+      "summary": "Form factor, airflow, and air vs liquid (AIO) cooling: how to choose without overcomplicating it.",
+      "readMinutes": 7
     }
   ]
 }

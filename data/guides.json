@@ -64,6 +64,14 @@
       "title": "Guía de almacenamiento (SSD)",
       "summary": "NVMe vs SATA, cuántos GB o TB necesitas y por qué la velocidad importa más para cargar juegos que para tu FPS.",
       "readMinutes": 6
+    },
+    {
+      "slug": "gabinete-refrigeracion",
+      "file": "guias/gabinete-refrigeracion.html",
+      "tag": "GABINETE",
+      "title": "Guía de gabinete y refrigeración",
+      "summary": "Factor de forma, flujo de aire, y refrigeración por aire vs líquida (AIO): cómo elegir sin complicarte.",
+      "readMinutes": 7
     }
   ]
 }

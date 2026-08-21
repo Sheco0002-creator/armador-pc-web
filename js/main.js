@@ -1,3 +1,21 @@
+// ===== Idioma =====
+// El idioma activo se lee del <html lang="..."> de cada página (es/en/pt).
+// t() devuelve el string en el idioma activo desde un diccionario {es,en,pt},
+// con fallback a español si falta la traducción. rutaLocalizada() convierte
+// una ruta a un JSON en español (data/algo.json) a su equivalente localizado
+// (data/algo.en.json) sin tocar el resto de la ruta.
+function idiomaActual() {
+  return document.documentElement.lang || 'es';
+}
+function t(dict) {
+  return dict[idiomaActual()] || dict.es || '';
+}
+function rutaLocalizada(ruta) {
+  const idi = idiomaActual();
+  if (idi === 'es') return ruta;
+  return ruta.replace(/\.json$/, `.${idi}.json`);
+}
+
 // ===== Escapar HTML =====
 // Convierte texto a HTML seguro antes de insertarlo con innerHTML — evita que
 // un nombre o texto con caracteres especiales (<, >, ", ', &) rompa el layout

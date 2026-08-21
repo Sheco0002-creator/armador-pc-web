@@ -7,11 +7,12 @@ async function cargarPreciosDeNiveles() {
   const spans = document.querySelectorAll('[data-tier-price]');
   if (spans.length === 0) return;
 
+  const verCatalogo = t({ es: 'Ver catálogo', en: 'View catalog', pt: 'Ver catálogo' });
   let catalogo;
   try {
-    catalogo = await (await fetch('data/components.json')).json();
+    catalogo = await (await fetch(rutaLocalizada('data/components.json'))).json();
   } catch (e) {
-    spans.forEach((s) => { s.textContent = 'Ver catálogo'; });
+    spans.forEach((s) => { s.textContent = verCatalogo; });
     return;
   }
 
@@ -23,8 +24,8 @@ async function cargarPreciosDeNiveles() {
 
   spans.forEach((span) => {
     const tierId = span.getAttribute('data-tier-price');
-    const tier = catalogo.tiers.find((t) => t.id === tierId);
-    if (!tier) { span.textContent = 'Ver catálogo'; return; }
+    const tier = catalogo.tiers.find((tr) => tr.id === tierId);
+    if (!tier) { span.textContent = verCatalogo; return; }
     const total = Object.entries(tier.components).reduce((suma, [catId, piezaId]) => {
       const pieza = porId[catId] && porId[catId][piezaId];
       return suma + (pieza ? pieza.price : 0);

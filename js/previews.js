@@ -7,7 +7,7 @@
 
 const ARTE_COMPONENTES = {
   cpu: {
-    label: 'Procesador (CPU)',
+    label: t({ es: 'Procesador (CPU)', en: 'Processor (CPU)', pt: 'Processador (CPU)' }),
     svg: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="26" y="26" width="48" height="48" rx="4" stroke="#5FAE8C" stroke-width="2.5"/>
       <rect x="38" y="38" width="24" height="24" rx="2" stroke="#D4A24C" stroke-width="2"/>
@@ -21,7 +21,7 @@ const ARTE_COMPONENTES = {
     </svg>`,
   },
   gpu: {
-    label: 'Tarjeta gráfica (GPU)',
+    label: t({ es: 'Tarjeta gráfica (GPU)', en: 'Graphics card (GPU)', pt: 'Placa de vídeo (GPU)' }),
     svg: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="14" y="32" width="72" height="40" rx="4" stroke="#5FAE8C" stroke-width="2.5"/>
       <rect x="11" y="30" width="4" height="46" rx="1" fill="#D4A24C"/>
@@ -38,7 +38,7 @@ const ARTE_COMPONENTES = {
     </svg>`,
   },
   ram: {
-    label: 'Memoria RAM',
+    label: t({ es: 'Memoria RAM', en: 'RAM', pt: 'Memória RAM' }),
     svg: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="16" y="34" width="68" height="24" rx="3" stroke="#5FAE8C" stroke-width="2.5"/>
       <g stroke="#D4A24C" stroke-width="2">
@@ -51,7 +51,7 @@ const ARTE_COMPONENTES = {
     </svg>`,
   },
   motherboard: {
-    label: 'Placa madre',
+    label: t({ es: 'Placa madre', en: 'Motherboard', pt: 'Placa-mãe' }),
     svg: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="18" y="16" width="64" height="68" rx="3" stroke="#5FAE8C" stroke-width="2.5"/>
       <rect x="28" y="26" width="20" height="20" rx="2" stroke="#D4A24C" stroke-width="2"/>
@@ -65,7 +65,7 @@ const ARTE_COMPONENTES = {
     </svg>`,
   },
   storage: {
-    label: 'Almacenamiento (SSD)',
+    label: t({ es: 'Almacenamiento (SSD)', en: 'Storage (SSD)', pt: 'Armazenamento (SSD)' }),
     svg: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="18" y="42" width="64" height="16" rx="2" stroke="#5FAE8C" stroke-width="2.5"/>
       <rect x="30" y="46" width="34" height="8" rx="1" stroke="#D4A24C" stroke-width="2"/>
@@ -76,7 +76,7 @@ const ARTE_COMPONENTES = {
     </svg>`,
   },
   psu: {
-    label: 'Fuente de poder (PSU)',
+    label: t({ es: 'Fuente de poder (PSU)', en: 'Power supply (PSU)', pt: 'Fonte de alimentação (PSU)' }),
     svg: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="20" y="26" width="60" height="48" rx="4" stroke="#5FAE8C" stroke-width="2.5"/>
       <circle cx="48" cy="50" r="16" stroke="#5FAE8C" stroke-width="2"/>
@@ -89,7 +89,7 @@ const ARTE_COMPONENTES = {
     </svg>`,
   },
   case: {
-    label: 'Gabinete',
+    label: t({ es: 'Gabinete', en: 'Case', pt: 'Gabinete' }),
     svg: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="30" y="12" width="40" height="76" rx="3" stroke="#5FAE8C" stroke-width="2.5"/>
       <rect x="37" y="22" width="26" height="40" rx="2" stroke="#5FAE8C" stroke-width="1.5" opacity="0.6"/>
@@ -99,7 +99,7 @@ const ARTE_COMPONENTES = {
     </svg>`,
   },
   cooling: {
-    label: 'Refrigeración',
+    label: t({ es: 'Refrigeración', en: 'Cooling', pt: 'Refrigeração' }),
     svg: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="34" y="68" width="32" height="12" rx="2" stroke="#5FAE8C" stroke-width="2.5"/>
       <g stroke="#5FAE8C" stroke-width="2">
@@ -113,7 +113,7 @@ const ARTE_COMPONENTES = {
     </svg>`,
   },
   socket: {
-    label: 'Socket',
+    label: t({ es: 'Socket', en: 'Socket', pt: 'Soquete' }),
     svg: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="24" y="46" width="52" height="36" rx="3" stroke="#5FAE8C" stroke-width="2.5"/>
       <g fill="#D4A24C">
@@ -126,7 +126,7 @@ const ARTE_COMPONENTES = {
     </svg>`,
   },
   tdp: {
-    label: 'TDP (calor)',
+    label: t({ es: 'TDP (calor)', en: 'TDP (heat)', pt: 'TDP (calor)' }),
     svg: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="32" y="54" width="36" height="28" rx="3" stroke="#5FAE8C" stroke-width="2.5"/>
       <rect x="42" y="62" width="16" height="12" rx="1" stroke="#5FAE8C" stroke-width="1.5"/>
@@ -138,7 +138,7 @@ const ARTE_COMPONENTES = {
     </svg>`,
   },
   'factor-forma': {
-    label: 'Factor de forma',
+    label: t({ es: 'Factor de forma', en: 'Form factor', pt: 'Fator de forma' }),
     svg: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="20" y="22" width="52" height="56" rx="3" stroke="#5FAE8C" stroke-width="2.5"/>
       <rect x="20" y="22" width="36" height="42" rx="3" stroke="#5FAE8C" stroke-width="2" opacity="0.75"/>
@@ -146,7 +146,7 @@ const ARTE_COMPONENTES = {
     </svg>`,
   },
   resolucion: {
-    label: 'Resolución',
+    label: t({ es: 'Resolución', en: 'Resolution', pt: 'Resolução' }),
     svg: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="22" y="26" width="56" height="42" rx="3" stroke="#5FAE8C" stroke-width="2.5"/>
       <rect x="30" y="34" width="40" height="26" rx="2" stroke="#5FAE8C" stroke-width="1.5" opacity="0.6"/>
@@ -157,7 +157,7 @@ const ARTE_COMPONENTES = {
     </svg>`,
   },
   fps: {
-    label: 'FPS (cuadros por segundo)',
+    label: t({ es: 'FPS (cuadros por segundo)', en: 'FPS (frames per second)', pt: 'FPS (quadros por segundo)' }),
     svg: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="18" y="36" width="52" height="28" rx="2" stroke="#5FAE8C" stroke-width="2.5"/>
       <g fill="#D4A24C">
@@ -173,7 +173,7 @@ const ARTE_COMPONENTES = {
     </svg>`,
   },
   'cuello-botella': {
-    label: 'Cuello de botella',
+    label: t({ es: 'Cuello de botella', en: 'Bottleneck', pt: 'Gargalo' }),
     svg: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M14 28 L46 44 L46 56 L14 72 Z" stroke="#5FAE8C" stroke-width="2.5" stroke-linejoin="round"/>
       <rect x="46" y="44" width="16" height="12" stroke="#5FAE8C" stroke-width="2.5"/>
@@ -184,7 +184,7 @@ const ARTE_COMPONENTES = {
     </svg>`,
   },
   'socket-match': {
-    label: 'Socket: CPU va con placa',
+    label: t({ es: 'Socket: CPU va con placa', en: 'Socket: CPU matches motherboard', pt: 'Soquete: CPU combina com a placa' }),
     svg: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="14" y="38" width="26" height="26" rx="3" stroke="#5FAE8C" stroke-width="2.5"/>
       <rect x="21" y="45" width="12" height="12" rx="1" stroke="#D4A24C" stroke-width="1.5"/>
@@ -195,7 +195,7 @@ const ARTE_COMPONENTES = {
     </svg>`,
   },
   'ram-slot': {
-    label: 'RAM va en su ranura',
+    label: t({ es: 'RAM va en su ranura', en: 'RAM fits its slot', pt: 'RAM encaixa no slot' }),
     svg: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="26" y="18" width="48" height="16" rx="2" stroke="#5FAE8C" stroke-width="2.5"/>
       <g stroke="#D4A24C" stroke-width="2"><line x1="34" y1="34" x2="34" y2="40"/><line x1="44" y1="34" x2="44" y2="40"/><line x1="56" y1="34" x2="56" y2="40"/><line x1="66" y1="34" x2="66" y2="40"/></g>
@@ -206,7 +206,7 @@ const ARTE_COMPONENTES = {
     </svg>`,
   },
   'board-fit': {
-    label: 'Placa cabe en gabinete',
+    label: t({ es: 'Placa cabe en gabinete', en: 'Motherboard fits the case', pt: 'Placa cabe no gabinete' }),
     svg: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="20" y="16" width="60" height="68" rx="3" stroke="#5FAE8C" stroke-width="2.5"/>
       <rect x="30" y="30" width="40" height="40" rx="2" stroke="#D4A24C" stroke-width="2"/>
@@ -215,7 +215,7 @@ const ARTE_COMPONENTES = {
     </svg>`,
   },
   'gpu-fit': {
-    label: 'GPU cabe en gabinete',
+    label: t({ es: 'GPU cabe en gabinete', en: 'GPU fits the case', pt: 'GPU cabe no gabinete' }),
     svg: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="18" y="22" width="64" height="56" rx="3" stroke="#5FAE8C" stroke-width="2.5"/>
       <rect x="24" y="42" width="44" height="16" rx="2" stroke="#D4A24C" stroke-width="2"/>
@@ -225,7 +225,7 @@ const ARTE_COMPONENTES = {
     </svg>`,
   },
   'power-fit': {
-    label: 'Fuente alimenta todo',
+    label: t({ es: 'Fuente alimenta todo', en: 'PSU powers everything', pt: 'Fonte alimenta tudo' }),
     svg: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="16" y="36" width="34" height="28" rx="3" stroke="#5FAE8C" stroke-width="2.5"/>
       <circle cx="33" cy="50" r="9" stroke="#5FAE8C" stroke-width="1.5"/>
@@ -235,7 +235,7 @@ const ARTE_COMPONENTES = {
     </svg>`,
   },
   'cooler-fit': {
-    label: 'Cooler sobre el CPU',
+    label: t({ es: 'Cooler sobre el CPU', en: 'Cooler on the CPU', pt: 'Cooler sobre a CPU' }),
     svg: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g stroke="#5FAE8C" stroke-width="2"><line x1="38" y1="20" x2="38" y2="46"/><line x1="44" y1="20" x2="44" y2="46"/><line x1="50" y1="20" x2="50" y2="46"/><line x1="56" y1="20" x2="56" y2="46"/><line x1="62" y1="20" x2="62" y2="46"/></g>
       <circle cx="50" cy="33" r="11" stroke="#D4A24C" stroke-width="2" fill="#0D1512"/>
@@ -246,7 +246,7 @@ const ARTE_COMPONENTES = {
     </svg>`,
   },
   vram: {
-    label: 'VRAM (memoria de la GPU)',
+    label: t({ es: 'VRAM (memoria de la GPU)', en: 'VRAM (GPU memory)', pt: 'VRAM (memória da GPU)' }),
     svg: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="22" y="30" width="56" height="40" rx="3" stroke="#5FAE8C" stroke-width="2.5"/>
       <rect x="40" y="42" width="20" height="16" rx="2" stroke="#5FAE8C" stroke-width="2"/>

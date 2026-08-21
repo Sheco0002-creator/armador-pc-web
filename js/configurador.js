@@ -42,7 +42,7 @@ function dibujarCategoria(cat, antesIncompatibles) {
   html += `<button class="cat-head" data-toggle="${cat.id}" aria-expanded="${abierta}" aria-controls="opciones-${cat.id}">
     <span class="cat-order mono">${String(cat.order).padStart(2, '0')}</span>
     <span class="cat-label">${escapeHtml(cat.label)}</span>
-    <span class="cat-chosen">${elegida ? escapeHtml(elegida.name) : '<em>Sin elegir</em>'}</span>
+    <span class="cat-chosen">${elegida ? escapeHtml(elegida.name) : `<em>${t({ es: 'Sin elegir', en: 'Not chosen', pt: 'Não escolhido' })}</em>`}</span>
     <span class="cat-arrow">${abierta ? '▲' : '▼'}</span>
   </button>`;
 
@@ -154,21 +154,27 @@ function dibujarResumen() {
   const estado = document.getElementById('summary-status');
   if (incompatibles.length > 0) {
     estado.className = 'summary-status status-error';
-    estado.innerHTML = `<strong>⚠ ${incompatibles.length} incompatibilidad(es)</strong>` +
+    const etiqueta = t({ es: `${incompatibles.length} incompatibilidad(es)`, en: `${incompatibles.length} incompatibility(ies)`, pt: `${incompatibles.length} incompatibilidade(s)` });
+    estado.innerHTML = `<strong>⚠ ${etiqueta}</strong>` +
       incompatibles.map((e) => `<span>${escapeHtml(e.texto)}</span>`).join('');
   } else if (avisos.length > 0) {
     estado.className = 'summary-status status-warn';
-    estado.innerHTML = `<strong>Compatible, con ${avisos.length} recomendación(es)</strong>` +
+    const etiqueta = t({ es: `Compatible, con ${avisos.length} recomendación(es)`, en: `Compatible, with ${avisos.length} recommendation(s)`, pt: `Compatível, com ${avisos.length} recomendação(ões)` });
+    estado.innerHTML = `<strong>${etiqueta}</strong>` +
       avisos.map((a) => `<span>${escapeHtml(a.texto)}</span>`).join('');
   } else if (elegidas === 0) {
     estado.className = 'summary-status status-neutral';
-    estado.innerHTML = `<span>Aún no has elegido piezas. Empieza por el procesador o carga un nivel recomendado.</span>`;
+    const msg = t({ es: 'Aún no has elegido piezas. Empieza por el procesador o carga un nivel recomendado.', en: "You haven't chosen any parts yet. Start with the processor or load a recommended tier.", pt: 'Você ainda não escolheu peças. Comece pelo processador ou carregue um nível recomendado.' });
+    estado.innerHTML = `<span>${msg}</span>`;
   } else if (elegidas < totalCats) {
     estado.className = 'summary-status status-ok';
-    estado.innerHTML = `<strong>✓ Todo compatible hasta ahora</strong><span>Te faltan ${totalCats - elegidas} categoría(s).</span>`;
+    const okMsg = t({ es: 'Todo compatible hasta ahora', en: 'Everything compatible so far', pt: 'Tudo compatível até agora' });
+    const faltan = t({ es: `Te faltan ${totalCats - elegidas} categoría(s).`, en: `${totalCats - elegidas} categor${totalCats - elegidas === 1 ? 'y' : 'ies'} left.`, pt: `Faltam ${totalCats - elegidas} categoria(s).` });
+    estado.innerHTML = `<strong>✓ ${okMsg}</strong><span>${faltan}</span>`;
   } else {
     estado.className = 'summary-status status-ok';
-    estado.innerHTML = `<strong>✓ Build completa y compatible</strong>`;
+    const completa = t({ es: 'Build completa y compatible', en: 'Build complete and compatible', pt: 'Build completa e compatível' });
+    estado.innerHTML = `<strong>✓ ${completa}</strong>`;
   }
 
   // "No verificado": nunca bloquea ni se mezcla con el estado principal, pero
@@ -177,7 +183,8 @@ function dibujarResumen() {
   const bloqueNoVerif = document.getElementById('summary-unverified');
   if (bloqueNoVerif) {
     if (noVerificados.length > 0) {
-      bloqueNoVerif.innerHTML = `<strong>ℹ No verificado (${noVerificados.length})</strong>` +
+      const etiquetaNoVerif = t({ es: 'No verificado', en: 'Not verified', pt: 'Não verificado' });
+      bloqueNoVerif.innerHTML = `<strong>ℹ ${etiquetaNoVerif} (${noVerificados.length})</strong>` +
         noVerificados.map((n) => `<span>${escapeHtml(n.texto)}</span>`).join('');
       bloqueNoVerif.hidden = false;
     } else {
@@ -199,29 +206,34 @@ function dibujarConsumo() {
   const { cpu, gpu, psu } = BUILD;
 
   if (!cpu && !gpu) {
-    cont.innerHTML = `<p class="power-empty">Elige el procesador y la tarjeta gráfica para estimar el consumo.</p>`;
+    const vacio = t({ es: 'Elige el procesador y la tarjeta gráfica para estimar el consumo.', en: 'Choose the processor and graphics card to estimate power draw.', pt: 'Escolha o processador e a placa de vídeo para estimar o consumo.' });
+    cont.innerHTML = `<p class="power-empty">${vacio}</p>`;
     return;
   }
 
   const consumo = consumoEstimado(BUILD);
-  let html = `<div class="power-row"><span>Consumo estimado</span><span class="mono">~${consumo}W</span></div>`;
+  const etiquetaConsumo = t({ es: 'Consumo estimado', en: 'Estimated power draw', pt: 'Consumo estimado' });
+  let html = `<div class="power-row"><span>${etiquetaConsumo}</span><span class="mono">~${consumo}W</span></div>`;
 
   if (!psu) {
-    html += `<p class="power-empty">Elige una fuente de poder para ver su margen.</p>`;
+    const elegirFuente = t({ es: 'Elige una fuente de poder para ver su margen.', en: 'Choose a power supply to see its headroom.', pt: 'Escolha uma fonte de alimentação para ver sua margem.' });
+    html += `<p class="power-empty">${elegirFuente}</p>`;
   } else {
     const recomendada = fuenteRecomendada(BUILD);
     const margen = psu.wattage - consumo;
     let clase = 'power-ok';
-    let etiqueta = `Buen margen (+${margen}W)`;
+    let etiqueta = t({ es: `Buen margen (+${margen}W)`, en: `Good headroom (+${margen}W)`, pt: `Boa margem (+${margen}W)` });
     if (psu.wattage < consumo) {
       clase = 'power-bad';
-      etiqueta = `Insuficiente (faltan ${consumo - psu.wattage}W)`;
+      etiqueta = t({ es: `Insuficiente (faltan ${consumo - psu.wattage}W)`, en: `Insufficient (${consumo - psu.wattage}W short)`, pt: `Insuficiente (faltam ${consumo - psu.wattage}W)` });
     } else if (psu.wattage < recomendada) {
       clase = 'power-warn';
-      etiqueta = `Margen ajustado (+${margen}W, se recomienda ${recomendada}W)`;
+      etiqueta = t({ es: `Margen ajustado (+${margen}W, se recomienda ${recomendada}W)`, en: `Tight headroom (+${margen}W, ${recomendada}W recommended)`, pt: `Margem apertada (+${margen}W, recomenda-se ${recomendada}W)` });
     }
-    html += `<div class="power-row"><span>Fuente elegida</span><span class="mono">${psu.wattage}W</span></div>`;
-    html += `<div class="power-row ${clase}"><span>Margen</span><span class="mono">${etiqueta}</span></div>`;
+    const fuenteElegida = t({ es: 'Fuente elegida', en: 'Power supply chosen', pt: 'Fonte escolhida' });
+    const margenLabel = t({ es: 'Margen', en: 'Headroom', pt: 'Margem' });
+    html += `<div class="power-row"><span>${fuenteElegida}</span><span class="mono">${psu.wattage}W</span></div>`;
+    html += `<div class="power-row ${clase}"><span>${margenLabel}</span><span class="mono">${etiqueta}</span></div>`;
   }
 
   cont.innerHTML = html;
@@ -250,25 +262,26 @@ function cargarPreset(nombre) {
 
 // --- Copiar la build al portapapeles ---
 function copiarBuild() {
-  let texto = 'Mi PC gamer (armado en ArmaPC)\n\n';
+  let texto = t({ es: 'Mi PC gamer (armado en ArmaPC)', en: 'My gaming PC (built with ArmaPC)', pt: 'Meu PC gamer (montado no ArmaPC)' }) + '\n\n';
   for (const cat of CATEGORIAS_ORDENADAS) {
     const p = BUILD[cat.id];
     if (p) texto += `- ${cat.label}: ${p.name} (US$${p.price})\n`;
   }
   const total = totalBuild();
-  texto += `\nTotal aproximado: US$${total.toLocaleString('en-US')}`;
+  const totalLabel = t({ es: 'Total aproximado', en: 'Approximate total', pt: 'Total aproximado' });
+  texto += `\n${totalLabel}: US$${total.toLocaleString('en-US')}`;
   if (MONEDA_ACTIVA !== 'USD') texto += ` (${convertir(total, MONEDA_ACTIVA, TASAS)})`;
 
   const btn = document.getElementById('export-btn');
   const original = btn.textContent;
 
   navigator.clipboard.writeText(texto).then(() => {
-    btn.textContent = '¡Copiado!';
+    btn.textContent = t({ es: '¡Copiado!', en: 'Copied!', pt: 'Copiado!' });
     setTimeout(() => { btn.textContent = original; }, 1800);
   }).catch(() => {
     // El navegador puede negar el permiso de portapapeles (ej. contexto no
     // seguro o restricción del usuario) — avisamos en vez de fallar en silencio.
-    btn.textContent = 'No se pudo copiar';
+    btn.textContent = t({ es: 'No se pudo copiar', en: 'Could not copy', pt: 'Não foi possível copiar' });
     setTimeout(() => { btn.textContent = original; }, 1800);
   });
 }
@@ -276,10 +289,10 @@ function copiarBuild() {
 // --- Arranque ---
 async function iniciar() {
   try {
-    CATALOGO = await (await fetch('data/components.json')).json();
+    CATALOGO = await (await fetch(rutaLocalizada('data/components.json'))).json();
   } catch (e) {
-    document.getElementById('config-categories').innerHTML =
-      '<p class="loading">No se pudieron cargar los componentes.</p>';
+    const errorMsg = t({ es: 'No se pudieron cargar los componentes.', en: 'Could not load the components.', pt: 'Não foi possível carregar os componentes.' });
+    document.getElementById('config-categories').innerHTML = `<p class="loading">${errorMsg}</p>`;
     return;
   }
 
@@ -301,7 +314,8 @@ async function iniciar() {
   // Badge de fecha de precios (transparencia)
   const badge = document.getElementById('precios-fecha');
   if (badge && CATALOGO.updated) {
-    badge.innerHTML = `<span class="mono">Precios de referencia · actualizados en ${escapeHtml(fechaPreciosLegible(CATALOGO.updated))}</span>`;
+    const etiquetaFecha = t({ es: 'Precios de referencia · actualizados en', en: 'Reference prices · updated', pt: 'Preços de referência · atualizados em' });
+    badge.innerHTML = `<span class="mono">${etiquetaFecha} ${escapeHtml(fechaPreciosLegible(CATALOGO.updated))}</span>`;
   }
 
   // Botones de preset

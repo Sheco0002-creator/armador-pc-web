@@ -4,22 +4,49 @@
 // unas horas (caché) para no llamar a la API en cada carga, y tiene tasas de
 // respaldo por si la API no responde — así el conversor NUNCA se rompe.
 
+function nombresMonedas() {
+  return t({
+    es: {
+      USD: 'Dólar estadounidense', PEN: 'Sol peruano', MXN: 'Peso mexicano',
+      COP: 'Peso colombiano', ARS: 'Peso argentino', CLP: 'Peso chileno',
+      BRL: 'Real brasileño', UYU: 'Peso uruguayo', BOB: 'Boliviano',
+      PYG: 'Guaraní paraguayo', EUR: 'Euro',
+    },
+    en: {
+      USD: 'US Dollar', PEN: 'Peruvian Sol', MXN: 'Mexican Peso',
+      COP: 'Colombian Peso', ARS: 'Argentine Peso', CLP: 'Chilean Peso',
+      BRL: 'Brazilian Real', UYU: 'Uruguayan Peso', BOB: 'Bolivian Boliviano',
+      PYG: 'Paraguayan Guaraní', EUR: 'Euro',
+    },
+    pt: {
+      USD: 'Dólar americano', PEN: 'Sol peruano', MXN: 'Peso mexicano',
+      COP: 'Peso colombiano', ARS: 'Peso argentino', CLP: 'Peso chileno',
+      BRL: 'Real brasileiro', UYU: 'Peso uruguaio', BOB: 'Boliviano',
+      PYG: 'Guarani paraguaio', EUR: 'Euro',
+    },
+  });
+}
+
 const MonedaConfig = {
   // Monedas que se ofrecen en el selector. code = ISO, symbol = lo que se ve.
-  // El orden aquí es el orden en que aparecen en el menú.
-  monedas: [
-    { code: 'USD', name: 'Dólar estadounidense', symbol: 'US$' },
-    { code: 'PEN', name: 'Sol peruano', symbol: 'S/' },
-    { code: 'MXN', name: 'Peso mexicano', symbol: 'MX$' },
-    { code: 'COP', name: 'Peso colombiano', symbol: 'COL$' },
-    { code: 'ARS', name: 'Peso argentino', symbol: 'AR$' },
-    { code: 'CLP', name: 'Peso chileno', symbol: 'CLP$' },
-    { code: 'BRL', name: 'Real brasileño', symbol: 'R$' },
-    { code: 'UYU', name: 'Peso uruguayo', symbol: '$U' },
-    { code: 'BOB', name: 'Boliviano', symbol: 'Bs' },
-    { code: 'PYG', name: 'Guaraní paraguayo', symbol: '₲' },
-    { code: 'EUR', name: 'Euro', symbol: '€' },
-  ],
+  // El orden aquí es el orden en que aparecen en el menú. name se resuelve
+  // según el idioma activo vía nombresMonedas().
+  get monedas() {
+    const nombres = nombresMonedas();
+    return [
+      { code: 'USD', name: nombres.USD, symbol: 'US$' },
+      { code: 'PEN', name: nombres.PEN, symbol: 'S/' },
+      { code: 'MXN', name: nombres.MXN, symbol: 'MX$' },
+      { code: 'COP', name: nombres.COP, symbol: 'COL$' },
+      { code: 'ARS', name: nombres.ARS, symbol: 'AR$' },
+      { code: 'CLP', name: nombres.CLP, symbol: 'CLP$' },
+      { code: 'BRL', name: nombres.BRL, symbol: 'R$' },
+      { code: 'UYU', name: nombres.UYU, symbol: '$U' },
+      { code: 'BOB', name: nombres.BOB, symbol: 'Bs' },
+      { code: 'PYG', name: nombres.PYG, symbol: '₲' },
+      { code: 'EUR', name: nombres.EUR, symbol: '€' },
+    ];
+  },
 
   // Tasas de respaldo (aprox. mediados de 2026, 1 USD = X). Solo se usan si la
   // API no responde. No necesitan ser exactas: es una red de seguridad.
@@ -106,7 +133,8 @@ function selectorMonedaHTML(monedaActiva) {
   const opciones = MonedaConfig.monedas.map((m) =>
     `<option value="${m.code}"${m.code === monedaActiva ? ' selected' : ''}>${m.code} — ${m.name}</option>`
   ).join('');
-  return `<label class="moneda-selector"><span class="mono">Moneda</span>
+  const etiqueta = t({ es: 'Moneda', en: 'Currency', pt: 'Moeda' });
+  return `<label class="moneda-selector"><span class="mono">${etiqueta}</span>
     <select id="moneda-select">${opciones}</select></label>`;
 }
 function guardarMonedaElegida(codigo) {
@@ -120,10 +148,16 @@ function monedaElegida() {
 // Convierte "2026-07" en "julio de 2026" para mostrarla al usuario.
 function fechaPreciosLegible(cadena) {
   if (!cadena) return '';
-  const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
-    'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+  const meses = t({
+    es: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+      'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
+    en: ['January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'],
+    pt: ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
+      'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'],
+  });
   const [anio, mes] = cadena.split('-');
   const nombreMes = meses[parseInt(mes, 10) - 1];
   if (!nombreMes) return cadena;
-  return `${nombreMes} de ${anio}`;
+  return idiomaActual() === 'en' ? `${nombreMes} ${anio}` : `${nombreMes} de ${anio}`;
 }

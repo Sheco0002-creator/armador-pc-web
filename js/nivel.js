@@ -47,7 +47,8 @@ function filaComponente(cat, piezaId, altId) {
   let alt = '';
   if (altId) {
     const piezaAlt = buscarPieza(cat.id, altId);
-    if (piezaAlt) alt = `<p class="comp-alt">Alternativa: ${escapeHtml(piezaAlt.name)} (${precioUSD(piezaAlt.price)})</p>`;
+    const etiquetaAlt = t({ es: 'Alternativa', en: 'Alternative', pt: 'Alternativa' });
+    if (piezaAlt) alt = `<p class="comp-alt">${etiquetaAlt}: ${escapeHtml(piezaAlt.name)} (${precioUSD(piezaAlt.price)})</p>`;
   }
   return `
     <div class="comp-row">
@@ -85,25 +86,26 @@ function repintarPrecios() {
   const total = calcularTotal(TIER_ACTUAL);
   const usdTotal = precioUSD(total);
   const localTotal = precioConvertido(total);
+  const etiquetaTotal = t({ es: 'Total real de esta build', en: 'Real total for this build', pt: 'Total real desta build' });
   document.getElementById('level-total').innerHTML =
     localTotal
-      ? `Total real de esta build: ${usdTotal} <span class="total-local">(${localTotal})</span>`
-      : `Total real de esta build: ${usdTotal}`;
+      ? `${etiquetaTotal}: ${usdTotal} <span class="total-local">(${localTotal})</span>`
+      : `${etiquetaTotal}: ${usdTotal}`;
 }
 
 async function cargarNivel() {
   const idNivel = obtenerIdNivel();
 
   try {
-    CATALOGO = await (await fetch('../data/components.json')).json();
+    CATALOGO = await (await fetch(rutaLocalizada('../data/components.json'))).json();
   } catch (e) {
-    document.getElementById('level-name').textContent = 'No se pudo cargar el catálogo';
+    document.getElementById('level-name').textContent = t({ es: 'No se pudo cargar el catálogo', en: 'Could not load the catalog', pt: 'Não foi possível carregar o catálogo' });
     return;
   }
 
-  const tier = CATALOGO.tiers.find((t) => t.id === idNivel);
+  const tier = CATALOGO.tiers.find((tr) => tr.id === idNivel);
   if (!tier) {
-    document.getElementById('level-name').textContent = 'Nivel no encontrado';
+    document.getElementById('level-name').textContent = t({ es: 'Nivel no encontrado', en: 'Tier not found', pt: 'Nível não encontrado' });
     return;
   }
   TIER_ACTUAL = tier;
@@ -115,15 +117,21 @@ async function cargarNivel() {
 
   const totalInicial = calcularTotal(tier);
 
-  document.title = `Nivel ${tier.name} — desde ${precioUSD(tier.priceMin)} — ArmaPC`;
+  const etiquetaNivel = t({ es: 'Nivel', en: 'Tier', pt: 'Nível' });
+  const catalogoDe = t({ es: 'Catálogo de componentes para el nivel', en: 'Component catalog for the', pt: 'Catálogo de componentes para o nível' });
+  const tituloDesde = t({ es: 'desde', en: 'starting at', pt: 'a partir de' });
+
+  document.title = `${etiquetaNivel} ${tier.name} — ${tituloDesde} ${precioUSD(tier.priceMin)} — ArmaPC`;
   const metaDesc = document.querySelector('meta[name="description"]');
   if (metaDesc) {
-    metaDesc.setAttribute('content',
-      `Catálogo de componentes para el nivel ${tier.name} (${precioUSD(tier.priceMin)}–${tier.priceMax.toLocaleString('en-US')}): ${tier.tagline}. ${tier.target}`);
+    const desc = idiomaActual() === 'en'
+      ? `${catalogoDe} ${tier.name} tier (${precioUSD(tier.priceMin)}–${tier.priceMax.toLocaleString('en-US')}): ${tier.tagline}. ${tier.target}`
+      : `${catalogoDe} ${tier.name} (${precioUSD(tier.priceMin)}–${tier.priceMax.toLocaleString('en-US')}): ${tier.tagline}. ${tier.target}`;
+    metaDesc.setAttribute('content', desc);
   }
   document.getElementById('crumb-name').textContent = tier.name;
   document.getElementById('level-price').textContent = precioUSD(totalInicial);
-  document.getElementById('level-name').textContent = `Nivel ${tier.name}`;
+  document.getElementById('level-name').textContent = `${etiquetaNivel} ${tier.name}`;
   document.getElementById('level-target').textContent = tier.target;
 
   // Selector de moneda (función compartida en moneda.js) + sello de fecha
@@ -139,23 +147,42 @@ async function cargarNivel() {
       repintarPrecios();
     });
     if (CATALOGO.updated) {
+      const etiquetaFecha = t({ es: 'Precios de referencia · actualizados en', en: 'Reference prices · updated', pt: 'Preços de referência · atualizados em' });
       cont.insertAdjacentHTML('beforeend',
-        `<span class="precios-fecha mono">Precios de referencia · actualizados en ${escapeHtml(fechaPreciosLegible(CATALOGO.updated))}</span>`);
+        `<span class="precios-fecha mono">${etiquetaFecha} ${escapeHtml(fechaPreciosLegible(CATALOGO.updated))}</span>`);
     }
   }
 
   repintarPrecios();
 
   const notaTasa = MONEDA_ACTIVA !== 'USD'
-    ? ' El valor en tu moneda es una conversión automática de referencia y puede variar según el día y la tienda.'
+    ? t({
+      es: ' El valor en tu moneda es una conversión automática de referencia y puede variar según el día y la tienda.',
+      en: ' The value in your currency is an automatic reference conversion and may vary by day and by store.',
+      pt: ' O valor na sua moeda é uma conversão automática de referência e pode variar conforme o dia e a loja.',
+    })
     : '';
-  document.getElementById('level-note').innerHTML =
-    `<p>Los precios son valores de referencia en dólares (USD), no precios de una
+  const notaBase = t({
+    es: `<p>Los precios son valores de referencia en dólares (USD), no precios de una
      tienda específica. El total se calcula sumando el precio real de cada componente
      de esta build — si cambias una pieza en el <a href="../configurador.html">configurador</a>,
      el total se actualiza solo. En 2026 la RAM y el almacenamiento (SSD) están más caros
      de lo normal por la alta demanda de la industria de IA, así que conviene contrastar
-     con tiendas de tu región antes de comprar.${notaTasa}</p>`;
+     con tiendas de tu región antes de comprar.`,
+    en: `<p>Prices are reference values in US dollars (USD), not the price at any
+     specific store. The total is calculated by adding up the real price of each
+     component in this build — if you swap a part in the <a href="../configurador.html">configurator</a>,
+     the total updates automatically. In 2026, RAM and storage (SSD) prices are higher
+     than usual due to high demand from the AI industry, so it's worth comparing
+     with stores in your region before buying.`,
+    pt: `<p>Os preços são valores de referência em dólares (USD), não preços de uma
+     loja específica. O total é calculado somando o preço real de cada componente
+     desta build — se você trocar uma peça no <a href="../configurador.html">configurador</a>,
+     o total se atualiza automaticamente. Em 2026, a RAM e o armazenamento (SSD) estão
+     mais caros que o normal devido à alta demanda da indústria de IA, por isso vale a
+     pena comparar com lojas da sua região antes de comprar.`,
+  });
+  document.getElementById('level-note').innerHTML = `${notaBase}${notaTasa}</p>`;
 
   document.getElementById('level-nav').innerHTML = navegacionNiveles(CATALOGO.tiers, idNivel);
 }

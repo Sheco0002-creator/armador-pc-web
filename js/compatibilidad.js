@@ -16,6 +16,9 @@
 // Regla de diseño: si el dato no existe en components.json, este motor jamás
 // lo inventa. O hay dato real para comparar (-> incompatible/aviso/compatible),
 // o no lo hay (-> no_verificado). Nunca a mitad de camino.
+//
+// Los textos se resuelven vía t({es,en,pt}) (definido en main.js) para que el
+// motor de reglas hable en el idioma activo de la página sin duplicar lógica.
 
 // Consumo estimado del sistema: CPU + GPU + ~100W del resto (placa, discos,
 // ventiladores, etc.). Es una estimación de referencia, no un cálculo exacto.
@@ -51,7 +54,11 @@ function revisarCompatibilidad(build) {
   if (cpu && mb && cpu.socket !== mb.socket) {
     problemas.push({
       nivel: 'incompatible',
-      texto: `Incompatible: el procesador usa socket ${cpu.socket} y la placa madre (chipset ${mb.chipset}, socket ${mb.socket}) no lo acepta.`,
+      texto: t({
+        es: `Incompatible: el procesador usa socket ${cpu.socket} y la placa madre (chipset ${mb.chipset}, socket ${mb.socket}) no lo acepta.`,
+        en: `Incompatible: the processor uses socket ${cpu.socket} and the motherboard (chipset ${mb.chipset}, socket ${mb.socket}) doesn't support it.`,
+        pt: `Incompatível: o processador usa o soquete ${cpu.socket} e a placa-mãe (chipset ${mb.chipset}, soquete ${mb.socket}) não o aceita.`,
+      }),
     });
   }
 
@@ -61,7 +68,11 @@ function revisarCompatibilidad(build) {
   if (cpu && mb && cpu.socket === mb.socket && cpu.tdp >= 120) {
     problemas.push({
       nivel: 'no_verificado',
-      texto: `No verificado: el procesador consume ${cpu.tdp}W y no tenemos datos de la capacidad de entrega de energía (VRM) de esta placa madre para confirmar que lo soporta sin límites.`,
+      texto: t({
+        es: `No verificado: el procesador consume ${cpu.tdp}W y no tenemos datos de la capacidad de entrega de energía (VRM) de esta placa madre para confirmar que lo soporta sin límites.`,
+        en: `Not verified: the processor draws ${cpu.tdp}W and we don't have data on this motherboard's power delivery (VRM) capacity to confirm it can handle it without limits.`,
+        pt: `Não verificado: o processador consome ${cpu.tdp}W e não temos dados sobre a capacidade de entrega de energia (VRM) desta placa-mãe para confirmar que ela suporta sem limites.`,
+      }),
     });
   }
 
@@ -74,7 +85,11 @@ function revisarCompatibilidad(build) {
   if (ram && mb && ram.ramType !== mb.ramType) {
     problemas.push({
       nivel: 'incompatible',
-      texto: `Incompatible: esta placa madre utiliza ${mb.ramType} y la memoria seleccionada es ${ram.ramType}.`,
+      texto: t({
+        es: `Incompatible: esta placa madre utiliza ${mb.ramType} y la memoria seleccionada es ${ram.ramType}.`,
+        en: `Incompatible: this motherboard uses ${mb.ramType} and the selected RAM is ${ram.ramType}.`,
+        pt: `Incompatível: esta placa-mãe usa ${mb.ramType} e a memória selecionada é ${ram.ramType}.`,
+      }),
     });
   }
 
@@ -84,16 +99,25 @@ function revisarCompatibilidad(build) {
   if (ram && mb && ram.ramType === mb.ramType) {
     problemas.push({
       nivel: 'no_verificado',
-      texto: 'No verificado: no tenemos la cantidad de slots, la capacidad máxima ni la frecuencia máxima soportada de esta placa madre para confirmar que acepta esta memoria más allá del tipo (DDR5).',
+      texto: t({
+        es: 'No verificado: no tenemos la cantidad de slots, la capacidad máxima ni la frecuencia máxima soportada de esta placa madre para confirmar que acepta esta memoria más allá del tipo (DDR5).',
+        en: "Not verified: we don't have the number of slots, maximum capacity, or maximum supported frequency for this motherboard to confirm it accepts this RAM beyond the type (DDR5).",
+        pt: 'Não verificado: não temos a quantidade de slots, a capacidade máxima nem a frequência máxima suportada desta placa-mãe para confirmar que ela aceita esta memória além do tipo (DDR5).',
+      }),
     });
   }
 
   // ===== Placa madre ↔ Gabinete =====
 
   if (mb && gab && !(gab.supports || []).includes(mb.formFactor)) {
+    const soportados = (gab.supports || []).join(', ') || t({ es: 'ningún formato conocido', en: 'no known form factor', pt: 'nenhum formato conhecido' });
     problemas.push({
       nivel: 'incompatible',
-      texto: `Incompatible: la placa madre es formato ${mb.formFactor} y el gabinete ${gab.name} solo admite ${(gab.supports || []).join(', ') || 'ningún formato conocido'}.`,
+      texto: t({
+        es: `Incompatible: la placa madre es formato ${mb.formFactor} y el gabinete ${gab.name} solo admite ${soportados}.`,
+        en: `Incompatible: the motherboard is ${mb.formFactor} form factor and the ${gab.name} case only supports ${soportados}.`,
+        pt: `Incompatível: a placa-mãe é formato ${mb.formFactor} e o gabinete ${gab.name} só admite ${soportados}.`,
+      }),
     });
   }
 
@@ -102,7 +126,11 @@ function revisarCompatibilidad(build) {
   if (gpu && gab && gpu.length > gab.maxGpuLength) {
     problemas.push({
       nivel: 'incompatible',
-      texto: `GPU incompatible: ${gpu.length} mm. El gabinete admite hasta ${gab.maxGpuLength} mm.`,
+      texto: t({
+        es: `GPU incompatible: ${gpu.length} mm. El gabinete admite hasta ${gab.maxGpuLength} mm.`,
+        en: `Incompatible GPU: ${gpu.length} mm. The case supports up to ${gab.maxGpuLength} mm.`,
+        pt: `GPU incompatível: ${gpu.length} mm. O gabinete admite até ${gab.maxGpuLength} mm.`,
+      }),
     });
   }
 
@@ -111,7 +139,11 @@ function revisarCompatibilidad(build) {
   if (gpu && gab && gpu.length <= gab.maxGpuLength) {
     problemas.push({
       nivel: 'no_verificado',
-      texto: 'No verificado: no tenemos la altura de la tarjeta gráfica ni el espacio vertical del gabinete para confirmar que no choca con otras piezas.',
+      texto: t({
+        es: 'No verificado: no tenemos la altura de la tarjeta gráfica ni el espacio vertical del gabinete para confirmar que no choca con otras piezas.',
+        en: "Not verified: we don't have the graphics card's height or the case's vertical clearance to confirm it doesn't clash with other parts.",
+        pt: 'Não verificado: não temos a altura da placa de vídeo nem o espaço vertical do gabinete para confirmar que não colide com outras peças.',
+      }),
     });
   }
 
@@ -120,14 +152,22 @@ function revisarCompatibilidad(build) {
   if (cooling && cpu && !(cooling.socketSupport || []).includes(cpu.socket)) {
     problemas.push({
       nivel: 'incompatible',
-      texto: `Incompatible: esta refrigeración no tiene kit de montaje para el socket ${cpu.socket} del procesador.`,
+      texto: t({
+        es: `Incompatible: esta refrigeración no tiene kit de montaje para el socket ${cpu.socket} del procesador.`,
+        en: `Incompatible: this cooler doesn't have a mounting kit for the processor's ${cpu.socket} socket.`,
+        pt: `Incompatível: este cooler não tem kit de montagem para o soquete ${cpu.socket} do processador.`,
+      }),
     });
   }
 
   if (cooling && cpu && (cooling.socketSupport || []).includes(cpu.socket) && cooling.tdpCapacity < cpu.tdp) {
     problemas.push({
       nivel: 'aviso',
-      texto: `La refrigeración está pensada para hasta ${cooling.tdpCapacity}W y el procesador genera ${cpu.tdp}W. Puede quedar corta bajo carga.`,
+      texto: t({
+        es: `La refrigeración está pensada para hasta ${cooling.tdpCapacity}W y el procesador genera ${cpu.tdp}W. Puede quedar corta bajo carga.`,
+        en: `This cooler is rated for up to ${cooling.tdpCapacity}W and the processor generates ${cpu.tdp}W. It may fall short under load.`,
+        pt: `Este cooler é indicado para até ${cooling.tdpCapacity}W e o processador gera ${cpu.tdp}W. Pode não ser suficiente sob carga.`,
+      }),
     });
   }
 
@@ -136,7 +176,11 @@ function revisarCompatibilidad(build) {
   if (cooling && cooling.type === 'aire' && gab && cooling.height > gab.maxCoolerHeight) {
     problemas.push({
       nivel: 'incompatible',
-      texto: `Incompatible: el disipador mide ${cooling.height} mm de alto y el gabinete admite hasta ${gab.maxCoolerHeight} mm.`,
+      texto: t({
+        es: `Incompatible: el disipador mide ${cooling.height} mm de alto y el gabinete admite hasta ${gab.maxCoolerHeight} mm.`,
+        en: `Incompatible: the cooler is ${cooling.height} mm tall and the case supports up to ${gab.maxCoolerHeight} mm.`,
+        pt: `Incompatível: o dissipador mede ${cooling.height} mm de altura e o gabinete admite até ${gab.maxCoolerHeight} mm.`,
+      }),
     });
   }
 
@@ -146,7 +190,11 @@ function revisarCompatibilidad(build) {
   if (cooling && cooling.type === 'liquida' && gab) {
     problemas.push({
       nivel: 'no_verificado',
-      texto: 'No verificado: no tenemos el tamaño del radiador ni las posiciones de montaje que admite este gabinete para confirmar que la refrigeración líquida entra.',
+      texto: t({
+        es: 'No verificado: no tenemos el tamaño del radiador ni las posiciones de montaje que admite este gabinete para confirmar que la refrigeración líquida entra.',
+        en: "Not verified: we don't have the radiator size or the mounting positions this case supports to confirm the liquid cooler fits.",
+        pt: 'Não verificado: não temos o tamanho do radiador nem as posições de montagem que este gabinete admite para confirmar que a refrigeração líquida cabe.',
+      }),
     });
   }
 
@@ -157,7 +205,11 @@ function revisarCompatibilidad(build) {
   if (storage && mb) {
     problemas.push({
       nivel: 'no_verificado',
-      texto: `No verificado: no tenemos la cantidad ni el tipo de ranuras de almacenamiento (M.2/NVMe/SATA) de esta placa madre para confirmar que admite un SSD ${storage.interface}.`,
+      texto: t({
+        es: `No verificado: no tenemos la cantidad ni el tipo de ranuras de almacenamiento (M.2/NVMe/SATA) de esta placa madre para confirmar que admite un SSD ${storage.interface}.`,
+        en: `Not verified: we don't have the number or type of storage slots (M.2/NVMe/SATA) on this motherboard to confirm it supports a ${storage.interface} SSD.`,
+        pt: `Não verificado: não temos a quantidade nem o tipo de conectores de armazenamento (M.2/NVMe/SATA) desta placa-mãe para confirmar que ela admite um SSD ${storage.interface}.`,
+      }),
     });
   }
 
@@ -169,12 +221,20 @@ function revisarCompatibilidad(build) {
     if (psu.wattage < consumo) {
       problemas.push({
         nivel: 'incompatible',
-        texto: `Incompatible: la fuente de ${psu.wattage}W no alcanza. El sistema consume alrededor de ${consumo}W.`,
+        texto: t({
+          es: `Incompatible: la fuente de ${psu.wattage}W no alcanza. El sistema consume alrededor de ${consumo}W.`,
+          en: `Incompatible: the ${psu.wattage}W power supply isn't enough. The system draws about ${consumo}W.`,
+          pt: `Incompatível: a fonte de ${psu.wattage}W não é suficiente. O sistema consome cerca de ${consumo}W.`,
+        }),
       });
     } else if (psu.wattage < recomendada) {
       problemas.push({
         nivel: 'aviso',
-        texto: `La fuente de ${psu.wattage}W funciona, pero para este equipo se recomienda al menos ${recomendada}W para tener margen.`,
+        texto: t({
+          es: `La fuente de ${psu.wattage}W funciona, pero para este equipo se recomienda al menos ${recomendada}W para tener margen.`,
+          en: `The ${psu.wattage}W power supply works, but at least ${recomendada}W is recommended for this build to have headroom.`,
+          pt: `A fonte de ${psu.wattage}W funciona, mas para este equipamento recomenda-se pelo menos ${recomendada}W para ter margem.`,
+        }),
       });
     }
   }
@@ -184,7 +244,11 @@ function revisarCompatibilidad(build) {
   if (psu && gpu) {
     problemas.push({
       nivel: 'no_verificado',
-      texto: 'No verificado: no tenemos el detalle de los conectores de esta fuente ni los que requiere la tarjeta gráfica (por ejemplo PCIe de 12 pines) para confirmar que incluye el correcto.',
+      texto: t({
+        es: 'No verificado: no tenemos el detalle de los conectores de esta fuente ni los que requiere la tarjeta gráfica (por ejemplo PCIe de 12 pines) para confirmar que incluye el correcto.',
+        en: "Not verified: we don't have the connector details for this power supply or the ones the graphics card requires (e.g. 12-pin PCIe) to confirm it includes the right one.",
+        pt: 'Não verificado: não temos o detalhe dos conectores desta fonte nem os que a placa de vídeo requer (por exemplo, PCIe de 12 pinos) para confirmar que inclui o correto.',
+      }),
     });
   }
 

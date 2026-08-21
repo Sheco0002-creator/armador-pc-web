@@ -199,6 +199,7 @@ a:focus-visible, button:focus-visible {
 }
 
 /* ===== Páginas de nivel ===== */
+.level-intro { margin-bottom: 28px; }
 .level-hero { padding: 56px 0 40px; border-bottom: 1px solid var(--border); }
 .breadcrumb { font-size: 13px; color: var(--text-secondary); margin-bottom: 20px; }
 .breadcrumb a { color: var(--accent-mint); text-decoration: none; }
@@ -255,6 +256,7 @@ a:focus-visible, button:focus-visible {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  margin-top: 12px;
   margin-bottom: 32px;
   font-size: 13px;
   color: var(--text-secondary);

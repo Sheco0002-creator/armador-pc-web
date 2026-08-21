@@ -32,6 +32,34 @@ function escapeHtml(texto) {
     .replace(/'/g, '&#39;');
 }
 
+// Abre y cierra el desplegable del selector de idioma (ES/EN/PT).
+document.querySelectorAll('.lang-switch').forEach((switcher) => {
+  const toggle = switcher.querySelector('.lang-toggle');
+  const menu = switcher.querySelector('.lang-menu');
+  if (!toggle || !menu) return;
+
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const abierto = !menu.hidden;
+    menu.hidden = abierto;
+    toggle.setAttribute('aria-expanded', String(!abierto));
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!switcher.contains(e.target)) {
+      menu.hidden = true;
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      menu.hidden = true;
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+});
+
 // Abre y cierra el menú de navegación en pantallas chicas (celular)
 const navToggle = document.getElementById('nav-toggle');
 const mainNav = document.getElementById('main-nav');

@@ -26,6 +26,18 @@
       "legacyId": "ssd-nvme-4tb",
       "productId": "prod-samsung-9100pro-4tb",
       "note": "Legacy 'SSD NVMe 4TB Gen5' -> Samsung 9100 PRO 4TB, family-storage-nvme-pcie5."
+    },
+    {
+      "category": "case",
+      "legacyId": "case-mid",
+      "productId": "prod-corsair-4000d-airflow",
+      "note": "Legacy 'Mid-tower ATX' (maxGpuLength 360mm, maxCoolerHeight 170mm) -> CORSAIR 4000D AIRFLOW (CC-9011201-WW), family-case-atx-mid-tower. Coincide exactamente con los limites del legacy."
+    },
+    {
+      "category": "case",
+      "legacyId": "case-full",
+      "productId": "prod-corsair-7000d-airflow",
+      "note": "Legacy 'Full-tower ATX' (maxGpuLength 400mm, maxCoolerHeight 180mm) -> CORSAIR 7000D AIRFLOW (CC-9011218-WW), family-case-atx-full-tower. El producto real (450mm/190mm) supera ambos limites minimos del legacy."
     }
   ]
 }

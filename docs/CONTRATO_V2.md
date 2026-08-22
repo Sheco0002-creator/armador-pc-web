@@ -2,18 +2,20 @@
 
 Estado (actualizado 2026-08-22): **Fase 1 completa. Fase 2 cerrada** (2026-08-21).
 **Fase 3 en ejecución activa** (iniciada 2026-08-21, ver §0.4 en adelante).
-Estado real de `catalog.v2.json`: **14 `family`, todas `verified`** (las 8
+Estado real de `catalog.v2.json`: **16 `family`, todas `verified`** (las 8
 originales CPU/GPU — incluidas las 2 que quedaron `partial` al cierre de
 Fase 2 y luego pasaron a `verified` en §0.6 — más `family-memory-ddr5`,
 `family-intel-z890`, `family-psu-atx`, `family-storage-nvme-pcie4`,
-`family-storage-sata` y `family-storage-nvme-pcie5`, agregadas durante
-Fase 3), y **22 `product` reales verificados** (12 GPU, 1 RAM, 3
-motherboard, 2 PSU, 4 storage). 0 `offer`, 0 `preset`. No reemplaza
+`family-storage-sata`, `family-storage-nvme-pcie5`,
+`family-case-atx-mid-tower` y `family-case-atx-full-tower`, agregadas
+durante Fase 3), y **24 `product` reales verificados** (12 GPU, 1 RAM, 3
+motherboard, 2 PSU, 4 storage, 2 case). 0 `offer`, 0 `preset`. No reemplaza
 `data/catalog.json` (legacy). No se migró ningún registro legacy. La
 investigación de productos AMD (CPU) permanece en pausa (ver §0.7): 0
-`product` AMD creados. `node scripts/validate-v2.js` → 36 entries válidas,
-42 evidencias, 0 offers, 0 presets. `node --test tests/v2/validate-v2.test.js`
-→ 31/31.
+`product` AMD creados. `node scripts/validate-v2.js` → 40 entries válidas,
+46 evidencias, 0 offers, 0 presets. `node --test tests/v2/validate-v2.test.js`
+→ 31/31. Existe además `data/v2/crosswalk.v2.json` (fuera del contrato
+validado) con el mapeo legacy-id↔product-id para storage y case.
 
 ## 0.1 Resultado del piloto (2026-08-21)
 
@@ -681,11 +683,87 @@ datasheet SATA 870 EVO (§0.23).
 
 Con esto, `storage` cubre los 4 escenarios reales de `data/components.json`:
 SATA (entrada), NVMe Gen4 1TB/2TB (media/alta) y NVMe Gen5 4TB (alta-alt/
-extrema). Sigue sin existir ningún crosswalk legacy-id↔V2-id (no se ha
-pedido). No se tocó AMD, GIGABYTE, ZOTAC, Crucial/Micron, ni case/cooling.
+extrema). No se tocó AMD, GIGABYTE, ZOTAC, Crucial/Micron, ni case/cooling.
 `node scripts/validate-v2.js` → 36 entries válidas (14 family + 22
 product), 42 evidencias, 0 offers, 0 presets. `node --test` → 31/31.
 `data/catalog.json`, `data/components.json` y la UI intactos.
+
+*(Nota: el crosswalk legacy-id↔V2-id para storage se agregó en un paso
+posterior — ver §0.25 — en `data/v2/crosswalk.v2.json`.)*
+
+## 0.25 Crosswalk legacy↔V2 y categoría CASE (2026-08-22)
+
+**Crosswalk storage** (auditoría posterior a §0.24): se creó
+`data/v2/crosswalk.v2.json`, un archivo de solo lectura fuera del contrato
+validado por `scripts/validate-v2.js`, con el mapeo explícito
+`legacyId → productId` para los 4 escenarios de storage
+(`ssd-sata-1tb→prod-samsung-870evo-1tb`,
+`ssd-nvme-1tb→prod-wd-black-sn850x-1tb`,
+`ssd-nvme-2tb→prod-samsung-990pro-2tb`,
+`ssd-nvme-4tb→prod-samsung-9100pro-4tb`). Integridad referencial verificada
+manualmente (sin ids huérfanos ni duplicados); Storage V2 quedó cerrado.
+
+**Auditoría de CASE** (previa a implementar, sin cambios): `data/components.json`
+tiene 3 legacyId en la categoría `case` (`case-matx`, `case-mid`,
+`case-full`), pero **solo `case-mid` y `case-full` se usan realmente** en
+los 4 tiers (`entrada`/`media`/`alta`→`case-mid`; `extrema`→`case-full`;
+ninguna alternativa declarada). `case-matx` no se usa en ningún tier ni
+alternativa — por el mismo criterio de "no rellenar por cantidad" ya
+aplicado en storage, **no se creó ningún registro para `case-matx`**.
+Cobertura V2 antes de este paso: 0 entries `category=case`.
+
+**`family-case-atx-mid-tower`** — `category=case`, `selectable=false`,
+`technical.class="mid-tower"`, `formFactorsSupported=["MiniITX","MicroATX","ATX","EATX"]`.
+Fuente: página oficial de producto Corsair (el nombre comercial del
+producto declara textualmente "Mid-Tower ATX Case", usado como evidencia
+de `class`).
+
+**`prod-corsair-4000d-airflow`** — `brand=CORSAIR`, `commercialName="4000D
+AIRFLOW Tempered Glass Mid-Tower ATX Case — White"`, `model="4000D
+AIRFLOW"`, `partNumber="CC-9011201-WW"`, `familyId=family-case-atx-mid-tower`,
+`selectable=true`, `verified`. Fuente: `corsair.com/us/en/p/pc-cases/...`
+(fetch directo exitoso). Confirmado: motherboard support Mini-ITX/Micro-ATX/
+ATX/E-ATX, `maxGpuLengthMm=360` y `maxCoolerHeightMm=170` (coinciden
+**exactamente** con los límites del legacy `case-mid`), PSU ATX máx 220mm,
+bahías 4×2.5"/2×3.5", radiador front 360/280/240mm + rear 120mm (bottom y
+side declarados explícitamente como "None" → arrays vacíos, no `null`, por
+ser un hecho confirmado y no una ausencia de dato), dimensiones "453 x 230
+x 466mm" (la fuente no etiqueta qué eje es cuál — se guardó como texto
+literal sin decodificar, en vez de asumir un orden), peso 9.15kg, front
+panel I/O. Único campo `null`: `radiatorSupport.topMm` (no declarado en
+absoluto en la fuente, a diferencia de bottom/side que sí se declaran como
+"None").
+
+**`family-case-atx-full-tower`** — análoga, `technical.class="full-tower"`.
+Fuente: página oficial Corsair del 7000D AIRFLOW (nombre comercial declara
+"Full-Tower ATX").
+
+**`prod-corsair-7000d-airflow`** — `brand=CORSAIR`, `commercialName="7000D
+AIRFLOW Full-Tower ATX PC Case — Black"`, `model="7000D AIRFLOW"`,
+`partNumber="CC-9011218-WW"`, `familyId=family-case-atx-full-tower`,
+`selectable=true`, `verified`. Fuente: `corsair.com/us/en/p/pc-cases/...`
+(fetch directo exitoso). Confirmado: `maxGpuLengthMm=450` y
+`maxCoolerHeightMm=190` (superan los mínimos del legacy `case-full`,
+400mm/180mm, sin quedar por debajo), PSU ATX máx 225mm, bahías
+4×2.5"/6×3.5", radiador soporta 120/140/240/280/360/420/480mm (lista única,
+la fuente no desglosa por ubicación como el 4000D — no se inventó esa
+distribución), dimensiones con ejes explícitamente etiquetados
+(alto 600mm, largo 550mm, ancho 248mm), peso 20.7kg. Sin `unknownFields`.
+
+**Candidatos descartados para `case-full`** (documentados en evidencia, sin
+crear registro): CORSAIR 5000D AIRFLOW (GPU 420mm pero cooler solo 170mm,
+por debajo del mínimo legacy de 180mm); Fractal Design Define 7 XL (cooler
+185mm válido, pero GPU length ambiguo/dependiente de layout según
+WebSearch, sin fetch directo que lo desambiguara).
+
+**Crosswalk case**: se agregaron 2 mappings a `data/v2/crosswalk.v2.json`
+(`case-mid→prod-corsair-4000d-airflow`, `case-full→prod-corsair-7000d-airflow`).
+Integridad referencial verificada manualmente, sin huérfanos ni duplicados.
+
+No se tocó AMD, GIGABYTE, ZOTAC, Crucial/Micron, RAM/motherboard/PSU/storage
+previos, ni cooling. `node scripts/validate-v2.js` → 40 entries válidas (16
+family + 24 product), 46 evidencias, 0 offers, 0 presets. `node --test` →
+31/31. `data/catalog.json`, `data/components.json` y la UI intactos.
 
 ## 0. Principio rector
 

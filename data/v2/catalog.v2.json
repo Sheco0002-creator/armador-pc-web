@@ -1802,6 +1802,199 @@
           "kind": "datasheet"
         }
       ]
+    },
+    {
+      "id": "family-case-atx-mid-tower",
+      "type": "family",
+      "category": "case",
+      "displayName": "ATX Mid-Tower Case",
+      "selectable": false,
+      "technical": {
+        "class": "mid-tower",
+        "formFactorsSupported": ["MiniITX", "MicroATX", "ATX", "EATX"]
+      },
+      "technicalFieldEvidence": {
+        "class": ["ev-corsair-4000dairflow-family-01"],
+        "formFactorsSupported": ["ev-corsair-4000dairflow-family-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "formFactor", "value": "MiniITX" },
+          { "key": "formFactor", "value": "MicroATX" },
+          { "key": "formFactor", "value": "ATX" },
+          { "key": "formFactor", "value": "EATX" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-corsair-4000dairflow-family-01",
+          "url": "https://www.corsair.com/us/en/p/pc-cases/cc-9011201-ww/4000d-airflow-tempered-glass-mid-tower-atx-case-white-cc-9011201-ww",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-corsair-4000d-airflow",
+      "type": "product",
+      "category": "case",
+      "familyId": "family-case-atx-mid-tower",
+      "identity": {
+        "brand": "CORSAIR",
+        "commercialName": "4000D AIRFLOW Tempered Glass Mid-Tower ATX Case — White",
+        "model": "4000D AIRFLOW",
+        "partNumber": "CC-9011201-WW",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "formFactorsSupported": ["MiniITX", "MicroATX", "ATX", "EATX"],
+        "maxGpuLengthMm": 360,
+        "maxCoolerHeightMm": 170,
+        "psu": { "formFactor": "ATX", "maxLengthMm": 220 },
+        "driveBays": { "bay25Count": 4, "bay35Count": 2 },
+        "radiatorSupport": { "frontMm": [360, 280, 240], "rearMm": [120], "topMm": null, "sideMm": [], "bottomMm": [] },
+        "physical": { "dimensionsMm": "453 x 230 x 466 (sin eje declarado en la fuente)", "weightKg": 9.15 },
+        "frontPanelIO": "1x USB 3.1 Type C, 1x USB 3.0, 1x Audio in/out"
+      },
+      "technicalFieldEvidence": {
+        "formFactorsSupported": ["ev-corsair-4000dairflow-01"],
+        "maxGpuLengthMm": ["ev-corsair-4000dairflow-01"],
+        "maxCoolerHeightMm": ["ev-corsair-4000dairflow-01"],
+        "psu.formFactor": ["ev-corsair-4000dairflow-01"],
+        "psu.maxLengthMm": ["ev-corsair-4000dairflow-01"],
+        "driveBays.bay25Count": ["ev-corsair-4000dairflow-01"],
+        "driveBays.bay35Count": ["ev-corsair-4000dairflow-01"],
+        "radiatorSupport.frontMm": ["ev-corsair-4000dairflow-01"],
+        "radiatorSupport.rearMm": ["ev-corsair-4000dairflow-01"],
+        "radiatorSupport.sideMm": ["ev-corsair-4000dairflow-01"],
+        "radiatorSupport.bottomMm": ["ev-corsair-4000dairflow-01"],
+        "physical.dimensionsMm": ["ev-corsair-4000dairflow-01"],
+        "physical.weightKg": ["ev-corsair-4000dairflow-01"],
+        "frontPanelIO": ["ev-corsair-4000dairflow-01"]
+      },
+      "unknownFields": ["radiatorSupport.topMm"],
+      "compatibility": {
+        "provides": [
+          { "key": "formFactor", "value": "MiniITX" },
+          { "key": "formFactor", "value": "MicroATX" },
+          { "key": "formFactor", "value": "ATX" },
+          { "key": "formFactor", "value": "EATX" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-corsair-4000dairflow-01",
+          "url": "https://www.corsair.com/us/en/p/pc-cases/cc-9011201-ww/4000d-airflow-tempered-glass-mid-tower-atx-case-white-cc-9011201-ww",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "family-case-atx-full-tower",
+      "type": "family",
+      "category": "case",
+      "displayName": "ATX Full-Tower Case",
+      "selectable": false,
+      "technical": {
+        "class": "full-tower",
+        "formFactorsSupported": ["MiniITX", "MicroATX", "ATX", "EATX"]
+      },
+      "technicalFieldEvidence": {
+        "class": ["ev-corsair-7000dairflow-family-01"],
+        "formFactorsSupported": ["ev-corsair-7000dairflow-family-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "formFactor", "value": "MiniITX" },
+          { "key": "formFactor", "value": "MicroATX" },
+          { "key": "formFactor", "value": "ATX" },
+          { "key": "formFactor", "value": "EATX" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-corsair-7000dairflow-family-01",
+          "url": "https://www.corsair.com/us/en/p/pc-cases/cc-9011218-ww/7000d-airflow-full-tower-atx-pc-case-black-cc-9011218-ww",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-corsair-7000d-airflow",
+      "type": "product",
+      "category": "case",
+      "familyId": "family-case-atx-full-tower",
+      "identity": {
+        "brand": "CORSAIR",
+        "commercialName": "7000D AIRFLOW Full-Tower ATX PC Case — Black",
+        "model": "7000D AIRFLOW",
+        "partNumber": "CC-9011218-WW",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "formFactorsSupported": ["MiniITX", "MicroATX", "ATX", "EATX"],
+        "maxGpuLengthMm": 450,
+        "maxCoolerHeightMm": 190,
+        "psu": { "formFactor": "ATX", "maxLengthMm": 225 },
+        "driveBays": { "bay25Count": 4, "bay35Count": 6 },
+        "radiatorSupport": { "supportedSizesMm": [120, 140, 240, 280, 360, 420, 480] },
+        "physical": { "heightMm": 600, "lengthMm": 550, "widthMm": 248, "weightKg": 20.7 },
+        "frontPanelIO": "4x USB 3.0, 1x USB 3.1 Type C, 1x Audio in/out"
+      },
+      "technicalFieldEvidence": {
+        "formFactorsSupported": ["ev-corsair-7000dairflow-01"],
+        "maxGpuLengthMm": ["ev-corsair-7000dairflow-01"],
+        "maxCoolerHeightMm": ["ev-corsair-7000dairflow-01"],
+        "psu.formFactor": ["ev-corsair-7000dairflow-01"],
+        "psu.maxLengthMm": ["ev-corsair-7000dairflow-01"],
+        "driveBays.bay25Count": ["ev-corsair-7000dairflow-01"],
+        "driveBays.bay35Count": ["ev-corsair-7000dairflow-01"],
+        "radiatorSupport.supportedSizesMm": ["ev-corsair-7000dairflow-01"],
+        "physical.heightMm": ["ev-corsair-7000dairflow-01"],
+        "physical.lengthMm": ["ev-corsair-7000dairflow-01"],
+        "physical.widthMm": ["ev-corsair-7000dairflow-01"],
+        "physical.weightKg": ["ev-corsair-7000dairflow-01"],
+        "frontPanelIO": ["ev-corsair-7000dairflow-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "formFactor", "value": "MiniITX" },
+          { "key": "formFactor", "value": "MicroATX" },
+          { "key": "formFactor", "value": "ATX" },
+          { "key": "formFactor", "value": "EATX" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-corsair-7000dairflow-01",
+          "url": "https://www.corsair.com/us/en/p/pc-cases/cc-9011218-ww/7000d-airflow-full-tower-atx-pc-case-black-cc-9011218-ww",
+          "kind": "manufacturer-page"
+        }
+      ]
     }
   ]
 }

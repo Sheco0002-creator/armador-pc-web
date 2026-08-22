@@ -295,6 +295,34 @@
       "claim": "Datasheet oficial en PDF de Samsung (download.semiconductor.samsung.com, dominio propio del fabricante, fetch directo + pdftotext), 'Samsung V-NAND SSD 9100 PRO' Data Sheet Rev.1.0, columna de capacidad 4TB, Model Name 'MZ-VAP4T0', Model Code 'MZ-VAP4T0B/AM'. Cita textual: Interface 'PCIe 5.0 x4, NVMe 2.0'; Controller 'Samsung in-house Controller'; NAND Flash Memory 'Samsung V-NAND TLC'; Cache Memory (columna 4TB) '4GB LPDDR4X'; Dimension (1TB/2TB/4TB) 'Max 80.15 x Max 22.15 x Max 2.38 (mm)'; Form Factor 'M.2 (2280)'; Sequential Read (columna 4TB, confirmada sin marcador TBD, a diferencia de la columna 8TB que si lo tiene) '14,800 MB/s'; Sequential Write '13,400 MB/s'; Random Read (QD256 Thread32) '2,200 KIOPS'; Random Write '2,600 KIOPS'; Active Power Read (Avg.) '9.0 W'; Active Power Write (Avg.) '8.2 W'; Idle PS3(APST on) '6.5 mW'; Idle PS4(L1.2) '5.7 mW'; MTBF '1.5 million hours'; TBW (columna 4TB) '2,400 TB'; Warranty Period '5 years limited'; Data Security 'AES 256-bit Full Disk Encryption, TCG/Opal V2.0, Encrypted Drive (IEEE1667)'. El texto extraido en orden lineal (sin -layout) confirma sin ambiguedad que la columna 4TB no lleva el marcador '(TBD)' que si aparece en la columna 8TB para estas metricas -- se verifico el orden exacto de las 4 columnas antes de asignar cada valor, evitando el problema de desalineacion visual encontrado en el datasheet SATA 870 EVO (ver ev-samsung-870evo-1tb-01). El datasheet no declara un peso (weight) del producto -- physical.weightG queda null + unknownFields. No se uso ningun retailer/agregador como fuente.",
       "accessedAt": "2026-08-22T00:00:00Z",
       "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-corsair-4000dairflow-family-01",
+      "sourceId": "src-corsair-4000dairflow-family-01",
+      "claim": "Pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante, fetch directo exitoso) para '4000D AIRFLOW Tempered Glass Mid-Tower ATX Case — White' (CC-9011201-WW). El propio nombre comercial del producto declara textualmente 'Mid-Tower ATX Case', usado como evidencia para el campo 'class=mid-tower' de la family 'ATX Mid-Tower Case'. Motherboard Support declarado: 'Mini-ITX, Micro-ATX, ATX, E-ATX (305mm x 277mm)'.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-corsair-4000dairflow-01",
+      "sourceId": "src-corsair-4000dairflow-01",
+      "claim": "Pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante, fetch directo exitoso) para '4000D AIRFLOW Tempered Glass Mid-Tower ATX Case — White', part number CC-9011201-WW. Cita textual: Motherboard Support 'Mini-ITX, Micro-ATX, ATX, E-ATX (305mm x 277mm)'; Maximum GPU Length 'Maximum GPU Length: 360mm'; Maximum CPU Cooler Height 'Maximum CPU Cooler Height: 170mm'; Power Supply 'ATX form factor; Maximum PSU Length: 220mm'; Storage Drives 'Internal 2.5\" Drive Bays: 4; Internal 3.5\" Drive Bays: 2'; Radiator Support 'Front: 360mm, 280mm, 240mm; Bottom: None; Side: None; Rear: 120mm' (se confirmo con una segunda consulta dirigida que no existe soporte de radiador en la parte superior/top -- por eso radiatorSupport.topMm queda null + unknownFields, junto con side y bottom, que la fuente declara explicitamente como 'None'); Case Dimensions '453mm x 230mm x 466mm' (la fuente no etiqueta cual valor corresponde a ancho/alto/profundidad, por lo que se guardo como texto literal sin decodificar el eje, en vez de asumir un orden); Weight '9.15kg'; Front Panel I/O '(1x) USB 3.1 Type C, (1x) USB 3.0, (1x) Audio in/out'. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-corsair-7000dairflow-family-01",
+      "sourceId": "src-corsair-7000dairflow-family-01",
+      "claim": "Pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante, fetch directo exitoso) para '7000D AIRFLOW Full-Tower ATX PC Case — Black' (CC-9011218-WW). El propio nombre comercial del producto declara textualmente 'Full-Tower ATX', usado como evidencia para el campo 'class=full-tower' de la family 'ATX Full-Tower Case'. Motherboard Support declarado: 'Mini-ITX, Micro-ATX, ATX, E-ATX (305mm x 277mm)'. Se evaluo previamente el CORSAIR 5000D AIRFLOW (CC-9011210-WW) como candidato para este mismo escenario legacy: fetch directo confirmo GPU 420mm pero cooler solo 170mm, por debajo del minimo requerido por el legacy (180mm) -- descartado sin crear ningun registro. Tambien se evaluo el Fractal Design Define 7 XL via WebSearch: cooler 185mm valido, pero la cifra de GPU length resulto ambigua/dependiente de layout (359mm en 'storage layout' vs hasta 549mm en 'open layout') sin fetch directo a fractal-design.com que la desambiguara -- se prefirio el 7000D AIRFLOW por tener una cifra unica e inequivoca confirmada por fetch directo.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-corsair-7000dairflow-01",
+      "sourceId": "src-corsair-7000dairflow-01",
+      "claim": "Pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante, fetch directo exitoso) para '7000D AIRFLOW Full-Tower ATX PC Case — Black', part number CC-9011218-WW. Cita textual: Motherboard Support 'Mini-ITX, Micro-ATX, ATX, E-ATX (305mm x 277mm)'; Maximum GPU Length '450 mm'; Maximum CPU Cooler Height '190 mm'; Power Supply 'ATX form factor; maximum length of 225 mm'; Storage Bays '6 internal 3.5\" drive bays; 4 internal 2.5\" drive bays'; Radiator Compatibility 'Supports 120mm, 140mm, 240mm, 280mm, 360mm, 420mm, 480mm radiators' (la fuente no desglosa por ubicacion front/top/side/rear como si lo hace el 4000D AIRFLOW, por lo que se guardo como lista unica de tamanios soportados en vez de inventar una distribucion por ubicacion); Case Dimensions 'Height: 600 mm; Length: 550 mm; Width: 248 mm' (aqui si vienen etiquetados los ejes, a diferencia del 4000D AIRFLOW); Weight '20.7 kg'; Front Panel I/O '(4x) USB 3.0, (1x) USB 3.1 Type C, (1x) Audio in/out'. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
     }
   ]
 }

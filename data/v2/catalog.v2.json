@@ -1396,6 +1396,412 @@
           "kind": "manufacturer-page"
         }
       ]
+    },
+    {
+      "id": "family-storage-nvme-pcie4",
+      "type": "family",
+      "category": "storage",
+      "displayName": "NVMe SSD (PCIe Gen 4.0 x4)",
+      "selectable": false,
+      "technical": {
+        "interface": "PCIe",
+        "protocol": "NVMe",
+        "pcieGen": "4.0"
+      },
+      "technicalFieldEvidence": {
+        "interface": ["ev-samsung-990pro-family-01"],
+        "protocol": ["ev-samsung-990pro-family-01"],
+        "pcieGen": ["ev-samsung-990pro-family-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "storageInterface", "value": "PCIe" },
+          { "key": "storageProtocol", "value": "NVMe" },
+          { "key": "pcieGen", "value": "4.0" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-samsung-990pro-family-01",
+          "url": "https://download.semiconductor.samsung.com/resources/data-sheet/Samsung_NVMe_SSD_990_PRO_Datasheet_Rev.1.0.pdf",
+          "kind": "datasheet"
+        }
+      ]
+    },
+    {
+      "id": "prod-samsung-990pro-2tb",
+      "type": "product",
+      "category": "storage",
+      "familyId": "family-storage-nvme-pcie4",
+      "identity": {
+        "brand": "Samsung",
+        "commercialName": "Samsung SSD 990 PRO 2TB",
+        "model": "MZ-V9P2T0",
+        "partNumber": "MZ-V9P2T0B/AM",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "formFactor": "M.2-2280",
+        "capacityGB": 2000,
+        "interface": "PCIe",
+        "protocol": "NVMe",
+        "nvmeVersion": "2.0",
+        "pcieGen": "4.0",
+        "controller": "Samsung in-house Controller",
+        "nandType": "Samsung V-NAND TLC",
+        "dram": { "capacityGB": 2 },
+        "performance": {
+          "sequentialReadMBs": 7450,
+          "sequentialWriteMBs": 6900,
+          "randomReadIOPS": 1400000,
+          "randomWriteIOPS": 1550000
+        },
+        "physical": { "lengthMm": 80, "widthMm": 22, "heightMm": 2.3, "weightG": null },
+        "power": { "idleMw": 55, "activeReadW": 5.8, "activeWriteW": 5.1 },
+        "endurance": { "tbwTB": 1200, "mtbfHours": 1500000 },
+        "warrantyYears": 5
+      },
+      "technicalFieldEvidence": {
+        "formFactor": ["ev-samsung-990pro-2tb-01"],
+        "capacityGB": ["ev-samsung-990pro-2tb-01"],
+        "interface": ["ev-samsung-990pro-2tb-01"],
+        "protocol": ["ev-samsung-990pro-2tb-01"],
+        "nvmeVersion": ["ev-samsung-990pro-2tb-01"],
+        "pcieGen": ["ev-samsung-990pro-2tb-01"],
+        "controller": ["ev-samsung-990pro-2tb-01"],
+        "nandType": ["ev-samsung-990pro-2tb-01"],
+        "dram.capacityGB": ["ev-samsung-990pro-2tb-01"],
+        "performance.sequentialReadMBs": ["ev-samsung-990pro-2tb-01"],
+        "performance.sequentialWriteMBs": ["ev-samsung-990pro-2tb-01"],
+        "performance.randomReadIOPS": ["ev-samsung-990pro-2tb-01"],
+        "performance.randomWriteIOPS": ["ev-samsung-990pro-2tb-01"],
+        "physical.lengthMm": ["ev-samsung-990pro-2tb-01"],
+        "physical.widthMm": ["ev-samsung-990pro-2tb-01"],
+        "physical.heightMm": ["ev-samsung-990pro-2tb-01"],
+        "power.idleMw": ["ev-samsung-990pro-2tb-01"],
+        "power.activeReadW": ["ev-samsung-990pro-2tb-01"],
+        "power.activeWriteW": ["ev-samsung-990pro-2tb-01"],
+        "endurance.tbwTB": ["ev-samsung-990pro-2tb-01"],
+        "endurance.mtbfHours": ["ev-samsung-990pro-2tb-01"],
+        "warrantyYears": ["ev-samsung-990pro-2tb-01"]
+      },
+      "unknownFields": ["physical.weightG"],
+      "compatibility": {
+        "provides": [
+          { "key": "storageInterface", "value": "PCIe" },
+          { "key": "storageProtocol", "value": "NVMe" },
+          { "key": "storageFormFactor", "value": "M.2-2280" },
+          { "key": "pcieGen", "value": "4.0" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-samsung-990pro-2tb-01",
+          "url": "https://download.semiconductor.samsung.com/resources/data-sheet/Samsung_NVMe_SSD_990_PRO_Datasheet_Rev.1.0.pdf",
+          "kind": "datasheet"
+        }
+      ]
+    },
+    {
+      "id": "prod-wd-black-sn850x-1tb",
+      "type": "product",
+      "category": "storage",
+      "familyId": "family-storage-nvme-pcie4",
+      "identity": {
+        "brand": "Western Digital",
+        "commercialName": "WD_BLACK SN850X NVMe SSD 1TB",
+        "model": "WDS100T2X0E",
+        "partNumber": "WDS100T2X0E",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "formFactor": "M.2-2280",
+        "capacityGB": 1000,
+        "interface": "PCIe",
+        "protocol": "NVMe",
+        "pcieGen": "4.0",
+        "nandType": "SanDisk TLC 3D NAND",
+        "performance": {
+          "sequentialReadMBs": 7300,
+          "sequentialWriteMBs": 6300,
+          "randomReadIOPS": 800000,
+          "randomWriteIOPS": 1100000
+        },
+        "physical": { "lengthMm": 80, "widthMm": 22, "heightMm": 2.38, "weightG": 7.5 },
+        "endurance": { "tbwTB": 600 },
+        "security": "TCG OPAL 2.01",
+        "warrantyYears": 5
+      },
+      "technicalFieldEvidence": {
+        "formFactor": ["ev-wd-sn850x-1tb-01"],
+        "capacityGB": ["ev-wd-sn850x-1tb-01"],
+        "interface": ["ev-wd-sn850x-1tb-01"],
+        "protocol": ["ev-wd-sn850x-1tb-01"],
+        "pcieGen": ["ev-wd-sn850x-1tb-01"],
+        "nandType": ["ev-wd-sn850x-1tb-01"],
+        "performance.sequentialReadMBs": ["ev-wd-sn850x-1tb-01"],
+        "performance.sequentialWriteMBs": ["ev-wd-sn850x-1tb-01"],
+        "performance.randomReadIOPS": ["ev-wd-sn850x-1tb-01"],
+        "performance.randomWriteIOPS": ["ev-wd-sn850x-1tb-01"],
+        "physical.lengthMm": ["ev-wd-sn850x-1tb-01"],
+        "physical.widthMm": ["ev-wd-sn850x-1tb-01"],
+        "physical.heightMm": ["ev-wd-sn850x-1tb-01"],
+        "physical.weightG": ["ev-wd-sn850x-1tb-01"],
+        "endurance.tbwTB": ["ev-wd-sn850x-1tb-01"],
+        "security": ["ev-wd-sn850x-1tb-01"],
+        "warrantyYears": ["ev-wd-sn850x-1tb-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "storageInterface", "value": "PCIe" },
+          { "key": "storageProtocol", "value": "NVMe" },
+          { "key": "storageFormFactor", "value": "M.2-2280" },
+          { "key": "pcieGen", "value": "4.0" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-wd-sn850x-1tb-01",
+          "url": "https://documents.sandisk.com/content/dam/asset-library/en_us/assets/public/western-digital/product/internal-drives/wd-black-ssd/data-sheet-wd-black-sn850x-nvme-ssd.pdf",
+          "kind": "datasheet"
+        }
+      ]
+    },
+    {
+      "id": "family-storage-sata",
+      "type": "family",
+      "category": "storage",
+      "displayName": "SATA SSD (2.5-inch)",
+      "selectable": false,
+      "technical": {
+        "interface": "SATA"
+      },
+      "technicalFieldEvidence": {
+        "interface": ["ev-samsung-870evo-family-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "storageInterface", "value": "SATA" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-samsung-870evo-family-01",
+          "url": "https://download.semiconductor.samsung.com/resources/data-sheet/Samsung_SSD_870_EVO_Data_Sheet_Rev1.1.pdf",
+          "kind": "datasheet"
+        }
+      ]
+    },
+    {
+      "id": "prod-samsung-870evo-1tb",
+      "type": "product",
+      "category": "storage",
+      "familyId": "family-storage-sata",
+      "identity": {
+        "brand": "Samsung",
+        "commercialName": "Samsung SSD 870 EVO 1TB",
+        "model": "MZ-77E1T0",
+        "partNumber": "MZ-77E1T0B/AM",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "formFactor": "2.5-inch",
+        "capacityGB": 1000,
+        "interface": "SATA",
+        "controller": "Samsung MKX Controller",
+        "nandType": "Samsung V-NAND 3bit MLC",
+        "dram": { "capacityGB": 1 },
+        "performance": {
+          "sequentialReadMBs": 560,
+          "sequentialWriteMBs": 530
+        },
+        "physical": { "lengthMm": 100, "widthMm": 69.85, "heightMm": 6.8 },
+        "endurance": { "tbwTB": 600, "mtbfHours": 1500000 },
+        "security": "AES 256-bit Full Disk Encryption, TCG/Opal V2.0",
+        "warrantyYears": 5
+      },
+      "technicalFieldEvidence": {
+        "formFactor": ["ev-samsung-870evo-1tb-01"],
+        "capacityGB": ["ev-samsung-870evo-1tb-01"],
+        "interface": ["ev-samsung-870evo-1tb-01"],
+        "controller": ["ev-samsung-870evo-1tb-01"],
+        "nandType": ["ev-samsung-870evo-1tb-01"],
+        "dram.capacityGB": ["ev-samsung-870evo-1tb-01"],
+        "performance.sequentialReadMBs": ["ev-samsung-870evo-1tb-01"],
+        "performance.sequentialWriteMBs": ["ev-samsung-870evo-1tb-01"],
+        "physical.lengthMm": ["ev-samsung-870evo-1tb-01"],
+        "physical.widthMm": ["ev-samsung-870evo-1tb-01"],
+        "physical.heightMm": ["ev-samsung-870evo-1tb-01"],
+        "endurance.tbwTB": ["ev-samsung-870evo-1tb-01"],
+        "endurance.mtbfHours": ["ev-samsung-870evo-1tb-01"],
+        "security": ["ev-samsung-870evo-1tb-01"],
+        "warrantyYears": ["ev-samsung-870evo-1tb-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "storageInterface", "value": "SATA" },
+          { "key": "storageFormFactor", "value": "2.5-inch" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-samsung-870evo-1tb-01",
+          "url": "https://download.semiconductor.samsung.com/resources/data-sheet/Samsung_SSD_870_EVO_Data_Sheet_Rev1.1.pdf",
+          "kind": "datasheet"
+        }
+      ]
+    },
+    {
+      "id": "family-storage-nvme-pcie5",
+      "type": "family",
+      "category": "storage",
+      "displayName": "NVMe SSD (PCIe Gen 5.0 x4)",
+      "selectable": false,
+      "technical": {
+        "interface": "PCIe",
+        "protocol": "NVMe",
+        "pcieGen": "5.0"
+      },
+      "technicalFieldEvidence": {
+        "interface": ["ev-samsung-9100pro-family-01"],
+        "protocol": ["ev-samsung-9100pro-family-01"],
+        "pcieGen": ["ev-samsung-9100pro-family-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "storageInterface", "value": "PCIe" },
+          { "key": "storageProtocol", "value": "NVMe" },
+          { "key": "pcieGen", "value": "5.0" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-samsung-9100pro-family-01",
+          "url": "https://download.semiconductor.samsung.com/resources/data-sheet/Samsung_NVMe_SSD_9100_PRO_Datasheet_Rev.1.0.pdf",
+          "kind": "datasheet"
+        }
+      ]
+    },
+    {
+      "id": "prod-samsung-9100pro-4tb",
+      "type": "product",
+      "category": "storage",
+      "familyId": "family-storage-nvme-pcie5",
+      "identity": {
+        "brand": "Samsung",
+        "commercialName": "Samsung SSD 9100 PRO 4TB",
+        "model": "MZ-VAP4T0",
+        "partNumber": "MZ-VAP4T0B/AM",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "formFactor": "M.2-2280",
+        "capacityGB": 4000,
+        "interface": "PCIe",
+        "protocol": "NVMe",
+        "nvmeVersion": "2.0",
+        "pcieGen": "5.0",
+        "controller": "Samsung in-house Controller",
+        "nandType": "Samsung V-NAND TLC",
+        "dram": { "capacityGB": 4 },
+        "performance": {
+          "sequentialReadMBs": 14800,
+          "sequentialWriteMBs": 13400,
+          "randomReadIOPS": 2200000,
+          "randomWriteIOPS": 2600000
+        },
+        "physical": { "lengthMm": 80.15, "widthMm": 22.15, "heightMm": 2.38, "weightG": null },
+        "power": { "activeReadW": 9.0, "activeWriteW": 8.2, "idlePs3Mw": 6.5, "idlePs4Mw": 5.7 },
+        "endurance": { "tbwTB": 2400, "mtbfHours": 1500000 },
+        "security": "AES 256-bit Full Disk Encryption, TCG/Opal V2.0",
+        "warrantyYears": 5
+      },
+      "technicalFieldEvidence": {
+        "formFactor": ["ev-samsung-9100pro-4tb-01"],
+        "capacityGB": ["ev-samsung-9100pro-4tb-01"],
+        "interface": ["ev-samsung-9100pro-4tb-01"],
+        "protocol": ["ev-samsung-9100pro-4tb-01"],
+        "nvmeVersion": ["ev-samsung-9100pro-4tb-01"],
+        "pcieGen": ["ev-samsung-9100pro-4tb-01"],
+        "controller": ["ev-samsung-9100pro-4tb-01"],
+        "nandType": ["ev-samsung-9100pro-4tb-01"],
+        "dram.capacityGB": ["ev-samsung-9100pro-4tb-01"],
+        "performance.sequentialReadMBs": ["ev-samsung-9100pro-4tb-01"],
+        "performance.sequentialWriteMBs": ["ev-samsung-9100pro-4tb-01"],
+        "performance.randomReadIOPS": ["ev-samsung-9100pro-4tb-01"],
+        "performance.randomWriteIOPS": ["ev-samsung-9100pro-4tb-01"],
+        "physical.lengthMm": ["ev-samsung-9100pro-4tb-01"],
+        "physical.widthMm": ["ev-samsung-9100pro-4tb-01"],
+        "physical.heightMm": ["ev-samsung-9100pro-4tb-01"],
+        "power.activeReadW": ["ev-samsung-9100pro-4tb-01"],
+        "power.activeWriteW": ["ev-samsung-9100pro-4tb-01"],
+        "power.idlePs3Mw": ["ev-samsung-9100pro-4tb-01"],
+        "power.idlePs4Mw": ["ev-samsung-9100pro-4tb-01"],
+        "endurance.tbwTB": ["ev-samsung-9100pro-4tb-01"],
+        "endurance.mtbfHours": ["ev-samsung-9100pro-4tb-01"],
+        "security": ["ev-samsung-9100pro-4tb-01"],
+        "warrantyYears": ["ev-samsung-9100pro-4tb-01"]
+      },
+      "unknownFields": ["physical.weightG"],
+      "compatibility": {
+        "provides": [
+          { "key": "storageInterface", "value": "PCIe" },
+          { "key": "storageProtocol", "value": "NVMe" },
+          { "key": "storageFormFactor", "value": "M.2-2280" },
+          { "key": "pcieGen", "value": "5.0" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-samsung-9100pro-4tb-01",
+          "url": "https://download.semiconductor.samsung.com/resources/data-sheet/Samsung_NVMe_SSD_9100_PRO_Datasheet_Rev.1.0.pdf",
+          "kind": "datasheet"
+        }
+      ]
     }
   ]
 }

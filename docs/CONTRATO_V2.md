@@ -2,16 +2,18 @@
 
 Estado (actualizado 2026-08-22): **Fase 1 completa. Fase 2 cerrada** (2026-08-21).
 **Fase 3 en ejecución activa** (iniciada 2026-08-21, ver §0.4 en adelante).
-Estado real de `catalog.v2.json`: **11 `family`, todas `verified`** (las 8
+Estado real de `catalog.v2.json`: **14 `family`, todas `verified`** (las 8
 originales CPU/GPU — incluidas las 2 que quedaron `partial` al cierre de
 Fase 2 y luego pasaron a `verified` en §0.6 — más `family-memory-ddr5`,
-`family-intel-z890` y `family-psu-atx`, agregadas durante Fase 3), y **18
-`product` reales verificados** (12 GPU, 1 RAM, 3 motherboard, 2 PSU). 0
-`offer`, 0 `preset`. No reemplaza `data/catalog.json` (legacy). No se migró
-ningún registro legacy. La investigación de productos AMD (CPU) permanece en
-pausa (ver §0.7): 0 `product` AMD creados. `node scripts/validate-v2.js` →
-29 entries válidas, 35 evidencias, 0 offers, 0 presets. `node --test
-tests/v2/validate-v2.test.js` → 31/31.
+`family-intel-z890`, `family-psu-atx`, `family-storage-nvme-pcie4`,
+`family-storage-sata` y `family-storage-nvme-pcie5`, agregadas durante
+Fase 3), y **22 `product` reales verificados** (12 GPU, 1 RAM, 3
+motherboard, 2 PSU, 4 storage). 0 `offer`, 0 `preset`. No reemplaza
+`data/catalog.json` (legacy). No se migró ningún registro legacy. La
+investigación de productos AMD (CPU) permanece en pausa (ver §0.7): 0
+`product` AMD creados. `node scripts/validate-v2.js` → 36 entries válidas,
+42 evidencias, 0 offers, 0 presets. `node --test tests/v2/validate-v2.test.js`
+→ 31/31.
 
 ## 0.1 Resultado del piloto (2026-08-21)
 
@@ -544,6 +546,147 @@ entries válidas (11 family + 18 product), 0 offers, 0 presets. `node
 --test` → 31/31. `data/catalog.json`, `data/components.json` y la UI
 intactos.
 
+## 0.22 Cuarta categoría nueva: storage — NVMe PCIe Gen4, Samsung 990 PRO y WD_BLACK SN850X (2026-08-22)
+
+Decisión estructural (evaluada antes de crear ningún producto): el análogo
+vendor-neutral para `storage` no es una marca ni un modelo, sino el par
+interfaz/protocolo eléctrico-lógico del bus, siguiendo el mismo principio ya
+usado en `family-memory-ddr5` (estándar de memoria) y `family-psu-atx`
+(plataforma de fuente de poder) — nunca certificación ni fabricante a nivel
+family. Se descartó modelar la family por factor de forma (M.2-2280 etc.)
+porque el mismo estándar eléctrico/lógico se implementa en varios factores de
+forma físicos distintos; factor de forma queda a nivel `product`, igual que
+la versión ATX 3.1 quedó a nivel `product` en PSU.
+
+**`family-storage-nvme-pcie4`** — `category=storage`, `selectable=false`,
+`technical.interface="PCIe"`, `technical.protocol="NVMe"`,
+`technical.pcieGen="4.0"`. Fuente ideal bloqueada: NVM Express, Inc.
+(`nvmexpress.org/specifications/`, organismo oficial del estándar NVMe) →
+403 Forbidden. Se usó en su lugar el datasheet oficial de Samsung que
+declara explícitamente "PCIe Gen 4.0 x4, NVMe 2.0", documentando la
+limitación (mismo patrón que JEDEC/DDR5 e Intel/Z890).
+
+**`prod-samsung-990pro-2tb`** — `brand=Samsung`, `commercialName="Samsung
+SSD 990 PRO 2TB"`, `model="MZ-V9P2T0"`, `partNumber="MZ-V9P2T0B/AM"`,
+`familyId=family-storage-nvme-pcie4`, `selectable=true`, `verified`. Fuente:
+datasheet PDF oficial de Samsung
+(`download.semiconductor.samsung.com/resources/data-sheet/Samsung_NVMe_SSD_990_PRO_Datasheet_Rev.1.0.pdf`,
+fetch directo + `pdftotext`). Confirmado (columna 2TB): controller Samsung
+in-house, NAND Samsung V-NAND TLC, DRAM cache 2GB LPDDR4, dimensiones
+80×22×2.3mm, form factor M.2 (2280), lecturas/escrituras secuenciales
+7450/6900 MB/s, IOPS aleatorios 1400K/1550K, potencia idle 55mW, activa
+lectura/escritura 5.8W/5.1W, TBW 1200TB, MTBF 1.5 millones de horas,
+garantía 5 años. Único campo `null`: `physical.weightG` (el datasheet no
+declara peso).
+
+**`prod-wd-black-sn850x-1tb`** — `brand=Western Digital`,
+`commercialName="WD_BLACK SN850X NVMe SSD 1TB"`, `model="WDS100T2X0E"`,
+`partNumber="WDS100T2X0E"`, `familyId=family-storage-nvme-pcie4`,
+`selectable=true`, `verified`. Fuente: datasheet PDF oficial de SanDisk
+Corporation / Western Digital (`documents.sandisk.com`, dominio propio del
+fabricante — SanDisk Corporation es la entidad que opera la marca WD_BLACK
+tras la escisión 2025 de Western Digital; el propio PDF declara "WD_BLACK
+... trademarks of Western Digital Corporation"), fetch directo + `pdftotext`.
+Confirmado (columna 1TB sin heatsink, modelo WDS100T2X0E): interfaz PCIe
+Gen4 16GT/s x4, NAND SanDisk TLC 3D NAND, lecturas/escrituras secuenciales
+7300/6300 MB/s, IOPS aleatorios 800K/1100K, TBW 600, dimensiones
+80×22×2.38mm, peso 7.5g, seguridad TCG OPAL 2.01, garantía 5 años. El
+datasheet no incluye ninguna sección de consumo de energía para este
+modelo — por eso no se creó ningún campo `power` (a diferencia de un valor
+tabulado pero ausente, aquí la sección misma no existe en la fuente).
+
+**Candidato descartado — Crucial/Micron T500**: se intentó `crucial.com`
+(páginas de producto CT1000T500SSD8) y `assets.micron.com` (product flyer
+oficial) como segundo fabricante. Ambos dominios devolvieron "Request
+Rejected" (protección anti-bot) en fetch directo. No se usó ningún
+retailer/agregador (simms.co.uk apareció en la búsqueda pero es un
+distribuidor, no fuente oficial) para completar el dato. **No se creó
+ningún producto Crucial.**
+
+No se tocó AMD, GIGABYTE, ni ZOTAC (todos permanecen en el mismo estado
+documentado en §0.7/§0.13). No se tocaron las categorías case ni cooling
+(siguen sin iniciar). `node scripts/validate-v2.js` → 32 entries válidas (12
+family + 20 product), 38 evidencias, 0 offers, 0 presets. `node --test` →
+31/31. `data/catalog.json`, `data/components.json` y la UI intactos.
+
+## 0.23 Auditoría de Storage y primera family SATA (2026-08-22)
+
+Auditoría previa a este paso (sin cambios) detectó que la cobertura V2 de
+`storage` era insuficiente frente a los 4 tiers/alternativas reales de
+`data/components.json`: solo existía NVMe Gen4 (cubre tiers "media"/"alta"
+default), pero **SATA** (tier "entrada", el más usado) y **NVMe Gen5**
+(tier "alta" alternativa / "extrema") no tenían ninguna representación en
+V2. Este paso cierra la brecha de SATA; NVMe Gen5 queda pendiente.
+
+**`family-storage-sata`** — `category=storage`, `selectable=false`,
+`technical.interface="SATA"`, análoga a `family-storage-nvme-pcie4` pero
+para el bus SATA. Fuente: datasheet oficial de Samsung ("Interface: SATA 6
+Gb/s Interface, compatible with SATA 3 Gb/s & 1.5 interfaces"). El
+protocolo lógico (AHCI) no se declara textualmente en este datasheet, por
+lo que el campo `protocol` se omitió en vez de asumirse por convención de
+mercado (mismo criterio que "no inferir" ya aplicado en toda la Fase 3).
+
+**`prod-samsung-870evo-1tb`** — `brand=Samsung`, `commercialName="Samsung
+SSD 870 EVO 1TB"`, `model="MZ-77E1T0"`, `partNumber="MZ-77E1T0B/AM"`,
+`familyId=family-storage-sata`, `selectable=true`, `verified`. Fuente:
+datasheet PDF oficial de Samsung
+(`download.semiconductor.samsung.com/resources/data-sheet/Samsung_SSD_870_EVO_Data_Sheet_Rev1.1.pdf`,
+fetch directo + `pdftotext`). Confirmado (columna 1TB): controller Samsung
+MKX, NAND Samsung V-NAND 3bit MLC, DRAM cache 1GB LPDDR4, dimensiones
+100×69.85×6.8mm, form factor 2.5 inch, secuencial lectura/escritura 560/530
+MB/s, MTBF 1.5 millones de horas, TBW 600TB, garantía 5 años, seguridad
+AES-256/TCG Opal V2.0. **Nota de integridad de extracción**: las filas de
+IOPS aleatorios (4KB QD1/QD32) y de consumo de energía del PDF se
+extrajeron con columnas visualmente desalineadas entre capacidades — para
+no atribuir un número a la capacidad equivocada, esos campos se omitieron
+por completo (ni valor ni `null`/`unknownFields`, porque la ambigüedad está
+en la extracción, no en la ausencia del dato en la fuente real).
+
+Con esto, Storage cubre ahora NVMe Gen4 (tiers "media"/"alta") y SATA (tier
+"entrada"). Pendiente explícito: NVMe Gen5 (tier "alta" alternativa /
+"extrema" default) sigue sin `family`/`product`. No se creó ningún
+crosswalk legacy-id↔V2-id (fuera de alcance de este paso). No se tocó AMD,
+GIGABYTE, ZOTAC, Crucial/Micron (ya descartado en §0.22), ni case/cooling.
+`node scripts/validate-v2.js` → 34 entries válidas (13 family + 21
+product), 40 evidencias, 0 offers, 0 presets. `node --test` → 31/31.
+`data/catalog.json`, `data/components.json` y la UI intactos.
+
+## 0.24 NVMe PCIe Gen5 — Samsung 9100 PRO 4TB (2026-08-22)
+
+Cierra el pendiente explícito de §0.23. **`family-storage-nvme-pcie5`** —
+`category=storage`, `selectable=false`, `technical.interface="PCIe"`,
+`technical.protocol="NVMe"`, `technical.pcieGen="5.0"`, análoga a
+`family-storage-nvme-pcie4` pero para PCIe Gen5. Misma fuente ideal
+bloqueada (NVM Express, Inc., ya documentada en §0.22); se usó el datasheet
+oficial de Samsung 9100 PRO.
+
+**`prod-samsung-9100pro-4tb`** — `brand=Samsung`, `commercialName="Samsung
+SSD 9100 PRO 4TB"`, `model="MZ-VAP4T0"`, `partNumber="MZ-VAP4T0B/AM"`,
+`familyId=family-storage-nvme-pcie5`, `selectable=true`, `verified`.
+Fuente: datasheet PDF oficial de Samsung
+(`download.semiconductor.samsung.com/resources/data-sheet/Samsung_NVMe_SSD_9100_PRO_Datasheet_Rev.1.0.pdf`,
+fetch directo + `pdftotext`). Capacidad elegida: 4TB, para representar el
+tier "extrema"/alternativa de "alta" del legacy. Confirmado (columna 4TB):
+controller Samsung in-house, NAND Samsung V-NAND TLC, DRAM cache 4GB
+LPDDR4X, secuencial lectura/escritura 14800/13400 MB/s, IOPS aleatorios
+2200K/2600K, potencia activa lectura/escritura 9.0W/8.2W, idle PS3/PS4
+6.5mW/5.7mW, dimensiones 80.15×22.15×2.38mm, TBW 2400TB, MTBF 1.5 millones
+de horas, garantía 5 años, seguridad AES-256/TCG Opal V2.0. Único campo
+`null`: `physical.weightG` (no declarado). **Nota de integridad**: el
+datasheet marca explícitamente con `(TBD)` los valores de rendimiento y
+potencia de la columna 8TB (no finalizados al momento de publicación); se
+verificó el orden lineal de las 4 columnas antes de asignar cada valor a
+4TB para evitar el mismo tipo de desalineación visual detectada en el
+datasheet SATA 870 EVO (§0.23).
+
+Con esto, `storage` cubre los 4 escenarios reales de `data/components.json`:
+SATA (entrada), NVMe Gen4 1TB/2TB (media/alta) y NVMe Gen5 4TB (alta-alt/
+extrema). Sigue sin existir ningún crosswalk legacy-id↔V2-id (no se ha
+pedido). No se tocó AMD, GIGABYTE, ZOTAC, Crucial/Micron, ni case/cooling.
+`node scripts/validate-v2.js` → 36 entries válidas (14 family + 22
+product), 42 evidencias, 0 offers, 0 presets. `node --test` → 31/31.
+`data/catalog.json`, `data/components.json` y la UI intactos.
+
 ## 0. Principio rector
 
 Cada archivo tiene una única responsabilidad. Ningún campo puede tomar prestada
@@ -744,15 +887,17 @@ duplicados), `V-NO-COMMERCIAL` (precio/vendedor/stock fuera de catalog),
   amd.com; ver §0.3). Pendiente para reabrir cuando haya acceso: confirmar
   specs oficiales y Product IDs de esos 2 SKUs.
 - **Fase 3 (en curso, iniciada 2026-08-21)**: ingreso de `product` reales
-  (marca+modelo) verificados. Estado actual: 18 `product` cargados (12 GPU
+  (marca+modelo) verificados. Estado actual: 20 `product` cargados (12 GPU
   sobre las 4 families NVIDIA — NVIDIA FE/MSI/ASUS/PNY según disponibilidad
   por SKU —, 1 RAM sobre `family-memory-ddr5`, 3 motherboard sobre
-  `family-intel-z890`, 2 PSU sobre `family-psu-atx`). AMD (CPU) permanece
-  pausado sin ningún `product` creado (ver §0.7). GIGABYTE (RTX 5070 y Z890)
-  descartado por bloqueo 403 en fetch directo. ZOTAC (RTX 5070) pendiente,
-  no descartado definitivamente (ver §0.13). storage, case y cooling no
-  iniciados. No cerrada todavía — no se ha definido un criterio de cierre
-  explícito para esta fase.
+  `family-intel-z890`, 2 PSU sobre `family-psu-atx`, 2 storage sobre
+  `family-storage-nvme-pcie4`). AMD (CPU) permanece pausado sin ningún
+  `product` creado (ver §0.7). GIGABYTE (RTX 5070 y Z890) descartado por
+  bloqueo 403 en fetch directo. ZOTAC (RTX 5070) pendiente, no descartado
+  definitivamente (ver §0.13). Crucial/Micron (storage) descartado por
+  bloqueo anti-bot (ver §0.22). case y cooling no iniciados. No cerrada
+  todavía — no se ha definido un criterio de cierre explícito para esta
+  fase.
 - **Fase 4 (no iniciada)**: `offers.v2.json` piloto con resolución por región.
 - **Fase 5 (no iniciada)**: `presets.v2.json` piloto + motor de compatibilidad real.
 - **Fase 6 (no iniciada)**: evaluar reemplazo gradual de `data/catalog.json` en la UI.

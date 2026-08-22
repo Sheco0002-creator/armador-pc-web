@@ -246,6 +246,55 @@
       "claim": "Fetch directo exitoso de la pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante) para 'RMe Series RM1000e - Fully Modular Low-Noise ATX Power Supply - White'. Cita textual: SKU/Part Number 'CP-9020294-NA', Wattage '1000 Watts', Efficiency Rating 'Cybenetics Gold certified (up to 89% efficiency)', ATX Version '3.1 Certified', Modularity 'Fully Modular', Fan '120mm rifle bearing fan', Dimensions '140 x 150 x 86 mm', Input Voltage '100-240V (47~63Hz)', Weight '3.23 kg', MTBF '100,000 hours', Warranty '7 years', conectores '1x ATX 24-Pin, 2x EPS/ATX 12V 8-Pin (4+4), 1x 12V-2x6 (12+4) Pin (native 600W-capable), 2x PCIe 8-Pin (6+2), 6x SATA, 2x PATA'. El conector '12V-2x6' coincide EXACTAMENTE con el vocabulario controlado gpuPowerConnector (a diferencia del '16-pin' generico usado por las fuentes de GPU MSI/ASUS), por lo que si se agrego a compatibility.provides -- no es una conversion ni inferencia, es el termino literal que usa esta fuente oficial. Todos los campos tecnicos quedan respaldados; no hay unknownFields para este producto. No se uso ningun retailer como fuente.",
       "accessedAt": "2026-08-22T00:00:00Z",
       "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-samsung-990pro-family-01",
+      "sourceId": "src-samsung-990pro-family-01",
+      "claim": "Datasheet oficial en PDF de Samsung (download.semiconductor.samsung.com, dominio propio del fabricante, fetch directo + pdftotext), 'Samsung V-NAND SSD 990 PRO' Data Sheet Rev.1.0 (2022). Cita textual: 'Usage Application ... PCIe Gen 4.0 x4, NVMe 2.0'. Se usa como fuente para la family 'NVMe SSD (PCIe Gen 4.0 x4)' (categoria storage) porque el intento de acceder a la fuente ideal -- NVM Express, Inc. (nvmexpress.org/specifications/), organismo oficial del estandar NVMe -- dio 403 Forbidden. Se documenta esta limitacion en vez de omitir la evidencia o inferir el dato (mismo patron ya aplicado en family-memory-ddr5 con JEDEC bloqueado y family-intel-z890 con intel.com bloqueado).",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-samsung-990pro-2tb-01",
+      "sourceId": "src-samsung-990pro-2tb-01",
+      "claim": "Datasheet oficial en PDF de Samsung (download.semiconductor.samsung.com, dominio propio del fabricante, fetch directo + pdftotext), 'Samsung V-NAND SSD 990 PRO' Data Sheet Rev.1.0, columna de capacidad 2TB, Model Code 'MZ-V9P2T0B/AM' (Model Name 'MZ-V9P2T0'). Cita textual: Interface 'PCIe Gen 4.0 x4, NVMe 2.0'; Controller 'Samsung in-house Controller'; NAND Flash Memory 'Samsung V-NAND TLC'; DRAM Cache Memory '2GB LPDDR4'; Dimension 'Max 80.0 x Max 22 x Max 2.3 (mm)'; Form Factor 'M.2 (2280)'; Sequential Read '7,450 MB/s'; Sequential Write '6,900 MB/s'; Random Read (QD32 Thread16) '1400K IOPS'; Random Write (QD32 Thread16) '1,550K IOPS'; Idle power (APST on) '55mW'; Active Read (Avg.) '5.8W'; Active Write (Avg.) '5.1W'; Warranty 'MTBF 1.5 million hours, TBW 1,200TB (para 2TB), 5 years limited'. El datasheet no declara un peso (weight) del producto -- physical.weightG queda null + unknownFields en vez de asumirse. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-wd-sn850x-1tb-01",
+      "sourceId": "src-wd-sn850x-1tb-01",
+      "claim": "Datasheet oficial en PDF de Western Digital / SanDisk Corporation (documents.sandisk.com, dominio propio del fabricante -- SanDisk Corporation es la entidad que opera la marca WD_BLACK tras la escision 2025 de Western Digital; el propio documento declara 'WD_BLACK and the WD_BLACK logo are ... trademarks of Western Digital Corporation'; fetch directo + pdftotext), 'WD_BLACK SN850X NVMe SSD' Data Sheet (julio 2025), columna de capacidad 1TB sin heatsink, modelo 'WDS100T2X0E'. Cita textual: Interface/NAND 'PCIe Gen4 16GT/s, up to 4 lanes' + 'SanDisk TLC 3D NAND'; Sequential Read (columna 1TB) '7,300MB/s'; Sequential Write '6,300MB/s'; Random Read '800K IOPS'; Random Write '1,100K IOPS'; Endurance (TBW) '600'; Dimensions (1 & 2TB sin heatsink) Length '80 +/-0.15mm', Width '22 +/-0.15mm', Height '2.38mm', Weight '7.5G +/-1g'; System Compatibility 'TCG OPAL V2.01'; Limited Warranty '5 Years'. El documento no incluye ninguna cifra de consumo de energia (power) para este modelo -- por eso technical.power no se incluye (ningun campo de esa seccion se crea como null+unknownFields porque la seccion misma no existe en la fuente, a diferencia de un campo que aparece en la tabla pero sin valor). Se evaluo Crucial/Micron (assets.micron.com y crucial.com) como segundo fabricante candidato: ambos dominios rechazaron el fetch directo ('Request Rejected', proteccion anti-bot), por lo que no se creo ningun producto Crucial en este paso. No se uso ningun retailer/agregador como fuente para este producto.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-samsung-870evo-family-01",
+      "sourceId": "src-samsung-870evo-family-01",
+      "claim": "Datasheet oficial en PDF de Samsung (download.semiconductor.samsung.com, dominio propio del fabricante, fetch directo + pdftotext), 'Samsung V-NAND SSD 870 EVO' Data Sheet Rev.1.1 (2021). Cita textual: 'Interface ... SATA 6 Gb/s Interface, compatible with SATA 3 Gb/s & 1.5 interfaces'. Se usa como fuente para la family 'SATA SSD (2.5-inch)' (categoria storage), analoga a family-storage-nvme-pcie4 pero para el bus SATA. No se declara protocolo logico (AHCI) de forma explicita en este datasheet -- el campo 'protocol' se omite en vez de asumirse por convencion de mercado.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-samsung-870evo-1tb-01",
+      "sourceId": "src-samsung-870evo-1tb-01",
+      "claim": "Datasheet oficial en PDF de Samsung (download.semiconductor.samsung.com, dominio propio del fabricante, fetch directo + pdftotext), 'Samsung V-NAND SSD 870 EVO' Data Sheet Rev.1.1, columna de capacidad 1TB, Model Name 'MZ-77E1T0', Model Code 'MZ-77E1T0B/AM'. Cita textual: Interface 'SATA 6 Gb/s Interface, compatible with SATA 3 Gb/s & 1.5 interfaces'; Controller 'Samsung MKX Controller'; NAND Flash Memory 'Samsung V-NAND 3bit MLC'; DRAM Cache Memory (columna 1TB) '1GB LPDDR4'; Dimensions '100 x 69.85 x 6.8(mm)'; Form Factor '2.5 inch'; Sequential Read '560 MB/s'; Sequential Write (tras Intelligent TurboWrite, aplicable a 1TB/2TB/4TB) '530 MB/s'; MTBF '1.5 million hours'; TBW (columna 1TB) '600TB'; Warranty Period '5 year limited'; Data Security 'AES 256-bit Full Disk Encryption, TCG/Opal V2.0, Encrypted Drive(IEEE1667)'. Las filas de IOPS aleatorios (4KB QD1/QD32) y de consumo de energia (idle/active) se extrajeron con columnas visualmente desalineadas entre si en el PDF (valores de energia y de IOPS intercalados de forma ambigua tras la conversion a texto) -- para evitar atribuir un numero incorrecto a la capacidad equivocada, esos campos NO se cargaron en este producto (ni como valor ni como null/unknownFields, ya que la ambiguedad esta en la extraccion, no en la ausencia del dato en la fuente). No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-samsung-9100pro-family-01",
+      "sourceId": "src-samsung-9100pro-family-01",
+      "claim": "Datasheet oficial en PDF de Samsung (download.semiconductor.samsung.com, dominio propio del fabricante, fetch directo + pdftotext), 'Samsung V-NAND SSD 9100 PRO' Data Sheet Rev.1.0 (2025). Cita textual: 'Interface ... PCIe 5.0 x4, NVMe 2.0'. Se usa como fuente para la family 'NVMe SSD (PCIe Gen 5.0 x4)' (categoria storage), analoga a family-storage-nvme-pcie4 pero para PCIe Gen5. Mismo criterio ya aplicado en esa family: la fuente ideal (NVM Express, Inc., nvmexpress.org) esta bloqueada (403), documentado en ev-samsung-990pro-family-01.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-samsung-9100pro-4tb-01",
+      "sourceId": "src-samsung-9100pro-4tb-01",
+      "claim": "Datasheet oficial en PDF de Samsung (download.semiconductor.samsung.com, dominio propio del fabricante, fetch directo + pdftotext), 'Samsung V-NAND SSD 9100 PRO' Data Sheet Rev.1.0, columna de capacidad 4TB, Model Name 'MZ-VAP4T0', Model Code 'MZ-VAP4T0B/AM'. Cita textual: Interface 'PCIe 5.0 x4, NVMe 2.0'; Controller 'Samsung in-house Controller'; NAND Flash Memory 'Samsung V-NAND TLC'; Cache Memory (columna 4TB) '4GB LPDDR4X'; Dimension (1TB/2TB/4TB) 'Max 80.15 x Max 22.15 x Max 2.38 (mm)'; Form Factor 'M.2 (2280)'; Sequential Read (columna 4TB, confirmada sin marcador TBD, a diferencia de la columna 8TB que si lo tiene) '14,800 MB/s'; Sequential Write '13,400 MB/s'; Random Read (QD256 Thread32) '2,200 KIOPS'; Random Write '2,600 KIOPS'; Active Power Read (Avg.) '9.0 W'; Active Power Write (Avg.) '8.2 W'; Idle PS3(APST on) '6.5 mW'; Idle PS4(L1.2) '5.7 mW'; MTBF '1.5 million hours'; TBW (columna 4TB) '2,400 TB'; Warranty Period '5 years limited'; Data Security 'AES 256-bit Full Disk Encryption, TCG/Opal V2.0, Encrypted Drive (IEEE1667)'. El texto extraido en orden lineal (sin -layout) confirma sin ambiguedad que la columna 4TB no lleva el marcador '(TBD)' que si aparece en la columna 8TB para estas metricas -- se verifico el orden exacto de las 4 columnas antes de asignar cada valor, evitando el problema de desalineacion visual encontrado en el datasheet SATA 870 EVO (ver ev-samsung-870evo-1tb-01). El datasheet no declara un peso (weight) del producto -- physical.weightG queda null + unknownFields. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
     }
   ]
 }

@@ -2963,6 +2963,64 @@
           "kind": "manufacturer-page"
         }
       ]
+    },
+    {
+      "id": "prod-pny-rtx5070-oc-triple-fan",
+      "type": "product",
+      "category": "gpu",
+      "familyId": "family-nvidia-rtx5070",
+      "identity": {
+        "brand": "PNY",
+        "commercialName": "GeForce RTX 5070 12GB Overclocked Triple Fan DLSS 4",
+        "model": "VCG507012TFXPB1-O",
+        "partNumber": "VCG507012TFXPB1-O",
+        "gtin": "751492794464"
+      },
+      "selectable": true,
+      "technical": {
+        "compute": { "cudaCores": 6144 },
+        "clocks": { "baseClockMHz": 2325, "boostClockMHz": 2587 },
+        "memory": { "sizeGB": 12, "type": "GDDR7", "busWidthBit": 192, "speedGbps": 28, "bandwidthGBs": 672 },
+        "interface": { "pcieGen": "5.0" },
+        "physical": { "lengthMm": 299.5, "heightMm": 120.0, "thicknessMm": 48.0, "slotWidth": 2.4 },
+        "power": { "connector": "16-pin", "consumptionW": 250, "recommendedPsuW": 650 }
+      },
+      "technicalFieldEvidence": {
+        "compute.cudaCores": ["ev-pny-rtx5070oc-01"],
+        "clocks.baseClockMHz": ["ev-pny-rtx5070oc-01"],
+        "clocks.boostClockMHz": ["ev-pny-rtx5070oc-01"],
+        "memory.sizeGB": ["ev-pny-rtx5070oc-01"],
+        "memory.type": ["ev-pny-rtx5070oc-01"],
+        "memory.busWidthBit": ["ev-pny-rtx5070oc-01"],
+        "memory.speedGbps": ["ev-pny-rtx5070oc-01"],
+        "memory.bandwidthGBs": ["ev-pny-rtx5070oc-01"],
+        "interface.pcieGen": ["ev-pny-rtx5070oc-01"],
+        "physical.lengthMm": ["ev-pny-rtx5070oc-01"],
+        "physical.heightMm": ["ev-pny-rtx5070oc-01"],
+        "physical.thicknessMm": ["ev-pny-rtx5070oc-01"],
+        "physical.slotWidth": ["ev-pny-rtx5070oc-01"],
+        "power.connector": ["ev-pny-rtx5070oc-01"],
+        "power.consumptionW": ["ev-pny-rtx5070oc-01"],
+        "power.recommendedPsuW": ["ev-pny-rtx5070oc-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "pcieGen", "value": "5.0" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-pny-rtx5070oc-01",
+          "url": "https://www.pny.com/file%20library/company/support/product%20brochures/geforce%20graphics/english/rtx-5070-12gb-triple-fan-oc-brochure.pdf",
+          "kind": "datasheet"
+        }
+      ]
     }
   ]
 }

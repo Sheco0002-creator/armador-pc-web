@@ -9,14 +9,14 @@ Fase 2 y luego pasaron a `verified` en §0.6 — más `family-memory-ddr5`,
 `family-storage-sata`, `family-storage-nvme-pcie5`,
 `family-case-atx-mid-tower`, `family-case-atx-full-tower`,
 `family-cooling-air-tower`, `family-cooling-aio-liquid` y
-`family-amd-am5`, agregadas durante Fase 3), y **39 `product` reales
-verificados** (12 GPU, 6 RAM, 6 motherboard, 6 PSU, 4 storage, 2 case, 3
+`family-amd-am5`, agregadas durante Fase 3), y **40 `product` reales
+verificados** (13 GPU, 6 RAM, 6 motherboard, 6 PSU, 4 storage, 2 case, 3
 cooling). 0 `offer`, 0 `preset`. No reemplaza `data/catalog.json` (legacy).
 No se migró ningún registro legacy. La investigación de productos AMD
 (CPU) permanece en pausa (ver §0.7): 0 `product` AMD creados (los
 `product` de motherboard AM5 sí se cargaron, ya que la fuente es el
-fabricante de la placa, no AMD). `node scripts/validate-v2.js` → 58
-entries válidas, 64 evidencias, 0 offers, 0 presets. `node --test
+fabricante de la placa, no AMD). `node scripts/validate-v2.js` → 59
+entries válidas, 65 evidencias, 0 offers, 0 presets. `node --test
 tests/v2/validate-v2.test.js` → 31/31. Existe además
 `data/v2/crosswalk.v2.json` (fuera del contrato validado) con el mapeo
 legacy-id↔product-id para storage, case, cooling, ram, psu y motherboard.
@@ -1086,6 +1086,90 @@ existentes. `node scripts/validate-v2.js` → 58 entries válidas (19 family
 `data/v2/crosswalk.v2.json` sin cambios (20 mappings, verificado sin
 huérfanos ni duplicados). `data/catalog.json`, `data/components.json` y la
 UI intactos.
+
+## 0.31 Retomar GPU — ZOTAC sigue bloqueado, cuarto bloqueo consecutivo de GIGABYTE, nuevo producto PNY para RTX 5070 (2026-08-22)
+
+A pedido explícito, se retomó la investigación de ZOTAC RTX 5070 (pendiente
+desde §0.13). Resultado: **sigue bloqueado**. Se intentó fetch directo a 2
+páginas de producto oficiales (`zotac.com/us/product/graphics_card/
+zotac-gaming-geforce-rtx-5070-solid` y `.../twin-edge-oc`) → **403
+Forbidden** en ambas (confirmado también con `curl`, header `CF-RAY`
+indica Cloudflare). Se intentó también fetch directo a 4 brochures PDF
+oficiales distintos (`zotac.com/download/mediadrivers/External/
+GraphicsCard/5070/Brochure/ZT-B50700D-10A/-10P`, `ZT-B50700J-10A`,
+`ZT-B50700E-10P`) → **HTTP 468** en los 4, con tamaño de respuesta
+idéntico (14838 bytes), confirmando que es la página de bloqueo del
+dominio y no el PDF real. Se descartó un PDF alojado en `gzhls.at`
+(dominio de un distribuidor, no de ZOTAC) por no ser fuente tier-1. **No
+se creó ningún registro ZOTAC** — el bloqueo del dominio completo persiste
+sin cambios desde §0.13.
+
+Se evaluó GIGABYTE como alternativa para RTX 5080 (candidato no intentado
+antes para ese chip): `gigabyte.com/Graphics-Card/GV-N5080GAMING-OC-16GD/sp`
+→ **403 Forbidden** — **cuarto bloqueo consecutivo confirmado** de ese
+fabricante (tras RTX5070 en §0.13, RTX5060 descartado dos veces en §0.9,
+y ahora RTX5080). Con esta acumulación de evidencia se decidió no seguir
+reintentando GIGABYTE en este paso y usar un fabricante nuevo no probado
+aún para GPU.
+
+**`prod-pny-rtx5070-oc-triple-fan`** — `brand=PNY`, `commercialName=
+"GeForce RTX 5070 12GB Overclocked Triple Fan DLSS 4"`,
+`partNumber="VCG507012TFXPB1-O"`, `gtin="751492794464"`,
+`familyId=family-nvidia-rtx5070`, `selectable=true`, `verified`. Fuente:
+brochure PDF oficial de PNY (`pny.com/file library/company/support/
+product brochures/geforce graphics/english/rtx-5070-12gb-triple-fan-oc-
+brochure.pdf`, fetch directo + `pdftotext`, enero 2025). Confirmado: 6144
+CUDA cores, clock base 2325MHz, boost 2587MHz, 12GB GDDR7, bus 192-bit,
+velocidad de memoria 28Gbps, **ancho de banda 672GB/s** (primera vez que
+un brochure PNY declara esta cifra explícitamente, a diferencia del
+producto PNY RTX 5060 previo donde quedó null), TDP 250W, PCIe 5.0,
+conector "16-pin" (literal, sin convertir a 12V-2x6, mismo criterio ya
+aplicado en el resto de GPU), PSU recomendada 650W, dimensiones
+299.5×120.0×48.0mm, slot width 2.4. Sin `unknownFields`: el brochure no
+incluye ninguna cifra de peso (solo dimensiones de la caja), por lo que
+simplemente no se agregó ningún campo `physical.weightCardG/weightPackageG`
+(sección ausente de la fuente, no un dato omitido).
+
+Con esto, RTX 5070 tiene ahora 4 productos (NVIDIA FE, MSI, ASUS, PNY).
+No se tocó AMD, ni ningún product/family previo de otras categorías.
+`node scripts/validate-v2.js` → 59 entries válidas (19 family + 40
+product), 65 evidencias, 0 offers, 0 presets. `node --test` → 31/31.
+`data/catalog.json`, `data/components.json` y la UI intactos.
+
+## 0.32 Crosswalk GPU retroactivo (2026-08-22)
+
+Verificación solicitada explícitamente antes de autorizar el commit
+anterior: `data/v2/crosswalk.v2.json` tenía **0 mappings de `category=gpu`**,
+a diferencia de storage/case/cooling/psu/motherboard/ram (las 6 categorías
+de Fase 3, todas con crosswalk completo). Los products de GPU existen
+desde Fase 2/Fase 3 temprana, pero nunca se les había agregado mapping.
+
+Se agregaron 4 mappings retroactivos, uno por cada escenario NVIDIA
+realmente usado en los tiers:
+
+- `gpu-5060 → prod-msi-rtx5060-8g-gaming-oc`
+- `gpu-5070 → prod-msi-rtx5070-12g-gaming-trio-oc`
+- `gpu-5080 → prod-msi-rtx5080-16g-gaming-trio`
+- `gpu-5090 → prod-msi-rtx5090-32g-gaming-trio-oc`
+
+Se eligió **MSI como marca canónica en los 4 casos** (entre 3-4 products
+válidos por family) por ser en cada family el único producto sin ningún
+`unknownFields`, criterio objetivo y consistente en las 4 elecciones.
+
+**`gpu-9060xt`** (AMD RX 9060 XT, alternativa en tier "entrada") y
+**`gpu-9070xt`** (AMD RX 9070 XT, alternativa en tier "media") **quedan sin
+mapping intencionalmente**: no existe ninguna family/product AMD GPU en
+V2 — AMD sigue en pausa por el mismo bloqueo histórico de amd.com ya
+documentado para AMD CPU. Esto es la primera vez que se señala
+explícitamente que la pausa de AMD también deja sin cobertura 2
+escenarios GPU reales del legacy, no solo CPU.
+
+Integridad referencial verificada manualmente: sin huérfanos ni
+duplicados; los 4 legacyId NVIDIA usados en tiers quedan mapeados.
+`node scripts/validate-v2.js` → 59 entries válidas, 65 evidencias, 0
+offers, 0 presets (sin cambios respecto a §0.31, el crosswalk no forma
+parte del contrato validado). `node --test` → 31/31.
+`data/catalog.json`, `data/components.json` y la UI intactos.
 
 ## 0. Principio rector
 

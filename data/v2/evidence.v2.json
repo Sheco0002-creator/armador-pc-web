@@ -449,6 +449,13 @@
       "claim": "Fetch directo exitoso de la pagina oficial de producto de G.SKILL (gskill.com, dominio propio del fabricante) para el part number F5-6000J3040G32GX2-TZ5NR (Trident Z5 Neo RGB). Cita textual: capacidad total 64GB, configuracion '2x32GB' (dual-channel kit), 32GB por modulo, tipo DDR5, velocidad 'Up to DDR5-6000' (requiere overclock via AMD EXPO o Intel XMP 3.0), timings 'CL30-40-40-96', voltaje '1.40V', form factor U-DIMM. La pagina no declara un pin count explicito -- physical.pinCount queda null + unknownFields, mismo criterio que el kit de 32GB de la misma linea. No se uso ningun retailer/agregador como fuente.",
       "accessedAt": "2026-08-22T00:00:00Z",
       "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-pny-rtx5070oc-01",
+      "sourceId": "src-pny-rtx5070oc-01",
+      "claim": "Brochure oficial en PDF de PNY (pny.com, dominio propio del fabricante, fetch directo + pdftotext), 'PNY GEFORCE RTX 5070 12GB Overclocked Triple Fan DLSS 4', part number 'VCG507012TFXPB1-O', UPC '751492794464' (enero 2025). Cita textual: NVIDIA CUDA Cores '6144'; Clock Speed '2325 MHz'; Boost Speed '2587 MHz'; Memory Speed '28' (Gbps); Memory Size '12GB GDDR7'; Memory Interface '192-bit'; Memory Bandwidth (GB/s) '672'; TDP '250 W'; Bus Type 'PCI-Express 5.0 x16'; Power Input '1x16 (1x16 to 2x8 adapter included)' (conector 16-pin literal, no convertido a 12V-2x6/12VHPWR, mismo criterio ya aplicado en otros productos GPU con este mismo tipo de conector); System Requirements 'Two 8-pin supplementary power connectors', '650 W or greater system power supply'; Card Dimensions '11.80\" x 4.73\" x1.9\"; 2.4 Slot' = '299.5 x 120.0 x 48.0mm; 2.4 Slot'. El brochure no declara el peso de la tarjeta (solo dimensiones de la caja) -- por eso no se incluyo ningun campo physical.weightCardG/weightPackageG (la seccion misma no existe en la fuente, igual que en otros productos donde una seccion completa esta ausente). Todos los campos tecnicos incluidos quedan respaldados; no hay unknownFields para este producto. No se uso ningun retailer/agregador como fuente. Se intento previamente GIGABYTE para RTX 5080 (gigabyte.com/Graphics-Card/GV-N5080GAMING-OC-16GD/sp) -> 403 Forbidden, cuarto bloqueo consecutivo confirmado de ese fabricante tras RTX5070/RTX5060(x2); se descarto continuar con GIGABYTE en este intento y se uso PNY en su lugar. Tambien se reintento ZOTAC (paginas de producto y 4 brochures PDF distintos) -> 403/468 en todos los casos, mismo bloqueo ya documentado en la Fase 2 (ver seccion Fase 2 del CONTRATO_V2.md); no se creo ningun registro ZOTAC.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
     }
   ]
 }

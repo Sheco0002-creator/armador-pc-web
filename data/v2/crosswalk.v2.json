@@ -122,6 +122,30 @@
       "legacyId": "mb-z890",
       "productId": "prod-asus-tuf-gaming-z890-pro-wifi",
       "note": "Legacy 'Z890' (ATX, LGA1851, DDR5, chipset Z890) -> ASUS TUF GAMING Z890-PRO WIFI, family-intel-z890. Coincide exactamente. Mapping agregado de forma retroactiva: el product ya existia desde antes de esta auditoria (junto con prod-msi-mag-z890-tomahawk-wifi y prod-asrock-z890-pro-a, tambien validos), pero nunca se habia agregado al crosswalk."
+    },
+    {
+      "category": "gpu",
+      "legacyId": "gpu-5060",
+      "productId": "prod-msi-rtx5060-8g-gaming-oc",
+      "note": "Legacy 'NVIDIA RTX 5060 8GB' (length 245mm, powerDraw 145W, recommendedPsu 550W) -> MSI GeForce RTX 5060 8G GAMING OC (G5060-8GC), family-nvidia-rtx5060. Se eligio MSI como canonico entre los 3 products de la family (PNY/MSI/ASUS) por ser el unico sin ningun unknownFields. Mapping agregado de forma retroactiva: los products de GPU existen desde Fase 2/3 temprana, pero GPU nunca habia tenido ningun mapping en el crosswalk (a diferencia de storage/case/cooling/psu/motherboard/ram, ya completados)."
+    },
+    {
+      "category": "gpu",
+      "legacyId": "gpu-5070",
+      "productId": "prod-msi-rtx5070-12g-gaming-trio-oc",
+      "note": "Legacy 'NVIDIA RTX 5070 12GB' (length 300mm, powerDraw 250W, recommendedPsu 650W) -> MSI GeForce RTX 5070 12G GAMING TRIO OC (G5070-12GTC), family-nvidia-rtx5070. Se eligio MSI como canonico entre los 4 products de la family (NVIDIA FE/MSI/ASUS/PNY) por ser el unico sin ningun unknownFields. Mapping retroactivo, mismo motivo que gpu-5060."
+    },
+    {
+      "category": "gpu",
+      "legacyId": "gpu-5080",
+      "productId": "prod-msi-rtx5080-16g-gaming-trio",
+      "note": "Legacy 'NVIDIA RTX 5080 16GB' (length 340mm, powerDraw 360W, recommendedPsu 850W) -> MSI GeForce RTX 5080 16G GAMING TRIO (G5080-16GT), family-nvidia-rtx5080. Se eligio MSI como canonico entre los 3 products de la family (NVIDIA FE/MSI/ASUS) por ser el unico sin ningun unknownFields. Mapping retroactivo, mismo motivo que gpu-5060."
+    },
+    {
+      "category": "gpu",
+      "legacyId": "gpu-5090",
+      "productId": "prod-msi-rtx5090-32g-gaming-trio-oc",
+      "note": "Legacy 'NVIDIA RTX 5090 32GB' (length 360mm, powerDraw 575W, recommendedPsu 1000W) -> MSI GeForce RTX 5090 32G GAMING TRIO OC (G5090-32GTC), family-nvidia-rtx5090. Se eligio MSI como canonico entre los 3 products de la family (NVIDIA FE/MSI/ASUS) por ser el unico sin ningun unknownFields. Mapping retroactivo, mismo motivo que gpu-5060. Nota: gpu-9060xt (AMD RX 9060 XT) y gpu-9070xt (AMD RX 9070 XT), usados como alternativa en entrada y media respectivamente, NO tienen ningun mapping porque no existe ninguna family/product AMD GPU en V2 (AMD sigue en pausa por bloqueo de amd.com, igual que AMD CPU)."
     }
   ]
 }

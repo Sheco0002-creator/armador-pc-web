@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "2.0.0",
+  "generatedAt": "2026-08-22T00:00:00Z",
+  "description": "Mapeo explicito, solo de lectura, entre ids de data/components.json (legacy) y productId de data/v2/catalog.v2.json. No es parte del contrato V2 (no lo valida scripts/validate-v2.js). No se usa en la UI/legacy todavia; existe unicamente como referencia preparatoria para una futura Fase 6 (reemplazo gradual del legacy). Cada mapping.legacyId debe existir en data/components.json (categories[].items[].id) y cada mapping.productId debe existir en data/v2/catalog.v2.json como entry type=product selectable=true.",
+  "mappings": [
+    {
+      "category": "storage",
+      "legacyId": "ssd-sata-1tb",
+      "productId": "prod-samsung-870evo-1tb",
+      "note": "Legacy 'SSD SATA 1TB' (interface SATA) -> Samsung 870 EVO 1TB, family-storage-sata."
+    },
+    {
+      "category": "storage",
+      "legacyId": "ssd-nvme-1tb",
+      "productId": "prod-wd-black-sn850x-1tb",
+      "note": "Legacy 'SSD NVMe 1TB Gen4' -> WD_BLACK SN850X 1TB, family-storage-nvme-pcie4."
+    },
+    {
+      "category": "storage",
+      "legacyId": "ssd-nvme-2tb",
+      "productId": "prod-samsung-990pro-2tb",
+      "note": "Legacy 'SSD NVMe 2TB Gen4' -> Samsung 990 PRO 2TB, family-storage-nvme-pcie4."
+    },
+    {
+      "category": "storage",
+      "legacyId": "ssd-nvme-4tb",
+      "productId": "prod-samsung-9100pro-4tb",
+      "note": "Legacy 'SSD NVMe 4TB Gen5' -> Samsung 9100 PRO 4TB, family-storage-nvme-pcie5."
+    }
+  ]
+}

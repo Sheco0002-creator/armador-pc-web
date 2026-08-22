@@ -2561,6 +2561,211 @@
           "kind": "manufacturer-page"
         }
       ]
+    },
+    {
+      "id": "family-amd-am5",
+      "type": "family",
+      "category": "motherboard",
+      "displayName": "AMD AM5 Socket Platform",
+      "selectable": false,
+      "technical": {
+        "socket": "AM5"
+      },
+      "technicalFieldEvidence": {
+        "socket": ["ev-asus-tufb650plus-family-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "socket", "value": "AM5" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-asus-tufb650plus-family-01",
+          "url": "https://www.asus.com/motherboards-components/motherboards/tuf-gaming/tuf-gaming-b650-plus/techspec/",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-asus-tuf-gaming-b650-plus",
+      "type": "product",
+      "category": "motherboard",
+      "familyId": "family-amd-am5",
+      "identity": {
+        "brand": "ASUS",
+        "commercialName": "TUF GAMING B650-PLUS",
+        "model": "TUF GAMING B650-PLUS",
+        "partNumber": "TUF GAMING B650-PLUS",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "socket": "AM5",
+        "chipset": "AMD B650",
+        "memory": { "type": "DDR5", "slots": 4, "maxCapacityGB": 256, "maxSpeedMTs": 7600 },
+        "expansionSlots": { "pcie4x16Count": 2, "pcie4x1Count": 2 },
+        "storage": { "m2SlotsCount": 3, "sataPortsCount": 4 },
+        "formFactor": "ATX",
+        "physical": { "widthMm": 305, "depthMm": 244 }
+      },
+      "technicalFieldEvidence": {
+        "socket": ["ev-asus-tufb650plus-01"],
+        "chipset": ["ev-asus-tufb650plus-01"],
+        "memory.type": ["ev-asus-tufb650plus-01"],
+        "memory.slots": ["ev-asus-tufb650plus-01"],
+        "memory.maxCapacityGB": ["ev-asus-tufb650plus-01"],
+        "memory.maxSpeedMTs": ["ev-asus-tufb650plus-01"],
+        "expansionSlots.pcie4x16Count": ["ev-asus-tufb650plus-01"],
+        "expansionSlots.pcie4x1Count": ["ev-asus-tufb650plus-01"],
+        "storage.m2SlotsCount": ["ev-asus-tufb650plus-01"],
+        "storage.sataPortsCount": ["ev-asus-tufb650plus-01"],
+        "formFactor": ["ev-asus-tufb650plus-01"],
+        "physical.widthMm": ["ev-asus-tufb650plus-01"],
+        "physical.depthMm": ["ev-asus-tufb650plus-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "socket", "value": "AM5" },
+          { "key": "memoryType", "value": "DDR5" },
+          { "key": "formFactor", "value": "ATX" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-asus-tufb650plus-01",
+          "url": "https://www.asus.com/motherboards-components/motherboards/tuf-gaming/tuf-gaming-b650-plus/techspec/",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-asus-tuf-gaming-x870-plus-wifi",
+      "type": "product",
+      "category": "motherboard",
+      "familyId": "family-amd-am5",
+      "identity": {
+        "brand": "ASUS",
+        "commercialName": "TUF GAMING X870-PLUS WIFI",
+        "model": "TUF GAMING X870-PLUS WIFI",
+        "partNumber": "TUF GAMING X870-PLUS WIFI",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "socket": "AM5",
+        "chipset": "AMD X870",
+        "memory": { "type": "DDR5", "slots": 4, "maxCapacityGB": 256, "maxSpeedMTs": 8000 },
+        "expansionSlots": { "pcie5x16Count": 1, "pcie4x16Count": 2 },
+        "storage": { "m2SlotsCount": 4, "sataPortsCount": 2 },
+        "formFactor": "ATX",
+        "physical": { "widthMm": 305, "depthMm": 244 }
+      },
+      "technicalFieldEvidence": {
+        "socket": ["ev-asus-tufx870pluswifi-01"],
+        "chipset": ["ev-asus-tufx870pluswifi-01"],
+        "memory.type": ["ev-asus-tufx870pluswifi-01"],
+        "memory.slots": ["ev-asus-tufx870pluswifi-01"],
+        "memory.maxCapacityGB": ["ev-asus-tufx870pluswifi-01"],
+        "memory.maxSpeedMTs": ["ev-asus-tufx870pluswifi-01"],
+        "expansionSlots.pcie5x16Count": ["ev-asus-tufx870pluswifi-01"],
+        "expansionSlots.pcie4x16Count": ["ev-asus-tufx870pluswifi-01"],
+        "storage.m2SlotsCount": ["ev-asus-tufx870pluswifi-01"],
+        "storage.sataPortsCount": ["ev-asus-tufx870pluswifi-01"],
+        "formFactor": ["ev-asus-tufx870pluswifi-01"],
+        "physical.widthMm": ["ev-asus-tufx870pluswifi-01"],
+        "physical.depthMm": ["ev-asus-tufx870pluswifi-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "socket", "value": "AM5" },
+          { "key": "memoryType", "value": "DDR5" },
+          { "key": "formFactor", "value": "ATX" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-asus-tufx870pluswifi-01",
+          "url": "https://www.asus.com/us/motherboards-components/motherboards/tuf-gaming/tuf-gaming-x870-plus-wifi/techspec/",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-asus-rog-strix-x870e-e-gaming-wifi",
+      "type": "product",
+      "category": "motherboard",
+      "familyId": "family-amd-am5",
+      "identity": {
+        "brand": "ASUS",
+        "commercialName": "ROG STRIX X870E-E GAMING WIFI",
+        "model": "ROG STRIX X870E-E GAMING WIFI",
+        "partNumber": "ROG STRIX X870E-E GAMING WIFI",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "socket": "AM5",
+        "chipset": "AMD X870E",
+        "memory": { "type": "DDR5", "slots": 4, "maxCapacityGB": 256, "maxSpeedMTs": 8400 },
+        "expansionSlots": { "pcie5x16Count": 1, "pcie4x16Count": 2 },
+        "storage": { "m2SlotsCount": 5, "sataPortsCount": 4 },
+        "formFactor": "ATX",
+        "physical": { "widthMm": 305, "depthMm": 244 }
+      },
+      "technicalFieldEvidence": {
+        "socket": ["ev-asus-rogstrixx870ee-01"],
+        "chipset": ["ev-asus-rogstrixx870ee-01"],
+        "memory.type": ["ev-asus-rogstrixx870ee-01"],
+        "memory.slots": ["ev-asus-rogstrixx870ee-01"],
+        "memory.maxCapacityGB": ["ev-asus-rogstrixx870ee-01"],
+        "memory.maxSpeedMTs": ["ev-asus-rogstrixx870ee-01"],
+        "expansionSlots.pcie5x16Count": ["ev-asus-rogstrixx870ee-01"],
+        "expansionSlots.pcie4x16Count": ["ev-asus-rogstrixx870ee-01"],
+        "storage.m2SlotsCount": ["ev-asus-rogstrixx870ee-01"],
+        "storage.sataPortsCount": ["ev-asus-rogstrixx870ee-01"],
+        "formFactor": ["ev-asus-rogstrixx870ee-01"],
+        "physical.widthMm": ["ev-asus-rogstrixx870ee-01"],
+        "physical.depthMm": ["ev-asus-rogstrixx870ee-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "socket", "value": "AM5" },
+          { "key": "memoryType", "value": "DDR5" },
+          { "key": "formFactor", "value": "ATX" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-asus-rogstrixx870ee-01",
+          "url": "https://rog.asus.com/motherboards/rog-strix/rog-strix-x870e-e-gaming-wifi/spec/",
+          "kind": "manufacturer-page"
+        }
+      ]
     }
   ]
 }

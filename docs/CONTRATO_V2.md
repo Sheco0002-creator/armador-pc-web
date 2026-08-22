@@ -2,22 +2,24 @@
 
 Estado (actualizado 2026-08-22): **Fase 1 completa. Fase 2 cerrada** (2026-08-21).
 **Fase 3 en ejecución activa** (iniciada 2026-08-21, ver §0.4 en adelante).
-Estado real de `catalog.v2.json`: **18 `family`, todas `verified`** (las 8
+Estado real de `catalog.v2.json`: **19 `family`, todas `verified`** (las 8
 originales CPU/GPU — incluidas las 2 que quedaron `partial` al cierre de
 Fase 2 y luego pasaron a `verified` en §0.6 — más `family-memory-ddr5`,
 `family-intel-z890`, `family-psu-atx`, `family-storage-nvme-pcie4`,
 `family-storage-sata`, `family-storage-nvme-pcie5`,
 `family-case-atx-mid-tower`, `family-case-atx-full-tower`,
-`family-cooling-air-tower` y `family-cooling-aio-liquid`, agregadas durante
-Fase 3), y **32 `product` reales verificados** (12 GPU, 2 RAM, 3
-motherboard, 6 PSU, 4 storage, 2 case, 3 cooling). 0 `offer`, 0 `preset`.
-No reemplaza `data/catalog.json` (legacy). No se migró ningún registro
-legacy. La investigación de productos AMD (CPU) permanece en pausa (ver
-§0.7): 0 `product` AMD creados. `node scripts/validate-v2.js` → 50 entries
-válidas, 56 evidencias, 0 offers, 0 presets. `node --test
+`family-cooling-air-tower`, `family-cooling-aio-liquid` y
+`family-amd-am5`, agregadas durante Fase 3), y **35 `product` reales
+verificados** (12 GPU, 2 RAM, 6 motherboard, 6 PSU, 4 storage, 2 case, 3
+cooling). 0 `offer`, 0 `preset`. No reemplaza `data/catalog.json` (legacy).
+No se migró ningún registro legacy. La investigación de productos AMD
+(CPU) permanece en pausa (ver §0.7): 0 `product` AMD creados (los
+`product` de motherboard AM5 sí se cargaron, ya que la fuente es el
+fabricante de la placa, no AMD). `node scripts/validate-v2.js` → 54
+entries válidas, 60 evidencias, 0 offers, 0 presets. `node --test
 tests/v2/validate-v2.test.js` → 31/31. Existe además
 `data/v2/crosswalk.v2.json` (fuera del contrato validado) con el mapeo
-legacy-id↔product-id para storage, case, cooling, ram y psu.
+legacy-id↔product-id para storage, case, cooling, ram, psu y motherboard.
 
 ## 0.1 Resultado del piloto (2026-08-21)
 
@@ -949,6 +951,79 @@ usados en tiers quedan mapeados. `psu-1000` queda fuera, correctamente.
 No se tocó AMD, GIGABYTE, ZOTAC, Crucial/Micron, ni ninguna family/product
 de RAM/motherboard/storage/case/cooling previos. `node
 scripts/validate-v2.js` → 50 entries válidas (18 family + 32 product), 56
+evidencias, 0 offers, 0 presets. `node --test` → 31/31.
+`data/catalog.json`, `data/components.json` y la UI intactos.
+
+## 0.29 Cobertura AMD AM5 en motherboard y crosswalk completo (2026-08-22)
+
+**Auditoría previa** (sin cambios): `data/components.json` tiene 5
+legacyId en `motherboard` (`mb-b650m`, `mb-b650`, `mb-x870`, `mb-x870e`,
+`mb-z890`), pero **solo 4 se usan realmente** en los tiers
+(`entrada→mb-b650`; `media→mb-x870` con alt `mb-z890`; `alta→mb-x870`;
+`extrema→mb-x870e`). `mb-b650m` no se usa en ningún tier ni alternativa —
+mismo patrón que `case-matx`/`cool-aio-240`/`ram-16`/`psu-1000`: **no se
+creó ningún registro para él**. `mb-z890` ya estaba cubierto desde antes
+(§0.17-0.19, 3 products ASUS/MSI/ASRock), pero sin mapping en el
+crosswalk; los otros 3 (`mb-b650`, `mb-x870`, `mb-x870e`) no tenían ningún
+product.
+
+**Decisión estructural**: se aplicó estrictamente el criterio de no crear
+family por chipset. Revisando `family-intel-z890`, su único campo técnico
+es `socket="LGA1851"` (el chipset "Z890" nunca fue parte de la family,
+solo del `id`/`displayName`; vive en `technical.chipset` a nivel
+`product`). Para AMD AM5, donde coexisten 3 chipsets sobre el mismo socket
+(B650/X870/X870E), se aplicó la misma regla: **una sola family nueva**,
+`family-amd-am5` (`technical.socket="AM5"`), con el chipset como atributo
+de `product`, no de `family`.
+
+**`family-amd-am5`** — fuente: página oficial de ASUS (`asus.com/.../
+tuf-gaming-b650-plus/techspec/`, fetch directo exitoso), que declara
+"Socket AM5". Se intentó la fuente ideal (`amd.com/en/products/
+processors/chipsets/am5.html`, página oficial de chipsets AMD) →
+**timeout**, mismo bloqueo histórico de amd.com ya documentado
+repetidamente en este proyecto (§0.2, §0.3, §0.6, §0.7). No se usó ninguna
+fuente de terceros para completar el dato — se usó la página del
+fabricante de la placa (mismo patrón que `family-intel-z890` con Intel).
+
+**`prod-asus-tuf-gaming-b650-plus`** — `brand=ASUS`, `familyId=family-amd-am5`,
+`selectable=true`, `verified`. Fuente: `asus.com/.../tuf-gaming-b650-plus/
+techspec/` (fetch directo exitoso; se verificó deliberadamente que la URL
+correspondiera a la variante SIN WiFi, no confundir con
+"tuf-gaming-b650-plus-wifi"). Confirmado: socket AM5, chipset AMD B650,
+memoria (4 DIMM, máx 256GB, DDR5, 4800-7600+MT/s), expansión (1× PCIe
+4.0/3.0 x16, 1× PCIe 4.0/3.0 x16 x4-mode, 2× PCIe 4.0/3.0 x1), storage (3×
+M.2, 4× SATA), form factor ATX. Sin `unknownFields`. La página no distingue
+un part number separado del nombre comercial — mismo criterio ya usado en
+Z890.
+
+**`prod-asus-tuf-gaming-x870-plus-wifi`** — análogo, fuente:
+`asus.com/us/.../tuf-gaming-x870-plus-wifi/techspec/` (fetch directo
+exitoso). Confirmado: socket AM5, chipset AMD X870, memoria (4 DIMM, máx
+256GB, DDR5, hasta 8000+MT/s), expansión (1× PCIe 5.0 x16, 2× PCIe 4.0
+x16), storage (4× M.2, 2× SATA), form factor ATX. Sin `unknownFields`.
+
+**`prod-asus-rog-strix-x870e-e-gaming-wifi`** — análogo, fuente:
+`rog.asus.com/motherboards/rog-strix/rog-strix-x870e-e-gaming-wifi/spec/`
+(fetch directo exitoso). Confirmado: socket AM5, chipset AMD X870E,
+memoria (4 DIMM, máx 256GB, DDR5, hasta 8000-8400+MT/s según CPU, soporte
+EXPO), expansión (1× PCIe 5.0 x16, 2× PCIe 4.0 x16), storage (5× M.2, 4×
+SATA), form factor ATX. Sin `unknownFields`.
+
+**Crosswalk motherboard completado**: se agregaron 4 mappings a
+`data/v2/crosswalk.v2.json` — `mb-b650→prod-asus-tuf-gaming-b650-plus`,
+`mb-x870→prod-asus-tuf-gaming-x870-plus-wifi`,
+`mb-x870e→prod-asus-rog-strix-x870e-e-gaming-wifi` (los 3 nuevos) y
+`mb-z890→prod-asus-tuf-gaming-z890-pro-wifi` (retroactivo: el product ya
+existía desde §0.17 pero nunca se había agregado al crosswalk; MSI
+Tomahawk y ASRock Pro-A también serían válidos, se eligió ASUS por
+consistencia con el resto de la categoría). Integridad referencial
+verificada manualmente: sin huérfanos ni duplicados; los 4 legacyId de
+motherboard usados en tiers quedan mapeados. `mb-b650m` queda fuera,
+correctamente.
+
+No se tocó AMD (CPU), GIGABYTE, ZOTAC, Crucial/Micron, ni ninguna family/
+product de RAM/PSU/storage/case/cooling previos. `node
+scripts/validate-v2.js` → 54 entries válidas (19 family + 35 product), 60
 evidencias, 0 offers, 0 presets. `node --test` → 31/31.
 `data/catalog.json`, `data/components.json` y la UI intactos.
 

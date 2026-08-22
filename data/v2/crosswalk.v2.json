@@ -98,6 +98,30 @@
       "legacyId": "psu-1200",
       "productId": "prod-corsair-hx1200i-cp9020307-na",
       "note": "Legacy '1200W 80+ Platinum, ATX 3.1 / PCIe 5.x' -> CORSAIR HX1200i (CP-9020307-NA), family-psu-atx. Coincide exactamente. Se uso especificamente esta SKU y no otras variantes de 'HX1200i' (CP-9020070-NA, CP-9020281-NA) que no declaran ATX 3.1/PCIe 5.1."
+    },
+    {
+      "category": "motherboard",
+      "legacyId": "mb-b650",
+      "productId": "prod-asus-tuf-gaming-b650-plus",
+      "note": "Legacy 'B650' (ATX, AM5, DDR5, chipset B650) -> ASUS TUF GAMING B650-PLUS, family-amd-am5. Coincide exactamente."
+    },
+    {
+      "category": "motherboard",
+      "legacyId": "mb-x870",
+      "productId": "prod-asus-tuf-gaming-x870-plus-wifi",
+      "note": "Legacy 'X870' (ATX, AM5, DDR5, chipset X870) -> ASUS TUF GAMING X870-PLUS WIFI, family-amd-am5. Coincide exactamente."
+    },
+    {
+      "category": "motherboard",
+      "legacyId": "mb-x870e",
+      "productId": "prod-asus-rog-strix-x870e-e-gaming-wifi",
+      "note": "Legacy 'X870E' (ATX gama alta, AM5, DDR5, chipset X870E) -> ASUS ROG STRIX X870E-E GAMING WIFI, family-amd-am5. Coincide exactamente."
+    },
+    {
+      "category": "motherboard",
+      "legacyId": "mb-z890",
+      "productId": "prod-asus-tuf-gaming-z890-pro-wifi",
+      "note": "Legacy 'Z890' (ATX, LGA1851, DDR5, chipset Z890) -> ASUS TUF GAMING Z890-PRO WIFI, family-intel-z890. Coincide exactamente. Mapping agregado de forma retroactiva: el product ya existia desde antes de esta auditoria (junto con prod-msi-mag-z890-tomahawk-wifi y prod-asrock-z890-pro-a, tambien validos), pero nunca se habia agregado al crosswalk."
     }
   ]
 }

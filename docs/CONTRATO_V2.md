@@ -9,15 +9,15 @@ Fase 2 y luego pasaron a `verified` en §0.6 — más `family-memory-ddr5`,
 `family-storage-sata`, `family-storage-nvme-pcie5`,
 `family-case-atx-mid-tower`, `family-case-atx-full-tower`,
 `family-cooling-air-tower` y `family-cooling-aio-liquid`, agregadas durante
-Fase 3), y **27 `product` reales verificados** (12 GPU, 1 RAM, 3
-motherboard, 2 PSU, 4 storage, 2 case, 3 cooling). 0 `offer`, 0 `preset`.
+Fase 3), y **32 `product` reales verificados** (12 GPU, 2 RAM, 3
+motherboard, 6 PSU, 4 storage, 2 case, 3 cooling). 0 `offer`, 0 `preset`.
 No reemplaza `data/catalog.json` (legacy). No se migró ningún registro
 legacy. La investigación de productos AMD (CPU) permanece en pausa (ver
-§0.7): 0 `product` AMD creados. `node scripts/validate-v2.js` → 45 entries
-válidas, 51 evidencias, 0 offers, 0 presets. `node --test
+§0.7): 0 `product` AMD creados. `node scripts/validate-v2.js` → 50 entries
+válidas, 56 evidencias, 0 offers, 0 presets. `node --test
 tests/v2/validate-v2.test.js` → 31/31. Existe además
 `data/v2/crosswalk.v2.json` (fuera del contrato validado) con el mapeo
-legacy-id↔product-id para storage, case y cooling.
+legacy-id↔product-id para storage, case, cooling, ram y psu.
 
 ## 0.1 Resultado del piloto (2026-08-21)
 
@@ -838,6 +838,119 @@ de RAM/motherboard/PSU/storage/case previos. `node scripts/validate-v2.js`
 → 45 entries válidas (18 family + 27 product), 51 evidencias, 0 offers, 0
 presets. `node --test` → 31/31. `data/catalog.json`, `data/components.json`
 y la UI intactos.
+
+## 0.27 Segundo producto RAM — Corsair Vengeance 64GB (2x32GB) y crosswalk completo (2026-08-22)
+
+**Auditoría previa** (sin cambios): `data/components.json` tiene 3 legacyId
+en `ram` (`ram-16`, `ram-32`, `ram-64`), pero **solo `ram-32` y `ram-64` se
+usan realmente** en los tiers (`entrada→ram-32`; `media`/`alta→ram-32` con
+alt `ram-64`; `extrema→ram-64`). `ram-16` no se usa en ningún tier ni
+alternativa — mismo patrón que `case-matx`/`cool-aio-240`: **no se creó
+ningún registro para él**. Cobertura V2 antes de este paso: `ram-32` ya
+cubierto desde antes (§0.16, `prod-corsair-vengeance-ddr5-6000-32gb`);
+`ram-64` sin ningún product. No se necesitó ninguna family nueva —
+`family-memory-ddr5` (ya existente) representa el estándar vendor-neutral
+correcto; la capacidad, igual que en storage, queda a nivel `product`.
+
+**`prod-corsair-vengeance-ddr5-6000-64gb`** — `brand=CORSAIR`,
+`commercialName="VENGEANCE 64GB (2x32GB) DDR5 DRAM 6000MHz C40 Memory Kit
+— Black"`, `model="CMK64GX5M2B6000C40"`, `partNumber="CMK64GX5M2B6000C40"`,
+`familyId=family-memory-ddr5`, `selectable=true`, `verified`. Fuente:
+`corsair.com/us/en/p/memory/cmk64gx5m2b6000c40/...` (fetch directo
+exitoso). Confirmado: Memory Type DDR5, Form Factor UDIMM 288 pines,
+capacidad 64GB (2×32GB), velocidad 6000MT/s (PC5-48000), Tested Timings
+40-40-40-77, SPD Timings 40-40-40-77, Tested Voltage 1.35V, SPD Voltage
+1.1V, Default SPD Speed 4800MHz, peso 0.115kg. Sin `unknownFields`. Se
+verificó que no existe un SKU CL36 para esta capacidad (solo CL30/CL40
+disponibles oficialmente); se eligió el CL40 no-RGB negro por ser el más
+directamente análogo al kit de 32GB ya cargado.
+
+**Crosswalk RAM completado**: se agregaron 2 mappings a
+`data/v2/crosswalk.v2.json` — `ram-32→prod-corsair-vengeance-ddr5-6000-32gb`
+(retroactivo: el product ya existía desde §0.16 pero nunca se había
+agregado al crosswalk) y `ram-64→prod-corsair-vengeance-ddr5-6000-64gb`
+(nuevo). Integridad referencial verificada manualmente: sin huérfanos ni
+duplicados; ambos legacyId usados en tiers quedan mapeados.
+
+No se tocó AMD, GIGABYTE, ZOTAC, Crucial/Micron, ni ninguna family/product
+de motherboard/PSU/storage/case/cooling previos. `node
+scripts/validate-v2.js` → 46 entries válidas (18 family + 28 product), 52
+evidencias, 0 offers, 0 presets. `node --test` → 31/31.
+`data/catalog.json`, `data/components.json` y la UI intactos.
+
+## 0.28 Cobertura completa de PSU y crosswalk (2026-08-22)
+
+**Auditoría previa** (sin cambios): `data/components.json` tiene 6
+legacyId en `psu` (`psu-550`, `psu-650`, `psu-750`, `psu-850`, `psu-1000`,
+`psu-1200`), pero **solo 5 se usan realmente** en los tiers
+(`entrada→psu-550`; `media→psu-650` con alt `psu-750`; `alta→psu-850`;
+`extrema→psu-1200`). `psu-1000` no se usa en ningún tier ni alternativa —
+mismo patrón que `case-matx`/`cool-aio-240`/`ram-16`: **no se creó ningún
+registro para él**. `psu-850` ya estaba cubierto desde antes (§0.20,
+`prod-msi-mag-a850gl-pcie5`); los otros 4 no tenían ningún product.
+`family-psu-atx` (ya existente) fue suficiente — no se creó ninguna family
+nueva, siguiendo el mismo criterio que en RAM.
+
+**`prod-thermaltake-smart-bx3-550w`** — `brand=Thermaltake`,
+`commercialName="Smart BX3 Bronze 550W"`, `model="SPD-0550AH2NLB-3"`,
+`partNumber="PS-SPD-0550NNFABU-3"`, `familyId=family-psu-atx`,
+`selectable=true`, `verified`. Fuente: `thermaltakeusa.com/products/...`
+(fetch directo exitoso). Confirmado: 550W, 80 PLUS Bronze, "built to ATX
+3.1 specifications" (coincide exactamente con `psu-550`), no modular, fan
+120mm FDB, dimensiones 150×86×140mm, conectores ATX24×1/EPS4+4×1/PCIe
+6+2×2/SATA×4/Peripheral×4, protecciones OCP/OVP/UVP/OPP/OTP/SCP, garantía
+5 años. Sin `unknownFields`. **Candidatos descartados**: MSI MAG A550BN y
+MAG A550BNL (datasheets oficiales de `storage-asset.msi.com` verificados
+por fetch directo) — ninguno de los dos declara ATX 3.0/3.1 en absoluto,
+pese a coincidir en wattage/certificación Bronze.
+
+**`prod-corsair-rm650e`** — `brand=CORSAIR`, `model="RM650e"`,
+`partNumber="CP-9020302-NA"`, `familyId=family-psu-atx`, `selectable=true`,
+`verified`. Fuente: `corsair.com/us/en/p/psu/cp-9020302-na/...` (fetch
+directo exitoso). Confirmado: 650W, Cybenetics Gold, ATX Version "3.1"
+(coincide con `psu-650`), PCIe 5.1 compatible, fully modular, dimensiones
+140×150×86mm, peso 2.728kg, conectores incluyendo 12V-2x6×1 nativo. Sin
+`unknownFields`. El conector "12V-2x6" coincide con el vocabulario
+controlado `gpuPowerConnector` → se agregó a `compatibility.provides`.
+
+**`prod-corsair-rm750e`** — `brand=CORSAIR`, `model="RM750e"`,
+`partNumber="CP-9020295-NA"`, `familyId=family-psu-atx`, `selectable=true`,
+`verified`. Fuente: `corsair.com/us/en/p/psu/cp-9020295-na/...` (fetch
+directo exitoso). Confirmado: 750W, "Intel ATX 3.1 Certified" (coincide
+con `psu-750`), Cybenetics Gold (~89%), PCIe 5.1 compatible, fully
+modular, dimensiones 140×150×86mm, peso 2.901kg, garantía 7 años. Sin
+`unknownFields`.
+
+**`prod-corsair-hx1200i-cp9020307-na`** — `brand=CORSAIR`, `model="HX1200i"`,
+`partNumber="CP-9020307-NA"`, `familyId=family-psu-atx`, `selectable=true`,
+`verified`. Fuente: `corsair.com/us/en/p/psu/cp-9020307-na/...` (fetch
+directo exitoso). Confirmado: 1200W, 80 PLUS Platinum, "ATX 3.1 certified,
+PCIe 5.1 compatible" (coincide exactamente con `psu-1200`, "ATX 3.1 / PCIe
+5.x"), fully modular, fan 140mm FDB, conectores incluyendo "Dual 12V-2x6
+cables"×2, garantía 10 años. **Único campo `null`**: `dimensions` — esta
+página específica no declara medidas físicas (a diferencia de RM650e/
+RM750e/BX3, que sí las declaran), por lo que queda `null`+`unknownFields`
+en vez de asumirse igual a otros modelos de la misma línea. **Candidatos
+descartados**: dos SKU distintas del mismo nombre comercial "HX1200i" —
+`CP-9020070-NA` (fetch directo confirmó "ATX12V v2.4 and EPS12V 2.92
+standards", **no** ATX3.1) y `CP-9020281-NA` (no verificado, mismo riesgo)
+— se usó exclusivamente `CP-9020307-NA`, la única confirmada con ATX3.1/
+PCIe5.1 explícito.
+
+**Crosswalk PSU completado**: se agregaron 5 mappings a
+`data/v2/crosswalk.v2.json` — `psu-550→prod-thermaltake-smart-bx3-550w`,
+`psu-650→prod-corsair-rm650e`, `psu-750→prod-corsair-rm750e`,
+`psu-850→prod-msi-mag-a850gl-pcie5` (retroactivo: el product ya existía
+desde §0.20 pero nunca se había agregado al crosswalk) y
+`psu-1200→prod-corsair-hx1200i-cp9020307-na`. Integridad referencial
+verificada manualmente: sin huérfanos ni duplicados; los 5 legacyId de PSU
+usados en tiers quedan mapeados. `psu-1000` queda fuera, correctamente.
+
+No se tocó AMD, GIGABYTE, ZOTAC, Crucial/Micron, ni ninguna family/product
+de RAM/motherboard/storage/case/cooling previos. `node
+scripts/validate-v2.js` → 50 entries válidas (18 family + 32 product), 56
+evidencias, 0 offers, 0 presets. `node --test` → 31/31.
+`data/catalog.json`, `data/components.json` y la UI intactos.
 
 ## 0. Principio rector
 

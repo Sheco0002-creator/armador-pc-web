@@ -358,6 +358,41 @@
       "claim": "Pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante, fetch directo exitoso) para 'iCUE LINK H150i RGB AIO Liquid CPU Cooler', part number 'CW-9061003-WW'. Cita textual: Socket Compatibility 'Intel 1851, Intel 1700, Intel 1200, Intel 1150, Intel 1151, Intel 1155, Intel 1156, AMD AM5, AMD AM4'; Radiator Dimensions '397mm (L) x 120mm (W) x 27mm (H)'; Radiator Size '360mm' (coincide con el legacy cool-aio-360); Fan 'Quantity: 3, Size: 120mm x 25mm, QX120 RGB', Speed Range '480 - 2400RPM +/-10%', Airflow '16.44 - 63.1 CFM'; Tubing 'Black Sleeved Low-Permeation Rubber, 450mm length'; Cold Plate 'Copper, 56 x 56mm, XTM70 pre-applied'; Weight '2.654kg'; Warranty 'Six-year warranty'. La pagina NO declara ninguna cifra de TDP/potencia termica soportada en watts -- se verifico tambien la pagina oficial de NZXT Kraken 360 (nzxt.com) como referencia cruzada de la industria y tampoco publica esa metrica, confirmando que es una ausencia estructural de los fabricantes de AIO y no un dato omitido por descuido -- por eso thermalDissipationW queda null + unknownFields en vez de inferirse a partir del valor 350W del legacy. No se uso ningun retailer/agregador como fuente. compatibility.requires solo incluye los sockets del vocabulario controlado (AM5, AM4, LGA1700, LGA1851, LGA1200); LGA1150/1151/1155/1156 (tambien declarados) quedan solo en technical.socketSupport.",
       "accessedAt": "2026-08-22T00:00:00Z",
       "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-corsair-vengeance-ddr5-6000-64gb-01",
+      "sourceId": "src-corsair-vengeance-ddr5-6000-64gb-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante) para 'VENGEANCE 64GB (2x32GB) DDR5 DRAM 6000MHz C40 Memory Kit — Black'. Cita textual: SKU/Part Number 'CMK64GX5M2B6000C40'; Memory Type 'DDR5'; Form Factor 'UDIMM', pin count '288'; Capacity '64GB consisting of two 32GB modules'; Speed '6000 MT/s (PC5-48000)'; Tested Timings '40-40-40-77'; SPD Timings '40-40-40-77'; Tested Voltage '1.35V'; SPD Voltage '1.1V'; Default SPD Speed '4800MHz'; Weight '0.115kg'; Heatspreader 'Aluminum'. Se verifico previamente que NO existe un SKU CL36 para la capacidad de 64GB en la linea Vengeance (solo CL30 o CL40 estan disponibles oficialmente) -- se eligio el CL40 no-RGB negro por ser el mas directamente analogo (misma linea/acabado) al kit de 32GB ya cargado (prod-corsair-vengeance-ddr5-6000-32gb). Todos los campos tecnicos quedan respaldados; no hay unknownFields para este producto. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-thermaltake-bx3-550w-01",
+      "sourceId": "src-thermaltake-bx3-550w-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de producto de Thermaltake (thermaltakeusa.com, dominio propio del fabricante) para 'Smart BX3 Bronze 550W'. Cita textual: P/N 'PS-SPD-0550NNFABU-3', Model 'SPD-0550AH2NLB-3'; Power Rating '550W'; Efficiency '80 PLUS Bronze'; ATX Compliance 'built to ATX 3.1 specifications' (coincide exactamente con el requisito diferenciador del legacy psu-550); Modularity 'Non-modular with flat cable design'; Cooling '12cm FDB Fan'; Dimensions '150mm(W)x86mm(H)x140mm(D)'; Connectors 'Main Power (24-pin): 1, ATX 12V (4+4-pin): 1, PCIe (6+2-pin): 2, SATA (5-pin): 4, Peripheral: 4'; Protections 'OCP/OVP/UVP/OPP/OTP/SCP'; Warranty '5-year'. Se descartaron previamente MSI MAG A550BN y MAG A550BNL (datasheets oficiales de storage-asset.msi.com verificados por fetch directo) por no declarar ATX 3.0/3.1 en ningun lugar del documento. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-corsair-rm650e-01",
+      "sourceId": "src-corsair-rm650e-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante) para 'RMe Series RM650e Fully Modular Low-Noise ATX Power Supply', part number CP-9020302-NA. Cita textual: Continuous Power '650 Watts'; Cybenetics Rating 'Gold'; ATX Version '3.1' (coincide exactamente con el legacy psu-650); PCIe Compliance '5.1 compatible'; Dimensions '140x150x86 mm'; Weight '2.728kg'; Fan '120mm rifle bearing fan'; Modularity 'Fully modular'; AC Input '100-240V', Frequency '47~63Hz'; MTBF '100,000 hours'; Connectors 'ATX 24-pin: 1, EPS/ATX 12V 8-pin (4+4): 2, 12V-2x6 (12+4) Pin: 1 native, PCIe 8-pin (6+2): 3 total, SATA: 6, PATA: 2'; Warranty '7 Year'. El conector '12V-2x6' coincide exactamente con el vocabulario controlado gpuPowerConnector (mismo criterio ya aplicado en prod-corsair-rm1000e-atx31), por lo que se agrego a compatibility.provides. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-corsair-rm750e-01",
+      "sourceId": "src-corsair-rm750e-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante) para 'RMe Series RM750e Fully Modular Low-Noise ATX Power Supply', part number CP-9020295-NA. Cita textual: Power Output '750W continuous power'; Efficiency 'Cybenetics Gold-certified, up to 89% overall efficiency'; ATX Certification 'Intel ATX 3.1 Certified' (coincide exactamente con el legacy psu-750); PCIe Compliance 'PCIe 5.1 compatible'; Modularity 'Fully-Modular design'; Fan '120mm rifle bearing fan with zero RPM mode'; Dimensions '140x150x86 mm'; Input Voltage '100-240V AC, 47~63Hz'; Weight '2.901 kg'; Warranty '7 Year'; Connectors 'ATX 24-pin: 1, EPS 12V 8-pin (4+4): 2, PCIe 8-pin (6+2): 3 total, Native 600W-capable 12V-2x6 cable (1 unit), SATA: 6 connectors, PATA: 2 connectors'. El conector '12V-2x6' coincide exactamente con el vocabulario controlado gpuPowerConnector, por lo que se agrego a compatibility.provides. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-corsair-hx1200i-01",
+      "sourceId": "src-corsair-hx1200i-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante) para 'HXi Series HX1200i 80 PLUS Platinum Fully Modular Ultra Low Noise ATX 3.1 and PCIE 5.1 Power Supply', part number CP-9020307-NA. Cita textual: Power Output '1200 Watts continuous power'; Efficiency '80 PLUS Efficiency: Platinum', 'Cybenetics Platinum certified'; Standards Compliance 'ATX 3.1 certified, PCIe 5.1 compatible', 'Intel ATX 3.1 certified' (coincide exactamente con el legacy psu-1200, 'ATX 3.1 / PCIe 5.x'); Modularity 'Fully modular'; Fan '140mm Fluid Dynamic Bearing'; Connectors 'ATX 24-pin: 1, EPS 8-pin (4+4): 2, PCIe 8-pin (6+2): 5, Dual 12V-2x6 cables, SATA: 8, PATA: 6'; Input '100-240V, 47Hz-63Hz'; Weight '4.84kg'; Warranty '10-year'; MTBF '100,000 hours'. Esta pagina NO declara dimensiones fisicas (WxHxD) del producto -- a diferencia de RM650e/RM750e/BX3, que si las declaran -- por eso 'dimensions' queda null + unknownFields en vez de asumirse igual a otros modelos de la misma familia. Se descartaron previamente dos SKU distintos de 'HX1200i' (CP-9020070-NA, que declara 'ATX12V v2.4 and EPS12V 2.92 standards' -- NO ATX3.1 -- y CP-9020281-NA, no verificado) por corresponder a revisiones anteriores del mismo nombre comercial sin el estandar ATX 3.1 requerido por el legacy; se uso exclusivamente CP-9020307-NA, confirmado con ATX3.1/PCIe5.1 explicito. El conector '12V-2x6' coincide con el vocabulario controlado gpuPowerConnector. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
     }
   ]
 }

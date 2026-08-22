@@ -56,6 +56,48 @@
       "legacyId": "cool-aio-360",
       "productId": "prod-corsair-icue-link-h150i-rgb",
       "note": "Legacy 'Refrigeracion liquida AIO 360mm' (TDP 350W) -> CORSAIR iCUE LINK H150i RGB (CW-9061003-WW), family-cooling-aio-liquid. Radiador 360mm y sockets AM5/LGA1851 coinciden; el TDP en watts no pudo verificarse porque Corsair (y la industria de AIO en general, confirmado tambien contra NZXT) no publica esa cifra -- queda como limitacion documentada, no como campo inventado."
+    },
+    {
+      "category": "ram",
+      "legacyId": "ram-32",
+      "productId": "prod-corsair-vengeance-ddr5-6000-32gb",
+      "note": "Legacy '32 GB DDR5-6000' (2x16GB) -> CORSAIR VENGEANCE 32GB (2x16GB) DDR5-6000 CL36 (CMK32GX5M2B6000C36), family-memory-ddr5. Coincide exactamente. Mapping agregado de forma retroactiva: el product ya existia desde antes de esta auditoria, pero no se habia agregado al crosswalk."
+    },
+    {
+      "category": "ram",
+      "legacyId": "ram-64",
+      "productId": "prod-corsair-vengeance-ddr5-6000-64gb",
+      "note": "Legacy '64 GB DDR5-6000' (2x32GB) -> CORSAIR VENGEANCE 64GB (2x32GB) DDR5-6000 CL40 (CMK64GX5M2B6000C40), family-memory-ddr5. Coincide exactamente en capacidad, tipo, modulos y velocidad."
+    },
+    {
+      "category": "psu",
+      "legacyId": "psu-550",
+      "productId": "prod-thermaltake-smart-bx3-550w",
+      "note": "Legacy '550W 80+ Bronze, ATX 3.1' -> Thermaltake Smart BX3 Bronze 550W (PS-SPD-0550NNFABU-3), family-psu-atx. Coincide exactamente (unico candidato Bronze 550W que declara ATX 3.1 explicitamente; MSI MAG A550BN/A550BNL descartados por no declararlo)."
+    },
+    {
+      "category": "psu",
+      "legacyId": "psu-650",
+      "productId": "prod-corsair-rm650e",
+      "note": "Legacy '650W 80+ Gold, ATX 3.1' -> CORSAIR RM650e (CP-9020302-NA), family-psu-atx. Coincide exactamente."
+    },
+    {
+      "category": "psu",
+      "legacyId": "psu-750",
+      "productId": "prod-corsair-rm750e",
+      "note": "Legacy '750W 80+ Gold, ATX 3.1' -> CORSAIR RM750e (CP-9020295-NA), family-psu-atx. Coincide exactamente."
+    },
+    {
+      "category": "psu",
+      "legacyId": "psu-850",
+      "productId": "prod-msi-mag-a850gl-pcie5",
+      "note": "Legacy '850W 80+ Gold, ATX 3.1' -> MSI MAG A850GL PCIE5, family-psu-atx. Coincide exactamente. Mapping agregado de forma retroactiva: el product ya existia desde antes de esta auditoria (Fase 3, seccion PSU inicial), pero no se habia agregado al crosswalk."
+    },
+    {
+      "category": "psu",
+      "legacyId": "psu-1200",
+      "productId": "prod-corsair-hx1200i-cp9020307-na",
+      "note": "Legacy '1200W 80+ Platinum, ATX 3.1 / PCIe 5.x' -> CORSAIR HX1200i (CP-9020307-NA), family-psu-atx. Coincide exactamente. Se uso especificamente esta SKU y no otras variantes de 'HX1200i' (CP-9020070-NA, CP-9020281-NA) que no declaran ATX 3.1/PCIe 5.1."
     }
   ]
 }

@@ -2224,6 +2224,343 @@
           "kind": "manufacturer-page"
         }
       ]
+    },
+    {
+      "id": "prod-corsair-vengeance-ddr5-6000-64gb",
+      "type": "product",
+      "category": "ram",
+      "familyId": "family-memory-ddr5",
+      "identity": {
+        "brand": "CORSAIR",
+        "commercialName": "VENGEANCE 64GB (2x32GB) DDR5 DRAM 6000MHz C40 Memory Kit — Black",
+        "model": "CMK64GX5M2B6000C40",
+        "partNumber": "CMK64GX5M2B6000C40",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "memory": {
+          "type": "DDR5",
+          "formFactor": "UDIMM",
+          "capacityGB": 64,
+          "modules": 2,
+          "moduleCapacityGB": 32
+        },
+        "speed": {
+          "rateMTs": 6000,
+          "testedTimings": "40-40-40-77",
+          "spdTimings": "40-40-40-77",
+          "testedVoltageV": 1.35,
+          "spdVoltageV": 1.1,
+          "defaultSpdSpeedMHz": 4800
+        },
+        "physical": {
+          "pinCount": 288,
+          "weightKg": 0.115
+        }
+      },
+      "technicalFieldEvidence": {
+        "memory.type": ["ev-corsair-vengeance-ddr5-6000-64gb-01"],
+        "memory.formFactor": ["ev-corsair-vengeance-ddr5-6000-64gb-01"],
+        "memory.capacityGB": ["ev-corsair-vengeance-ddr5-6000-64gb-01"],
+        "memory.modules": ["ev-corsair-vengeance-ddr5-6000-64gb-01"],
+        "memory.moduleCapacityGB": ["ev-corsair-vengeance-ddr5-6000-64gb-01"],
+        "speed.rateMTs": ["ev-corsair-vengeance-ddr5-6000-64gb-01"],
+        "speed.testedTimings": ["ev-corsair-vengeance-ddr5-6000-64gb-01"],
+        "speed.spdTimings": ["ev-corsair-vengeance-ddr5-6000-64gb-01"],
+        "speed.testedVoltageV": ["ev-corsair-vengeance-ddr5-6000-64gb-01"],
+        "speed.spdVoltageV": ["ev-corsair-vengeance-ddr5-6000-64gb-01"],
+        "speed.defaultSpdSpeedMHz": ["ev-corsair-vengeance-ddr5-6000-64gb-01"],
+        "physical.pinCount": ["ev-corsair-vengeance-ddr5-6000-64gb-01"],
+        "physical.weightKg": ["ev-corsair-vengeance-ddr5-6000-64gb-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "memoryType", "value": "DDR5" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-corsair-vengeance-ddr5-6000-64gb-01",
+          "url": "https://www.corsair.com/us/en/p/memory/cmk64gx5m2b6000c40/vengeance-64gb-2x32gb-ddr5-dram-6000mhz-c40-memory-kit-black-cmk64gx5m2b6000c40",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-thermaltake-smart-bx3-550w",
+      "type": "product",
+      "category": "psu",
+      "familyId": "family-psu-atx",
+      "identity": {
+        "brand": "Thermaltake",
+        "commercialName": "Smart BX3 Bronze 550W",
+        "model": "SPD-0550AH2NLB-3",
+        "partNumber": "PS-SPD-0550NNFABU-3",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "wattage": 550,
+        "efficiencyRating": "80 PLUS Bronze",
+        "atxVersion": "3.1",
+        "modular": "non-modular",
+        "fanSizeMm": 120,
+        "fanBearing": "FDB",
+        "dimensions": { "widthMm": 150, "heightMm": 86, "depthMm": 140 },
+        "protections": "OCP/OVP/UVP/OPP/OTP/SCP",
+        "warrantyYears": 5,
+        "connectors": { "atx24pinCount": 1, "eps4plus4pinCount": 1, "pcie6plus2pinCount": 2, "sata5pinCount": 4, "peripheralCount": 4 }
+      },
+      "technicalFieldEvidence": {
+        "wattage": ["ev-thermaltake-bx3-550w-01"],
+        "efficiencyRating": ["ev-thermaltake-bx3-550w-01"],
+        "atxVersion": ["ev-thermaltake-bx3-550w-01"],
+        "modular": ["ev-thermaltake-bx3-550w-01"],
+        "fanSizeMm": ["ev-thermaltake-bx3-550w-01"],
+        "fanBearing": ["ev-thermaltake-bx3-550w-01"],
+        "dimensions.widthMm": ["ev-thermaltake-bx3-550w-01"],
+        "dimensions.heightMm": ["ev-thermaltake-bx3-550w-01"],
+        "dimensions.depthMm": ["ev-thermaltake-bx3-550w-01"],
+        "protections": ["ev-thermaltake-bx3-550w-01"],
+        "warrantyYears": ["ev-thermaltake-bx3-550w-01"],
+        "connectors.atx24pinCount": ["ev-thermaltake-bx3-550w-01"],
+        "connectors.eps4plus4pinCount": ["ev-thermaltake-bx3-550w-01"],
+        "connectors.pcie6plus2pinCount": ["ev-thermaltake-bx3-550w-01"],
+        "connectors.sata5pinCount": ["ev-thermaltake-bx3-550w-01"],
+        "connectors.peripheralCount": ["ev-thermaltake-bx3-550w-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "formFactor", "value": "ATX" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-thermaltake-bx3-550w-01",
+          "url": "https://thermaltakeusa.com/products/smart-bx3-bronze-550w-ps-spd-0550nnfabu-3",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-corsair-rm650e",
+      "type": "product",
+      "category": "psu",
+      "familyId": "family-psu-atx",
+      "identity": {
+        "brand": "CORSAIR",
+        "commercialName": "RMe Series RM650e Fully Modular Low-Noise ATX Power Supply",
+        "model": "RM650e",
+        "partNumber": "CP-9020302-NA",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "wattage": 650,
+        "efficiencyRating": "Cybenetics Gold",
+        "atxVersion": "3.1",
+        "modular": "Fully Modular",
+        "fanSizeMm": 120,
+        "fanBearing": "rifle bearing",
+        "dimensions": { "depthMm": 140, "widthMm": 150, "heightMm": 86 },
+        "weightKg": 2.728,
+        "inputVoltageRange": "100-240V",
+        "inputFrequencyRange": "47-63Hz",
+        "mtbfHours": 100000,
+        "warrantyYears": 7,
+        "connectors": { "atx24pinCount": 1, "eps4plus4pinCount": 2, "connector12v2x6Count": 1, "pcie6plus2pinCount": 3, "sataCount": 6, "pataCount": 2 }
+      },
+      "technicalFieldEvidence": {
+        "wattage": ["ev-corsair-rm650e-01"],
+        "efficiencyRating": ["ev-corsair-rm650e-01"],
+        "atxVersion": ["ev-corsair-rm650e-01"],
+        "modular": ["ev-corsair-rm650e-01"],
+        "fanSizeMm": ["ev-corsair-rm650e-01"],
+        "fanBearing": ["ev-corsair-rm650e-01"],
+        "dimensions.depthMm": ["ev-corsair-rm650e-01"],
+        "dimensions.widthMm": ["ev-corsair-rm650e-01"],
+        "dimensions.heightMm": ["ev-corsair-rm650e-01"],
+        "weightKg": ["ev-corsair-rm650e-01"],
+        "inputVoltageRange": ["ev-corsair-rm650e-01"],
+        "inputFrequencyRange": ["ev-corsair-rm650e-01"],
+        "mtbfHours": ["ev-corsair-rm650e-01"],
+        "warrantyYears": ["ev-corsair-rm650e-01"],
+        "connectors.atx24pinCount": ["ev-corsair-rm650e-01"],
+        "connectors.eps4plus4pinCount": ["ev-corsair-rm650e-01"],
+        "connectors.connector12v2x6Count": ["ev-corsair-rm650e-01"],
+        "connectors.pcie6plus2pinCount": ["ev-corsair-rm650e-01"],
+        "connectors.sataCount": ["ev-corsair-rm650e-01"],
+        "connectors.pataCount": ["ev-corsair-rm650e-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "formFactor", "value": "ATX" },
+          { "key": "gpuPowerConnector", "value": "12V-2x6" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-corsair-rm650e-01",
+          "url": "https://www.corsair.com/us/en/p/psu/cp-9020302-na/rme-series-rm650e-fully-modular-low-noise-atx-power-supply-cp-9020302-na",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-corsair-rm750e",
+      "type": "product",
+      "category": "psu",
+      "familyId": "family-psu-atx",
+      "identity": {
+        "brand": "CORSAIR",
+        "commercialName": "RMe Series RM750e Fully Modular Low-Noise ATX Power Supply",
+        "model": "RM750e",
+        "partNumber": "CP-9020295-NA",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "wattage": 750,
+        "efficiencyRating": "Cybenetics Gold (up to 89%)",
+        "atxVersion": "3.1",
+        "modular": "Fully-Modular",
+        "fanSizeMm": 120,
+        "fanBearing": "rifle bearing",
+        "dimensions": { "depthMm": 140, "widthMm": 150, "heightMm": 86 },
+        "weightKg": 2.901,
+        "inputVoltageRange": "100-240V",
+        "inputFrequencyRange": "47-63Hz",
+        "warrantyYears": 7,
+        "connectors": { "atx24pinCount": 1, "eps4plus4pinCount": 2, "connector12v2x6Count": 1, "pcie6plus2pinCount": 3, "sataCount": 6, "pataCount": 2 }
+      },
+      "technicalFieldEvidence": {
+        "wattage": ["ev-corsair-rm750e-01"],
+        "efficiencyRating": ["ev-corsair-rm750e-01"],
+        "atxVersion": ["ev-corsair-rm750e-01"],
+        "modular": ["ev-corsair-rm750e-01"],
+        "fanSizeMm": ["ev-corsair-rm750e-01"],
+        "fanBearing": ["ev-corsair-rm750e-01"],
+        "dimensions.depthMm": ["ev-corsair-rm750e-01"],
+        "dimensions.widthMm": ["ev-corsair-rm750e-01"],
+        "dimensions.heightMm": ["ev-corsair-rm750e-01"],
+        "weightKg": ["ev-corsair-rm750e-01"],
+        "inputVoltageRange": ["ev-corsair-rm750e-01"],
+        "inputFrequencyRange": ["ev-corsair-rm750e-01"],
+        "warrantyYears": ["ev-corsair-rm750e-01"],
+        "connectors.atx24pinCount": ["ev-corsair-rm750e-01"],
+        "connectors.eps4plus4pinCount": ["ev-corsair-rm750e-01"],
+        "connectors.connector12v2x6Count": ["ev-corsair-rm750e-01"],
+        "connectors.pcie6plus2pinCount": ["ev-corsair-rm750e-01"],
+        "connectors.sataCount": ["ev-corsair-rm750e-01"],
+        "connectors.pataCount": ["ev-corsair-rm750e-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "formFactor", "value": "ATX" },
+          { "key": "gpuPowerConnector", "value": "12V-2x6" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-corsair-rm750e-01",
+          "url": "https://www.corsair.com/us/en/p/psu/cp-9020295-na/rme-series-rm750e-fully-modular-low-noise-atx-power-supply-cp-9020295-na",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-corsair-hx1200i-cp9020307-na",
+      "type": "product",
+      "category": "psu",
+      "familyId": "family-psu-atx",
+      "identity": {
+        "brand": "CORSAIR",
+        "commercialName": "HXi Series HX1200i 80 PLUS Platinum Fully Modular Ultra Low Noise ATX 3.1 and PCIE 5.1 Power Supply",
+        "model": "HX1200i",
+        "partNumber": "CP-9020307-NA",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "wattage": 1200,
+        "efficiencyRating": "80 PLUS Platinum",
+        "atxVersion": "3.1",
+        "pcieCompliance": "5.1",
+        "modular": "Fully Modular",
+        "fanSizeMm": 140,
+        "fanBearing": "Fluid Dynamic Bearing",
+        "dimensions": null,
+        "weightKg": 4.84,
+        "inputVoltageRange": "100-240V",
+        "inputFrequencyRange": "47-63Hz",
+        "mtbfHours": 100000,
+        "warrantyYears": 10,
+        "connectors": { "atx24pinCount": 1, "eps4plus4pinCount": 2, "pcie6plus2pinCount": 5, "connector12v2x6Count": 2, "sataCount": 8, "pataCount": 6 }
+      },
+      "technicalFieldEvidence": {
+        "wattage": ["ev-corsair-hx1200i-01"],
+        "efficiencyRating": ["ev-corsair-hx1200i-01"],
+        "atxVersion": ["ev-corsair-hx1200i-01"],
+        "pcieCompliance": ["ev-corsair-hx1200i-01"],
+        "modular": ["ev-corsair-hx1200i-01"],
+        "fanSizeMm": ["ev-corsair-hx1200i-01"],
+        "fanBearing": ["ev-corsair-hx1200i-01"],
+        "weightKg": ["ev-corsair-hx1200i-01"],
+        "inputVoltageRange": ["ev-corsair-hx1200i-01"],
+        "inputFrequencyRange": ["ev-corsair-hx1200i-01"],
+        "mtbfHours": ["ev-corsair-hx1200i-01"],
+        "warrantyYears": ["ev-corsair-hx1200i-01"],
+        "connectors.atx24pinCount": ["ev-corsair-hx1200i-01"],
+        "connectors.eps4plus4pinCount": ["ev-corsair-hx1200i-01"],
+        "connectors.pcie6plus2pinCount": ["ev-corsair-hx1200i-01"],
+        "connectors.connector12v2x6Count": ["ev-corsair-hx1200i-01"],
+        "connectors.sataCount": ["ev-corsair-hx1200i-01"],
+        "connectors.pataCount": ["ev-corsair-hx1200i-01"]
+      },
+      "unknownFields": ["dimensions"],
+      "compatibility": {
+        "provides": [
+          { "key": "formFactor", "value": "ATX" },
+          { "key": "gpuPowerConnector", "value": "12V-2x6" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-corsair-hx1200i-01",
+          "url": "https://www.corsair.com/us/en/p/psu/cp-9020307-na/hxi-series-hx1200i-80-plus-platinum-fully-modular-ultra-low-noise-atx-3-1-and-pcie-5-1-power-supply-cp-9020307-na",
+          "kind": "manufacturer-page"
+        }
+      ]
     }
   ]
 }

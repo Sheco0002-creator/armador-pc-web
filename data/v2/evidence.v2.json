@@ -456,6 +456,34 @@
       "claim": "Brochure oficial en PDF de PNY (pny.com, dominio propio del fabricante, fetch directo + pdftotext), 'PNY GEFORCE RTX 5070 12GB Overclocked Triple Fan DLSS 4', part number 'VCG507012TFXPB1-O', UPC '751492794464' (enero 2025). Cita textual: NVIDIA CUDA Cores '6144'; Clock Speed '2325 MHz'; Boost Speed '2587 MHz'; Memory Speed '28' (Gbps); Memory Size '12GB GDDR7'; Memory Interface '192-bit'; Memory Bandwidth (GB/s) '672'; TDP '250 W'; Bus Type 'PCI-Express 5.0 x16'; Power Input '1x16 (1x16 to 2x8 adapter included)' (conector 16-pin literal, no convertido a 12V-2x6/12VHPWR, mismo criterio ya aplicado en otros productos GPU con este mismo tipo de conector); System Requirements 'Two 8-pin supplementary power connectors', '650 W or greater system power supply'; Card Dimensions '11.80\" x 4.73\" x1.9\"; 2.4 Slot' = '299.5 x 120.0 x 48.0mm; 2.4 Slot'. El brochure no declara el peso de la tarjeta (solo dimensiones de la caja) -- por eso no se incluyo ningun campo physical.weightCardG/weightPackageG (la seccion misma no existe en la fuente, igual que en otros productos donde una seccion completa esta ausente). Todos los campos tecnicos incluidos quedan respaldados; no hay unknownFields para este producto. No se uso ningun retailer/agregador como fuente. Se intento previamente GIGABYTE para RTX 5080 (gigabyte.com/Graphics-Card/GV-N5080GAMING-OC-16GD/sp) -> 403 Forbidden, cuarto bloqueo consecutivo confirmado de ese fabricante tras RTX5070/RTX5060(x2); se descarto continuar con GIGABYTE en este intento y se uso PNY en su lugar. Tambien se reintento ZOTAC (paginas de producto y 4 brochures PDF distintos) -> 403/468 en todos los casos, mismo bloqueo ya documentado en la Fase 2 (ver seccion Fase 2 del CONTRATO_V2.md); no se creo ningun registro ZOTAC.",
       "accessedAt": "2026-08-22T00:00:00Z",
       "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-amd-9600x-03",
+      "sourceId": "src-amd-9600x-03",
+      "claim": "Fetch directo exitoso (via curl con user-agent de navegador; el mecanismo WebFetch previamente usado seguia dando timeout en amd.com, documentado en sesiones anteriores) a la pagina oficial de producto de AMD (amd.com, dominio propio del fabricante) para 'AMD Ryzen 5 9600X'. Cita textual de la seccion 'Product IDs': 'Product ID Boxed: 100-100001405WOF', 'Product ID Tray: 100-000001405' -- primera vez que se obtiene el Product ID/OPN oficial de un CPU AMD en este proyecto. Cita textual de la tabla de especificaciones: '# of CPU Cores: 6', 'Multithreading (SMT): Yes', '# of Threads: 12', 'Max. Boost Clock: Up to 5.4 GHz', 'Base Clock: 3.9 GHz', 'L1 Cache: 480 KB', 'L2 Cache: 6 MB', 'L3 Cache: 32 MB', 'Default TDP: 65W', 'CPU Socket: AM5', 'PCI Express Version: PCIe 5.0'. Estos valores corroboran exactamente los ya cargados desde ir.amd.com (ev-amd-9600x-01/02) y agregan el desglose L1/L2 que antes no se tenia. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-amd-9700x-03",
+      "sourceId": "src-amd-9700x-03",
+      "claim": "Fetch directo exitoso (via curl con user-agent de navegador) a la pagina oficial de producto de AMD (amd.com) para 'AMD Ryzen 7 9700X'. Cita textual de la seccion 'Product IDs': 'Product ID Boxed: 100-100001404WOF', 'Product ID Tray: 100-000001404'. Cita textual de la tabla de especificaciones: '# of CPU Cores: 8', '# of Threads: 16', 'Max. Boost Clock: Up to 5.5 GHz', 'Base Clock: 3.8 GHz', 'L1 Cache: 640 KB', 'L2 Cache: 8 MB', 'L3 Cache: 32 MB', 'Default TDP: 65W', 'CPU Socket: AM5', 'PCI Express Version: PCIe 5.0'. Corrobora exactamente los valores ya cargados desde ir.amd.com y agrega el desglose L1/L2. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-amd-9850x3d-03",
+      "sourceId": "src-amd-9850x3d-03",
+      "claim": "Fetch directo exitoso (via curl con user-agent de navegador) a la pagina oficial de producto de AMD (amd.com) para 'AMD Ryzen 7 9850X3D' -- pagina que en sesiones anteriores solo se habia podido acceder via WebFetch a un press release de ir.amd.com sin el desglose L2/L3 ni el socket confirmado explicitamente. Cita textual de la seccion 'Product IDs': 'Product ID Boxed: 100-100001973WOF', 'Product ID Tray: 100-000001973'. Cita textual de la tabla de especificaciones: '# of CPU Cores: 8', '# of Threads: 16', 'Max. Boost Clock: Up to 5.6 GHz', 'Base Clock: 4.7 GHz', 'L1 Cache: 640 KB', 'L2 Cache: 8 MB', 'L3 Cache: 96 MB', 'Default TDP: 120W', 'CPU Socket: AM5', 'PCI Express Version: PCIe 5.0'. El valor L2(8MB)+L3(96MB)=104MB coincide exactamente con el 'cache total' de 104MB ya cargado desde ir.amd.com (ev-amd-9850x3d-02), confirmando consistencia entre ambas fuentes oficiales independientes. Con esta evidencia, family-amd-ryzen7-9850x3d actualiza socket (null->AM5) y cache.l3MB (null->96); ambos campos salen de unknownFields. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-amd-9950x3d-03",
+      "sourceId": "src-amd-9950x3d-03",
+      "claim": "Fetch directo exitoso (via curl con user-agent de navegador) a la pagina oficial de producto de AMD (amd.com) para 'AMD Ryzen 9 9950X3D'. Cita textual de la seccion 'Product IDs': 'Product ID Boxed: 100-100000719WOF', 'Product ID Tray: 100-000000719'. Cita textual de la tabla de especificaciones: '# of CPU Cores: 16', '# of Threads: 32', 'Max. Boost Clock: Up to 5.7 GHz', 'Base Clock: 4.3 GHz', 'L1 Cache: 1280 KB', 'L2 Cache: 16 MB', 'L3 Cache: 128 MB', 'Default TDP: 170W', 'CPU Socket: AM5', 'PCI Express Version: PCIe 5.0'. El valor L2(16MB)+L3(128MB)=144MB coincide exactamente con el 'cache total' de 144MB ya cargado desde ir.amd.com (ev-amd-9950x3d-02). Con esta evidencia, family-amd-ryzen9-9950x3d actualiza socket (null->AM5) y cache.l3MB (null->128); ambos campos salen de unknownFields. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
     }
   ]
 }

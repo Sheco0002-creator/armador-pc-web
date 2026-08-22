@@ -156,27 +156,37 @@
       "displayName": "AMD Ryzen 7 9850X3D",
       "selectable": false,
       "technical": {
-        "socket": null,
+        "socket": "AM5",
         "coresPhysical": 8,
         "threads": 16,
         "baseClockMHz": 4700,
         "boostClockMHz": 5600,
-        "cache": { "l3MB": null, "totalMB": 104 },
-        "tdpW": 120
+        "cache": { "l3MB": 96, "totalMB": 104 },
+        "tdpW": 120,
+        "interface": { "pcieGen": "5.0" }
       },
       "technicalFieldEvidence": {
-        "coresPhysical": ["ev-amd-9850x3d-02"],
-        "threads": ["ev-amd-9850x3d-02"],
-        "baseClockMHz": ["ev-amd-9850x3d-02"],
-        "boostClockMHz": ["ev-amd-9850x3d-02"],
+        "socket": ["ev-amd-9850x3d-03"],
+        "coresPhysical": ["ev-amd-9850x3d-02", "ev-amd-9850x3d-03"],
+        "threads": ["ev-amd-9850x3d-02", "ev-amd-9850x3d-03"],
+        "baseClockMHz": ["ev-amd-9850x3d-02", "ev-amd-9850x3d-03"],
+        "boostClockMHz": ["ev-amd-9850x3d-02", "ev-amd-9850x3d-03"],
+        "cache.l3MB": ["ev-amd-9850x3d-03"],
         "cache.totalMB": ["ev-amd-9850x3d-02"],
-        "tdpW": ["ev-amd-9850x3d-02"]
+        "tdpW": ["ev-amd-9850x3d-02", "ev-amd-9850x3d-03"],
+        "interface.pcieGen": ["ev-amd-9850x3d-03"]
       },
-      "unknownFields": ["socket", "cache.l3MB"],
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "socket", "value": "AM5" },
+          { "key": "pcieGen", "value": "5.0" }
+        ]
+      },
       "verification": {
         "status": "verified",
-        "verifiedAt": "2026-08-21T00:00:00Z",
-        "verifiedBy": "manual-review-fase2"
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase4"
       },
       "officialSources": [
         {
@@ -188,6 +198,11 @@
           "sourceId": "src-amd-9850x3d-02",
           "url": "https://ir.amd.com/news-events/press-releases/detail/1270/amd-expands-ai-leadership-across-client-graphics-and-software-with-new-ryzen-ryzen-ai-and-amd-rocm-announcements-at-ces-2026",
           "kind": "manufacturer-page"
+        },
+        {
+          "sourceId": "src-amd-9850x3d-03",
+          "url": "https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-7-9850x3d.html",
+          "kind": "manufacturer-page"
         }
       ]
     },
@@ -198,29 +213,37 @@
       "displayName": "AMD Ryzen 9 9950X3D",
       "selectable": false,
       "technical": {
-        "socket": null,
+        "socket": "AM5",
         "coresPhysical": 16,
         "threads": 32,
         "baseClockMHz": 4300,
         "boostClockMHz": 5700,
-        "cache": { "l3MB": null, "totalMB": 144 },
+        "cache": { "l3MB": 128, "totalMB": 144 },
         "tdpW": 170,
         "interface": { "pcieGen": "5.0" }
       },
       "technicalFieldEvidence": {
-        "coresPhysical": ["ev-amd-9950x3d-02"],
-        "threads": ["ev-amd-9950x3d-02"],
-        "baseClockMHz": ["ev-amd-9950x3d-02"],
-        "boostClockMHz": ["ev-amd-9950x3d-02"],
+        "socket": ["ev-amd-9950x3d-03"],
+        "coresPhysical": ["ev-amd-9950x3d-02", "ev-amd-9950x3d-03"],
+        "threads": ["ev-amd-9950x3d-02", "ev-amd-9950x3d-03"],
+        "baseClockMHz": ["ev-amd-9950x3d-02", "ev-amd-9950x3d-03"],
+        "boostClockMHz": ["ev-amd-9950x3d-02", "ev-amd-9950x3d-03"],
+        "cache.l3MB": ["ev-amd-9950x3d-03"],
         "cache.totalMB": ["ev-amd-9950x3d-02"],
-        "tdpW": ["ev-amd-9950x3d-02"],
-        "interface.pcieGen": ["ev-amd-9950x3d-02"]
+        "tdpW": ["ev-amd-9950x3d-02", "ev-amd-9950x3d-03"],
+        "interface.pcieGen": ["ev-amd-9950x3d-02", "ev-amd-9950x3d-03"]
       },
-      "unknownFields": ["socket", "cache.l3MB"],
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "socket", "value": "AM5" },
+          { "key": "pcieGen", "value": "5.0" }
+        ]
+      },
       "verification": {
         "status": "verified",
-        "verifiedAt": "2026-08-21T00:00:00Z",
-        "verifiedBy": "manual-review-fase2"
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase4"
       },
       "officialSources": [
         {
@@ -231,6 +254,11 @@
         {
           "sourceId": "src-amd-9950x3d-02",
           "url": "https://ir.amd.com/news-events/press-releases/detail/1233/amd-announces-new-graphics-and-gaming-products-for-ultimate-gameplay-experience-at-ces",
+          "kind": "manufacturer-page"
+        },
+        {
+          "sourceId": "src-amd-9950x3d-03",
+          "url": "https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-9-9950x3d.html",
           "kind": "manufacturer-page"
         }
       ]
@@ -3019,6 +3047,234 @@
           "sourceId": "src-pny-rtx5070oc-01",
           "url": "https://www.pny.com/file%20library/company/support/product%20brochures/geforce%20graphics/english/rtx-5070-12gb-triple-fan-oc-brochure.pdf",
           "kind": "datasheet"
+        }
+      ]
+    },
+    {
+      "id": "prod-amd-ryzen5-9600x",
+      "type": "product",
+      "category": "cpu",
+      "familyId": "family-amd-ryzen5-9600x",
+      "identity": {
+        "brand": "AMD",
+        "commercialName": "AMD Ryzen 5 9600X",
+        "model": "Ryzen 5 9600X",
+        "partNumber": "100-100001405WOF",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "socket": "AM5",
+        "coresPhysical": 6,
+        "threads": 12,
+        "baseClockMHz": 3900,
+        "boostClockMHz": 5400,
+        "cache": { "l1KB": 480, "l2MB": 6, "l3MB": 32 },
+        "tdpW": 65,
+        "interface": { "pcieGen": "5.0" },
+        "packaging": "Boxed (WOF)"
+      },
+      "technicalFieldEvidence": {
+        "socket": ["ev-amd-9600x-03"],
+        "coresPhysical": ["ev-amd-9600x-03"],
+        "threads": ["ev-amd-9600x-03"],
+        "baseClockMHz": ["ev-amd-9600x-03"],
+        "boostClockMHz": ["ev-amd-9600x-03"],
+        "cache.l1KB": ["ev-amd-9600x-03"],
+        "cache.l2MB": ["ev-amd-9600x-03"],
+        "cache.l3MB": ["ev-amd-9600x-03"],
+        "tdpW": ["ev-amd-9600x-03"],
+        "interface.pcieGen": ["ev-amd-9600x-03"],
+        "packaging": ["ev-amd-9600x-03"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "socket", "value": "AM5" },
+          { "key": "pcieGen", "value": "5.0" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase4"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-amd-9600x-03",
+          "url": "https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-5-9600x.html",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-amd-ryzen7-9700x",
+      "type": "product",
+      "category": "cpu",
+      "familyId": "family-amd-ryzen7-9700x",
+      "identity": {
+        "brand": "AMD",
+        "commercialName": "AMD Ryzen 7 9700X",
+        "model": "Ryzen 7 9700X",
+        "partNumber": "100-100001404WOF",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "socket": "AM5",
+        "coresPhysical": 8,
+        "threads": 16,
+        "baseClockMHz": 3800,
+        "boostClockMHz": 5500,
+        "cache": { "l1KB": 640, "l2MB": 8, "l3MB": 32 },
+        "tdpW": 65,
+        "interface": { "pcieGen": "5.0" },
+        "packaging": "Boxed (WOF)"
+      },
+      "technicalFieldEvidence": {
+        "socket": ["ev-amd-9700x-03"],
+        "coresPhysical": ["ev-amd-9700x-03"],
+        "threads": ["ev-amd-9700x-03"],
+        "baseClockMHz": ["ev-amd-9700x-03"],
+        "boostClockMHz": ["ev-amd-9700x-03"],
+        "cache.l1KB": ["ev-amd-9700x-03"],
+        "cache.l2MB": ["ev-amd-9700x-03"],
+        "cache.l3MB": ["ev-amd-9700x-03"],
+        "tdpW": ["ev-amd-9700x-03"],
+        "interface.pcieGen": ["ev-amd-9700x-03"],
+        "packaging": ["ev-amd-9700x-03"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "socket", "value": "AM5" },
+          { "key": "pcieGen", "value": "5.0" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase4"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-amd-9700x-03",
+          "url": "https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-7-9700x.html",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-amd-ryzen7-9850x3d",
+      "type": "product",
+      "category": "cpu",
+      "familyId": "family-amd-ryzen7-9850x3d",
+      "identity": {
+        "brand": "AMD",
+        "commercialName": "AMD Ryzen 7 9850X3D",
+        "model": "Ryzen 7 9850X3D",
+        "partNumber": "100-100001973WOF",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "socket": "AM5",
+        "coresPhysical": 8,
+        "threads": 16,
+        "baseClockMHz": 4700,
+        "boostClockMHz": 5600,
+        "cache": { "l1KB": 640, "l2MB": 8, "l3MB": 96 },
+        "tdpW": 120,
+        "interface": { "pcieGen": "5.0" },
+        "packaging": "Boxed (WOF)"
+      },
+      "technicalFieldEvidence": {
+        "socket": ["ev-amd-9850x3d-03"],
+        "coresPhysical": ["ev-amd-9850x3d-03"],
+        "threads": ["ev-amd-9850x3d-03"],
+        "baseClockMHz": ["ev-amd-9850x3d-03"],
+        "boostClockMHz": ["ev-amd-9850x3d-03"],
+        "cache.l1KB": ["ev-amd-9850x3d-03"],
+        "cache.l2MB": ["ev-amd-9850x3d-03"],
+        "cache.l3MB": ["ev-amd-9850x3d-03"],
+        "tdpW": ["ev-amd-9850x3d-03"],
+        "interface.pcieGen": ["ev-amd-9850x3d-03"],
+        "packaging": ["ev-amd-9850x3d-03"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "socket", "value": "AM5" },
+          { "key": "pcieGen", "value": "5.0" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase4"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-amd-9850x3d-03",
+          "url": "https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-7-9850x3d.html",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-amd-ryzen9-9950x3d",
+      "type": "product",
+      "category": "cpu",
+      "familyId": "family-amd-ryzen9-9950x3d",
+      "identity": {
+        "brand": "AMD",
+        "commercialName": "AMD Ryzen 9 9950X3D",
+        "model": "Ryzen 9 9950X3D",
+        "partNumber": "100-100000719WOF",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "socket": "AM5",
+        "coresPhysical": 16,
+        "threads": 32,
+        "baseClockMHz": 4300,
+        "boostClockMHz": 5700,
+        "cache": { "l1KB": 1280, "l2MB": 16, "l3MB": 128 },
+        "tdpW": 170,
+        "interface": { "pcieGen": "5.0" },
+        "packaging": "Boxed (WOF)"
+      },
+      "technicalFieldEvidence": {
+        "socket": ["ev-amd-9950x3d-03"],
+        "coresPhysical": ["ev-amd-9950x3d-03"],
+        "threads": ["ev-amd-9950x3d-03"],
+        "baseClockMHz": ["ev-amd-9950x3d-03"],
+        "boostClockMHz": ["ev-amd-9950x3d-03"],
+        "cache.l1KB": ["ev-amd-9950x3d-03"],
+        "cache.l2MB": ["ev-amd-9950x3d-03"],
+        "cache.l3MB": ["ev-amd-9950x3d-03"],
+        "tdpW": ["ev-amd-9950x3d-03"],
+        "interface.pcieGen": ["ev-amd-9950x3d-03"],
+        "packaging": ["ev-amd-9950x3d-03"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "socket", "value": "AM5" },
+          { "key": "pcieGen", "value": "5.0" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase4"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-amd-9950x3d-03",
+          "url": "https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-9-9950x3d.html",
+          "kind": "manufacturer-page"
         }
       ]
     }

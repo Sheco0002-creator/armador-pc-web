@@ -145,7 +145,31 @@
       "category": "gpu",
       "legacyId": "gpu-5090",
       "productId": "prod-msi-rtx5090-32g-gaming-trio-oc",
-      "note": "Legacy 'NVIDIA RTX 5090 32GB' (length 360mm, powerDraw 575W, recommendedPsu 1000W) -> MSI GeForce RTX 5090 32G GAMING TRIO OC (G5090-32GTC), family-nvidia-rtx5090. Se eligio MSI como canonico entre los 3 products de la family (NVIDIA FE/MSI/ASUS) por ser el unico sin ningun unknownFields. Mapping retroactivo, mismo motivo que gpu-5060. Nota: gpu-9060xt (AMD RX 9060 XT) y gpu-9070xt (AMD RX 9070 XT), usados como alternativa en entrada y media respectivamente, NO tienen ningun mapping porque no existe ninguna family/product AMD GPU en V2 (AMD sigue en pausa por bloqueo de amd.com, igual que AMD CPU)."
+      "note": "Legacy 'NVIDIA RTX 5090 32GB' (length 360mm, powerDraw 575W, recommendedPsu 1000W) -> MSI GeForce RTX 5090 32G GAMING TRIO OC (G5090-32GTC), family-nvidia-rtx5090. Se eligio MSI como canonico entre los 3 products de la family (NVIDIA FE/MSI/ASUS) por ser el unico sin ningun unknownFields. Mapping retroactivo, mismo motivo que gpu-5060. Nota: gpu-9060xt (AMD RX 9060 XT) y gpu-9070xt (AMD RX 9070 XT), usados como alternativa en entrada y media respectivamente, NO tienen ningun mapping porque no existe ninguna family/product AMD GPU en V2. AMD GPU sigue bloqueado; AMD CPU se resolvio en Fase 4 (ver mappings de category=cpu) usando curl con user-agent de navegador contra amd.com en vez de WebFetch."
+    },
+    {
+      "category": "cpu",
+      "legacyId": "cpu-r5-9600x",
+      "productId": "prod-amd-ryzen5-9600x",
+      "note": "Legacy 'AMD Ryzen 5 9600X' (AM5, 65W) -> AMD Ryzen 5 9600X (Product ID Boxed 100-100001405WOF), family-amd-ryzen5-9600x. Coincide exactamente. Primer product AMD CPU del proyecto: Fase 4 resolvio el bloqueo historico de amd.com usando curl con user-agent de navegador (WebFetch seguia dando timeout) contra la pagina oficial de producto, obteniendo el Product ID/OPN real por primera vez."
+    },
+    {
+      "category": "cpu",
+      "legacyId": "cpu-r7-9700x",
+      "productId": "prod-amd-ryzen7-9700x",
+      "note": "Legacy 'AMD Ryzen 7 9700X' (AM5, 65W) -> AMD Ryzen 7 9700X (Product ID Boxed 100-100001404WOF), family-amd-ryzen7-9700x. Coincide exactamente."
+    },
+    {
+      "category": "cpu",
+      "legacyId": "cpu-r7-9850x3d",
+      "productId": "prod-amd-ryzen7-9850x3d",
+      "note": "Legacy 'AMD Ryzen 7 9850X3D' (AM5, 120W) -> AMD Ryzen 7 9850X3D (Product ID Boxed 100-100001973WOF), family-amd-ryzen7-9850x3d. Coincide exactamente. La evidencia de este producto tambien permitio actualizar la family (socket null->AM5, cache.l3MB null->96MB)."
+    },
+    {
+      "category": "cpu",
+      "legacyId": "cpu-r9-9950x3d",
+      "productId": "prod-amd-ryzen9-9950x3d",
+      "note": "Legacy 'AMD Ryzen 9 9950X3D' (AM5, 170W) -> AMD Ryzen 9 9950X3D (Product ID Boxed 100-100000719WOF), family-amd-ryzen9-9950x3d. Coincide exactamente. La evidencia de este producto tambien permitio actualizar la family (socket null->AM5, cache.l3MB null->128MB). Nota: cpu-ultra7-265k y cpu-ultra9-285k (Intel), usados como alternativa en media y extrema respectivamente, quedan sin mapping -- no existe ninguna family/product Intel CPU en V2, fuera de alcance de esta Fase 4 (enfocada en AMD)."
     }
   ]
 }

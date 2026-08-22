@@ -1,25 +1,29 @@
-# Contrato V2 del catálogo de ArmaPC — v2.0.0 (Fase 1 completa, Fase 2 cerrada, Fase 3 en curso)
+# Contrato V2 del catálogo de ArmaPC — v2.0.0 (Fase 1 completa, Fase 2 cerrada, Fase 3 cerrada al 100% + trabajo post-cierre en curso)
 
 Estado (actualizado 2026-08-22): **Fase 1 completa. Fase 2 cerrada** (2026-08-21).
-**Fase 3 en ejecución activa** (iniciada 2026-08-21, ver §0.4 en adelante).
+**Fase 3 cerrada al 100%** (cobertura de storage/case/cooling/psu/
+motherboard/ram, ver auditoría global previa a esta sección). **Trabajo
+post-cierre de Fase 3 en curso**, informalmente referido en sesión como
+"Fase 4 — resolver candidatos bloqueados" (no confundir con la Fase 4
+formal del plan de fases en §14, que es `offers.v2.json`): ZOTAC sigue
+bloqueado, GIGABYTE sigue bloqueado, **AMD CPU se resolvió**, ver §0.33.
 Estado real de `catalog.v2.json`: **19 `family`, todas `verified`** (las 8
 originales CPU/GPU — incluidas las 2 que quedaron `partial` al cierre de
-Fase 2 y luego pasaron a `verified` en §0.6 — más `family-memory-ddr5`,
+Fase 2 y luego pasaron a `verified` en §0.6, y actualizadas de nuevo en
+§0.33 con socket/cache L2-L3 reales — más `family-memory-ddr5`,
 `family-intel-z890`, `family-psu-atx`, `family-storage-nvme-pcie4`,
 `family-storage-sata`, `family-storage-nvme-pcie5`,
 `family-case-atx-mid-tower`, `family-case-atx-full-tower`,
 `family-cooling-air-tower`, `family-cooling-aio-liquid` y
-`family-amd-am5`, agregadas durante Fase 3), y **40 `product` reales
-verificados** (13 GPU, 6 RAM, 6 motherboard, 6 PSU, 4 storage, 2 case, 3
-cooling). 0 `offer`, 0 `preset`. No reemplaza `data/catalog.json` (legacy).
-No se migró ningún registro legacy. La investigación de productos AMD
-(CPU) permanece en pausa (ver §0.7): 0 `product` AMD creados (los
-`product` de motherboard AM5 sí se cargaron, ya que la fuente es el
-fabricante de la placa, no AMD). `node scripts/validate-v2.js` → 59
-entries válidas, 65 evidencias, 0 offers, 0 presets. `node --test
+`family-amd-am5`), y **44 `product` reales verificados** (13 GPU, 6 RAM,
+6 motherboard, 6 PSU, 4 storage, 2 case, 3 cooling, **4 CPU AMD nuevos en
+§0.33**). 0 `offer`, 0 `preset`. No reemplaza `data/catalog.json` (legacy).
+No se migró ningún registro legacy. `node scripts/validate-v2.js` → 63
+entries válidas, 69 evidencias, 0 offers, 0 presets. `node --test
 tests/v2/validate-v2.test.js` → 31/31. Existe además
 `data/v2/crosswalk.v2.json` (fuera del contrato validado) con el mapeo
-legacy-id↔product-id para storage, case, cooling, ram, psu y motherboard.
+legacy-id↔product-id para storage, case, cooling, ram, psu, motherboard,
+gpu y ahora cpu.
 
 ## 0.1 Resultado del piloto (2026-08-21)
 
@@ -1171,6 +1175,73 @@ offers, 0 presets (sin cambios respecto a §0.31, el crosswalk no forma
 parte del contrato validado). `node --test` → 31/31.
 `data/catalog.json`, `data/components.json` y la UI intactos.
 
+## 0.33 AMD CPU resuelto — bloqueo era del mecanismo WebFetch, no del dominio (2026-08-22)
+
+**Hallazgo central de Fase 4**: el bloqueo histórico de `amd.com`
+documentado repetidamente desde §0.1 (timeouts) resultó ser específico
+del mecanismo `WebFetch` usado en sesiones anteriores. Al probar `curl`
+con user-agent de navegador estándar contra las 4 páginas oficiales de
+producto de AMD (`amd.com/en/products/processors/desktops/ryzen/
+9000-series/amd-ryzen-{5-9600x,7-9700x,7-9850x3d,9-9950x3d}.html`), las
+4 respondieron **HTTP 200** con la tabla de especificaciones completa,
+incluyendo por primera vez la sección **"Product IDs"** (Boxed/Tray) —
+el dato que bloqueaba la creación de cualquier `product` AMD CPU desde
+Fase 2. Se probaron también otras 7 rutas de amd.com (home, `shop-us-en`,
+`ir.amd.com`, `adaptivesupport.amd.com`, locale `/es/`, etc.), todas 200.
+
+**Families actualizadas** (2, con evidencia nueva que corrobora y amplía
+la ya existente, sin contradicción):
+
+- `family-amd-ryzen7-9850x3d`: `socket` `null→"AM5"`,
+  `cache.l3MB` `null→96`, se agregó `interface.pcieGen="5.0"` (antes
+  ausente por completo). El valor L2(8MB)+L3(96MB)=104MB coincide
+  exactamente con el "cache total" de 104MB ya cargado desde el press
+  release de `ir.amd.com` (§0.6) — confirma consistencia entre dos
+  fuentes oficiales independientes, no una corrección de error. Sin
+  `unknownFields` restantes.
+- `family-amd-ryzen9-9950x3d`: mismo tratamiento — `socket`
+  `null→"AM5"`, `cache.l3MB` `null→128` (L2 16MB + L3 128MB = 144MB,
+  coincide con el total ya cargado). Sin `unknownFields` restantes.
+
+**4 `product` AMD CPU creados** (primeros de la categoría en todo el
+proyecto), todos `selectable=true`, `verified`, `familyId` a su family
+correspondiente, `identity.partNumber` = Product ID Boxed (WOF) tomado
+directamente de la página oficial:
+
+| Product | partNumber (Boxed) | Cores/Threads | Cache L1/L2/L3 | TDP |
+|---|---|---|---|---|
+| `prod-amd-ryzen5-9600x` | `100-100001405WOF` | 6/12 | 480KB/6MB/32MB | 65W |
+| `prod-amd-ryzen7-9700x` | `100-100001404WOF` | 8/16 | 640KB/8MB/32MB | 65W |
+| `prod-amd-ryzen7-9850x3d` | `100-100001973WOF` | 8/16 | 640KB/8MB/96MB | 120W |
+| `prod-amd-ryzen9-9950x3d` | `100-100000719WOF` | 16/32 | 1280KB/16MB/128MB | 170W |
+
+Ninguno tiene `unknownFields`. El "Product ID Tray" (variante sin
+ventilador) de cada SKU quedó documentado solo en la evidencia, no como
+campo del contrato (que no tiene un slot para SKU alternativo).
+
+**Crosswalk CPU completado**: se agregaron 4 mappings —
+`cpu-r5-9600x→prod-amd-ryzen5-9600x`, `cpu-r7-9700x→prod-amd-ryzen7-9700x`,
+`cpu-r7-9850x3d→prod-amd-ryzen7-9850x3d`,
+`cpu-r9-9950x3d→prod-amd-ryzen9-9950x3d`. Los 4 legacyId son escenarios
+reales (uno por tier, todos default), confirmados antes de implementar
+sin inventar ningún mapping. `cpu-ultra7-265k` y `cpu-ultra9-285k`
+(Intel, alternativas en media/extrema) quedan intencionalmente sin
+mapping — no existe ninguna family/product Intel CPU en V2, fuera de
+alcance de esta Fase 4.
+
+**Nota de alcance**: este hallazgo (curl con user-agent de navegador
+funciona en amd.com donde WebFetch fallaba) es específico de esta sesión
+y de este dominio — no se generaliza automáticamente a ZOTAC ni GIGABYTE,
+donde tanto `curl` como `WebFetch` fallaron por igual (403/468) en la
+misma sesión (ver hallazgos previos de Fase 4). GPU AMD (RX 9060 XT, RX
+9070 XT) tampoco se investigó en este paso — sigue sin ninguna family/
+product en V2.
+
+No se tocó GPU, motherboard, PSU, storage, case, cooling, ni RAM
+previos. `node scripts/validate-v2.js` → 63 entries válidas (19 family +
+44 product), 69 evidencias, 0 offers, 0 presets. `node --test` → 31/31.
+`data/catalog.json`, `data/components.json` y la UI intactos.
+
 ## 0. Principio rector
 
 Cada archivo tiene una única responsabilidad. Ningún campo puede tomar prestada
@@ -1366,24 +1437,30 @@ duplicados), `V-NO-COMMERCIAL` (precio/vendedor/stock fuera de catalog),
 - **Fase 1 (esta entrega)**: estructura `data/v2/`, esquemas, vocabularios,
   validador, tests. Sin datos reales.
 - **Fase 2 (cerrada 2026-08-21)**: investigación y verificación real de los
-  8 chips CPU/GPU legacy como `family`. Resultado: 6/8 `verified`, 2/8
-  `partial` (Ryzen 7 9850X3D, Ryzen 9 9950X3D — bloqueados por acceso a
-  amd.com; ver §0.3). Pendiente para reabrir cuando haya acceso: confirmar
-  specs oficiales y Product IDs de esos 2 SKUs.
-- **Fase 3 (en curso, iniciada 2026-08-21)**: ingreso de `product` reales
-  (marca+modelo) verificados. Estado actual: 20 `product` cargados (12 GPU
-  sobre las 4 families NVIDIA — NVIDIA FE/MSI/ASUS/PNY según disponibilidad
-  por SKU —, 1 RAM sobre `family-memory-ddr5`, 3 motherboard sobre
-  `family-intel-z890`, 2 PSU sobre `family-psu-atx`, 2 storage sobre
-  `family-storage-nvme-pcie4`). AMD (CPU) permanece pausado sin ningún
-  `product` creado (ver §0.7). GIGABYTE (RTX 5070 y Z890) descartado por
-  bloqueo 403 en fetch directo. ZOTAC (RTX 5070) pendiente, no descartado
-  definitivamente (ver §0.13). Crucial/Micron (storage) descartado por
-  bloqueo anti-bot (ver §0.22). case y cooling no iniciados. No cerrada
-  todavía — no se ha definido un criterio de cierre explícito para esta
-  fase.
-- **Fase 4 (no iniciada)**: `offers.v2.json` piloto con resolución por región.
+  8 chips CPU/GPU legacy como `family`. Resultado original: 6/8 `verified`,
+  2/8 `partial` (Ryzen 7 9850X3D, Ryzen 9 9950X3D — bloqueados por acceso a
+  amd.com; ver §0.3), luego los 8/8 pasaron a `verified` en §0.6 (press
+  releases de ir.amd.com) y se completaron aún más en §0.33 (socket +
+  desglose L2/L3 vía amd.com directo).
+- **Fase 3 (cerrada al 100%, iniciada 2026-08-21)**: ingreso de `product`
+  reales verificados para storage/case/cooling/psu/motherboard/ram —
+  cobertura 100% de los 20 escenarios legacy reales usados en esos 6
+  rubros (ver auditoría global). GIGABYTE descartado repetidamente
+  (RTX5070/RTX5060×2/RTX5080/RTX5090, 6 bloqueos 403 confirmados). ZOTAC
+  (RTX 5070) sigue bloqueado, no descartado definitivamente (ver §0.13,
+  reconfirmado en Fase 4). Crucial/Micron (storage) descartado por bloqueo
+  anti-bot (ver §0.22). GPU también recibió 1 product nuevo (PNY RTX 5070,
+  §0.31) y su crosswalk se completó (§0.31). AMD CPU, bloqueado desde
+  Fase 2, se resolvió fuera de Fase 3 en el trabajo post-cierre (§0.33): 4
+  `product` reales creados, crosswalk CPU completado.
+- **Trabajo post-cierre de Fase 3 ("Fase 4" informal — resolver candidatos
+  bloqueados)**: ZOTAC y GIGABYTE siguen bloqueados (confirmado
+  exhaustivamente en esta ronda, ver hallazgos de sesión). AMD CPU
+  resuelto (§0.33). GPU AMD (RX 9060 XT, RX 9070 XT) e Intel CPU
+  (Ultra 7 265K, Ultra 9 285K) no investigados todavía — quedan sin
+  ninguna family/product en V2.
+- **Fase 4 formal (no iniciada)**: `offers.v2.json` piloto con resolución por región.
 - **Fase 5 (no iniciada)**: `presets.v2.json` piloto + motor de compatibilidad real.
 - **Fase 6 (no iniciada)**: evaluar reemplazo gradual de `data/catalog.json` en la UI.
 
-Ninguna fase ≥4 se implementa hasta aprobación explícita.
+Ninguna fase ≥4 (formal) se implementa hasta aprobación explícita.

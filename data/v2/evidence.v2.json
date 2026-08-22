@@ -421,6 +421,34 @@
       "claim": "Fetch directo exitoso de la pagina oficial de especificaciones tecnicas de ASUS ROG (rog.asus.com, dominio propio del fabricante) para 'ROG STRIX X870E-E GAMING WIFI'. Cita textual: Model 'ROG STRIX X870E-E GAMING WIFI'; CPU Socket 'AMD Socket AM5 for AMD Ryzen 9000 & 8000 & 7000 Series Desktop Processors'; Chipset 'AMD X870E'; Memory '4 x DIMM slots, max. 256GB, DDR5, up to 8000+MT/s (Ryzen 9000), 8400+MT/s (Ryzen 8000), 8000+MT/s (Ryzen 7000), Supports AMD EXPO'; Expansion Slots '1 x PCIe 5.0 x16 slot supports x16 mode (Ryzen 9000 & 7000), 1 x PCIe 4.0 x16 slot supports x8/x4 mode (Ryzen 8000), 1 x PCIe 4.0 x16 slot supports x4 mode (chipset)'; Storage 'Total supports 5 x M.2 slots (PCIe 5.0/4.0 x4 segun generacion de CPU y slot), 4 x SATA 6Gb/s ports'; Form Factor 'ATX Form Factor, 12 inch x 9.6 inch (30.5 cm x 24.4 cm)'. La pagina no distingue un codigo de part number separado del nombre comercial; se uso el mismo texto literal como model/partNumber. No se uso ningun retailer como fuente.",
       "accessedAt": "2026-08-22T00:00:00Z",
       "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-gskill-tz5neo-32gb-01",
+      "sourceId": "src-gskill-tz5neo-32gb-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de producto de G.SKILL (gskill.com, dominio propio del fabricante) para el part number F5-6000J3038F16GX2-TZ5NR (Trident Z5 Neo RGB). Cita textual: capacidad total 32GB, configuracion '2x16GB' (dual-channel kit), tipo DDR5, velocidad 'Up to DDR5-6000' (requiere overclock via AMD EXPO o Intel XMP 3.0), timings 'CL30-38-38-96', voltaje '1.35V', form factor U-DIMM. La pagina no declara un pin count explicito (no se encontro la cifra '288-pin' en el texto extraido) -- physical.pinCount queda null + unknownFields en vez de asumirse por ser el estandar tipico de DDR5 UDIMM. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-kingston-furybeast-32gb-01",
+      "sourceId": "src-kingston-furybeast-32gb-01",
+      "claim": "Datasheet oficial en PDF de Kingston (kingston.com/datasheets/KF560C30BBEAK2-32.pdf, dominio propio del fabricante, fetch directo + pdftotext) -- se uso el PDF porque la pagina HTML de producto en kingston.com rechazo el fetch directo con 403 Forbidden (misma proteccion anti-bot ya vista en otros fabricantes). Cita textual: titulo '32GB (16GB 2G x 64-Bit x 2 pcs.) DDR5-6000 CL30 288-Pin DIMM Kit'; Description 'Kingston FURY KF560C30BBEAK2-32 is a kit of two 2G x 64-bit (16GB) DDR5-6000 CL30 SDRAM ... Total kit capacity is 32GB'; Factory Timing Parameters 'EXPO Profile #0: DDR5-6000 CL30-36-36 @1.4V', 'XMP Profile #1: DDR5-6000 CL30-36-36 @1.4V', Default (JEDEC) 'DDR5-4800 CL40-39-39 @1.1V'; 'Height 1.66\" (42.23mm), w/heatsink'; dimensiones del modulo '133.35 mm' de largo. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-teamgroup-deltargb-32gb-01",
+      "sourceId": "src-teamgroup-deltargb-32gb-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de producto de TeamGroup (teamgroupinc.com, dominio propio del fabricante) para el part number FF3D532G6000HC30DC01 (T-FORCE DELTA RGB). Cita textual: capacidad '32GB (2x16GB)', tipo DDR5 Desktop, velocidad '6000MHz', timings 'CL30' (la fuente no desglosa tRCD/tRP/tRAS, solo el valor CL -- se guarda tal cual como texto literal en vez de inventar el resto de la cadena de timings), voltaje '1.35V', form factor U-DIMM, dimensiones '46.1(H) x 144.2(L) x 7(W)mm', compatibilidad 'Intel 800/700 series; AMD 800/600 series', garantia de por vida. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-gskill-tz5neo-64gb-01",
+      "sourceId": "src-gskill-tz5neo-64gb-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de producto de G.SKILL (gskill.com, dominio propio del fabricante) para el part number F5-6000J3040G32GX2-TZ5NR (Trident Z5 Neo RGB). Cita textual: capacidad total 64GB, configuracion '2x32GB' (dual-channel kit), 32GB por modulo, tipo DDR5, velocidad 'Up to DDR5-6000' (requiere overclock via AMD EXPO o Intel XMP 3.0), timings 'CL30-40-40-96', voltaje '1.40V', form factor U-DIMM. La pagina no declara un pin count explicito -- physical.pinCount queda null + unknownFields, mismo criterio que el kit de 32GB de la misma linea. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
     }
   ]
 }

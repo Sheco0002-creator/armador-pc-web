@@ -2766,6 +2766,203 @@
           "kind": "manufacturer-page"
         }
       ]
+    },
+    {
+      "id": "prod-gskill-tridentz5-neo-rgb-ddr5-6000-32gb",
+      "type": "product",
+      "category": "ram",
+      "familyId": "family-memory-ddr5",
+      "identity": {
+        "brand": "G.SKILL",
+        "commercialName": "Trident Z5 Neo RGB 32GB (2x16GB) DDR5-6000 CL30 Memory Kit",
+        "model": "F5-6000J3038F16GX2-TZ5NR",
+        "partNumber": "F5-6000J3038F16GX2-TZ5NR",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "memory": { "type": "DDR5", "formFactor": "UDIMM", "capacityGB": 32, "modules": 2, "moduleCapacityGB": 16 },
+        "speed": { "rateMTs": 6000, "testedTimings": "30-38-38-96", "testedVoltageV": 1.35 },
+        "physical": { "pinCount": null }
+      },
+      "technicalFieldEvidence": {
+        "memory.type": ["ev-gskill-tz5neo-32gb-01"],
+        "memory.formFactor": ["ev-gskill-tz5neo-32gb-01"],
+        "memory.capacityGB": ["ev-gskill-tz5neo-32gb-01"],
+        "memory.modules": ["ev-gskill-tz5neo-32gb-01"],
+        "memory.moduleCapacityGB": ["ev-gskill-tz5neo-32gb-01"],
+        "speed.rateMTs": ["ev-gskill-tz5neo-32gb-01"],
+        "speed.testedTimings": ["ev-gskill-tz5neo-32gb-01"],
+        "speed.testedVoltageV": ["ev-gskill-tz5neo-32gb-01"]
+      },
+      "unknownFields": ["physical.pinCount"],
+      "compatibility": {
+        "provides": [
+          { "key": "memoryType", "value": "DDR5" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-gskill-tz5neo-32gb-01",
+          "url": "https://www.gskill.com/product/165/390/1661410135/F5-6000J3038F16GX2-TZ5NR",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-kingston-fury-beast-ddr5-6000-32gb",
+      "type": "product",
+      "category": "ram",
+      "familyId": "family-memory-ddr5",
+      "identity": {
+        "brand": "Kingston",
+        "commercialName": "FURY Beast 32GB (2x16GB) DDR5-6000 CL30 Memory Kit",
+        "model": "KF560C30BBEAK2-32",
+        "partNumber": "KF560C30BBEAK2-32",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "memory": { "type": "DDR5", "formFactor": "UDIMM", "capacityGB": 32, "modules": 2, "moduleCapacityGB": 16 },
+        "speed": { "rateMTs": 6000, "testedTimings": "30-36-36", "spdTimings": "40-39-39", "testedVoltageV": 1.4, "spdVoltageV": 1.1, "defaultSpdSpeedMHz": 4800 },
+        "physical": { "pinCount": 288, "heightMm": 42.23, "lengthMm": 133.35 }
+      },
+      "technicalFieldEvidence": {
+        "memory.type": ["ev-kingston-furybeast-32gb-01"],
+        "memory.formFactor": ["ev-kingston-furybeast-32gb-01"],
+        "memory.capacityGB": ["ev-kingston-furybeast-32gb-01"],
+        "memory.modules": ["ev-kingston-furybeast-32gb-01"],
+        "memory.moduleCapacityGB": ["ev-kingston-furybeast-32gb-01"],
+        "speed.rateMTs": ["ev-kingston-furybeast-32gb-01"],
+        "speed.testedTimings": ["ev-kingston-furybeast-32gb-01"],
+        "speed.spdTimings": ["ev-kingston-furybeast-32gb-01"],
+        "speed.testedVoltageV": ["ev-kingston-furybeast-32gb-01"],
+        "speed.spdVoltageV": ["ev-kingston-furybeast-32gb-01"],
+        "speed.defaultSpdSpeedMHz": ["ev-kingston-furybeast-32gb-01"],
+        "physical.pinCount": ["ev-kingston-furybeast-32gb-01"],
+        "physical.heightMm": ["ev-kingston-furybeast-32gb-01"],
+        "physical.lengthMm": ["ev-kingston-furybeast-32gb-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "memoryType", "value": "DDR5" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-kingston-furybeast-32gb-01",
+          "url": "https://www.kingston.com/datasheets/KF560C30BBEAK2-32.pdf",
+          "kind": "datasheet"
+        }
+      ]
+    },
+    {
+      "id": "prod-teamgroup-tforce-delta-rgb-ddr5-6000-32gb",
+      "type": "product",
+      "category": "ram",
+      "familyId": "family-memory-ddr5",
+      "identity": {
+        "brand": "TEAMGROUP",
+        "commercialName": "T-FORCE DELTA RGB 32GB (2x16GB) DDR5-6000 CL30 Memory Kit — Black",
+        "model": "FF3D532G6000HC30DC01",
+        "partNumber": "FF3D532G6000HC30DC01",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "memory": { "type": "DDR5", "formFactor": "UDIMM", "capacityGB": 32, "modules": 2, "moduleCapacityGB": 16 },
+        "speed": { "rateMTs": 6000, "testedTimings": "CL30", "testedVoltageV": 1.35 },
+        "physical": { "heightMm": 46.1, "lengthMm": 144.2, "widthMm": 7 }
+      },
+      "technicalFieldEvidence": {
+        "memory.type": ["ev-teamgroup-deltargb-32gb-01"],
+        "memory.formFactor": ["ev-teamgroup-deltargb-32gb-01"],
+        "memory.capacityGB": ["ev-teamgroup-deltargb-32gb-01"],
+        "memory.modules": ["ev-teamgroup-deltargb-32gb-01"],
+        "memory.moduleCapacityGB": ["ev-teamgroup-deltargb-32gb-01"],
+        "speed.rateMTs": ["ev-teamgroup-deltargb-32gb-01"],
+        "speed.testedTimings": ["ev-teamgroup-deltargb-32gb-01"],
+        "speed.testedVoltageV": ["ev-teamgroup-deltargb-32gb-01"],
+        "physical.heightMm": ["ev-teamgroup-deltargb-32gb-01"],
+        "physical.lengthMm": ["ev-teamgroup-deltargb-32gb-01"],
+        "physical.widthMm": ["ev-teamgroup-deltargb-32gb-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "memoryType", "value": "DDR5" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-teamgroup-deltargb-32gb-01",
+          "url": "https://www.teamgroupinc.com/en/product-detail/memory/T-FORCE/delta-rgb-ddr5-black/delta-rgb-ddr5-black-FF3D532G6000HC30DC01/",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-gskill-tridentz5-neo-rgb-ddr5-6000-64gb",
+      "type": "product",
+      "category": "ram",
+      "familyId": "family-memory-ddr5",
+      "identity": {
+        "brand": "G.SKILL",
+        "commercialName": "Trident Z5 Neo RGB 64GB (2x32GB) DDR5-6000 CL30 Memory Kit",
+        "model": "F5-6000J3040G32GX2-TZ5NR",
+        "partNumber": "F5-6000J3040G32GX2-TZ5NR",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "memory": { "type": "DDR5", "formFactor": "UDIMM", "capacityGB": 64, "modules": 2, "moduleCapacityGB": 32 },
+        "speed": { "rateMTs": 6000, "testedTimings": "30-40-40-96", "testedVoltageV": 1.4 },
+        "physical": { "pinCount": null }
+      },
+      "technicalFieldEvidence": {
+        "memory.type": ["ev-gskill-tz5neo-64gb-01"],
+        "memory.formFactor": ["ev-gskill-tz5neo-64gb-01"],
+        "memory.capacityGB": ["ev-gskill-tz5neo-64gb-01"],
+        "memory.modules": ["ev-gskill-tz5neo-64gb-01"],
+        "memory.moduleCapacityGB": ["ev-gskill-tz5neo-64gb-01"],
+        "speed.rateMTs": ["ev-gskill-tz5neo-64gb-01"],
+        "speed.testedTimings": ["ev-gskill-tz5neo-64gb-01"],
+        "speed.testedVoltageV": ["ev-gskill-tz5neo-64gb-01"]
+      },
+      "unknownFields": ["physical.pinCount"],
+      "compatibility": {
+        "provides": [
+          { "key": "memoryType", "value": "DDR5" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-gskill-tz5neo-64gb-01",
+          "url": "https://www.gskill.com/product/165/390/1665020865/F5-6000J3040G32GX2-TZ5NR",
+          "kind": "manufacturer-page"
+        }
+      ]
     }
   ]
 }

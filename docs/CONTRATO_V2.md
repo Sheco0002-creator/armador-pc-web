@@ -9,14 +9,14 @@ Fase 2 y luego pasaron a `verified` en §0.6 — más `family-memory-ddr5`,
 `family-storage-sata`, `family-storage-nvme-pcie5`,
 `family-case-atx-mid-tower`, `family-case-atx-full-tower`,
 `family-cooling-air-tower`, `family-cooling-aio-liquid` y
-`family-amd-am5`, agregadas durante Fase 3), y **35 `product` reales
-verificados** (12 GPU, 2 RAM, 6 motherboard, 6 PSU, 4 storage, 2 case, 3
+`family-amd-am5`, agregadas durante Fase 3), y **39 `product` reales
+verificados** (12 GPU, 6 RAM, 6 motherboard, 6 PSU, 4 storage, 2 case, 3
 cooling). 0 `offer`, 0 `preset`. No reemplaza `data/catalog.json` (legacy).
 No se migró ningún registro legacy. La investigación de productos AMD
 (CPU) permanece en pausa (ver §0.7): 0 `product` AMD creados (los
 `product` de motherboard AM5 sí se cargaron, ya que la fuente es el
-fabricante de la placa, no AMD). `node scripts/validate-v2.js` → 54
-entries válidas, 60 evidencias, 0 offers, 0 presets. `node --test
+fabricante de la placa, no AMD). `node scripts/validate-v2.js` → 58
+entries válidas, 64 evidencias, 0 offers, 0 presets. `node --test
 tests/v2/validate-v2.test.js` → 31/31. Existe además
 `data/v2/crosswalk.v2.json` (fuera del contrato validado) con el mapeo
 legacy-id↔product-id para storage, case, cooling, ram, psu y motherboard.
@@ -1026,6 +1026,66 @@ product de RAM/PSU/storage/case/cooling previos. `node
 scripts/validate-v2.js` → 54 entries válidas (19 family + 35 product), 60
 evidencias, 0 offers, 0 presets. `node --test` → 31/31.
 `data/catalog.json`, `data/components.json` y la UI intactos.
+
+## 0.30 Ampliación de fabricantes RAM (2026-08-22)
+
+Fase 3.4: se amplía la diversidad de marcas dentro de `family-memory-ddr5`
+(sin crear ninguna family nueva), agregando 4 `product` de 3 fabricantes
+nuevos que no aportan un escenario legacy distinto a los ya cubiertos
+(`ram-32`, `ram-64`) — por eso **no se modificó `data/v2/crosswalk.v2.json`**:
+los mappings existentes (`ram-32→prod-corsair-vengeance-ddr5-6000-32gb`,
+`ram-64→prod-corsair-vengeance-ddr5-6000-64gb`) siguen siendo los
+canónicos; los 4 productos nuevos son alternativas seleccionables
+adicionales, mismo patrón que ya existe en GPU/motherboard con múltiples
+marcas por family sin que cada una tenga su propio mapping.
+
+**`prod-gskill-tridentz5-neo-rgb-ddr5-6000-32gb`** — `brand=G.SKILL`,
+`partNumber="F5-6000J3038F16GX2-TZ5NR"`, `familyId=family-memory-ddr5`,
+`selectable=true`, `verified`. Fuente: `gskill.com/product/165/390/...`
+(fetch directo exitoso). Confirmado: 32GB (2×16GB), DDR5, "Up to
+DDR5-6000", timings "CL30-38-38-96", voltaje 1.35V, U-DIMM. **Único campo
+`null`**: `physical.pinCount` — la página no declara la cifra "288-pin"
+explícitamente; no se asumió por ser el estándar típico de DDR5 UDIMM.
+
+**`prod-kingston-fury-beast-ddr5-6000-32gb`** — `brand=Kingston`,
+`partNumber="KF560C30BBEAK2-32"`, `familyId=family-memory-ddr5`,
+`selectable=true`, `verified`. Fuente: **datasheet PDF oficial**
+`kingston.com/datasheets/KF560C30BBEAK2-32.pdf` (fetch directo +
+`pdftotext`) — la página HTML de producto en kingston.com rechazó el fetch
+directo con 403 Forbidden (misma protección anti-bot ya vista en otros
+fabricantes), por lo que se usó el datasheet PDF oficial en su lugar,
+mismo mecanismo ya usado con MSI/Samsung. Confirmado: "kit of two 2G x
+64-bit (16GB) DDR5-6000 CL30 SDRAM", 32GB total, EXPO/XMP "DDR5-6000
+CL30-36-36 @1.4V", JEDEC default "DDR5-4800 CL40-39-39 @1.1V", 288-pin
+("288-Pin DIMM Kit" en el título), altura con heatsink 42.23mm, largo del
+módulo 133.35mm. Sin `unknownFields`.
+
+**`prod-teamgroup-tforce-delta-rgb-ddr5-6000-32gb`** — `brand=TEAMGROUP`,
+`partNumber="FF3D532G6000HC30DC01"`, `familyId=family-memory-ddr5`,
+`selectable=true`, `verified`. Fuente: `teamgroupinc.com/en/product-detail/
+memory/...` (fetch directo exitoso). Confirmado: 32GB (2×16GB), DDR5,
+6000MHz, timings "CL30" (la fuente no desglosa tRCD/tRP/tRAS, se guardó
+tal cual sin completar el resto de la cadena), voltaje 1.35V, U-DIMM,
+dimensiones "46.1(H) x 144.2(L) x 7(W)mm". Sin `unknownFields`.
+
+**`prod-gskill-tridentz5-neo-rgb-ddr5-6000-64gb`** — `brand=G.SKILL`,
+`partNumber="F5-6000J3040G32GX2-TZ5NR"`, `familyId=family-memory-ddr5`,
+`selectable=true`, `verified`. Fuente: `gskill.com/product/165/390/...`
+(fetch directo exitoso). Confirmado: 64GB (2×32GB), DDR5, "Up to
+DDR5-6000", timings "CL30-40-40-96", voltaje 1.40V, U-DIMM. Mismo campo
+`null` que su hermano de 32GB: `physical.pinCount`.
+
+**Candidato no reinvestigado**: Crucial/Micron — ya documentado en §0.22
+como bloqueado (`crucial.com`/`assets.micron.com` rechazan el fetch directo
+con "Request Rejected"); no se repitió el intento en este paso.
+
+No se tocó AMD, GIGABYTE, ZOTAC, ni ninguna family/product de motherboard/
+PSU/storage/case/cooling previos, ni los 2 products RAM Corsair ya
+existentes. `node scripts/validate-v2.js` → 58 entries válidas (19 family
++ 39 product), 64 evidencias, 0 offers, 0 presets. `node --test` → 31/31.
+`data/v2/crosswalk.v2.json` sin cambios (20 mappings, verificado sin
+huérfanos ni duplicados). `data/catalog.json`, `data/components.json` y la
+UI intactos.
 
 ## 0. Principio rector
 

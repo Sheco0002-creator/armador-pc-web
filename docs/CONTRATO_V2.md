@@ -2,20 +2,22 @@
 
 Estado (actualizado 2026-08-22): **Fase 1 completa. Fase 2 cerrada** (2026-08-21).
 **Fase 3 en ejecución activa** (iniciada 2026-08-21, ver §0.4 en adelante).
-Estado real de `catalog.v2.json`: **16 `family`, todas `verified`** (las 8
+Estado real de `catalog.v2.json`: **18 `family`, todas `verified`** (las 8
 originales CPU/GPU — incluidas las 2 que quedaron `partial` al cierre de
 Fase 2 y luego pasaron a `verified` en §0.6 — más `family-memory-ddr5`,
 `family-intel-z890`, `family-psu-atx`, `family-storage-nvme-pcie4`,
 `family-storage-sata`, `family-storage-nvme-pcie5`,
-`family-case-atx-mid-tower` y `family-case-atx-full-tower`, agregadas
-durante Fase 3), y **24 `product` reales verificados** (12 GPU, 1 RAM, 3
-motherboard, 2 PSU, 4 storage, 2 case). 0 `offer`, 0 `preset`. No reemplaza
-`data/catalog.json` (legacy). No se migró ningún registro legacy. La
-investigación de productos AMD (CPU) permanece en pausa (ver §0.7): 0
-`product` AMD creados. `node scripts/validate-v2.js` → 40 entries válidas,
-46 evidencias, 0 offers, 0 presets. `node --test tests/v2/validate-v2.test.js`
-→ 31/31. Existe además `data/v2/crosswalk.v2.json` (fuera del contrato
-validado) con el mapeo legacy-id↔product-id para storage y case.
+`family-case-atx-mid-tower`, `family-case-atx-full-tower`,
+`family-cooling-air-tower` y `family-cooling-aio-liquid`, agregadas durante
+Fase 3), y **27 `product` reales verificados** (12 GPU, 1 RAM, 3
+motherboard, 2 PSU, 4 storage, 2 case, 3 cooling). 0 `offer`, 0 `preset`.
+No reemplaza `data/catalog.json` (legacy). No se migró ningún registro
+legacy. La investigación de productos AMD (CPU) permanece en pausa (ver
+§0.7): 0 `product` AMD creados. `node scripts/validate-v2.js` → 45 entries
+válidas, 51 evidencias, 0 offers, 0 presets. `node --test
+tests/v2/validate-v2.test.js` → 31/31. Existe además
+`data/v2/crosswalk.v2.json` (fuera del contrato validado) con el mapeo
+legacy-id↔product-id para storage, case y cooling.
 
 ## 0.1 Resultado del piloto (2026-08-21)
 
@@ -764,6 +766,78 @@ No se tocó AMD, GIGABYTE, ZOTAC, Crucial/Micron, RAM/motherboard/PSU/storage
 previos, ni cooling. `node scripts/validate-v2.js` → 40 entries válidas (16
 family + 24 product), 46 evidencias, 0 offers, 0 presets. `node --test` →
 31/31. `data/catalog.json`, `data/components.json` y la UI intactos.
+
+## 0.26 Categoría COOLING — air tower y AIO liquid (2026-08-22)
+
+**Auditoría previa** (sin cambios): `data/components.json` tiene 4 legacyId
+en `cooling` (`cool-torre-simple`, `cool-torre-premium`, `cool-aio-240`,
+`cool-aio-360`), pero **solo 3 se usan realmente** en los tiers
+(`entrada→cool-torre-simple`, `media→cool-torre-premium`,
+`alta`/`extrema→cool-aio-360`; sin alternativas declaradas). `cool-aio-240`
+no se usa en ningún tier — mismo patrón que `case-matx`: **no se creó
+ningún registro para él**. Cobertura V2 antes de este paso: 0 entries
+`category=cooling`.
+
+**Decisión estructural**: la distinción vendor-neutral real es aire vs.
+líquido (el tamaño de radiador/altura queda a nivel `product`, igual que la
+capacidad en storage) — 2 families:
+
+- **`family-cooling-air-tower`** (`technical.type="aire"`) — cubre
+  `cool-torre-simple` y `cool-torre-premium`.
+- **`family-cooling-aio-liquid`** (`technical.type="liquida"`) — cubre
+  `cool-aio-360`.
+
+**`prod-deepcool-ak400`** — `brand=DeepCool`, `commercialName="AK400"`,
+`partNumber="R-AK400-BKNNMN-G-1"`, `familyId=family-cooling-air-tower`,
+`selectable=true`, `verified`. Fuente: `deepcool.com/products/Cooling/...`
+(fetch directo exitoso). Confirmado: sockets Intel LGA1851/1700/1200/1151/
+1150/1155 + AMD AM5/AM4, altura de producto 155mm (coincide exactamente
+con legacy `cool-torre-simple`) y heatsink 152mm (ambas cifras guardadas
+por separado, tal como las declara la fuente, sin colapsarlas), disipación
+"hasta 220W" (supera el mínimo legacy 95W), 4 heat pipes Ø6mm, fan 120mm
+500-1850RPM 66.47 CFM ≤29dB(A), peso 661g. Sin `unknownFields`.
+`compatibility.requires` solo incluye los sockets del vocabulario
+controlado (AM5, AM4, LGA1700, LGA1851, LGA1200).
+
+**`prod-deepcool-ak620-wh`** — `brand=DeepCool`, `commercialName="AK620
+WH"`, `partNumber="R-AK620-WHNNMT-G-1"`, `familyId=family-cooling-air-tower`,
+`selectable=true`, `verified`. Fuente: `global.deepcool.com/products/
+Cooling/...` (fetch directo exitoso; se eligió deliberadamente esta
+variante 2024 con "1851" explícito en la URL/nombre, en vez del AK620 base
+de 2021 que no lo menciona, para no asumir compatibilidad no confirmada).
+Confirmado: altura de compatibilidad 160mm (coincide exactamente con
+legacy `cool-torre-premium`), heatsink 157mm, disipación "260W máximo"
+(supera el mínimo legacy 180W), 6 heat pipes Ø6mm, 2 fans 120mm
+500-1850RPM 68.99 CFM ≤28dB(A), peso 1456g, RAM clearance 43mm. Sin
+`unknownFields`.
+
+**`prod-corsair-icue-link-h150i-rgb`** — `brand=CORSAIR`,
+`commercialName="iCUE LINK H150i RGB AIO Liquid CPU Cooler"`,
+`partNumber="CW-9061003-WW"`, `familyId=family-cooling-aio-liquid`,
+`selectable=true`, `verified`. Fuente: `corsair.com/us/en/p/cpu-coolers/...`
+(fetch directo exitoso). Confirmado: sockets Intel 1851/1700/1200/1150/
+1151/1155/1156 + AMD AM5/AM4, radiador 360mm (397×120×27mm, coincide con
+legacy `cool-aio-360`), 3 fans QX120 RGB 120mm 480-2400RPM 16.44-63.1 CFM,
+tubing 450mm, cold plate cobre 56×56mm, peso 2.654kg, garantía 6 años.
+**Único campo `null`**: `thermalDissipationW` — Corsair no publica una
+cifra de TDP/potencia térmica soportada para este AIO; se verificó también
+NZXT Kraken 360 como referencia cruzada de la industria y tampoco publica
+esa métrica, confirmando que es una ausencia estructural del segmento AIO
+y no un descuido puntual de una fuente — el valor de 350W del legacy **no
+se usó para completarlo**, queda documentado como limitación en
+`unknownFields`.
+
+**Crosswalk cooling**: se agregaron 3 mappings a `data/v2/crosswalk.v2.json`
+(`cool-torre-simple→prod-deepcool-ak400`,
+`cool-torre-premium→prod-deepcool-ak620-wh`,
+`cool-aio-360→prod-corsair-icue-link-h150i-rgb`). Integridad referencial
+verificada manualmente, sin huérfanos ni duplicados.
+
+No se tocó AMD, GIGABYTE, ZOTAC, Crucial/Micron, ni ninguna family/product
+de RAM/motherboard/PSU/storage/case previos. `node scripts/validate-v2.js`
+→ 45 entries válidas (18 family + 27 product), 51 evidencias, 0 offers, 0
+presets. `node --test` → 31/31. `data/catalog.json`, `data/components.json`
+y la UI intactos.
 
 ## 0. Principio rector
 

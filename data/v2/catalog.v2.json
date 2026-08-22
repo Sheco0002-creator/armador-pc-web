@@ -1995,6 +1995,235 @@
           "kind": "manufacturer-page"
         }
       ]
+    },
+    {
+      "id": "family-cooling-air-tower",
+      "type": "family",
+      "category": "cooling",
+      "displayName": "Air Tower CPU Cooler",
+      "selectable": false,
+      "technical": {
+        "type": "aire"
+      },
+      "technicalFieldEvidence": {
+        "type": ["ev-deepcool-ak400-family-01"]
+      },
+      "unknownFields": [],
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-deepcool-ak400-family-01",
+          "url": "https://www.deepcool.com/products/Cooling/cpuaircoolers/AK400-Performance-CPU-Cooler-1851-1700-AM5/2024/15222.shtml",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-deepcool-ak400",
+      "type": "product",
+      "category": "cooling",
+      "familyId": "family-cooling-air-tower",
+      "identity": {
+        "brand": "DeepCool",
+        "commercialName": "AK400",
+        "model": "AK400",
+        "partNumber": "R-AK400-BKNNMN-G-1",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "socketSupport": ["LGA1851", "LGA1700", "LGA1200", "LGA1151", "LGA1150", "LGA1155", "AM5", "AM4"],
+        "physical": { "productHeightMm": 155, "heatsinkHeightMm": 152, "weightG": 661 },
+        "heatPipes": "6mm x4",
+        "thermalDissipationW": 220,
+        "fan": { "sizeMm": 120, "speedRpmMin": 500, "speedRpmMax": 1850, "airflowCfm": 66.47, "noiseDbMax": 29 }
+      },
+      "technicalFieldEvidence": {
+        "socketSupport": ["ev-deepcool-ak400-01"],
+        "physical.productHeightMm": ["ev-deepcool-ak400-01"],
+        "physical.heatsinkHeightMm": ["ev-deepcool-ak400-01"],
+        "physical.weightG": ["ev-deepcool-ak400-01"],
+        "heatPipes": ["ev-deepcool-ak400-01"],
+        "thermalDissipationW": ["ev-deepcool-ak400-01"],
+        "fan.sizeMm": ["ev-deepcool-ak400-01"],
+        "fan.speedRpmMin": ["ev-deepcool-ak400-01"],
+        "fan.speedRpmMax": ["ev-deepcool-ak400-01"],
+        "fan.airflowCfm": ["ev-deepcool-ak400-01"],
+        "fan.noiseDbMax": ["ev-deepcool-ak400-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "requires": [
+          { "key": "socket", "value": "AM5" },
+          { "key": "socket", "value": "AM4" },
+          { "key": "socket", "value": "LGA1700" },
+          { "key": "socket", "value": "LGA1851" },
+          { "key": "socket", "value": "LGA1200" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-deepcool-ak400-01",
+          "url": "https://www.deepcool.com/products/Cooling/cpuaircoolers/AK400-Performance-CPU-Cooler-1851-1700-AM5/2024/15222.shtml",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-deepcool-ak620-wh",
+      "type": "product",
+      "category": "cooling",
+      "familyId": "family-cooling-air-tower",
+      "identity": {
+        "brand": "DeepCool",
+        "commercialName": "AK620 WH",
+        "model": "AK620 WH",
+        "partNumber": "R-AK620-WHNNMT-G-1",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "socketSupport": ["LGA2066", "LGA2011-v3", "LGA2011", "LGA1851", "LGA1700", "LGA1200", "LGA1151", "LGA1150", "LGA1155", "AM5", "AM4"],
+        "physical": { "productHeightMm": 160, "heatsinkHeightMm": 157, "weightG": 1456, "ramClearanceMm": 43 },
+        "heatPipes": "6mm x6",
+        "thermalDissipationW": 260,
+        "fan": { "sizeMm": 120, "count": 2, "speedRpmMin": 500, "speedRpmMax": 1850, "airflowCfm": 68.99, "noiseDbMax": 28 }
+      },
+      "technicalFieldEvidence": {
+        "socketSupport": ["ev-deepcool-ak620wh-01"],
+        "physical.productHeightMm": ["ev-deepcool-ak620wh-01"],
+        "physical.heatsinkHeightMm": ["ev-deepcool-ak620wh-01"],
+        "physical.weightG": ["ev-deepcool-ak620wh-01"],
+        "physical.ramClearanceMm": ["ev-deepcool-ak620wh-01"],
+        "heatPipes": ["ev-deepcool-ak620wh-01"],
+        "thermalDissipationW": ["ev-deepcool-ak620wh-01"],
+        "fan.sizeMm": ["ev-deepcool-ak620wh-01"],
+        "fan.count": ["ev-deepcool-ak620wh-01"],
+        "fan.speedRpmMin": ["ev-deepcool-ak620wh-01"],
+        "fan.speedRpmMax": ["ev-deepcool-ak620wh-01"],
+        "fan.airflowCfm": ["ev-deepcool-ak620wh-01"],
+        "fan.noiseDbMax": ["ev-deepcool-ak620wh-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "requires": [
+          { "key": "socket", "value": "AM5" },
+          { "key": "socket", "value": "AM4" },
+          { "key": "socket", "value": "LGA1700" },
+          { "key": "socket", "value": "LGA1851" },
+          { "key": "socket", "value": "LGA1200" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-deepcool-ak620wh-01",
+          "url": "https://global.deepcool.com/products/Cooling/cpuaircoolers/AK620-WH-High-Performance-CPU-Cooler-1851-1700-AM5/2024/15496.shtml",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "family-cooling-aio-liquid",
+      "type": "family",
+      "category": "cooling",
+      "displayName": "AIO Liquid CPU Cooler",
+      "selectable": false,
+      "technical": {
+        "type": "liquida"
+      },
+      "technicalFieldEvidence": {
+        "type": ["ev-corsair-h150i-family-01"]
+      },
+      "unknownFields": [],
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-corsair-h150i-family-01",
+          "url": "https://www.corsair.com/us/en/p/cpu-coolers/cw-9061003-ww/icue-link-h150i-rgb-aio-liquid-cpu-cooler-cw-9061003-ww",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-corsair-icue-link-h150i-rgb",
+      "type": "product",
+      "category": "cooling",
+      "familyId": "family-cooling-aio-liquid",
+      "identity": {
+        "brand": "CORSAIR",
+        "commercialName": "iCUE LINK H150i RGB AIO Liquid CPU Cooler",
+        "model": "iCUE LINK H150i RGB",
+        "partNumber": "CW-9061003-WW",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "socketSupport": ["LGA1851", "LGA1700", "LGA1200", "LGA1150", "LGA1151", "LGA1155", "LGA1156", "AM5", "AM4"],
+        "radiator": { "sizeMm": 360, "dimensionsMm": "397 x 120 x 27" },
+        "fan": { "model": "QX120 RGB", "count": 3, "sizeMm": 120, "speedRpmMin": 480, "speedRpmMax": 2400, "airflowCfmMin": 16.44, "airflowCfmMax": 63.1 },
+        "tubingLengthMm": 450,
+        "coldPlate": { "material": "Copper", "dimensionsMm": "56 x 56" },
+        "weightKg": 2.654,
+        "warrantyYears": 6,
+        "thermalDissipationW": null
+      },
+      "technicalFieldEvidence": {
+        "socketSupport": ["ev-corsair-h150i-01"],
+        "radiator.sizeMm": ["ev-corsair-h150i-01"],
+        "radiator.dimensionsMm": ["ev-corsair-h150i-01"],
+        "fan.model": ["ev-corsair-h150i-01"],
+        "fan.count": ["ev-corsair-h150i-01"],
+        "fan.sizeMm": ["ev-corsair-h150i-01"],
+        "fan.speedRpmMin": ["ev-corsair-h150i-01"],
+        "fan.speedRpmMax": ["ev-corsair-h150i-01"],
+        "fan.airflowCfmMin": ["ev-corsair-h150i-01"],
+        "fan.airflowCfmMax": ["ev-corsair-h150i-01"],
+        "tubingLengthMm": ["ev-corsair-h150i-01"],
+        "coldPlate.material": ["ev-corsair-h150i-01"],
+        "coldPlate.dimensionsMm": ["ev-corsair-h150i-01"],
+        "weightKg": ["ev-corsair-h150i-01"],
+        "warrantyYears": ["ev-corsair-h150i-01"]
+      },
+      "unknownFields": ["thermalDissipationW"],
+      "compatibility": {
+        "requires": [
+          { "key": "socket", "value": "AM5" },
+          { "key": "socket", "value": "AM4" },
+          { "key": "socket", "value": "LGA1700" },
+          { "key": "socket", "value": "LGA1851" },
+          { "key": "socket", "value": "LGA1200" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-corsair-h150i-01",
+          "url": "https://www.corsair.com/us/en/p/cpu-coolers/cw-9061003-ww/icue-link-h150i-rgb-aio-liquid-cpu-cooler-cw-9061003-ww",
+          "kind": "manufacturer-page"
+        }
+      ]
     }
   ]
 }

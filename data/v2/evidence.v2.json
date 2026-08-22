@@ -323,6 +323,41 @@
       "claim": "Pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante, fetch directo exitoso) para '7000D AIRFLOW Full-Tower ATX PC Case — Black', part number CC-9011218-WW. Cita textual: Motherboard Support 'Mini-ITX, Micro-ATX, ATX, E-ATX (305mm x 277mm)'; Maximum GPU Length '450 mm'; Maximum CPU Cooler Height '190 mm'; Power Supply 'ATX form factor; maximum length of 225 mm'; Storage Bays '6 internal 3.5\" drive bays; 4 internal 2.5\" drive bays'; Radiator Compatibility 'Supports 120mm, 140mm, 240mm, 280mm, 360mm, 420mm, 480mm radiators' (la fuente no desglosa por ubicacion front/top/side/rear como si lo hace el 4000D AIRFLOW, por lo que se guardo como lista unica de tamanios soportados en vez de inventar una distribucion por ubicacion); Case Dimensions 'Height: 600 mm; Length: 550 mm; Width: 248 mm' (aqui si vienen etiquetados los ejes, a diferencia del 4000D AIRFLOW); Weight '20.7 kg'; Front Panel I/O '(4x) USB 3.0, (1x) USB 3.1 Type C, (1x) Audio in/out'. No se uso ningun retailer/agregador como fuente.",
       "accessedAt": "2026-08-22T00:00:00Z",
       "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-deepcool-ak400-family-01",
+      "sourceId": "src-deepcool-ak400-family-01",
+      "claim": "Pagina oficial de producto de DeepCool (deepcool.com, dominio propio del fabricante, fetch directo exitoso) para 'AK400', categorizado por el propio fabricante bajo 'cpuaircoolers' (CPU air cooler). Usado como evidencia para el campo 'type=aire' de la family 'Air Tower CPU Cooler'.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-deepcool-ak400-01",
+      "sourceId": "src-deepcool-ak400-01",
+      "claim": "Pagina oficial de producto de DeepCool (deepcool.com, dominio propio del fabricante, fetch directo exitoso) para 'AK400', P/N 'R-AK400-BKNNMN-G-1'. Cita textual: Socket Compatibility Intel 'LGA1851, LGA1700, LGA1200, LGA1151, LGA1150, LGA1155', AMD 'AM5, AM4'; Product dimensions '127x97x155 mm(LxWxH)'; Heatsink dimensions '120x45x152 mm(LxWxH)' (se guardan ambas cifras de altura -- productHeightMm=155 y heatsinkHeightMm=152 -- sin colapsarlas en un unico numero, ya que la fuente las declara por separado); Net weight '661 g'; Heat pipes 'O6 mm x4 pcs'; Heat dissipation capacity 'up to 220W' (supera el minimo requerido por el legacy cool-torre-simple, 95W); Fan '120x120x25 mm', Speed range '500~1850 RPM+/-10%', Airflow '66.47 CFM', Noise level '<=29 dB(A)'. No se uso ningun retailer/agregador como fuente. compatibility.requires solo incluye los sockets del vocabulario controlado (AM5, AM4, LGA1700, LGA1851, LGA1200); LGA1151/1150/1155 (tambien declarados por la fuente) quedan solo en technical.socketSupport por no pertenecer al vocabulario 'socket'.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-deepcool-ak620wh-01",
+      "sourceId": "src-deepcool-ak620wh-01",
+      "claim": "Pagina oficial de producto de DeepCool (global.deepcool.com, dominio propio del fabricante, fetch directo exitoso) para 'AK620 WH', P/N 'R-AK620-WHNNMT-G-1' -- se eligio esta variante 2024 (con '1851' explicito en la URL/nombre) en vez del AK620 base de 2021 (cuya URL no menciona 1851), para no asumir compatibilidad con LGA1851 no confirmada explicitamente en esa SKU. Cita textual: Socket Compatibility Intel 'LGA2066/2011-v3/2011/1851/1700/1200/1151/1150/1155', AMD 'AM5/AM4'; Product dimensions '129x138x160 mm(LxWxH)' y 'Height compatibility: 160mm' (coincide exactamente con el legacy cool-torre-premium); Heatsink dimensions '127x110x157 mm(LxWxH)'; Net Weight '1456 g'; RAM clearance '43mm (59mm en configuracion single fan)'; Heatpipes 'O6 mm x6 pcs'; Heat dissipation capacity '260W maximum' (supera el minimo legacy de 180W); Fan (dual, 120mm) Speed range '500~1850 RPM+/-10%', Airflow '68.99 CFM', Noise level '<=28 dB(A)'. No se uso ningun retailer/agregador como fuente. compatibility.requires solo incluye los sockets del vocabulario controlado.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-corsair-h150i-family-01",
+      "sourceId": "src-corsair-h150i-family-01",
+      "claim": "Pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante, fetch directo exitoso) para 'iCUE LINK H150i RGB AIO Liquid CPU Cooler'. El propio nombre comercial declara textualmente 'Liquid CPU Cooler', usado como evidencia para el campo 'type=liquida' de la family 'AIO Liquid CPU Cooler'.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-corsair-h150i-01",
+      "sourceId": "src-corsair-h150i-01",
+      "claim": "Pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante, fetch directo exitoso) para 'iCUE LINK H150i RGB AIO Liquid CPU Cooler', part number 'CW-9061003-WW'. Cita textual: Socket Compatibility 'Intel 1851, Intel 1700, Intel 1200, Intel 1150, Intel 1151, Intel 1155, Intel 1156, AMD AM5, AMD AM4'; Radiator Dimensions '397mm (L) x 120mm (W) x 27mm (H)'; Radiator Size '360mm' (coincide con el legacy cool-aio-360); Fan 'Quantity: 3, Size: 120mm x 25mm, QX120 RGB', Speed Range '480 - 2400RPM +/-10%', Airflow '16.44 - 63.1 CFM'; Tubing 'Black Sleeved Low-Permeation Rubber, 450mm length'; Cold Plate 'Copper, 56 x 56mm, XTM70 pre-applied'; Weight '2.654kg'; Warranty 'Six-year warranty'. La pagina NO declara ninguna cifra de TDP/potencia termica soportada en watts -- se verifico tambien la pagina oficial de NZXT Kraken 360 (nzxt.com) como referencia cruzada de la industria y tampoco publica esa metrica, confirmando que es una ausencia estructural de los fabricantes de AIO y no un dato omitido por descuido -- por eso thermalDissipationW queda null + unknownFields en vez de inferirse a partir del valor 350W del legacy. No se uso ningun retailer/agregador como fuente. compatibility.requires solo incluye los sockets del vocabulario controlado (AM5, AM4, LGA1700, LGA1851, LGA1200); LGA1150/1151/1155/1156 (tambien declarados) quedan solo en technical.socketSupport.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
     }
   ]
 }

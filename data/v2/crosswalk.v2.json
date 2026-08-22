@@ -38,6 +38,24 @@
       "legacyId": "case-full",
       "productId": "prod-corsair-7000d-airflow",
       "note": "Legacy 'Full-tower ATX' (maxGpuLength 400mm, maxCoolerHeight 180mm) -> CORSAIR 7000D AIRFLOW (CC-9011218-WW), family-case-atx-full-tower. El producto real (450mm/190mm) supera ambos limites minimos del legacy."
+    },
+    {
+      "category": "cooling",
+      "legacyId": "cool-torre-simple",
+      "productId": "prod-deepcool-ak400",
+      "note": "Legacy 'Torre de aire simple' (altura 155mm, TDP 95W) -> DeepCool AK400 (R-AK400-BKNNMN-G-1), family-cooling-air-tower. Altura de producto 155mm coincide exactamente; disipacion 220W supera el minimo legacy."
+    },
+    {
+      "category": "cooling",
+      "legacyId": "cool-torre-premium",
+      "productId": "prod-deepcool-ak620-wh",
+      "note": "Legacy 'Torre de aire premium' (altura 160mm, TDP 180W) -> DeepCool AK620 WH (R-AK620-WHNNMT-G-1), family-cooling-air-tower. Altura 160mm coincide exactamente; disipacion 260W supera el minimo legacy."
+    },
+    {
+      "category": "cooling",
+      "legacyId": "cool-aio-360",
+      "productId": "prod-corsair-icue-link-h150i-rgb",
+      "note": "Legacy 'Refrigeracion liquida AIO 360mm' (TDP 350W) -> CORSAIR iCUE LINK H150i RGB (CW-9061003-WW), family-cooling-aio-liquid. Radiador 360mm y sockets AM5/LGA1851 coinciden; el TDP en watts no pudo verificarse porque Corsair (y la industria de AIO en general, confirmado tambien contra NZXT) no publica esa cifra -- queda como limitacion documentada, no como campo inventado."
     }
   ]
 }

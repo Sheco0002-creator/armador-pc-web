@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://armapc.local/schema/presets.v2.schema.json",
+  "title": "ArmaPC presets.v2.json",
+  "description": "Los presets referencian productId (identidad), nunca offerId. Una oferta se resuelve dinamicamente por region/fecha en tiempo de ejecucion (fuera de alcance de Fase 1).",
+  "type": "object",
+  "required": ["schemaVersion", "generatedAt", "presets"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": "2.0.0" },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "presets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "tier", "publishable", "selections", "compatibilityResult"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "tier": { "type": "string", "minLength": 1 },
+          "publishable": {
+            "type": "boolean",
+            "description": "V-10: solo true si todas las selections tienen productId selectable=true y compatibilityResult=='compatible'; recalculado por el validador, no confiado del archivo"
+          },
+          "selections": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["category", "productId"],
+              "additionalProperties": false,
+              "properties": {
+                "category": { "type": "string", "description": "enum en vocab/category.json" },
+                "productId": { "type": ["string", "null"], "description": "debe existir en catalog.v2.json como entry type=product selectable=true (V-07/V-10); NUNCA un offerId" },
+                "status": { "type": "string" }
+              }
+            }
+          },
+          "compatibilityResult": {
+            "type": "string",
+            "enum": ["compatible", "incompatible", "warning", "unknown"]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,251 @@
+{
+  "schemaVersion": "2.0.0",
+  "generatedAt": "2026-08-21T00:00:00Z",
+  "evidence": [
+    {
+      "evidenceId": "ev-amd-9600x-01",
+      "sourceId": "src-amd-9600x-01",
+      "claim": "Especificaciones oficiales AMD Ryzen 5 9600X: socket AM5, 6 nucleos / 12 hilos, reloj base 3.9 GHz, boost hasta 5.4 GHz, cache L3 32MB, TDP por defecto 65W.",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-nvidia-rtx5070-01",
+      "sourceId": "src-nvidia-rtx5070-01",
+      "claim": "Especificaciones oficiales NVIDIA GeForce RTX 5070: 6144 CUDA cores, reloj base 2.33 GHz, boost 2.51 GHz, 12GB GDDR7, bus de memoria 192-bit, TGP 250W, interfaz PCIe Gen 5. Potencia de sistema minima recomendada de 650W segun nota oficial ('based on a PC configured with a Ryzen 9 9950X processor', dependiente de contexto, no generalizable sin mas evidencia). El conector de alimentacion fisico exacto y el ancho de banda de memoria en GB/s no estan especificados textualmente en esta pagina oficial; se dejan como null/unknownFields en vez de inferirse.",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-amd-9700x-01",
+      "sourceId": "src-amd-9700x-01",
+      "claim": "Especificaciones oficiales AMD Ryzen 7 9700X: socket AM5, 8 nucleos / 16 hilos, reloj base 3.8 GHz, boost hasta 5.5 GHz, cache L3 32MB, TDP por defecto 65W.",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-amd-9850x3d-01",
+      "sourceId": "src-amd-9850x3d-01",
+      "claim": "La pagina oficial de drivers/downloads de AMD confirma la existencia del SKU 'AMD Ryzen 7 9850X3D' dentro de la serie Ryzen 9000. No se pudo acceder a una pagina de especificaciones tecnicas oficial de AMD para este modelo (www.amd.com bloqueo el acceso directo por proteccion anti-bot, y no aparecio en resultados de busqueda una pagina de specs propia de amd.com). Los numeros de cores/hilos/clocks/cache/TDP encontrados en fuentes de terceros (prensa especializada, Wikipedia) NO se usan como evidencia por no ser officialSource valido segun el contrato; por eso todos los campos tecnicos quedan en null y el producto en verification.status=partial.",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-amd-9950x3d-01",
+      "sourceId": "src-amd-9950x3d-01",
+      "claim": "Un hilo de soporte oficial de AMD (adaptivesupport.amd.com) confirma la existencia del SKU 'Ryzen 9 9950X3D'. No se pudo acceder a una pagina de especificaciones tecnicas oficial de AMD para este modelo (www.amd.com bloqueo el acceso directo, y las busquedas solo devolvieron notas de prensa/soporte sin tabla de specs, ademas de fuentes de terceros como Wikipedia/Tom's Hardware que no son officialSource valido). Todos los campos tecnicos quedan en null y el producto en verification.status=partial.",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-nvidia-rtx5060-01",
+      "sourceId": "src-nvidia-rtx5060-01",
+      "claim": "Especificaciones oficiales NVIDIA GeForce RTX 5060: 3840 CUDA cores, reloj base 2.28 GHz, boost 2.50 GHz, 8GB GDDR7, bus de memoria 128-bit, TGP 145W, interfaz PCIe Gen 5. Conector de alimentacion exacto y ancho de banda de memoria en GB/s no especificados textualmente en la pagina oficial; quedan null/unknownFields. No se menciona una cifra de 'Required System Power' para este modelo en la pagina oficial, por lo que tambien queda null.",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-nvidia-rtx5080-01",
+      "sourceId": "src-nvidia-rtx5080-01",
+      "claim": "Especificaciones oficiales NVIDIA GeForce RTX 5080: 10752 CUDA cores, reloj base 2.30 GHz, boost 2.62 GHz, 16GB GDDR7, bus de memoria 256-bit, TGP 360W, potencia de sistema requerida 850W, interfaz PCIe Gen 5. Conector de alimentacion exacto y ancho de banda de memoria en GB/s no especificados textualmente en la pagina oficial; quedan null/unknownFields.",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-nvidia-rtx5090-01",
+      "sourceId": "src-nvidia-rtx5090-01",
+      "claim": "Especificaciones oficiales NVIDIA GeForce RTX 5090: 21760 CUDA cores, reloj base 2.01 GHz, boost 2.41 GHz, 32GB GDDR7, bus de memoria 512-bit, TGP 575W, potencia de sistema requerida 1000W, interfaz PCIe Gen 5. Conector de alimentacion exacto y ancho de banda de memoria en GB/s no especificados textualmente en la pagina oficial; quedan null/unknownFields.",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-nvidia-rtx5070fe-01",
+      "sourceId": "src-nvidia-rtx5070fe-01",
+      "claim": "Pagina oficial de NVIDIA Marketplace (dominio propio de NVIDIA, marketplace.nvidia.com, no un retailer) para 'GeForce RTX 5070 Founders Edition' confirma nombre comercial exacto y manufacturer part number (MPN) 'NVGFT570'. El fetch directo a la pagina dio timeout (misma proteccion anti-bot observada en otras paginas de fabricante); la cita se obtuvo via busqueda web con la URL oficial explicita en los resultados, confirmada de forma consistente en 3 consultas independientes -- mismo mecanismo usado y documentado en el piloto de Fase 2 para paginas AMD. Dimensiones fisicas (largo/alto/ancho de slots) y tipo exacto de conector de alimentacion de esta variante no se pudieron confirmar en esta sesion; NO se completaron con fuentes de terceros/retailers (Best Buy mostraba un codigo distinto '900-1G146-2570-000' que no se uso por no poder confirmarse como el mismo identificador via fuente oficial) -- quedan null en unknownFields.",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-nvidia-rtx5080fe-01",
+      "sourceId": "src-nvidia-rtx5080fe-01",
+      "claim": "Pagina oficial de NVIDIA Marketplace (marketplace.nvidia.com, dominio propio de NVIDIA) para 'GeForce RTX 5080 Founders Edition' confirma nombre comercial exacto y MPN 'NVGFT580'. Fetch directo con timeout; cita obtenida via busqueda web con la URL oficial explicita en los resultados. Un retailer tercero (PCPartPicker) mostraba un codigo distinto '900-1G144-2545-000' que no se uso por no poder confirmarse como el mismo identificador via fuente oficial. Dimensiones fisicas y conector de alimentacion exacto no confirmados -> null/unknownFields.",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-nvidia-rtx5090fe-01",
+      "sourceId": "src-nvidia-rtx5090fe-01",
+      "claim": "Pagina oficial de NVIDIA Marketplace (marketplace.nvidia.com, dominio propio de NVIDIA) para 'GeForce RTX 5090 Founders Edition' confirma nombre comercial exacto y MPN 'NVGFT590'. Fetch directo con timeout; cita obtenida via busqueda web con la URL oficial explicita en los resultados, consistente en la busqueda. Dimensiones fisicas y conector de alimentacion exacto no confirmados -> null/unknownFields.",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-amd-9600x-02",
+      "sourceId": "src-amd-9600x-02",
+      "claim": "Fetch directo exitoso del press release oficial de AMD Investor Relations (ir.amd.com, dominio propio de AMD) 'AMD Unveils Next-Gen Zen 5 Ryzen Processors...'. Cita textual para Ryzen 5 9600X: cores/threads '6 / 12', boost/base 'Up to 5.4 GHz / 3.9 GHz', cache total '38MB' (corrobora L2 6MB + L3 32MB ya cargados desde otra fuente oficial), TDP '65W', PCIe 'Gen 5'. Socket no declarado explicitamente en este documento (se mantiene sourced solo por la fuente previa, src-amd-9600x-01).",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-amd-9700x-02",
+      "sourceId": "src-amd-9700x-02",
+      "claim": "Fetch directo exitoso del mismo press release oficial de AMD Investor Relations (ir.amd.com). Cita textual para Ryzen 7 9700X: cores/threads '8 / 16', boost/base 'Up to 5.5 GHz / 3.8 GHz', cache total '40MB' (corrobora L2 8MB + L3 32MB ya cargados desde otra fuente oficial), TDP '65W', PCIe 'Gen 5'. Socket no declarado explicitamente en este documento (se mantiene sourced solo por la fuente previa, src-amd-9700x-01).",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-amd-9850x3d-02",
+      "sourceId": "src-amd-9850x3d-02",
+      "claim": "Fetch directo exitoso del press release oficial de AMD Investor Relations (ir.amd.com) para el anuncio CES 2026 'AMD Expands AI Leadership Across Client, Graphics, and Software...'. Cita textual para Ryzen 7 9850X3D: cores/threads '8 C / 16 T', boost 'Up to 5.6' GHz, base '4.7 GHz', cache total '104 MB' (no se desglosa L3 especificamente, por eso cache.l3MB permanece null), TDP '120W'. El documento no especifica el socket. Con esta fuente, el producto pasa de verification.status=partial a verified, ya que ahora existe officialSource con datos tecnicos reales.",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-amd-9950x3d-02",
+      "sourceId": "src-amd-9950x3d-02",
+      "claim": "Fetch directo exitoso del press release oficial de AMD Investor Relations (ir.amd.com) para el anuncio CES 2025 'AMD Announces New Graphics and Gaming Products for Ultimate Gameplay Experience at CES'. Cita textual para Ryzen 9 9950X3D: cores/threads '16C/32T', boost/base 'Up to 5.7 / 4.3 GHz', cache total '144 MB' (no se desglosa L3 especificamente, por eso cache.l3MB permanece null), PCIe Gen 5 support, TDP '170W'. El documento no especifica el socket. Con esta fuente, el producto pasa de verification.status=partial a verified.",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-pny-rtx5060oc-01",
+      "sourceId": "src-pny-rtx5060oc-01",
+      "claim": "Pagina oficial de NVIDIA Marketplace (marketplace.nvidia.com, dominio propio de NVIDIA) para 'PNY GeForce RTX 5060 8GB Overclocked Dual Fan Graphics Card', fulfilled by PNY. Confirma MPN 'VCG50608DFXPB1-O', 8GB GDDR7, boost clock 2535 MHz (variante factory-overclocked, distinto del clock de referencia de family-nvidia-rtx5060), 3840 CUDA cores, bus de memoria 128-bit. RTX 5060 no tiene variante Founders Edition (confirmado: solo partners AIB listados en marketplace.nvidia.com), por eso este producto es de un fabricante partner (PNY) en vez de NVIDIA directo. Dimensiones fisicas (7.9x4.7x1.6 in) y conector de alimentacion (1x8-pin, 550W recomendado) aparecen consistentemente en multiples retailers (Best Buy, Exxact, Staples, B&H) pero NO se usan por no estar confirmados en una fuente oficial de PNY o NVIDIA -- quedan null en unknownFields.",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-msi-rtx5060oc-01",
+      "sourceId": "src-msi-rtx5060oc-01",
+      "claim": "Datasheet oficial en PDF de MSI (storage-asset.msi.com, dominio propio del fabricante, obtenido con fetch directo y extraido con pdftotext), generado por MSI el 2026-05-04, para 'GeForce RTX 5060 8G GAMING OC'. Cita textual: Model Name 'G5060-8GC', Interface 'PCI Express Gen 5 x16 pin(uses x8)', Core Clocks 'Extreme Performance: 2640 MHz (MSI Center) Boost: 2625 MHz', CUDA Cores '3840 Units', Memory Speed '28 Gbps', Memory '8GB GDDR7', Memory Bus '128-bit', Power consumption '155 W', Power connectors '8-pin x 1', Recommended PSU '550 W', Card Dimension (mm) '248 x 135 x 41 mm', Weight (Card / Package) '649 g / 966 g'. Todos los campos tecnicos del producto quedan respaldados por esta fuente; no hay unknownFields para este producto.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-msi-rtx5060oc-02",
+      "sourceId": "src-msi-rtx5060oc-02",
+      "claim": "Pagina oficial de NVIDIA Marketplace (marketplace.nvidia.com, dominio propio de NVIDIA) para 'MSI GeForce RTX 5060 8G GAMING OC', fulfilled by MSI. Corrobora MPN 'G5060-8GC' (coincide exactamente con el Model Name del datasheet oficial de MSI) y boost clock 2625 MHz.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-asus-rtx5060oc-01",
+      "sourceId": "src-asus-rtx5060oc-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de especificaciones tecnicas de ASUS (asus.com, dominio propio del fabricante) para 'ASUS Dual GeForce RTX 5060 8GB GDDR7 OC Edition'. Cita textual: Model 'DUAL-RTX5060-O8G', CUDA Cores 3840, Video Memory '8GB GDDR7', Memory Speed 28 Gbps, Memory Interface 128-bit, Boost Clock (Default) 2535 MHz, OC Mode Clock 2565 MHz, Dimensions '228 x 123 x 50 mm', Form Factor '2.5 Slot' (dato declarado explicitamente por ASUS, no inferido del grosor), Power Connectors '1 x 8-pin', Recommended PSU '550W'. El campo 'Bus Standard' de la extraccion mostraba 'OpenGL', que es un valor claramente erroneo/mezclado para PCIe generation -- por eso interface.pcieGen se dejo null en vez de asumir un valor no confiable. TGP/consumo explicito no aparecio en la tabla -> power.consumptionW null.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-asus-rtx5060oc-02",
+      "sourceId": "src-asus-rtx5060oc-02",
+      "claim": "Pagina oficial de NVIDIA Marketplace (marketplace.nvidia.com, dominio propio de NVIDIA) para 'ASUS Dual NVIDIA GeForce RTX 5060 OC Edition', fulfilled by ASUS. Corrobora MPN 'DUAL-RTX5060-O8G' y boost clock 2.527-2.535 GHz (consistente con el dato oficial de asus.com).",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-msi-rtx5070trio-01",
+      "sourceId": "src-msi-rtx5070trio-01",
+      "claim": "Datasheet oficial en PDF de MSI (storage-asset.msi.com, dominio propio del fabricante, fetch directo, extraido con pdftotext), generado por MSI el 2026-04-30, para 'GeForce RTX 5070 12G GAMING TRIO OC'. Cita textual: Model Name 'G5070-12GTC', Interface 'PCI Express Gen 5', Core Clocks 'Extreme Performance: 2625 MHz (MSI Center) Boost: 2610 MHz', CUDA Cores '6144 Units', Memory Speed '28 Gbps', Memory '12GB GDDR7', Memory Bus '192-bit', Power consumption '250 W', Power connectors '16-pin x 1 (ATX 3.1 PSU recommended)', Recommended PSU '650 W', Card Dimension (mm) '338 x 140 x 50 mm', Weight (Card / Package) '1187 g / 1705 g'. El conector se guarda como texto literal 'power.connector=16-pin' en technical (campo libre); NO se agrego a compatibility.requires porque '16-pin' no coincide exactamente con ningun valor del vocabulario controlado gpuPowerConnector (6-pin/8-pin/12VHPWR/12V-2x6) y mapearlo a '12V-2x6' habria sido una inferencia no autorizada. Todos los campos tecnicos quedan respaldados; no hay unknownFields para este producto.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-msi-rtx5080trio-01",
+      "sourceId": "src-msi-rtx5080trio-01",
+      "claim": "Datasheet oficial en PDF de MSI (storage-asset.msi.com, dominio propio del fabricante), verificado de forma independiente con fetch directo + pdftotext (no se dio por valida la informacion aportada por el usuario en la instruccion sin re-verificarla desde el PDF real). Generado por MSI el 2026-01-06, para 'GeForce RTX 5080 16G GAMING TRIO'. Cita textual: Model Name 'G5080-16GT', Graphics Processing Unit 'NVIDIA GeForce RTX 5080', Interface 'PCI Express Gen 5', Core Clocks 'Extreme Performance: 2625 MHz (MSI Center) Boost: 2617 MHz (GAMING & SILENT Mode)', CUDA Cores '10752 Units', Memory Speed '30 Gbps', Memory '16GB GDDR7', Memory Bus '256-bit', Power consumption '360 W', Power connectors '16-pin x 1 (ATX 3.1 PSU recommended)', Recommended PSU '850 W', Card Dimension (mm) '338 x 140 x 50 mm', Weight (Card / Package) '1362 g / 1885 g'. El conector se guarda como texto literal 'power.connector=16-pin' en technical (campo libre); NO se agrego a compatibility.requires ni se convirtio a '12VHPWR'/'12V-2x6' porque el documento no usa esos terminos -- mapearlo habria sido una inferencia no autorizada. Todos los campos tecnicos quedan respaldados; no hay unknownFields para este producto.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-msi-rtx5090trio-01",
+      "sourceId": "src-msi-rtx5090trio-01",
+      "claim": "Datasheet oficial en PDF de MSI (storage-asset.msi.com, dominio propio del fabricante, fetch directo + pdftotext), generado por MSI el 2026-04-30, para 'GeForce RTX 5090 32G GAMING TRIO OC'. Cita textual: Model Name 'G5090-32GTC', Graphics Processing Unit 'NVIDIA GeForce RTX 5090', Interface 'PCI Express Gen 5', Core Clocks 'Extreme Performance: 2497 MHz (MSI Center) Boost: 2482 MHz (GAMING & SILENT Mode)', CUDA Cores '21760 Units', Memory Speed '28 Gbps', Memory '32GB GDDR7', Memory Bus '512-bit', Power consumption '575 W', Power connectors '16-pin x 1 (ATX 3.1 PSU recommended)', Recommended PSU '1000 W', Card Dimension (mm) '359 x 149 x 70 mm', Weight (Card / Package) '2119 g / 2735 g'. El conector se guarda como texto literal 'power.connector=16-pin' en technical (campo libre); NO se agrego a compatibility.requires ni se convirtio a '12VHPWR'/'12V-2x6' porque el documento no usa esos terminos -- mapearlo habria sido una inferencia no autorizada. Todos los campos tecnicos quedan respaldados; no hay unknownFields para este producto.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-asus-rtx5070oc-01",
+      "sourceId": "src-asus-rtx5070oc-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de especificaciones tecnicas de ASUS (asus.com, dominio propio del fabricante) para 'ASUS Dual GeForce RTX 5070 12GB GDDR7 OC Edition'. Cita textual: Model 'DUAL-RTX5070-O12G', GPU 'NVIDIA GeForce RTX 5070', CUDA Cores 6144, Video Memory '12GB GDDR7', Memory Speed '28 Gbps', Memory Interface '192-bit', Boost Clock 'OC mode: 2572MHz / Default mode: 2542MHz', Dimensions '249 x 126 x 50.6 mm', Form Factor '2.53 Slot' (declarado explicitamente, no inferido), Recommended PSU '750W'. La fila 'Power Connectors' existe en la tabla pero el valor textual no pudo extraerse con certeza en dos intentos de fetch (contenido dinamico incompleto en la respuesta) -- se dejo power.connector=null + unknownFields en vez de asumir un valor no confirmado. No se uso ningun retailer como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-asus-rtx5090oc-01",
+      "sourceId": "src-asus-rtx5090oc-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de especificaciones tecnicas de ASUS (asus.com, dominio propio del fabricante) para 'ASUS TUF Gaming GeForce RTX 5090 32GB GDDR7 OC Edition'. Cita textual: Model 'TUF-RTX5090-O32G-GAMING', GPU 'NVIDIA GeForce RTX 5090', CUDA Cores 21760, Video Memory '32GB GDDR7', Memory Speed '28 Gbps', Memory Interface '512-bit', Boost Clock 'OC mode: 2580 MHz' / 'Default mode: 2550 MHz', Dimensions '348 x 146 x 72 mm', Form Factor '3.6 Slot' (declarado explicitamente), Power Connectors '1 x 16-pin', Recommended PSU '1000W'. El valor literal '16-pin' se guarda tal cual en technical.power.connector, sin convertir a '12VHPWR'/'12V-2x6' ni agregarlo a compatibility.requires (no coincide con el vocabulario controlado). Power Consumption/TGP no aparecio especificado en la tabla -> power.consumptionW null + unknownFields. No se uso ningun retailer como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-asus-rtx5080oc-01",
+      "sourceId": "src-asus-rtx5080oc-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de especificaciones tecnicas de ASUS (asus.com, dominio propio del fabricante) para 'ASUS TUF Gaming GeForce RTX 5080 16GB GDDR7 OC Edition'. Cita textual: Model 'TUF-RTX5080-O16G-GAMING', GPU 'NVIDIA GeForce RTX 5080', CUDA Cores 10752, Video Memory '16GB GDDR7', Memory Speed '30 Gbps', Memory Interface '256-bit', Boost Clock 'OC mode: 2730 MHz / Default mode: 2700 MHz', Dimensions '348 x 146 x 72 mm', Form Factor '3.6 Slot' (declarado explicitamente), Power Connectors '1 x 16-pin', Recommended PSU '850W'. El valor literal '16-pin' se guarda tal cual en technical.power.connector, sin convertir a '12VHPWR'/'12V-2x6' ni agregarlo a compatibility.requires (no coincide con el vocabulario controlado). Power Consumption/TGP no aparecio especificado en la tabla -> power.consumptionW null + unknownFields. No se uso ningun retailer como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-corsair-vengeance-ddr5-family-01",
+      "sourceId": "src-corsair-vengeance-ddr5-family-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante) para el kit VENGEANCE CMK32GX5M2B6000C36. Cita textual: 'Memory Type: DDR5 UDIMM'. Se usa como fuente para la family 'DDR5 SDRAM' (categoria ram) porque el intento de acceder a la fuente ideal -- JEDEC.org, organismo oficial del estandar DDR5 (paginas /category/technology-focus-area/main-memory-ddr-sdram y /standards-documents/docs/jesd79-5d) -- dio 403 Forbidden en ambos intentos. Se documenta esta limitacion en vez de omitir la evidencia o inferir el dato.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-corsair-vengeance-ddr5-6000-01",
+      "sourceId": "src-corsair-vengeance-ddr5-6000-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante) para 'VENGEANCE 32GB (2x16GB) DDR5 DRAM Up To 6000MT/s CL36 Memory Kit — Black'. Cita textual: SKU/Part Number 'CMK32GX5M2B6000C36', Memory Type 'DDR5 UDIMM', Capacity '32GB total (2 x 16GB modules)', Speed '6000MT/s (PC5-48000)', CAS Latency/Timings '36-38-38-76 (tested); 40-40-40-77 (SPD)', Voltage '1.25V (tested); 1.1V (SPD)', Pin Configuration '288-pin', Weight '0.115kg', Default SPD Speed '4800MHz'. Todos los campos tecnicos quedan respaldados; no hay unknownFields para este producto. No se uso ningun retailer como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-asus-tufz890-01",
+      "sourceId": "src-asus-tufz890-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de especificaciones tecnicas de ASUS (asus.com, dominio propio del fabricante) para 'TUF GAMING Z890-PRO WIFI'. Cita textual usada para la family 'Intel Z890 Chipset': CPU Socket 'Support Intel Core Ultra Processors (Series 2), LGA1851', Chipset 'Intel Z890'. Se usa como fuente para la family porque el intento de acceder a la fuente ideal -- intel.com/content/www/us/en/products/sku/237777/intel-z890-chipset/specifications.html y el PDF cdrdv2-public.intel.com/832633/intel-z890-chipset-brief.pdf -- dio 403 Forbidden en ambos casos. Se documenta esta limitacion en vez de omitir la evidencia o inferir el dato (mismo patron que family-memory-ddr5 con JEDEC bloqueado).",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-asus-tufz890-02",
+      "sourceId": "src-asus-tufz890-02",
+      "claim": "Fetch directo exitoso de la pagina oficial de especificaciones tecnicas de ASUS (asus.com, dominio propio del fabricante) para 'TUF GAMING Z890-PRO WIFI'. Cita textual: Model 'TUF GAMING Z890-PRO WIFI', CPU Socket 'Support Intel Core Ultra Processors (Series 2), LGA1851', Chipset 'Intel Z890', Memory '4 DIMM slots, dual channel architecture, DDR5, Non-ECC, Unbuffered, maximum capacity 256GB, up to 9066+MT/s (OC)', Expansion Slots '1x PCIe 5.0 x16 (CPU-connected), 1x PCIe 4.0 x16 (x4 mode supported), 1x PCIe 4.0 x4, 2x PCIe 4.0 x1', Storage 'M.2 slots: 4 total (PCIe 5.0 x4, PCIe 4.0 x4 variants), 4 x SATA 6Gb/s ports', Form Factor 'ATX Form Factor, 12 inch x 9.6 inch (30.5 cm x 24.4 cm)'. Todos los campos tecnicos quedan respaldados; no hay unknownFields para este producto. No se uso ningun retailer como fuente. La pagina no distingue un codigo de part number separado del nombre comercial 'TUF GAMING Z890-PRO WIFI'; se uso ese mismo texto literal como model/partNumber en vez de inventar un codigo alfanumerico distinto.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-msi-magz890tomahawk-01",
+      "sourceId": "src-msi-magz890tomahawk-01",
+      "claim": "Datasheet oficial en PDF de MSI (storage-asset.msi.com, dominio propio del fabricante, fetch directo + pdftotext), generado por MSI el 2026-05-20, para 'MAG Z890 TOMAHAWK WIFI'. Cita textual: Model Name 'MAG Z890 TOMAHAWK WIFI', CPU Support 'Supports Intel Core Ultra Processors (Series 2)', CPU Socket 'LGA 1851', Chipset 'Intel Z890 Chipset', Expansion Slots '1x PCIe 5.0 x16 slot, 2x PCIe 4.0 x16 slots', Memory Support '4 DIMMs, Dual Channel DDR5 - 9200+ MT/s (OC)', Storage '1x M.2 Gen5 x4 128Gbps slot, 3x M.2 Gen4 x4 64Gbps slots, 4x SATA 6Gbps ports'. El documento NO declara capacidad maxima de memoria en GB ni form factor (ATX) ni dimensiones fisicas -- estos campos quedan null + unknownFields en vez de asumirse por convencion de mercado. La pagina no distingue un codigo de part number separado del nombre comercial 'MAG Z890 TOMAHAWK WIFI'; se uso ese mismo texto literal como model/partNumber. No se uso ningun retailer como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-asrock-z890proa-01",
+      "sourceId": "src-asrock-z890proa-01",
+      "claim": "Manual oficial en PDF de ASRock (download.asrock.com, dominio propio del fabricante, fetch directo + pdftotext) para 'ASRock Z890 Pro-A'. Cita textual de la seccion de especificaciones: Chipset 'Intel Z890'; Memory 'Dual Channel DDR5 Memory Technology, 4 x DDR5 DIMM Slots, Supports DDR5 non-ECC, un-buffered memory up to 9066+(OC), Max. capacity of system memory: 256GB'; Expansion Slot 'CPU: 1 x PCIe 5.0 x16 Slot (PCIE1); Chipset: 2 x PCIe 4.0 x4 Slots (PCIE3 and PCIE4), 1 x PCIe 4.0 x1 Slot (PCIE2)'; Storage 'CPU: 1 x Blazing M.2 Socket (M2_1) PCIe Gen5x4; 1 x Hyper M.2 Socket (M2_2) PCIe Gen4x4; Chipset: 1 x Hyper M.2 Socket (M2_3) PCIe Gen4x4, 1 x Hyper M.2 Socket (M2_4) PCIe Gen4x4/SATA3, 4 x SATA3 6.0 Gb/s Connectors'. Form factor confirmado textualmente dos veces: 'ASRock Z890 Pro-A Motherboard (ATX Form Factor)' y 'This is an ATX form factor motherboard'. El socket se documenta en el manual como 'Socket 1851'/'1851-Pin CPU'; se normaliza a 'LGA1851' (mismo socket fisico referenciado por ASUS y MSI en sus propias fuentes con esa notacion). Dimensiones fisicas exactas en mm no aparecen en el documento -> physical.widthMm/depthMm quedan null + unknownFields. No se uso ningun retailer como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-intel-atx-psu-01",
+      "sourceId": "src-intel-atx-psu-01",
+      "claim": "Fetch directo exitoso del portal oficial de diseno de Intel (edc.intel.com, dominio propio de Intel) para el documento 'ATX Version 3.0 Multi Rail Desktop Platform Power Supply' design guide. El documento describe ATX como plataforma estandarizada de fuentes de poder para sistemas de escritorio, estableciendo parametros de diseno comunes entre multiples factores de forma relacionados (ATX12V, SFX12V, TFX12V, CFX12V, LFX12V, Flex ATX). Se usa unicamente para confirmar 'ATX' como el tipo/plataforma tecnica generica de la family (category=psu) -- deliberadamente NO se codifica la version especifica (3.0/3.1) ni la certificacion 80 PLUS en la family, siguiendo instruccion explicita del usuario de que esos datos pertenecen al product cuando esten documentados.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-msi-a850glpcie5-01",
+      "sourceId": "src-msi-a850glpcie5-01",
+      "claim": "Datasheet oficial en PDF de MSI (storage-asset.msi.com, dominio propio del fabricante, fetch directo + pdftotext), generado por MSI el 2025-12-03, para 'MAG A850GL PCIE5'. Cita textual: 'ATX 3.1 ready, native PCIe 5.1 dual-color 16-pin cable', Efficiency Rating '80 PLUS Gold (up to 90%)', Modular 'Yes (full modular)', Fan Size '120 mm', Fan Bearing 'Fluid Dynamic Bearing', Dimensions (DxWxH) '140 x 150 x 86 mm', PFC Type 'Active PFC', Input Voltage Range '100~240 VAC', Power Watt '850W', Power Excursion '1700W (up to 200% of the PSU's rated power for 100s)', Input Frequency Range '47-63Hz', Protection 'OCP / OVP / OPP / OTP / SCP / UVP', conectores 'ATX (24 pin) x1, EPS (4+4 pin) x2, PCI-E 5.0 (16 pin) x1 (600W), PCI-E (6+2 pin) x4, SATA (15 pin) x8, PERIPHERAL (4 pin) x4, FDD (4 pin) x1'. Todos los campos tecnicos quedan respaldados; no hay unknownFields para este producto. No se uso ningun retailer como fuente. No se agrego el conector PCI-E 5.0 de 16 pines a compatibility.provides/requires porque '16-pin' no coincide con el vocabulario controlado gpuPowerConnector (mismo criterio ya aplicado a las GPU MSI/ASUS).",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-corsair-rm1000e-01",
+      "sourceId": "src-corsair-rm1000e-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante) para 'RMe Series RM1000e - Fully Modular Low-Noise ATX Power Supply - White'. Cita textual: SKU/Part Number 'CP-9020294-NA', Wattage '1000 Watts', Efficiency Rating 'Cybenetics Gold certified (up to 89% efficiency)', ATX Version '3.1 Certified', Modularity 'Fully Modular', Fan '120mm rifle bearing fan', Dimensions '140 x 150 x 86 mm', Input Voltage '100-240V (47~63Hz)', Weight '3.23 kg', MTBF '100,000 hours', Warranty '7 years', conectores '1x ATX 24-Pin, 2x EPS/ATX 12V 8-Pin (4+4), 1x 12V-2x6 (12+4) Pin (native 600W-capable), 2x PCIe 8-Pin (6+2), 6x SATA, 2x PATA'. El conector '12V-2x6' coincide EXACTAMENTE con el vocabulario controlado gpuPowerConnector (a diferencia del '16-pin' generico usado por las fuentes de GPU MSI/ASUS), por lo que si se agrego a compatibility.provides -- no es una conversion ni inferencia, es el termino literal que usa esta fuente oficial. Todos los campos tecnicos quedan respaldados; no hay unknownFields para este producto. No se uso ningun retailer como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    }
+  ]
+}

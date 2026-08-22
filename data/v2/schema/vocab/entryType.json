@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "2.0.0",
+  "key": "entryType",
+  "description": "Discriminador de entrada en catalog.v2.json. 'family' nunca es selectable; solo 'product' puede serlo.",
+  "values": ["family", "product"]
+}

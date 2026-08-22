@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "2.0.0",
+  "key": "gpuPowerConnector",
+  "description": "Conectores de alimentacion PCIe reconocidos. Usado en GPU+PSU (compatibility.provides/requires).",
+  "values": ["6-pin", "8-pin", "12VHPWR", "12V-2x6"]
+}

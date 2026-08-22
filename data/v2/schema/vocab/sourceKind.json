@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "2.0.0",
+  "key": "sourceKind",
+  "description": "Tipos de officialSource permitidos en catalog.v2.json. Tiendas/marketplaces NUNCA son un kind valido aqui; solo pueden aparecer como seller en offers.v2.json.",
+  "values": [
+    "manufacturer-page",
+    "manufacturer-spec",
+    "datasheet",
+    "manual",
+    "official-support",
+    "certification-db"
+  ]
+}

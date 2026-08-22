@@ -1,0 +1,1401 @@
+{
+  "schemaVersion": "2.0.0",
+  "generatedAt": "2026-08-21T00:00:00Z",
+  "entries": [
+    {
+      "id": "family-amd-ryzen5-9600x",
+      "type": "family",
+      "category": "cpu",
+      "displayName": "AMD Ryzen 5 9600X",
+      "selectable": false,
+      "technical": {
+        "socket": "AM5",
+        "coresPhysical": 6,
+        "threads": 12,
+        "baseClockMHz": 3900,
+        "boostClockMHz": 5400,
+        "cache": { "l3MB": 32, "totalMB": 38 },
+        "tdpW": 65,
+        "interface": { "pcieGen": "5.0" }
+      },
+      "technicalFieldEvidence": {
+        "socket": ["ev-amd-9600x-01"],
+        "coresPhysical": ["ev-amd-9600x-01", "ev-amd-9600x-02"],
+        "threads": ["ev-amd-9600x-01", "ev-amd-9600x-02"],
+        "baseClockMHz": ["ev-amd-9600x-01", "ev-amd-9600x-02"],
+        "boostClockMHz": ["ev-amd-9600x-01", "ev-amd-9600x-02"],
+        "cache.l3MB": ["ev-amd-9600x-01"],
+        "cache.totalMB": ["ev-amd-9600x-02"],
+        "tdpW": ["ev-amd-9600x-01", "ev-amd-9600x-02"],
+        "interface.pcieGen": ["ev-amd-9600x-02"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "socket", "value": "AM5" },
+          { "key": "pcieGen", "value": "5.0" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-21T00:00:00Z",
+        "verifiedBy": "manual-review-pilot-fase2"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-amd-9600x-01",
+          "url": "https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-5-9600x.html",
+          "kind": "manufacturer-page"
+        },
+        {
+          "sourceId": "src-amd-9600x-02",
+          "url": "https://ir.amd.com/news-events/press-releases/detail/1202/amd-unveils-next-gen-zen-5-ryzen-processors-to-power-advanced-ai-experiences",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "family-nvidia-rtx5070",
+      "type": "family",
+      "category": "gpu",
+      "displayName": "NVIDIA GeForce RTX 5070",
+      "selectable": false,
+      "technical": {
+        "compute": { "cudaCores": 6144 },
+        "clocks": { "baseClockMHz": 2330, "boostClockMHz": 2510 },
+        "memory": { "sizeGB": 12, "type": "GDDR7", "busWidthBit": 192, "bandwidthGBs": null },
+        "power": { "tgpW": 250, "connector": null, "systemPowerRecommendationW": 650 },
+        "interface": { "pcieGen": "5.0" }
+      },
+      "technicalFieldEvidence": {
+        "compute.cudaCores": ["ev-nvidia-rtx5070-01"],
+        "clocks.baseClockMHz": ["ev-nvidia-rtx5070-01"],
+        "clocks.boostClockMHz": ["ev-nvidia-rtx5070-01"],
+        "memory.sizeGB": ["ev-nvidia-rtx5070-01"],
+        "memory.type": ["ev-nvidia-rtx5070-01"],
+        "memory.busWidthBit": ["ev-nvidia-rtx5070-01"],
+        "power.tgpW": ["ev-nvidia-rtx5070-01"],
+        "power.systemPowerRecommendationW": ["ev-nvidia-rtx5070-01"],
+        "interface.pcieGen": ["ev-nvidia-rtx5070-01"]
+      },
+      "unknownFields": ["memory.bandwidthGBs", "power.connector"],
+      "compatibility": {
+        "provides": [
+          { "key": "pcieGen", "value": "5.0" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-21T00:00:00Z",
+        "verifiedBy": "manual-review-pilot-fase2"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-nvidia-rtx5070-01",
+          "url": "https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5070-family/",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "family-amd-ryzen7-9700x",
+      "type": "family",
+      "category": "cpu",
+      "displayName": "AMD Ryzen 7 9700X",
+      "selectable": false,
+      "technical": {
+        "socket": "AM5",
+        "coresPhysical": 8,
+        "threads": 16,
+        "baseClockMHz": 3800,
+        "boostClockMHz": 5500,
+        "cache": { "l3MB": 32, "totalMB": 40 },
+        "tdpW": 65,
+        "interface": { "pcieGen": "5.0" }
+      },
+      "technicalFieldEvidence": {
+        "socket": ["ev-amd-9700x-01"],
+        "coresPhysical": ["ev-amd-9700x-01", "ev-amd-9700x-02"],
+        "threads": ["ev-amd-9700x-01", "ev-amd-9700x-02"],
+        "baseClockMHz": ["ev-amd-9700x-01", "ev-amd-9700x-02"],
+        "boostClockMHz": ["ev-amd-9700x-01", "ev-amd-9700x-02"],
+        "cache.l3MB": ["ev-amd-9700x-01"],
+        "cache.totalMB": ["ev-amd-9700x-02"],
+        "tdpW": ["ev-amd-9700x-01", "ev-amd-9700x-02"],
+        "interface.pcieGen": ["ev-amd-9700x-02"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "socket", "value": "AM5" },
+          { "key": "pcieGen", "value": "5.0" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-21T00:00:00Z",
+        "verifiedBy": "manual-review-fase2"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-amd-9700x-01",
+          "url": "https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-7-9700x.html",
+          "kind": "manufacturer-page"
+        },
+        {
+          "sourceId": "src-amd-9700x-02",
+          "url": "https://ir.amd.com/news-events/press-releases/detail/1202/amd-unveils-next-gen-zen-5-ryzen-processors-to-power-advanced-ai-experiences",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "family-amd-ryzen7-9850x3d",
+      "type": "family",
+      "category": "cpu",
+      "displayName": "AMD Ryzen 7 9850X3D",
+      "selectable": false,
+      "technical": {
+        "socket": null,
+        "coresPhysical": 8,
+        "threads": 16,
+        "baseClockMHz": 4700,
+        "boostClockMHz": 5600,
+        "cache": { "l3MB": null, "totalMB": 104 },
+        "tdpW": 120
+      },
+      "technicalFieldEvidence": {
+        "coresPhysical": ["ev-amd-9850x3d-02"],
+        "threads": ["ev-amd-9850x3d-02"],
+        "baseClockMHz": ["ev-amd-9850x3d-02"],
+        "boostClockMHz": ["ev-amd-9850x3d-02"],
+        "cache.totalMB": ["ev-amd-9850x3d-02"],
+        "tdpW": ["ev-amd-9850x3d-02"]
+      },
+      "unknownFields": ["socket", "cache.l3MB"],
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-21T00:00:00Z",
+        "verifiedBy": "manual-review-fase2"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-amd-9850x3d-01",
+          "url": "https://www.amd.com/en/support/downloads/drivers.html/processors/ryzen/ryzen-9000-series/amd-ryzen-7-9850x3d.html",
+          "kind": "official-support"
+        },
+        {
+          "sourceId": "src-amd-9850x3d-02",
+          "url": "https://ir.amd.com/news-events/press-releases/detail/1270/amd-expands-ai-leadership-across-client-graphics-and-software-with-new-ryzen-ryzen-ai-and-amd-rocm-announcements-at-ces-2026",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "family-amd-ryzen9-9950x3d",
+      "type": "family",
+      "category": "cpu",
+      "displayName": "AMD Ryzen 9 9950X3D",
+      "selectable": false,
+      "technical": {
+        "socket": null,
+        "coresPhysical": 16,
+        "threads": 32,
+        "baseClockMHz": 4300,
+        "boostClockMHz": 5700,
+        "cache": { "l3MB": null, "totalMB": 144 },
+        "tdpW": 170,
+        "interface": { "pcieGen": "5.0" }
+      },
+      "technicalFieldEvidence": {
+        "coresPhysical": ["ev-amd-9950x3d-02"],
+        "threads": ["ev-amd-9950x3d-02"],
+        "baseClockMHz": ["ev-amd-9950x3d-02"],
+        "boostClockMHz": ["ev-amd-9950x3d-02"],
+        "cache.totalMB": ["ev-amd-9950x3d-02"],
+        "tdpW": ["ev-amd-9950x3d-02"],
+        "interface.pcieGen": ["ev-amd-9950x3d-02"]
+      },
+      "unknownFields": ["socket", "cache.l3MB"],
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-21T00:00:00Z",
+        "verifiedBy": "manual-review-fase2"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-amd-9950x3d-01",
+          "url": "https://adaptivesupport.amd.com/s/question/0D5KZ00000smPEK0A2/ryzen-9-9950x3d-bios-?language=en_US",
+          "kind": "official-support"
+        },
+        {
+          "sourceId": "src-amd-9950x3d-02",
+          "url": "https://ir.amd.com/news-events/press-releases/detail/1233/amd-announces-new-graphics-and-gaming-products-for-ultimate-gameplay-experience-at-ces",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "family-nvidia-rtx5060",
+      "type": "family",
+      "category": "gpu",
+      "displayName": "NVIDIA GeForce RTX 5060",
+      "selectable": false,
+      "technical": {
+        "compute": { "cudaCores": 3840 },
+        "clocks": { "baseClockMHz": 2280, "boostClockMHz": 2500 },
+        "memory": { "sizeGB": 8, "type": "GDDR7", "busWidthBit": 128, "bandwidthGBs": null },
+        "power": { "tgpW": 145, "connector": null, "systemPowerRecommendationW": null },
+        "interface": { "pcieGen": "5.0" }
+      },
+      "technicalFieldEvidence": {
+        "compute.cudaCores": ["ev-nvidia-rtx5060-01"],
+        "clocks.baseClockMHz": ["ev-nvidia-rtx5060-01"],
+        "clocks.boostClockMHz": ["ev-nvidia-rtx5060-01"],
+        "memory.sizeGB": ["ev-nvidia-rtx5060-01"],
+        "memory.type": ["ev-nvidia-rtx5060-01"],
+        "memory.busWidthBit": ["ev-nvidia-rtx5060-01"],
+        "power.tgpW": ["ev-nvidia-rtx5060-01"],
+        "interface.pcieGen": ["ev-nvidia-rtx5060-01"]
+      },
+      "unknownFields": ["memory.bandwidthGBs", "power.connector", "power.systemPowerRecommendationW"],
+      "compatibility": {
+        "provides": [
+          { "key": "pcieGen", "value": "5.0" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-21T00:00:00Z",
+        "verifiedBy": "manual-review-fase2"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-nvidia-rtx5060-01",
+          "url": "https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5060-family/",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "family-nvidia-rtx5080",
+      "type": "family",
+      "category": "gpu",
+      "displayName": "NVIDIA GeForce RTX 5080",
+      "selectable": false,
+      "technical": {
+        "compute": { "cudaCores": 10752 },
+        "clocks": { "baseClockMHz": 2300, "boostClockMHz": 2620 },
+        "memory": { "sizeGB": 16, "type": "GDDR7", "busWidthBit": 256, "bandwidthGBs": null },
+        "power": { "tgpW": 360, "connector": null, "systemPowerRecommendationW": 850 },
+        "interface": { "pcieGen": "5.0" }
+      },
+      "technicalFieldEvidence": {
+        "compute.cudaCores": ["ev-nvidia-rtx5080-01"],
+        "clocks.baseClockMHz": ["ev-nvidia-rtx5080-01"],
+        "clocks.boostClockMHz": ["ev-nvidia-rtx5080-01"],
+        "memory.sizeGB": ["ev-nvidia-rtx5080-01"],
+        "memory.type": ["ev-nvidia-rtx5080-01"],
+        "memory.busWidthBit": ["ev-nvidia-rtx5080-01"],
+        "power.tgpW": ["ev-nvidia-rtx5080-01"],
+        "power.systemPowerRecommendationW": ["ev-nvidia-rtx5080-01"],
+        "interface.pcieGen": ["ev-nvidia-rtx5080-01"]
+      },
+      "unknownFields": ["memory.bandwidthGBs", "power.connector"],
+      "compatibility": {
+        "provides": [
+          { "key": "pcieGen", "value": "5.0" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-21T00:00:00Z",
+        "verifiedBy": "manual-review-fase2"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-nvidia-rtx5080-01",
+          "url": "https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5080/",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "family-nvidia-rtx5090",
+      "type": "family",
+      "category": "gpu",
+      "displayName": "NVIDIA GeForce RTX 5090",
+      "selectable": false,
+      "technical": {
+        "compute": { "cudaCores": 21760 },
+        "clocks": { "baseClockMHz": 2010, "boostClockMHz": 2410 },
+        "memory": { "sizeGB": 32, "type": "GDDR7", "busWidthBit": 512, "bandwidthGBs": null },
+        "power": { "tgpW": 575, "connector": null, "systemPowerRecommendationW": 1000 },
+        "interface": { "pcieGen": "5.0" }
+      },
+      "technicalFieldEvidence": {
+        "compute.cudaCores": ["ev-nvidia-rtx5090-01"],
+        "clocks.baseClockMHz": ["ev-nvidia-rtx5090-01"],
+        "clocks.boostClockMHz": ["ev-nvidia-rtx5090-01"],
+        "memory.sizeGB": ["ev-nvidia-rtx5090-01"],
+        "memory.type": ["ev-nvidia-rtx5090-01"],
+        "memory.busWidthBit": ["ev-nvidia-rtx5090-01"],
+        "power.tgpW": ["ev-nvidia-rtx5090-01"],
+        "power.systemPowerRecommendationW": ["ev-nvidia-rtx5090-01"],
+        "interface.pcieGen": ["ev-nvidia-rtx5090-01"]
+      },
+      "unknownFields": ["memory.bandwidthGBs", "power.connector"],
+      "compatibility": {
+        "provides": [
+          { "key": "pcieGen", "value": "5.0" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-21T00:00:00Z",
+        "verifiedBy": "manual-review-fase2"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-nvidia-rtx5090-01",
+          "url": "https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5090/",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-nvidia-rtx5070-founders-edition",
+      "type": "product",
+      "category": "gpu",
+      "familyId": "family-nvidia-rtx5070",
+      "identity": {
+        "brand": "NVIDIA",
+        "commercialName": "GeForce RTX 5070 Founders Edition",
+        "model": "RTX 5070 Founders Edition",
+        "partNumber": "NVGFT570",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "physical": { "lengthMm": null, "heightMm": null, "slotWidth": null },
+        "power": { "connector": null }
+      },
+      "technicalFieldEvidence": {},
+      "unknownFields": ["physical.lengthMm", "physical.heightMm", "physical.slotWidth", "power.connector"],
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-21T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-nvidia-rtx5070fe-01",
+          "url": "https://marketplace.nvidia.com/en-us/consumer/graphics-cards/geforce-rtx-5070-founders-edition/",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-nvidia-rtx5080-founders-edition",
+      "type": "product",
+      "category": "gpu",
+      "familyId": "family-nvidia-rtx5080",
+      "identity": {
+        "brand": "NVIDIA",
+        "commercialName": "GeForce RTX 5080 Founders Edition",
+        "model": "RTX 5080 Founders Edition",
+        "partNumber": "NVGFT580",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "physical": { "lengthMm": null, "heightMm": null, "slotWidth": null },
+        "power": { "connector": null }
+      },
+      "technicalFieldEvidence": {},
+      "unknownFields": ["physical.lengthMm", "physical.heightMm", "physical.slotWidth", "power.connector"],
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-21T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-nvidia-rtx5080fe-01",
+          "url": "https://marketplace.nvidia.com/en-us/consumer/graphics-cards/geforce-rtx-5080-founders-edition/",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-nvidia-rtx5090-founders-edition",
+      "type": "product",
+      "category": "gpu",
+      "familyId": "family-nvidia-rtx5090",
+      "identity": {
+        "brand": "NVIDIA",
+        "commercialName": "GeForce RTX 5090 Founders Edition",
+        "model": "RTX 5090 Founders Edition",
+        "partNumber": "NVGFT590",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "physical": { "lengthMm": null, "heightMm": null, "slotWidth": null },
+        "power": { "connector": null }
+      },
+      "technicalFieldEvidence": {},
+      "unknownFields": ["physical.lengthMm", "physical.heightMm", "physical.slotWidth", "power.connector"],
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-21T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-nvidia-rtx5090fe-01",
+          "url": "https://marketplace.nvidia.com/en-us/consumer/graphics-cards/geforce-rtx-5090-founders-edition/",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-pny-rtx5060-overclocked",
+      "type": "product",
+      "category": "gpu",
+      "familyId": "family-nvidia-rtx5060",
+      "identity": {
+        "brand": "PNY",
+        "commercialName": "GeForce RTX 5060 8GB Overclocked Dual Fan Graphics Card",
+        "model": "RTX 5060 Overclocked 8GB",
+        "partNumber": "VCG50608DFXPB1-O",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "clocks": { "boostClockMHz": 2535 },
+        "physical": { "lengthMm": null, "heightMm": null, "slotWidth": null },
+        "power": { "connector": null }
+      },
+      "technicalFieldEvidence": {
+        "clocks.boostClockMHz": ["ev-pny-rtx5060oc-01"]
+      },
+      "unknownFields": ["physical.lengthMm", "physical.heightMm", "physical.slotWidth", "power.connector"],
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-21T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-pny-rtx5060oc-01",
+          "url": "https://marketplace.nvidia.com/en-us/consumer/graphics-cards/pny-geforce-rtx-5060-8gb-overclocked-dual-fan-graphics-card/",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-msi-rtx5060-8g-gaming-oc",
+      "type": "product",
+      "category": "gpu",
+      "familyId": "family-nvidia-rtx5060",
+      "identity": {
+        "brand": "MSI",
+        "commercialName": "GeForce RTX 5060 8G GAMING OC",
+        "model": "G5060-8GC",
+        "partNumber": "G5060-8GC",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "compute": { "cudaCores": 3840 },
+        "clocks": { "boostClockMHz": 2625, "extremePerformanceClockMHz": 2640 },
+        "memory": { "sizeGB": 8, "type": "GDDR7", "busWidthBit": 128, "speedGbps": 28 },
+        "interface": { "pcieGen": "5.0" },
+        "physical": { "lengthMm": 248, "heightMm": 135, "thicknessMm": 41, "weightCardG": 649, "weightPackageG": 966 },
+        "power": { "connector": "8-pin", "consumptionW": 155, "recommendedPsuW": 550 }
+      },
+      "technicalFieldEvidence": {
+        "compute.cudaCores": ["ev-msi-rtx5060oc-01"],
+        "clocks.boostClockMHz": ["ev-msi-rtx5060oc-01", "ev-msi-rtx5060oc-02"],
+        "clocks.extremePerformanceClockMHz": ["ev-msi-rtx5060oc-01"],
+        "memory.sizeGB": ["ev-msi-rtx5060oc-01"],
+        "memory.type": ["ev-msi-rtx5060oc-01"],
+        "memory.busWidthBit": ["ev-msi-rtx5060oc-01"],
+        "memory.speedGbps": ["ev-msi-rtx5060oc-01"],
+        "interface.pcieGen": ["ev-msi-rtx5060oc-01"],
+        "physical.lengthMm": ["ev-msi-rtx5060oc-01"],
+        "physical.heightMm": ["ev-msi-rtx5060oc-01"],
+        "physical.thicknessMm": ["ev-msi-rtx5060oc-01"],
+        "physical.weightCardG": ["ev-msi-rtx5060oc-01"],
+        "physical.weightPackageG": ["ev-msi-rtx5060oc-01"],
+        "power.connector": ["ev-msi-rtx5060oc-01"],
+        "power.consumptionW": ["ev-msi-rtx5060oc-01"],
+        "power.recommendedPsuW": ["ev-msi-rtx5060oc-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "pcieGen", "value": "5.0" }
+        ],
+        "requires": [
+          { "key": "gpuPowerConnector", "value": "8-pin" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-msi-rtx5060oc-01",
+          "url": "https://storage-asset.msi.com/datasheet/vga/global/GeForce-RTX-5060-8G-GAMING-OC.pdf",
+          "kind": "datasheet"
+        },
+        {
+          "sourceId": "src-msi-rtx5060oc-02",
+          "url": "https://marketplace.nvidia.com/en-us/consumer/graphics-cards/msi-geforce-rtx-5060-8g-gaming-oc/",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-asus-rtx5060-dual-oc",
+      "type": "product",
+      "category": "gpu",
+      "familyId": "family-nvidia-rtx5060",
+      "identity": {
+        "brand": "ASUS",
+        "commercialName": "ASUS Dual GeForce RTX 5060 8GB GDDR7 OC Edition",
+        "model": "DUAL-RTX5060-O8G",
+        "partNumber": "DUAL-RTX5060-O8G",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "compute": { "cudaCores": 3840 },
+        "clocks": { "boostClockMHz": 2535, "ocModeClockMHz": 2565 },
+        "memory": { "sizeGB": 8, "type": "GDDR7", "busWidthBit": 128, "speedGbps": 28 },
+        "interface": { "pcieGen": null },
+        "physical": { "lengthMm": 228, "heightMm": 123, "thicknessMm": 50, "slotWidth": 2.5 },
+        "power": { "connector": "8-pin", "consumptionW": null, "recommendedPsuW": 550 }
+      },
+      "technicalFieldEvidence": {
+        "compute.cudaCores": ["ev-asus-rtx5060oc-01"],
+        "clocks.boostClockMHz": ["ev-asus-rtx5060oc-01", "ev-asus-rtx5060oc-02"],
+        "clocks.ocModeClockMHz": ["ev-asus-rtx5060oc-01"],
+        "memory.sizeGB": ["ev-asus-rtx5060oc-01"],
+        "memory.type": ["ev-asus-rtx5060oc-01"],
+        "memory.busWidthBit": ["ev-asus-rtx5060oc-01"],
+        "memory.speedGbps": ["ev-asus-rtx5060oc-01"],
+        "physical.lengthMm": ["ev-asus-rtx5060oc-01"],
+        "physical.heightMm": ["ev-asus-rtx5060oc-01"],
+        "physical.thicknessMm": ["ev-asus-rtx5060oc-01"],
+        "physical.slotWidth": ["ev-asus-rtx5060oc-01"],
+        "power.connector": ["ev-asus-rtx5060oc-01"],
+        "power.recommendedPsuW": ["ev-asus-rtx5060oc-01"]
+      },
+      "unknownFields": ["interface.pcieGen", "power.consumptionW"],
+      "compatibility": {
+        "requires": [
+          { "key": "gpuPowerConnector", "value": "8-pin" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-asus-rtx5060oc-01",
+          "url": "https://www.asus.com/motherboards-components/graphics-cards/dual/dual-rtx5060-o8g/techspec/",
+          "kind": "manufacturer-page"
+        },
+        {
+          "sourceId": "src-asus-rtx5060oc-02",
+          "url": "https://marketplace.nvidia.com/en-us/consumer/graphics-cards/asus-dual-nvidia-geforce-rtx-5060-oc-edition/",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-msi-rtx5070-12g-gaming-trio-oc",
+      "type": "product",
+      "category": "gpu",
+      "familyId": "family-nvidia-rtx5070",
+      "identity": {
+        "brand": "MSI",
+        "commercialName": "GeForce RTX 5070 12G GAMING TRIO OC",
+        "model": "G5070-12GTC",
+        "partNumber": "G5070-12GTC",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "compute": { "cudaCores": 6144 },
+        "clocks": { "boostClockMHz": 2610, "extremePerformanceClockMHz": 2625 },
+        "memory": { "sizeGB": 12, "type": "GDDR7", "busWidthBit": 192, "speedGbps": 28 },
+        "interface": { "pcieGen": "5.0" },
+        "physical": { "lengthMm": 338, "heightMm": 140, "thicknessMm": 50, "weightCardG": 1187, "weightPackageG": 1705 },
+        "power": { "connector": "16-pin", "consumptionW": 250, "recommendedPsuW": 650 }
+      },
+      "technicalFieldEvidence": {
+        "compute.cudaCores": ["ev-msi-rtx5070trio-01"],
+        "clocks.boostClockMHz": ["ev-msi-rtx5070trio-01"],
+        "clocks.extremePerformanceClockMHz": ["ev-msi-rtx5070trio-01"],
+        "memory.sizeGB": ["ev-msi-rtx5070trio-01"],
+        "memory.type": ["ev-msi-rtx5070trio-01"],
+        "memory.busWidthBit": ["ev-msi-rtx5070trio-01"],
+        "memory.speedGbps": ["ev-msi-rtx5070trio-01"],
+        "interface.pcieGen": ["ev-msi-rtx5070trio-01"],
+        "physical.lengthMm": ["ev-msi-rtx5070trio-01"],
+        "physical.heightMm": ["ev-msi-rtx5070trio-01"],
+        "physical.thicknessMm": ["ev-msi-rtx5070trio-01"],
+        "physical.weightCardG": ["ev-msi-rtx5070trio-01"],
+        "physical.weightPackageG": ["ev-msi-rtx5070trio-01"],
+        "power.connector": ["ev-msi-rtx5070trio-01"],
+        "power.consumptionW": ["ev-msi-rtx5070trio-01"],
+        "power.recommendedPsuW": ["ev-msi-rtx5070trio-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "pcieGen", "value": "5.0" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-msi-rtx5070trio-01",
+          "url": "https://storage-asset.msi.com/datasheet/vga/global/GeForce-RTX-5070-12G-GAMING-TRIO-OC.pdf",
+          "kind": "datasheet"
+        }
+      ]
+    },
+    {
+      "id": "prod-msi-rtx5080-16g-gaming-trio",
+      "type": "product",
+      "category": "gpu",
+      "familyId": "family-nvidia-rtx5080",
+      "identity": {
+        "brand": "MSI",
+        "commercialName": "GeForce RTX 5080 16G GAMING TRIO",
+        "model": "G5080-16GT",
+        "partNumber": "G5080-16GT",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "compute": { "cudaCores": 10752 },
+        "clocks": { "boostClockMHz": 2617, "extremePerformanceClockMHz": 2625 },
+        "memory": { "sizeGB": 16, "type": "GDDR7", "busWidthBit": 256, "speedGbps": 30 },
+        "interface": { "pcieGen": "5.0" },
+        "physical": { "lengthMm": 338, "heightMm": 140, "thicknessMm": 50, "weightCardG": 1362, "weightPackageG": 1885 },
+        "power": { "connector": "16-pin", "consumptionW": 360, "recommendedPsuW": 850 }
+      },
+      "technicalFieldEvidence": {
+        "compute.cudaCores": ["ev-msi-rtx5080trio-01"],
+        "clocks.boostClockMHz": ["ev-msi-rtx5080trio-01"],
+        "clocks.extremePerformanceClockMHz": ["ev-msi-rtx5080trio-01"],
+        "memory.sizeGB": ["ev-msi-rtx5080trio-01"],
+        "memory.type": ["ev-msi-rtx5080trio-01"],
+        "memory.busWidthBit": ["ev-msi-rtx5080trio-01"],
+        "memory.speedGbps": ["ev-msi-rtx5080trio-01"],
+        "interface.pcieGen": ["ev-msi-rtx5080trio-01"],
+        "physical.lengthMm": ["ev-msi-rtx5080trio-01"],
+        "physical.heightMm": ["ev-msi-rtx5080trio-01"],
+        "physical.thicknessMm": ["ev-msi-rtx5080trio-01"],
+        "physical.weightCardG": ["ev-msi-rtx5080trio-01"],
+        "physical.weightPackageG": ["ev-msi-rtx5080trio-01"],
+        "power.connector": ["ev-msi-rtx5080trio-01"],
+        "power.consumptionW": ["ev-msi-rtx5080trio-01"],
+        "power.recommendedPsuW": ["ev-msi-rtx5080trio-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "pcieGen", "value": "5.0" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-msi-rtx5080trio-01",
+          "url": "https://storage-asset.msi.com/datasheet/vga/global/GeForce-RTX-5080-16G-GAMING-TRIO.pdf",
+          "kind": "datasheet"
+        }
+      ]
+    },
+    {
+      "id": "prod-msi-rtx5090-32g-gaming-trio-oc",
+      "type": "product",
+      "category": "gpu",
+      "familyId": "family-nvidia-rtx5090",
+      "identity": {
+        "brand": "MSI",
+        "commercialName": "GeForce RTX 5090 32G GAMING TRIO OC",
+        "model": "G5090-32GTC",
+        "partNumber": "G5090-32GTC",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "compute": { "cudaCores": 21760 },
+        "clocks": { "boostClockMHz": 2482, "extremePerformanceClockMHz": 2497 },
+        "memory": { "sizeGB": 32, "type": "GDDR7", "busWidthBit": 512, "speedGbps": 28 },
+        "interface": { "pcieGen": "5.0" },
+        "physical": { "lengthMm": 359, "heightMm": 149, "thicknessMm": 70, "weightCardG": 2119, "weightPackageG": 2735 },
+        "power": { "connector": "16-pin", "consumptionW": 575, "recommendedPsuW": 1000 }
+      },
+      "technicalFieldEvidence": {
+        "compute.cudaCores": ["ev-msi-rtx5090trio-01"],
+        "clocks.boostClockMHz": ["ev-msi-rtx5090trio-01"],
+        "clocks.extremePerformanceClockMHz": ["ev-msi-rtx5090trio-01"],
+        "memory.sizeGB": ["ev-msi-rtx5090trio-01"],
+        "memory.type": ["ev-msi-rtx5090trio-01"],
+        "memory.busWidthBit": ["ev-msi-rtx5090trio-01"],
+        "memory.speedGbps": ["ev-msi-rtx5090trio-01"],
+        "interface.pcieGen": ["ev-msi-rtx5090trio-01"],
+        "physical.lengthMm": ["ev-msi-rtx5090trio-01"],
+        "physical.heightMm": ["ev-msi-rtx5090trio-01"],
+        "physical.thicknessMm": ["ev-msi-rtx5090trio-01"],
+        "physical.weightCardG": ["ev-msi-rtx5090trio-01"],
+        "physical.weightPackageG": ["ev-msi-rtx5090trio-01"],
+        "power.connector": ["ev-msi-rtx5090trio-01"],
+        "power.consumptionW": ["ev-msi-rtx5090trio-01"],
+        "power.recommendedPsuW": ["ev-msi-rtx5090trio-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "pcieGen", "value": "5.0" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-msi-rtx5090trio-01",
+          "url": "https://storage-asset.msi.com/datasheet/vga/global/GeForce-RTX-5090-32G-GAMING-TRIO-OC.pdf",
+          "kind": "datasheet"
+        }
+      ]
+    },
+    {
+      "id": "prod-asus-rtx5070-dual-oc",
+      "type": "product",
+      "category": "gpu",
+      "familyId": "family-nvidia-rtx5070",
+      "identity": {
+        "brand": "ASUS",
+        "commercialName": "ASUS Dual GeForce RTX 5070 12GB GDDR7 OC Edition",
+        "model": "DUAL-RTX5070-O12G",
+        "partNumber": "DUAL-RTX5070-O12G",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "compute": { "cudaCores": 6144 },
+        "clocks": { "boostClockMHz": 2542, "ocModeClockMHz": 2572 },
+        "memory": { "sizeGB": 12, "type": "GDDR7", "busWidthBit": 192, "speedGbps": 28 },
+        "physical": { "lengthMm": 249, "heightMm": 126, "thicknessMm": 50.6, "slotWidth": 2.53 },
+        "power": { "connector": null, "recommendedPsuW": 750 }
+      },
+      "technicalFieldEvidence": {
+        "compute.cudaCores": ["ev-asus-rtx5070oc-01"],
+        "clocks.boostClockMHz": ["ev-asus-rtx5070oc-01"],
+        "clocks.ocModeClockMHz": ["ev-asus-rtx5070oc-01"],
+        "memory.sizeGB": ["ev-asus-rtx5070oc-01"],
+        "memory.type": ["ev-asus-rtx5070oc-01"],
+        "memory.busWidthBit": ["ev-asus-rtx5070oc-01"],
+        "memory.speedGbps": ["ev-asus-rtx5070oc-01"],
+        "physical.lengthMm": ["ev-asus-rtx5070oc-01"],
+        "physical.heightMm": ["ev-asus-rtx5070oc-01"],
+        "physical.thicknessMm": ["ev-asus-rtx5070oc-01"],
+        "physical.slotWidth": ["ev-asus-rtx5070oc-01"],
+        "power.recommendedPsuW": ["ev-asus-rtx5070oc-01"]
+      },
+      "unknownFields": ["power.connector"],
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-asus-rtx5070oc-01",
+          "url": "https://www.asus.com/motherboards-components/graphics-cards/dual/dual-rtx5070-o12g/techspec/",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-asus-rtx5090-tuf-o32g-gaming",
+      "type": "product",
+      "category": "gpu",
+      "familyId": "family-nvidia-rtx5090",
+      "identity": {
+        "brand": "ASUS",
+        "commercialName": "ASUS TUF Gaming GeForce RTX 5090 32GB GDDR7 OC Edition",
+        "model": "TUF-RTX5090-O32G-GAMING",
+        "partNumber": "TUF-RTX5090-O32G-GAMING",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "compute": { "cudaCores": 21760 },
+        "clocks": { "boostClockMHz": 2550, "ocModeClockMHz": 2580 },
+        "memory": { "sizeGB": 32, "type": "GDDR7", "busWidthBit": 512, "speedGbps": 28 },
+        "physical": { "lengthMm": 348, "heightMm": 146, "thicknessMm": 72, "slotWidth": 3.6 },
+        "power": { "connector": "16-pin", "consumptionW": null, "recommendedPsuW": 1000 }
+      },
+      "technicalFieldEvidence": {
+        "compute.cudaCores": ["ev-asus-rtx5090oc-01"],
+        "clocks.boostClockMHz": ["ev-asus-rtx5090oc-01"],
+        "clocks.ocModeClockMHz": ["ev-asus-rtx5090oc-01"],
+        "memory.sizeGB": ["ev-asus-rtx5090oc-01"],
+        "memory.type": ["ev-asus-rtx5090oc-01"],
+        "memory.busWidthBit": ["ev-asus-rtx5090oc-01"],
+        "memory.speedGbps": ["ev-asus-rtx5090oc-01"],
+        "physical.lengthMm": ["ev-asus-rtx5090oc-01"],
+        "physical.heightMm": ["ev-asus-rtx5090oc-01"],
+        "physical.thicknessMm": ["ev-asus-rtx5090oc-01"],
+        "physical.slotWidth": ["ev-asus-rtx5090oc-01"],
+        "power.connector": ["ev-asus-rtx5090oc-01"],
+        "power.recommendedPsuW": ["ev-asus-rtx5090oc-01"]
+      },
+      "unknownFields": ["power.consumptionW"],
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-asus-rtx5090oc-01",
+          "url": "https://www.asus.com/us/motherboards-components/graphics-cards/tuf-gaming/tuf-rtx5090-o32g-gaming/techspec/",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-asus-rtx5080-tuf-o16g-gaming",
+      "type": "product",
+      "category": "gpu",
+      "familyId": "family-nvidia-rtx5080",
+      "identity": {
+        "brand": "ASUS",
+        "commercialName": "ASUS TUF Gaming GeForce RTX 5080 16GB GDDR7 OC Edition",
+        "model": "TUF-RTX5080-O16G-GAMING",
+        "partNumber": "TUF-RTX5080-O16G-GAMING",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "compute": { "cudaCores": 10752 },
+        "clocks": { "boostClockMHz": 2700, "ocModeClockMHz": 2730 },
+        "memory": { "sizeGB": 16, "type": "GDDR7", "busWidthBit": 256, "speedGbps": 30 },
+        "physical": { "lengthMm": 348, "heightMm": 146, "thicknessMm": 72, "slotWidth": 3.6 },
+        "power": { "connector": "16-pin", "consumptionW": null, "recommendedPsuW": 850 }
+      },
+      "technicalFieldEvidence": {
+        "compute.cudaCores": ["ev-asus-rtx5080oc-01"],
+        "clocks.boostClockMHz": ["ev-asus-rtx5080oc-01"],
+        "clocks.ocModeClockMHz": ["ev-asus-rtx5080oc-01"],
+        "memory.sizeGB": ["ev-asus-rtx5080oc-01"],
+        "memory.type": ["ev-asus-rtx5080oc-01"],
+        "memory.busWidthBit": ["ev-asus-rtx5080oc-01"],
+        "memory.speedGbps": ["ev-asus-rtx5080oc-01"],
+        "physical.lengthMm": ["ev-asus-rtx5080oc-01"],
+        "physical.heightMm": ["ev-asus-rtx5080oc-01"],
+        "physical.thicknessMm": ["ev-asus-rtx5080oc-01"],
+        "physical.slotWidth": ["ev-asus-rtx5080oc-01"],
+        "power.connector": ["ev-asus-rtx5080oc-01"],
+        "power.recommendedPsuW": ["ev-asus-rtx5080oc-01"]
+      },
+      "unknownFields": ["power.consumptionW"],
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-asus-rtx5080oc-01",
+          "url": "https://www.asus.com/us/motherboards-components/graphics-cards/tuf-gaming/tuf-rtx5080-o16g-gaming/techspec/",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "family-memory-ddr5",
+      "type": "family",
+      "category": "ram",
+      "displayName": "DDR5 SDRAM",
+      "selectable": false,
+      "technical": {
+        "memoryType": "DDR5"
+      },
+      "technicalFieldEvidence": {
+        "memoryType": ["ev-corsair-vengeance-ddr5-family-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "memoryType", "value": "DDR5" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-corsair-vengeance-ddr5-family-01",
+          "url": "https://www.corsair.com/us/en/p/memory/cmk32gx5m2b6000c36/vengeance-32gb-2x16gb-ddr5-dram-6000mhz-c36-memory-kit-black-cmk32gx5m2b6000c36",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-corsair-vengeance-ddr5-6000-32gb",
+      "type": "product",
+      "category": "ram",
+      "familyId": "family-memory-ddr5",
+      "identity": {
+        "brand": "CORSAIR",
+        "commercialName": "VENGEANCE 32GB (2x16GB) DDR5 DRAM Up To 6000MT/s CL36 Memory Kit — Black",
+        "model": "CMK32GX5M2B6000C36",
+        "partNumber": "CMK32GX5M2B6000C36",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "memory": { "type": "DDR5", "formFactor": "UDIMM", "capacityGB": 32, "modules": 2, "moduleCapacityGB": 16 },
+        "speed": { "rateMTs": 6000, "testedTimings": "36-38-38-76", "spdTimings": "40-40-40-77", "testedVoltageV": 1.25, "spdVoltageV": 1.1, "defaultSpdSpeedMHz": 4800 },
+        "physical": { "pinCount": 288, "weightKg": 0.115 }
+      },
+      "technicalFieldEvidence": {
+        "memory.type": ["ev-corsair-vengeance-ddr5-6000-01"],
+        "memory.formFactor": ["ev-corsair-vengeance-ddr5-6000-01"],
+        "memory.capacityGB": ["ev-corsair-vengeance-ddr5-6000-01"],
+        "memory.modules": ["ev-corsair-vengeance-ddr5-6000-01"],
+        "memory.moduleCapacityGB": ["ev-corsair-vengeance-ddr5-6000-01"],
+        "speed.rateMTs": ["ev-corsair-vengeance-ddr5-6000-01"],
+        "speed.testedTimings": ["ev-corsair-vengeance-ddr5-6000-01"],
+        "speed.spdTimings": ["ev-corsair-vengeance-ddr5-6000-01"],
+        "speed.testedVoltageV": ["ev-corsair-vengeance-ddr5-6000-01"],
+        "speed.spdVoltageV": ["ev-corsair-vengeance-ddr5-6000-01"],
+        "speed.defaultSpdSpeedMHz": ["ev-corsair-vengeance-ddr5-6000-01"],
+        "physical.pinCount": ["ev-corsair-vengeance-ddr5-6000-01"],
+        "physical.weightKg": ["ev-corsair-vengeance-ddr5-6000-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "memoryType", "value": "DDR5" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-corsair-vengeance-ddr5-6000-01",
+          "url": "https://www.corsair.com/us/en/p/memory/cmk32gx5m2b6000c36/vengeance-32gb-2x16gb-ddr5-dram-6000mhz-c36-memory-kit-black-cmk32gx5m2b6000c36",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "family-intel-z890",
+      "type": "family",
+      "category": "motherboard",
+      "displayName": "Intel Z890 Chipset",
+      "selectable": false,
+      "technical": {
+        "socket": "LGA1851"
+      },
+      "technicalFieldEvidence": {
+        "socket": ["ev-asus-tufz890-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "socket", "value": "LGA1851" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-asus-tufz890-01",
+          "url": "https://www.asus.com/us/motherboards-components/motherboards/tuf-gaming/tuf-gaming-z890-pro-wifi/techspec/",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-asus-tuf-gaming-z890-pro-wifi",
+      "type": "product",
+      "category": "motherboard",
+      "familyId": "family-intel-z890",
+      "identity": {
+        "brand": "ASUS",
+        "commercialName": "TUF GAMING Z890-PRO WIFI",
+        "model": "TUF GAMING Z890-PRO WIFI",
+        "partNumber": "TUF GAMING Z890-PRO WIFI",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "socket": "LGA1851",
+        "chipset": "Intel Z890",
+        "memory": { "type": "DDR5", "slots": 4, "maxCapacityGB": 256, "maxSpeedMTs": 9066 },
+        "expansionSlots": { "pcie5x16Count": 1, "pcie4x16Count": 1, "pcie4x4Count": 1, "pcie4x1Count": 2 },
+        "storage": { "m2SlotsCount": 4, "sataPortsCount": 4 },
+        "formFactor": "ATX",
+        "physical": { "widthMm": 305, "depthMm": 244 }
+      },
+      "technicalFieldEvidence": {
+        "socket": ["ev-asus-tufz890-02"],
+        "chipset": ["ev-asus-tufz890-02"],
+        "memory.type": ["ev-asus-tufz890-02"],
+        "memory.slots": ["ev-asus-tufz890-02"],
+        "memory.maxCapacityGB": ["ev-asus-tufz890-02"],
+        "memory.maxSpeedMTs": ["ev-asus-tufz890-02"],
+        "expansionSlots.pcie5x16Count": ["ev-asus-tufz890-02"],
+        "expansionSlots.pcie4x16Count": ["ev-asus-tufz890-02"],
+        "expansionSlots.pcie4x4Count": ["ev-asus-tufz890-02"],
+        "expansionSlots.pcie4x1Count": ["ev-asus-tufz890-02"],
+        "storage.m2SlotsCount": ["ev-asus-tufz890-02"],
+        "storage.sataPortsCount": ["ev-asus-tufz890-02"],
+        "formFactor": ["ev-asus-tufz890-02"],
+        "physical.widthMm": ["ev-asus-tufz890-02"],
+        "physical.depthMm": ["ev-asus-tufz890-02"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "socket", "value": "LGA1851" },
+          { "key": "memoryType", "value": "DDR5" },
+          { "key": "formFactor", "value": "ATX" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-asus-tufz890-02",
+          "url": "https://www.asus.com/us/motherboards-components/motherboards/tuf-gaming/tuf-gaming-z890-pro-wifi/techspec/",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-msi-mag-z890-tomahawk-wifi",
+      "type": "product",
+      "category": "motherboard",
+      "familyId": "family-intel-z890",
+      "identity": {
+        "brand": "MSI",
+        "commercialName": "MAG Z890 TOMAHAWK WIFI",
+        "model": "MAG Z890 TOMAHAWK WIFI",
+        "partNumber": "MAG Z890 TOMAHAWK WIFI",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "socket": "LGA1851",
+        "chipset": "Intel Z890",
+        "memory": { "type": "DDR5", "slots": 4, "maxCapacityGB": null, "maxSpeedMTs": 9200 },
+        "expansionSlots": { "pcie5x16Count": 1, "pcie4x16Count": 2 },
+        "storage": { "m2Gen5Count": 1, "m2Gen4Count": 3, "sataPortsCount": 4 },
+        "formFactor": null,
+        "physical": { "widthMm": null, "depthMm": null }
+      },
+      "technicalFieldEvidence": {
+        "socket": ["ev-msi-magz890tomahawk-01"],
+        "chipset": ["ev-msi-magz890tomahawk-01"],
+        "memory.type": ["ev-msi-magz890tomahawk-01"],
+        "memory.slots": ["ev-msi-magz890tomahawk-01"],
+        "memory.maxSpeedMTs": ["ev-msi-magz890tomahawk-01"],
+        "expansionSlots.pcie5x16Count": ["ev-msi-magz890tomahawk-01"],
+        "expansionSlots.pcie4x16Count": ["ev-msi-magz890tomahawk-01"],
+        "storage.m2Gen5Count": ["ev-msi-magz890tomahawk-01"],
+        "storage.m2Gen4Count": ["ev-msi-magz890tomahawk-01"],
+        "storage.sataPortsCount": ["ev-msi-magz890tomahawk-01"]
+      },
+      "unknownFields": ["memory.maxCapacityGB", "formFactor", "physical.widthMm", "physical.depthMm"],
+      "compatibility": {
+        "provides": [
+          { "key": "socket", "value": "LGA1851" },
+          { "key": "memoryType", "value": "DDR5" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-msi-magz890tomahawk-01",
+          "url": "https://storage-asset.msi.com/datasheet/mb/global/MAG-Z890-TOMAHAWK-WIFI.pdf",
+          "kind": "datasheet"
+        }
+      ]
+    },
+    {
+      "id": "prod-asrock-z890-pro-a",
+      "type": "product",
+      "category": "motherboard",
+      "familyId": "family-intel-z890",
+      "identity": {
+        "brand": "ASRock",
+        "commercialName": "ASRock Z890 Pro-A",
+        "model": "Z890 Pro-A",
+        "partNumber": "Z890 Pro-A",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "socket": "LGA1851",
+        "chipset": "Intel Z890",
+        "memory": { "type": "DDR5", "slots": 4, "maxCapacityGB": 256, "maxSpeedMTs": 9066 },
+        "expansionSlots": { "pcie5x16Count": 1, "pcie4x4Count": 2, "pcie4x1Count": 1 },
+        "storage": { "m2Gen5Count": 1, "m2Gen4Count": 3, "sataPortsCount": 4 },
+        "formFactor": "ATX",
+        "physical": { "widthMm": null, "depthMm": null }
+      },
+      "technicalFieldEvidence": {
+        "socket": ["ev-asrock-z890proa-01"],
+        "chipset": ["ev-asrock-z890proa-01"],
+        "memory.type": ["ev-asrock-z890proa-01"],
+        "memory.slots": ["ev-asrock-z890proa-01"],
+        "memory.maxCapacityGB": ["ev-asrock-z890proa-01"],
+        "memory.maxSpeedMTs": ["ev-asrock-z890proa-01"],
+        "expansionSlots.pcie5x16Count": ["ev-asrock-z890proa-01"],
+        "expansionSlots.pcie4x4Count": ["ev-asrock-z890proa-01"],
+        "expansionSlots.pcie4x1Count": ["ev-asrock-z890proa-01"],
+        "storage.m2Gen5Count": ["ev-asrock-z890proa-01"],
+        "storage.m2Gen4Count": ["ev-asrock-z890proa-01"],
+        "storage.sataPortsCount": ["ev-asrock-z890proa-01"],
+        "formFactor": ["ev-asrock-z890proa-01"]
+      },
+      "unknownFields": ["physical.widthMm", "physical.depthMm"],
+      "compatibility": {
+        "provides": [
+          { "key": "socket", "value": "LGA1851" },
+          { "key": "memoryType", "value": "DDR5" },
+          { "key": "formFactor", "value": "ATX" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-asrock-z890proa-01",
+          "url": "https://download.asrock.com/Manual/Z890%20Pro-A.pdf",
+          "kind": "manual"
+        }
+      ]
+    },
+    {
+      "id": "family-psu-atx",
+      "type": "family",
+      "category": "psu",
+      "displayName": "ATX Power Supply",
+      "selectable": false,
+      "technical": {
+        "formFactor": "ATX"
+      },
+      "technicalFieldEvidence": {
+        "formFactor": ["ev-intel-atx-psu-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "formFactor", "value": "ATX" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-intel-atx-psu-01",
+          "url": "https://edc.intel.com/content/www/us/en/design/ipla/software-development-platforms/client/platforms/alder-lake-desktop/atx-version-3-0-multi-rail-desktop-platform-power-supply-design-guide/2.0/",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-msi-mag-a850gl-pcie5",
+      "type": "product",
+      "category": "psu",
+      "familyId": "family-psu-atx",
+      "identity": {
+        "brand": "MSI",
+        "commercialName": "MAG A850GL PCIE5",
+        "model": "MAG A850GL PCIE5",
+        "partNumber": "MAG A850GL PCIE5",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "wattage": 850,
+        "efficiencyRating": "80 PLUS Gold",
+        "atxVersion": "3.1",
+        "modular": "full modular",
+        "fanSizeMm": 120,
+        "fanBearing": "Fluid Dynamic Bearing",
+        "dimensions": { "depthMm": 140, "widthMm": 150, "heightMm": 86 },
+        "pfcType": "Active PFC",
+        "inputVoltageRange": "100~240 VAC",
+        "inputFrequencyRange": "47-63Hz",
+        "powerExcursionW": 1700,
+        "protections": "OCP / OVP / OPP / OTP / SCP / UVP",
+        "connectors": { "atx24pinCount": 1, "eps4plus4pinCount": 2, "pcie5_16pinCount": 1, "pcie6plus2pinCount": 4, "sata15pinCount": 8, "peripheral4pinCount": 4, "fdd4pinCount": 1 }
+      },
+      "technicalFieldEvidence": {
+        "wattage": ["ev-msi-a850glpcie5-01"],
+        "efficiencyRating": ["ev-msi-a850glpcie5-01"],
+        "atxVersion": ["ev-msi-a850glpcie5-01"],
+        "modular": ["ev-msi-a850glpcie5-01"],
+        "fanSizeMm": ["ev-msi-a850glpcie5-01"],
+        "fanBearing": ["ev-msi-a850glpcie5-01"],
+        "dimensions.depthMm": ["ev-msi-a850glpcie5-01"],
+        "dimensions.widthMm": ["ev-msi-a850glpcie5-01"],
+        "dimensions.heightMm": ["ev-msi-a850glpcie5-01"],
+        "pfcType": ["ev-msi-a850glpcie5-01"],
+        "inputVoltageRange": ["ev-msi-a850glpcie5-01"],
+        "inputFrequencyRange": ["ev-msi-a850glpcie5-01"],
+        "powerExcursionW": ["ev-msi-a850glpcie5-01"],
+        "protections": ["ev-msi-a850glpcie5-01"],
+        "connectors.atx24pinCount": ["ev-msi-a850glpcie5-01"],
+        "connectors.eps4plus4pinCount": ["ev-msi-a850glpcie5-01"],
+        "connectors.pcie5_16pinCount": ["ev-msi-a850glpcie5-01"],
+        "connectors.pcie6plus2pinCount": ["ev-msi-a850glpcie5-01"],
+        "connectors.sata15pinCount": ["ev-msi-a850glpcie5-01"],
+        "connectors.peripheral4pinCount": ["ev-msi-a850glpcie5-01"],
+        "connectors.fdd4pinCount": ["ev-msi-a850glpcie5-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "formFactor", "value": "ATX" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-msi-a850glpcie5-01",
+          "url": "https://storage-asset.msi.com/datasheet/power-supply/global/MAG-A850GL-PCIE5.pdf",
+          "kind": "datasheet"
+        }
+      ]
+    },
+    {
+      "id": "prod-corsair-rm1000e-atx31",
+      "type": "product",
+      "category": "psu",
+      "familyId": "family-psu-atx",
+      "identity": {
+        "brand": "CORSAIR",
+        "commercialName": "RMe Series RM1000e - Fully Modular Low-Noise ATX Power Supply - White",
+        "model": "RM1000e",
+        "partNumber": "CP-9020294-NA",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "wattage": 1000,
+        "efficiencyRating": "Cybenetics Gold (up to 89%)",
+        "atxVersion": "3.1",
+        "modular": "Fully Modular",
+        "fanSizeMm": 120,
+        "fanBearing": "rifle bearing",
+        "dimensions": { "depthMm": 140, "widthMm": 150, "heightMm": 86 },
+        "inputVoltageRange": "100-240V",
+        "inputFrequencyRange": "47-63Hz",
+        "weightKg": 3.23,
+        "mtbfHours": 100000,
+        "warrantyYears": 7,
+        "connectors": { "atx24pinCount": 1, "eps8pinCount": 2, "connector12v2x6Count": 1, "pcie8pinCount": 2, "sataCount": 6, "pataCount": 2 }
+      },
+      "technicalFieldEvidence": {
+        "wattage": ["ev-corsair-rm1000e-01"],
+        "efficiencyRating": ["ev-corsair-rm1000e-01"],
+        "atxVersion": ["ev-corsair-rm1000e-01"],
+        "modular": ["ev-corsair-rm1000e-01"],
+        "fanSizeMm": ["ev-corsair-rm1000e-01"],
+        "fanBearing": ["ev-corsair-rm1000e-01"],
+        "dimensions.depthMm": ["ev-corsair-rm1000e-01"],
+        "dimensions.widthMm": ["ev-corsair-rm1000e-01"],
+        "dimensions.heightMm": ["ev-corsair-rm1000e-01"],
+        "inputVoltageRange": ["ev-corsair-rm1000e-01"],
+        "inputFrequencyRange": ["ev-corsair-rm1000e-01"],
+        "weightKg": ["ev-corsair-rm1000e-01"],
+        "mtbfHours": ["ev-corsair-rm1000e-01"],
+        "warrantyYears": ["ev-corsair-rm1000e-01"],
+        "connectors.atx24pinCount": ["ev-corsair-rm1000e-01"],
+        "connectors.eps8pinCount": ["ev-corsair-rm1000e-01"],
+        "connectors.connector12v2x6Count": ["ev-corsair-rm1000e-01"],
+        "connectors.pcie8pinCount": ["ev-corsair-rm1000e-01"],
+        "connectors.sataCount": ["ev-corsair-rm1000e-01"],
+        "connectors.pataCount": ["ev-corsair-rm1000e-01"]
+      },
+      "unknownFields": [],
+      "compatibility": {
+        "provides": [
+          { "key": "formFactor", "value": "ATX" },
+          { "key": "gpuPowerConnector", "value": "12V-2x6" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase3"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-corsair-rm1000e-01",
+          "url": "https://www.corsair.com/us/en/p/psu/cp-9020294-na/rme-series-rm1000e-fully-modular-low-noise-atx-power-supply-white-na-cp-9020294-na",
+          "kind": "manufacturer-page"
+        }
+      ]
+    }
+  ]
+}

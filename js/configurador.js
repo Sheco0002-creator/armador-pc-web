@@ -30,7 +30,7 @@ function totalBuild() {
 
 // Categorías cubiertas hoy por el piloto V2 (ver js/v2-adapter.js). Ampliar
 // esta lista es lo único necesario para sumar una categoría más al piloto.
-const CATEGORIAS_PILOTO_V2 = ['storage', 'ram', 'motherboard', 'psu'];
+const CATEGORIAS_PILOTO_V2 = ['storage', 'ram', 'motherboard', 'psu', 'case'];
 
 // --- Dibujar una categoría (tarjeta que se abre para elegir) ---
 // 'antesIncompatibles' viene precalculado desde dibujarCategorias para no

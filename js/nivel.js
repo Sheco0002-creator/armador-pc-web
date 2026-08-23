@@ -39,22 +39,26 @@ function bloquePrecio(valor) {
   return `<div class="comp-price-wrap">${usd}${localHtml}</div>`;
 }
 
+// Categorías cubiertas hoy por el piloto V2 (ver js/v2-adapter.js). Ampliar
+// esta lista es lo único necesario para sumar una categoría más al piloto.
+const CATEGORIAS_PILOTO_V2 = ['storage', 'ram'];
+
 // Arma la fila de un componente resolviendo su id contra el catálogo real.
-// Piloto V2 (solo storage, ver js/v2-adapter.js): si existe un producto real
-// verificado en el crosswalk para esta pieza, se muestra su nombre comercial
-// real en vez del nombre genérico de nivel. Precio y specs siguen viniendo
-// de Legacy sin cambios — este piloto solo toca el nombre mostrado.
+// Piloto V2: si existe un producto real verificado en el crosswalk para esta
+// pieza, se muestra su nombre comercial real en vez del nombre genérico de
+// nivel. Precio y specs siguen viniendo de Legacy sin cambios — el piloto
+// solo toca el nombre mostrado.
 function filaComponente(cat, piezaId, altId) {
   const pieza = buscarPieza(cat.id, piezaId);
   if (!pieza) return ''; // referencia rota — no debería pasar tras la validación, pero no rompemos el render
-  const nombreMostrado = cat.id === 'storage' ? nombreVisibleProducto(cat.id, piezaId, pieza.name) : pieza.name;
+  const nombreMostrado = CATEGORIAS_PILOTO_V2.includes(cat.id) ? nombreVisibleProducto(cat.id, piezaId, pieza.name) : pieza.name;
   const specs = pieza.specs ? `<span class="comp-specs">${escapeHtml(pieza.specs)}</span>` : '';
   let alt = '';
   if (altId) {
     const piezaAlt = buscarPieza(cat.id, altId);
     const etiquetaAlt = t({ es: 'Alternativa', en: 'Alternative', pt: 'Alternativa' });
     if (piezaAlt) {
-      const nombreAltMostrado = cat.id === 'storage' ? nombreVisibleProducto(cat.id, altId, piezaAlt.name) : piezaAlt.name;
+      const nombreAltMostrado = CATEGORIAS_PILOTO_V2.includes(cat.id) ? nombreVisibleProducto(cat.id, altId, piezaAlt.name) : piezaAlt.name;
       alt = `<p class="comp-alt">${etiquetaAlt}: ${escapeHtml(nombreAltMostrado)} (${precioUSD(piezaAlt.price)})</p>`;
     }
   }
@@ -110,7 +114,7 @@ async function cargarNivel() {
     document.getElementById('level-name').textContent = t({ es: 'No se pudo cargar el catálogo', en: 'Could not load the catalog', pt: 'Não foi possível carregar o catálogo' });
     return;
   }
-  // Piloto V2 (solo storage): se espera antes de pintar para que el nombre
+  // Piloto V2 (storage, ram): se espera antes de pintar para que el nombre
   // real no "parpadee" después del render; si falla, cargarV2() ya resuelve
   // con V2_CATALOGO/V2_CROSSWALK en null y el nombre legacy se usa tal cual.
   await cargarV2();

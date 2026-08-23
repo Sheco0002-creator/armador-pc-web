@@ -1,5 +1,5 @@
 // ===== Adaptador de solo lectura para el catálogo V2 (data/v2/) =====
-// Piloto: usado hoy únicamente por la categoría "storage". El resto de
+// Piloto: usado hoy por las categorías "storage" y "ram". El resto de
 // categorías sigue mostrando el nombre genérico de nivel tal como estaba.
 //
 // Regla de fuente de verdad (ver docs/CONTRATO_V2.md):

@@ -6,22 +6,25 @@ motherboard/ram, ver auditoría global previa a esta sección). **Trabajo
 post-cierre de Fase 3 en curso**, informalmente referido en sesión como
 "Fase 4 — resolver candidatos bloqueados" (no confundir con la Fase 4
 formal del plan de fases en §14, que es `offers.v2.json`): ZOTAC sigue
-bloqueado, GIGABYTE sigue bloqueado, **AMD CPU se resolvió**, ver §0.33.
-Estado real de `catalog.v2.json`: **19 `family`, todas `verified`** (las 8
-originales CPU/GPU — incluidas las 2 que quedaron `partial` al cierre de
-Fase 2 y luego pasaron a `verified` en §0.6, y actualizadas de nuevo en
-§0.33 con socket/cache L2-L3 reales — más `family-memory-ddr5`,
-`family-intel-z890`, `family-psu-atx`, `family-storage-nvme-pcie4`,
-`family-storage-sata`, `family-storage-nvme-pcie5`,
-`family-case-atx-mid-tower`, `family-case-atx-full-tower`,
-`family-cooling-air-tower`, `family-cooling-aio-liquid` y
-`family-amd-am5`), y **44 `product` reales verificados** (13 GPU, 6 RAM,
-6 motherboard, 6 PSU, 4 storage, 2 case, 3 cooling, **4 CPU AMD nuevos en
-§0.33**). 0 `offer`, 0 `preset`. No reemplaza `data/catalog.json` (legacy).
-No se migró ningún registro legacy. `node scripts/validate-v2.js` → 63
-entries válidas, 69 evidencias, 0 offers, 0 presets. `node --test
-tests/v2/validate-v2.test.js` → 31/31. Existe además
-`data/v2/crosswalk.v2.json` (fuera del contrato validado) con el mapeo
+bloqueado, GIGABYTE sigue bloqueado, **AMD CPU se resolvió** (§0.33) y
+**AMD GPU (RX 9070 XT) se resolvió parcialmente** (§0.34; RX 9060 XT aún
+no investigado). Estado real de `catalog.v2.json`: **20 `family`, todas
+`verified`** (las 8 originales CPU/GPU — incluidas las 2 que quedaron
+`partial` al cierre de Fase 2 y luego pasaron a `verified` en §0.6, y
+actualizadas de nuevo en §0.33 con socket/cache L2-L3 reales — más
+`family-memory-ddr5`, `family-intel-z890`, `family-psu-atx`,
+`family-storage-nvme-pcie4`, `family-storage-sata`,
+`family-storage-nvme-pcie5`, `family-case-atx-mid-tower`,
+`family-case-atx-full-tower`, `family-cooling-air-tower`,
+`family-cooling-aio-liquid`, `family-amd-am5` y **`family-amd-rx9070xt`
+nueva en §0.34**), y **45 `product` reales verificados** (13 GPU +
+**1 GPU AMD nuevo en §0.34** = 14 GPU, 6 RAM, 6 motherboard, 6 PSU, 4
+storage, 2 case, 3 cooling, 4 CPU AMD de §0.33). 0 `offer`, 0 `preset`.
+No reemplaza `data/catalog.json` (legacy). No se migró ningún registro
+legacy. `node scripts/validate-v2.js` → 65 entries válidas, 71
+evidencias, 0 offers, 0 presets. `node --test tests/v2/validate-v2.test.js`
+→ 31/31. Existe además `data/v2/crosswalk.v2.json` (fuera del contrato
+validado) con el mapeo
 legacy-id↔product-id para storage, case, cooling, ram, psu, motherboard,
 gpu y ahora cpu.
 
@@ -1241,6 +1244,55 @@ No se tocó GPU, motherboard, PSU, storage, case, cooling, ni RAM
 previos. `node scripts/validate-v2.js` → 63 entries válidas (19 family +
 44 product), 69 evidencias, 0 offers, 0 presets. `node --test` → 31/31.
 `data/catalog.json`, `data/components.json` y la UI intactos.
+
+## 0.34 AMD GPU — primera family/product real (RX 9070 XT) (2026-08-22)
+
+Se investigó si el mismo mecanismo que resolvió AMD CPU (`curl` con
+user-agent de navegador contra `amd.com`, donde `WebFetch` seguía
+fallando) también funcionaba para GPU AMD. Resultado: **sí**. La URL
+real del chip usa un slug distinto al patrón de CPU (`amd-radeon-
+rx-9070xt.html`, sin guion antes de "xt", encontrada vía búsqueda
+dirigida tras que las URLs "obvias" dieran 404) — fetch directo dio
+**200 OK**.
+
+**`family-amd-rx9070xt`** — `category=gpu`, `selectable=false`, fuente:
+`amd.com/en/products/graphics/desktops/radeon/9000-series/
+amd-radeon-rx-9070xt.html` (fetch directo exitoso). Confirmado: Compute
+Units 64, Boost "Up to 2970 MHz", Game Frequency 2400MHz, Ray
+Accelerators 64, AI Accelerators 128, Stream Processors 4096, Infinity
+Cache 64MB, Memory Speed "Up to 20 Gbps", 16GB GDDR6, bus 256-bit,
+bandwidth "Up to 640 GB/s", Typical Board Power 304W, PSU mínima
+recomendada 750W. **Único campo `null`**: `interface.pcieGen` — la
+página oficial de AMD no menciona la generación de PCIe en ningún lugar
+del documento (se buscó explícitamente "PCIe"/"PCI Express"/"Bus
+Standard" sin resultado); no se infirió del valor que sí declara el
+producto AIB, por ser información de la placa, no del chip.
+
+**`prod-asus-prime-rx9070xt-o16g`** — `brand=ASUS`, `commercialName=
+"ASUS Prime Radeon RX 9070 XT OC Edition"`, `partNumber=
+"PRIME-RX9070XT-O16G"`, `familyId=family-amd-rx9070xt`,
+`selectable=true`, `verified`. Fuente: `asus.com/us/motherboards-
+components/graphics-cards/prime/prime-rx9070xt-o16g/techspec/` (fetch
+directo exitoso). Confirmado: 4096 stream processors, boost "up to
+3010MHz (default)" / "3030MHz (OC mode)", 16GB GDDR6 256-bit 20Gbps,
+PCIe 5.0 (a nivel de la placa, sí declarado), dimensiones
+312×130×50mm, conectores "3×8-pin", PSU recomendada 750W, 2.5 slot.
+**Único campo `null`**: `power.consumptionW` — no aparece en la tabla de
+especificaciones de ASUS; no se asumió a partir del TGP del chip (304W),
+por corresponder al chip de referencia y no necesariamente a esta placa
+AIB específica.
+
+**Crosswalk**: se agregó `gpu-9070xt→prod-asus-prime-rx9070xt-o16g`.
+Coincide con el legacy "AMD RX 9070 XT 16GB": PSU recomendada exacta
+(750W), powerDraw legacy (300W) cercano al TGP oficial del chip (304W).
+`gpu-9060xt` (RX 9060 XT, alternativa en tier entrada) **queda sin
+mapping** — no investigado en este paso, fuera de alcance.
+
+No se tocó CPU, motherboard, PSU, storage, case, cooling, RAM, ni las
+families/products GPU NVIDIA previos. `node scripts/validate-v2.js` →
+65 entries válidas (20 family + 45 product), 71 evidencias, 0 offers, 0
+presets. `node --test` → 31/31. `data/catalog.json`,
+`data/components.json` y la UI intactos.
 
 ## 0. Principio rector
 

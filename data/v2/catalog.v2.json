@@ -3277,6 +3277,106 @@
           "kind": "manufacturer-page"
         }
       ]
+    },
+    {
+      "id": "family-amd-rx9070xt",
+      "type": "family",
+      "category": "gpu",
+      "displayName": "AMD Radeon RX 9070 XT",
+      "selectable": false,
+      "technical": {
+        "compute": { "streamProcessors": 4096, "computeUnits": 64, "rayAccelerators": 64, "aiAccelerators": 128 },
+        "clocks": { "boostClockMHz": 2970, "gameClockMHz": 2400 },
+        "memory": { "sizeGB": 16, "type": "GDDR6", "busWidthBit": 256, "speedGbps": 20, "bandwidthGBs": 640 },
+        "infinityCacheMB": 64,
+        "power": { "tgpW": 304, "recommendedPsuW": 750 },
+        "interface": { "pcieGen": null }
+      },
+      "technicalFieldEvidence": {
+        "compute.streamProcessors": ["ev-amd-rx9070xt-01"],
+        "compute.computeUnits": ["ev-amd-rx9070xt-01"],
+        "compute.rayAccelerators": ["ev-amd-rx9070xt-01"],
+        "compute.aiAccelerators": ["ev-amd-rx9070xt-01"],
+        "clocks.boostClockMHz": ["ev-amd-rx9070xt-01"],
+        "clocks.gameClockMHz": ["ev-amd-rx9070xt-01"],
+        "memory.sizeGB": ["ev-amd-rx9070xt-01"],
+        "memory.type": ["ev-amd-rx9070xt-01"],
+        "memory.busWidthBit": ["ev-amd-rx9070xt-01"],
+        "memory.speedGbps": ["ev-amd-rx9070xt-01"],
+        "memory.bandwidthGBs": ["ev-amd-rx9070xt-01"],
+        "infinityCacheMB": ["ev-amd-rx9070xt-01"],
+        "power.tgpW": ["ev-amd-rx9070xt-01"],
+        "power.recommendedPsuW": ["ev-amd-rx9070xt-01"]
+      },
+      "unknownFields": ["interface.pcieGen"],
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase4"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-amd-rx9070xt-01",
+          "url": "https://www.amd.com/en/products/graphics/desktops/radeon/9000-series/amd-radeon-rx-9070xt.html",
+          "kind": "manufacturer-page"
+        }
+      ]
+    },
+    {
+      "id": "prod-asus-prime-rx9070xt-o16g",
+      "type": "product",
+      "category": "gpu",
+      "familyId": "family-amd-rx9070xt",
+      "identity": {
+        "brand": "ASUS",
+        "commercialName": "ASUS Prime Radeon RX 9070 XT OC Edition",
+        "model": "PRIME-RX9070XT-O16G",
+        "partNumber": "PRIME-RX9070XT-O16G",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {
+        "compute": { "streamProcessors": 4096 },
+        "clocks": { "boostClockMHz": 3010, "ocModeClockMHz": 3030 },
+        "memory": { "sizeGB": 16, "type": "GDDR6", "busWidthBit": 256, "speedGbps": 20 },
+        "interface": { "pcieGen": "5.0" },
+        "physical": { "lengthMm": 312, "heightMm": 130, "thicknessMm": 50, "slotWidth": 2.5 },
+        "power": { "connector": "3x8-pin", "consumptionW": null, "recommendedPsuW": 750 }
+      },
+      "technicalFieldEvidence": {
+        "compute.streamProcessors": ["ev-asus-primerx9070xt-01"],
+        "clocks.boostClockMHz": ["ev-asus-primerx9070xt-01"],
+        "clocks.ocModeClockMHz": ["ev-asus-primerx9070xt-01"],
+        "memory.sizeGB": ["ev-asus-primerx9070xt-01"],
+        "memory.type": ["ev-asus-primerx9070xt-01"],
+        "memory.busWidthBit": ["ev-asus-primerx9070xt-01"],
+        "memory.speedGbps": ["ev-asus-primerx9070xt-01"],
+        "interface.pcieGen": ["ev-asus-primerx9070xt-01"],
+        "physical.lengthMm": ["ev-asus-primerx9070xt-01"],
+        "physical.heightMm": ["ev-asus-primerx9070xt-01"],
+        "physical.thicknessMm": ["ev-asus-primerx9070xt-01"],
+        "physical.slotWidth": ["ev-asus-primerx9070xt-01"],
+        "power.connector": ["ev-asus-primerx9070xt-01"],
+        "power.recommendedPsuW": ["ev-asus-primerx9070xt-01"]
+      },
+      "unknownFields": ["power.consumptionW"],
+      "compatibility": {
+        "provides": [
+          { "key": "pcieGen", "value": "5.0" }
+        ]
+      },
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-22T00:00:00Z",
+        "verifiedBy": "manual-review-fase4"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-asus-primerx9070xt-01",
+          "url": "https://www.asus.com/us/motherboards-components/graphics-cards/prime/prime-rx9070xt-o16g/techspec/",
+          "kind": "manufacturer-page"
+        }
+      ]
     }
   ]
 }

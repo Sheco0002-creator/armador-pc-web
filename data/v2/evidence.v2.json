@@ -484,6 +484,20 @@
       "claim": "Fetch directo exitoso (via curl con user-agent de navegador) a la pagina oficial de producto de AMD (amd.com) para 'AMD Ryzen 9 9950X3D'. Cita textual de la seccion 'Product IDs': 'Product ID Boxed: 100-100000719WOF', 'Product ID Tray: 100-000000719'. Cita textual de la tabla de especificaciones: '# of CPU Cores: 16', '# of Threads: 32', 'Max. Boost Clock: Up to 5.7 GHz', 'Base Clock: 4.3 GHz', 'L1 Cache: 1280 KB', 'L2 Cache: 16 MB', 'L3 Cache: 128 MB', 'Default TDP: 170W', 'CPU Socket: AM5', 'PCI Express Version: PCIe 5.0'. El valor L2(16MB)+L3(128MB)=144MB coincide exactamente con el 'cache total' de 144MB ya cargado desde ir.amd.com (ev-amd-9950x3d-02). Con esta evidencia, family-amd-ryzen9-9950x3d actualiza socket (null->AM5) y cache.l3MB (null->128); ambos campos salen de unknownFields. No se uso ningun retailer/agregador como fuente.",
       "accessedAt": "2026-08-22T00:00:00Z",
       "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-amd-rx9070xt-01",
+      "sourceId": "src-amd-rx9070xt-01",
+      "claim": "Fetch directo exitoso (via curl con user-agent de navegador; mismo mecanismo que resolvio AMD CPU en esta Fase 4 -- WebFetch seguia sin funcionar en amd.com) a la pagina oficial de producto de AMD (amd.com) para 'Radeon RX 9070 XT'. URL real encontrada via busqueda dirigida (slug '9070xt' sin guion, distinto del patron usado para otras paginas de la serie). Cita textual: Compute Units '64'; Boost Frequency 'Up to 2970 MHz'; Game Frequency '2400 MHz'; Ray Accelerators '64'; AI Accelerators '128'; Stream Processors '4096'; Typical Board Power (Desktop) '304W'; Minimum PSU Recommendation '750W'; AMD Infinity Cache Technology '64 MB'; Memory Speed 'Up to 20 Gbps'; Max Memory Size '16 GB'; Memory Type 'GDDR6'; Memory Interface '256-bit'; Memory Bandwidth 'Up to 640 GB/s'. La pagina NO declara la generacion de PCIe en ningun lugar del documento (se busco explicitamente 'PCIe'/'PCI Express'/'Bus Standard' sin ningun resultado) -- interface.pcieGen queda null + unknownFields a nivel family, sin inferirlo del vocabulario controlado ni de la evidencia del producto (que si lo declara, pero es informacion especifica de esa placa, no del chip). No se uso ningun retailer/agregador como fuente. Esto crea la primera family AMD GPU real del proyecto, cubriendo el legacy gpu-9070xt.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-asus-primerx9070xt-01",
+      "sourceId": "src-asus-primerx9070xt-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de especificaciones tecnicas de ASUS (asus.com, dominio propio del fabricante) para 'ASUS Prime Radeon RX 9070 XT OC Edition'. Cita textual: Model 'PRIME-RX9070XT-O16G'; GPU 'AMD Radeon RX 9070 XT'; Stream Processors '4096'; Boost Clock 'up to 3030 MHz (OC mode)' / 'up to 3010 MHz (default mode)'; Memory '16GB GDDR6', Memory Speed '20 Gbps', Memory Interface Width '256-bit'; Dimensions '312 x 130 x 50 mm'; Power Connectors '3 x 8-pin'; Recommended PSU '750W'; Form Factor '2.5 Slot'; Bus Standard 'PCI Express 5.0'. El consumo de energia (power.consumptionW) no aparece explicitamente en la tabla de especificaciones -- queda null + unknownFields en vez de asumirse a partir del TGP del chip (304W), que corresponde al chip de referencia y no necesariamente a esta placa AIB especifica. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
     }
   ]
 }

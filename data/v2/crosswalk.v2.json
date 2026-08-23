@@ -170,6 +170,12 @@
       "legacyId": "cpu-r9-9950x3d",
       "productId": "prod-amd-ryzen9-9950x3d",
       "note": "Legacy 'AMD Ryzen 9 9950X3D' (AM5, 170W) -> AMD Ryzen 9 9950X3D (Product ID Boxed 100-100000719WOF), family-amd-ryzen9-9950x3d. Coincide exactamente. La evidencia de este producto tambien permitio actualizar la family (socket null->AM5, cache.l3MB null->128MB). Nota: cpu-ultra7-265k y cpu-ultra9-285k (Intel), usados como alternativa en media y extrema respectivamente, quedan sin mapping -- no existe ninguna family/product Intel CPU en V2, fuera de alcance de esta Fase 4 (enfocada en AMD)."
+    },
+    {
+      "category": "gpu",
+      "legacyId": "gpu-9070xt",
+      "productId": "prod-asus-prime-rx9070xt-o16g",
+      "note": "Legacy 'AMD RX 9070 XT 16GB' (length 330mm, powerDraw 300W, recommendedPsu 750W) -> ASUS Prime Radeon RX 9070 XT OC Edition (PRIME-RX9070XT-O16G), family-amd-rx9070xt. PSU recomendada coincide exactamente (750W); powerDraw legacy (300W) es cercano al Typical Board Power oficial del chip (304W, family-amd-rx9070xt); longitud legacy (330mm) es menor a la de este producto especifico (312mm, en realidad esta placa es mas corta). Primera family/product AMD GPU del proyecto -- resuelto en Fase 4 con el mismo mecanismo que AMD CPU (curl con user-agent de navegador contra amd.com, donde WebFetch seguia fallando). gpu-9060xt (AMD RX 9060 XT), usado como alternativa en tier entrada, queda sin mapping -- no investigado en este paso, fuera de alcance."
     }
   ]
 }

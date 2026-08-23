@@ -498,6 +498,20 @@
       "claim": "Fetch directo exitoso de la pagina oficial de especificaciones tecnicas de ASUS (asus.com, dominio propio del fabricante) para 'ASUS Prime Radeon RX 9070 XT OC Edition'. Cita textual: Model 'PRIME-RX9070XT-O16G'; GPU 'AMD Radeon RX 9070 XT'; Stream Processors '4096'; Boost Clock 'up to 3030 MHz (OC mode)' / 'up to 3010 MHz (default mode)'; Memory '16GB GDDR6', Memory Speed '20 Gbps', Memory Interface Width '256-bit'; Dimensions '312 x 130 x 50 mm'; Power Connectors '3 x 8-pin'; Recommended PSU '750W'; Form Factor '2.5 Slot'; Bus Standard 'PCI Express 5.0'. El consumo de energia (power.consumptionW) no aparece explicitamente en la tabla de especificaciones -- queda null + unknownFields en vez de asumirse a partir del TGP del chip (304W), que corresponde al chip de referencia y no necesariamente a esta placa AIB especifica. No se uso ningun retailer/agregador como fuente.",
       "accessedAt": "2026-08-22T00:00:00Z",
       "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-amd-rx9060xt-01",
+      "sourceId": "src-amd-rx9060xt-01",
+      "claim": "Fetch directo exitoso (via curl con user-agent de navegador; mismo mecanismo que resolvio AMD CPU y RX 9070 XT en esta Fase 4) a la pagina oficial de producto de AMD (amd.com) para 'Radeon RX 9060 XT', slug 'amd-radeon-rx-9060xt.html' (sin guion, mismo patron que 9070xt). Cita textual: Compute Units '32'; Stream Processors '2048'; Boost Frequency 'Up to 3130 MHz'; Game Frequency '2530 MHz'; Ray Accelerators '32'; AI Accelerators '64'; Typical Board Power (Desktop) '160W'; Minimum PSU Recommendation '450W'; AMD Infinity Cache Technology '32 MB'; Memory Speed 'Up to 20 Gbps'; Max Memory Size '16 GB'; Memory Type 'GDDR6'; Memory Interface '128-bit'; Memory Bandwidth 'Up to 320 GB/s'. La pagina oficial de AMD solo documenta la variante de 16GB (no aparece ninguna mencion a una variante de 8GB en el documento), coincidiendo sin ambiguedad con el legacy gpu-9060xt ('AMD RX 9060 XT 16GB'). La pagina NO declara la generacion de PCIe en ningun lugar (se busco explicitamente 'PCIe'/'PCI Express'/'Bus Standard' sin resultado) -- interface.pcieGen queda null + unknownFields, mismo criterio ya aplicado en family-amd-rx9070xt. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-asus-primerx9060xt-01",
+      "sourceId": "src-asus-primerx9060xt-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de especificaciones tecnicas de ASUS (asus.com, dominio propio del fabricante) para 'ASUS Prime Radeon RX 9060 XT OC Edition 16GB GDDR6'. Cita textual: Model 'PRIME-RX9060XT-O16G'; GPU 'AMD Radeon RX 9060 XT'; Stream Processors '2048'; Boost Clock 'up to 3330 MHz (OC mode) / up to 3310 MHz (Default mode)'; Memory '16GB GDDR6', Memory Speed '20 Gbps', Memory Interface '128-bit'; Dimensions '304 x 126 x 50mm'; Power Connector '1 x 8-pin'; Recommended PSU '550W' (nota explicita de ASUS: basada en 'a fully overclocked GPU and CPU system configuration'); Slot Width '2.5 Slot'. El campo 'Bus Standard' de esta pagina contiene el valor claramente erroneo/mezclado 'OpenGL' -- mismo problema de extraccion ya detectado antes en el ASUS RTX 5060 (ver evidencia ev-asus-rtx5060oc-01) -- por eso NO se uso para interface.pcieGen, que queda null + unknownFields tanto a nivel product como a nivel family. power.consumptionW tampoco aparece declarado explicitamente en la tabla (solo la recomendacion de PSU) -- queda null + unknownFields. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
     }
   ]
 }

@@ -7,8 +7,9 @@ post-cierre de Fase 3 en curso**, informalmente referido en sesión como
 "Fase 4 — resolver candidatos bloqueados" (no confundir con la Fase 4
 formal del plan de fases en §14, que es `offers.v2.json`): ZOTAC sigue
 bloqueado, GIGABYTE sigue bloqueado, **AMD CPU se resolvió** (§0.33) y
-**AMD GPU (RX 9070 XT) se resolvió parcialmente** (§0.34; RX 9060 XT aún
-no investigado). Estado real de `catalog.v2.json`: **20 `family`, todas
+**AMD GPU se resolvió por completo — RX 9070 XT (§0.34) y RX 9060 XT
+(§0.35)**, cerrando GPU al 100% (6/6 escenarios reales: 4 NVIDIA + 2
+AMD). Estado real de `catalog.v2.json`: **21 `family`, todas
 `verified`** (las 8 originales CPU/GPU — incluidas las 2 que quedaron
 `partial` al cierre de Fase 2 y luego pasaron a `verified` en §0.6, y
 actualizadas de nuevo en §0.33 con socket/cache L2-L3 reales — más
@@ -16,16 +17,16 @@ actualizadas de nuevo en §0.33 con socket/cache L2-L3 reales — más
 `family-storage-nvme-pcie4`, `family-storage-sata`,
 `family-storage-nvme-pcie5`, `family-case-atx-mid-tower`,
 `family-case-atx-full-tower`, `family-cooling-air-tower`,
-`family-cooling-aio-liquid`, `family-amd-am5` y **`family-amd-rx9070xt`
-nueva en §0.34**), y **45 `product` reales verificados** (13 GPU +
-**1 GPU AMD nuevo en §0.34** = 14 GPU, 6 RAM, 6 motherboard, 6 PSU, 4
-storage, 2 case, 3 cooling, 4 CPU AMD de §0.33). 0 `offer`, 0 `preset`.
-No reemplaza `data/catalog.json` (legacy). No se migró ningún registro
-legacy. `node scripts/validate-v2.js` → 65 entries válidas, 71
-evidencias, 0 offers, 0 presets. `node --test tests/v2/validate-v2.test.js`
-→ 31/31. Existe además `data/v2/crosswalk.v2.json` (fuera del contrato
-validado) con el mapeo
-legacy-id↔product-id para storage, case, cooling, ram, psu, motherboard,
+`family-cooling-aio-liquid`, `family-amd-am5`, `family-amd-rx9070xt`
+(§0.34) y **`family-amd-rx9060xt` nueva en §0.35**), y **46 `product`
+reales verificados** (14 GPU + **1 GPU AMD nuevo en §0.35** = 15 GPU, 6
+RAM, 6 motherboard, 6 PSU, 4 storage, 2 case, 3 cooling, 4 CPU AMD de
+§0.33). 0 `offer`, 0 `preset`. No reemplaza `data/catalog.json`
+(legacy). No se migró ningún registro legacy. `node
+scripts/validate-v2.js` → 67 entries válidas, 73 evidencias, 0 offers, 0
+presets. `node --test tests/v2/validate-v2.test.js` → 31/31. Existe
+además `data/v2/crosswalk.v2.json` (fuera del contrato validado) con el
+mapeo legacy-id↔product-id para storage, case, cooling, ram, psu, motherboard,
 gpu y ahora cpu.
 
 ## 0.1 Resultado del piloto (2026-08-21)
@@ -1293,6 +1294,56 @@ families/products GPU NVIDIA previos. `node scripts/validate-v2.js` →
 65 entries válidas (20 family + 45 product), 71 evidencias, 0 offers, 0
 presets. `node --test` → 31/31. `data/catalog.json`,
 `data/components.json` y la UI intactos.
+
+## 0.35 AMD GPU completo — RX 9060 XT, GPU cerrado al 100% (2026-08-22)
+
+Se investigó `gpu-9060xt` con el mismo mecanismo que resolvió RX 9070 XT
+(`curl` con user-agent de navegador contra `amd.com`). URL real:
+`amd.com/en/products/graphics/desktops/radeon/9000-series/
+amd-radeon-rx-9060xt.html` (mismo patrón de slug sin guion) → fetch
+directo **200 OK**.
+
+**`family-amd-rx9060xt`** — `category=gpu`, `selectable=false`, fuente:
+la URL anterior. Confirmado: Compute Units 32, Stream Processors 2048,
+Boost "Up to 3130 MHz", Game Frequency 2530MHz, Ray Accelerators 32, AI
+Accelerators 64, Infinity Cache 32MB, Memory Speed "Up to 20 Gbps",
+16GB GDDR6 (128-bit, "Up to 320 GB/s"), Typical Board Power
+160W, PSU mínima recomendada 450W. La página oficial de AMD **solo
+documenta la variante de 16GB** (no menciona en ningún lugar la variante
+de 8GB también existente en el mercado) — sin ambigüedad frente al
+legacy `gpu-9060xt` ("AMD RX 9060 XT 16GB"). **Único campo `null`**:
+`interface.pcieGen` — no declarado en ningún lugar del documento
+(mismo patrón que RX 9070 XT).
+
+**`prod-asus-prime-rx9060xt-o16g`** — `brand=ASUS`, `commercialName=
+"ASUS Prime Radeon RX 9060 XT OC Edition 16GB GDDR6"`, `partNumber=
+"PRIME-RX9060XT-O16G"`, `familyId=family-amd-rx9060xt`,
+`selectable=true`, `verified`. Fuente: `asus.com/motherboards-
+components/graphics-cards/prime/prime-rx9060xt-o16g/techspec/` (fetch
+directo exitoso). Confirmado: 2048 stream processors, boost "3310MHz
+(default)" / "3330MHz (OC mode)", 16GB GDDR6 128-bit 20Gbps, dimensiones
+304×126×50mm, conector "1×8-pin", PSU recomendada 550W, 2.5 slot.
+**Campos `null`**: `interface.pcieGen` — el campo "Bus Standard" de esta
+página contiene el valor claramente erróneo "OpenGL" (mismo problema de
+extracción ya detectado antes en el ASUS RTX 5060, §0.9), por lo que no
+se usó, ni a nivel product ni family; `power.consumptionW` — ASUS solo
+declara la recomendación de PSU ("basada en una configuración GPU+CPU
+totalmente overclockeada"), no el consumo explícito.
+
+**Crosswalk**: se agregó `gpu-9060xt→prod-asus-prime-rx9060xt-o16g`.
+PSU recomendada real (550W) es menor a la del legacy (600W) pero
+consistente con el margen conservador ya visto en otros escenarios.
+
+**Con esto, GPU queda cerrado al 100%** (6/6 escenarios reales:
+`gpu-5060`, `gpu-5070`, `gpu-5080`, `gpu-5090`, `gpu-9060xt`,
+`gpu-9070xt` — los 4 NVIDIA ya cubiertos desde antes, más los 2 AMD
+resueltos en §0.34/§0.35).
+
+No se tocó CPU, motherboard, PSU, storage, case, cooling, RAM, ni las
+families/products GPU previos (NVIDIA ni RX 9070 XT). `node
+scripts/validate-v2.js` → 67 entries válidas (21 family + 46 product),
+73 evidencias, 0 offers, 0 presets. `node --test` → 31/31.
+`data/catalog.json`, `data/components.json` y la UI intactos.
 
 ## 0. Principio rector
 

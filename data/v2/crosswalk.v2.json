@@ -175,7 +175,13 @@
       "category": "gpu",
       "legacyId": "gpu-9070xt",
       "productId": "prod-asus-prime-rx9070xt-o16g",
-      "note": "Legacy 'AMD RX 9070 XT 16GB' (length 330mm, powerDraw 300W, recommendedPsu 750W) -> ASUS Prime Radeon RX 9070 XT OC Edition (PRIME-RX9070XT-O16G), family-amd-rx9070xt. PSU recomendada coincide exactamente (750W); powerDraw legacy (300W) es cercano al Typical Board Power oficial del chip (304W, family-amd-rx9070xt); longitud legacy (330mm) es menor a la de este producto especifico (312mm, en realidad esta placa es mas corta). Primera family/product AMD GPU del proyecto -- resuelto en Fase 4 con el mismo mecanismo que AMD CPU (curl con user-agent de navegador contra amd.com, donde WebFetch seguia fallando). gpu-9060xt (AMD RX 9060 XT), usado como alternativa en tier entrada, queda sin mapping -- no investigado en este paso, fuera de alcance."
+      "note": "Legacy 'AMD RX 9070 XT 16GB' (length 330mm, powerDraw 300W, recommendedPsu 750W) -> ASUS Prime Radeon RX 9070 XT OC Edition (PRIME-RX9070XT-O16G), family-amd-rx9070xt. PSU recomendada coincide exactamente (750W); powerDraw legacy (300W) es cercano al Typical Board Power oficial del chip (304W, family-amd-rx9070xt); longitud legacy (330mm) es menor a la de este producto especifico (312mm, en realidad esta placa es mas corta). Primera family/product AMD GPU del proyecto -- resuelto en Fase 4 con el mismo mecanismo que AMD CPU (curl con user-agent de navegador contra amd.com, donde WebFetch seguia fallando)."
+    },
+    {
+      "category": "gpu",
+      "legacyId": "gpu-9060xt",
+      "productId": "prod-asus-prime-rx9060xt-o16g",
+      "note": "Legacy 'AMD RX 9060 XT 16GB' (length 270mm, powerDraw 180W, recommendedPsu 600W) -> ASUS Prime Radeon RX 9060 XT OC Edition 16GB (PRIME-RX9060XT-O16G), family-amd-rx9060xt. Coincide en capacidad (16GB) y modelo exacto; la fuente oficial de AMD solo documenta la variante de 16GB, sin ambiguedad con la variante de 8GB tambien existente en el mercado. PSU recomendada real (550W, ASUS) es menor a la del legacy (600W) pero consistente con el margen conservador ya visto en otros escenarios del proyecto. Resuelto con el mismo mecanismo que gpu-9070xt (curl con user-agent de navegador contra amd.com). interface.pcieGen queda null tanto en family como en product: AMD no lo declara, y el campo 'Bus Standard' de ASUS contenia el valor claramente erroneo 'OpenGL' (mismo problema ya detectado en el ASUS RTX 5060), por lo que no se uso."
     }
   ]
 }

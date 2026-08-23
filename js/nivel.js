@@ -40,21 +40,29 @@ function bloquePrecio(valor) {
 }
 
 // Arma la fila de un componente resolviendo su id contra el catálogo real.
+// Piloto V2 (solo storage, ver js/v2-adapter.js): si existe un producto real
+// verificado en el crosswalk para esta pieza, se muestra su nombre comercial
+// real en vez del nombre genérico de nivel. Precio y specs siguen viniendo
+// de Legacy sin cambios — este piloto solo toca el nombre mostrado.
 function filaComponente(cat, piezaId, altId) {
   const pieza = buscarPieza(cat.id, piezaId);
   if (!pieza) return ''; // referencia rota — no debería pasar tras la validación, pero no rompemos el render
+  const nombreMostrado = cat.id === 'storage' ? nombreVisibleProducto(cat.id, piezaId, pieza.name) : pieza.name;
   const specs = pieza.specs ? `<span class="comp-specs">${escapeHtml(pieza.specs)}</span>` : '';
   let alt = '';
   if (altId) {
     const piezaAlt = buscarPieza(cat.id, altId);
     const etiquetaAlt = t({ es: 'Alternativa', en: 'Alternative', pt: 'Alternativa' });
-    if (piezaAlt) alt = `<p class="comp-alt">${etiquetaAlt}: ${escapeHtml(piezaAlt.name)} (${precioUSD(piezaAlt.price)})</p>`;
+    if (piezaAlt) {
+      const nombreAltMostrado = cat.id === 'storage' ? nombreVisibleProducto(cat.id, altId, piezaAlt.name) : piezaAlt.name;
+      alt = `<p class="comp-alt">${etiquetaAlt}: ${escapeHtml(nombreAltMostrado)} (${precioUSD(piezaAlt.price)})</p>`;
+    }
   }
   return `
     <div class="comp-row">
       <div class="comp-label mono">${escapeHtml(cat.label)}</div>
       <div class="comp-main">
-        <p class="comp-name hoverable" data-preview="${cat.id}" data-preview-label="${escapeHtml(pieza.name)}">${escapeHtml(pieza.name)}</p>
+        <p class="comp-name hoverable" data-preview="${cat.id}" data-preview-label="${escapeHtml(nombreMostrado)}">${escapeHtml(nombreMostrado)}</p>
         ${specs}
         ${alt}
       </div>
@@ -102,6 +110,10 @@ async function cargarNivel() {
     document.getElementById('level-name').textContent = t({ es: 'No se pudo cargar el catálogo', en: 'Could not load the catalog', pt: 'Não foi possível carregar o catálogo' });
     return;
   }
+  // Piloto V2 (solo storage): se espera antes de pintar para que el nombre
+  // real no "parpadee" después del render; si falla, cargarV2() ya resuelve
+  // con V2_CATALOGO/V2_CROSSWALK en null y el nombre legacy se usa tal cual.
+  await cargarV2();
 
   const tier = CATALOGO.tiers.find((tr) => tr.id === idNivel);
   if (!tier) {

@@ -38,11 +38,12 @@ function dibujarCategoria(cat, antesIncompatibles) {
   const abierta = CATEGORIA_ABIERTA === cat.id;
 
   // Cabecera de la categoría
+  const nombreElegidaMostrado = elegida && cat.id === 'storage' ? nombreVisibleProducto(cat.id, elegida.id, elegida.name) : elegida && elegida.name;
   let html = `<div class="cat-card${abierta ? ' open' : ''}" data-cat="${cat.id}">`;
   html += `<button class="cat-head" data-toggle="${cat.id}" aria-expanded="${abierta}" aria-controls="opciones-${cat.id}">
     <span class="cat-order mono">${String(cat.order).padStart(2, '0')}</span>
     <span class="cat-label">${escapeHtml(cat.label)}</span>
-    <span class="cat-chosen">${elegida ? escapeHtml(elegida.name) : `<em>${t({ es: 'Sin elegir', en: 'Not chosen', pt: 'Não escolhido' })}</em>`}</span>
+    <span class="cat-chosen">${elegida ? escapeHtml(nombreElegidaMostrado) : `<em>${t({ es: 'Sin elegir', en: 'Not chosen', pt: 'Não escolhido' })}</em>`}</span>
     <span class="cat-arrow">${abierta ? '▲' : '▼'}</span>
   </button>`;
 
@@ -55,10 +56,13 @@ function dibujarCategoria(cat, antesIncompatibles) {
       const clases = ['option'];
       if (seleccionada) clases.push('selected');
       if (!compat.ok) clases.push('incompatible');
+      // Piloto V2 (solo storage): nombre comercial real cuando hay mapping
+      // verificado en el crosswalk; si no, el nombre legacy tal cual.
+      const nombreMostrado = cat.id === 'storage' ? nombreVisibleProducto(cat.id, pieza.id, pieza.name) : pieza.name;
 
       html += `<button class="${clases.join(' ')}" data-pick="${cat.id}:${pieza.id}"${!compat.ok ? ' disabled' : ''}>
-        <span class="option-main" data-preview="${cat.id}" data-preview-label="${escapeHtml(pieza.name)}">
-          <span class="option-name">${escapeHtml(pieza.name)}</span>
+        <span class="option-main" data-preview="${cat.id}" data-preview-label="${escapeHtml(nombreMostrado)}">
+          <span class="option-name">${escapeHtml(nombreMostrado)}</span>
           ${pieza.specs ? `<span class="option-specs">${escapeHtml(pieza.specs)}</span>` : ''}
           ${!compat.ok ? `<span class="option-reason">⚠ ${escapeHtml(compat.razon)}</span>` : ''}
         </span>
@@ -133,9 +137,10 @@ function dibujarResumen() {
   const total = totalBuild();
   lista.innerHTML = CATEGORIAS_ORDENADAS.map((cat) => {
     const pieza = BUILD[cat.id];
+    const nombreMostrado = pieza && cat.id === 'storage' ? nombreVisibleProducto(cat.id, pieza.id, pieza.name) : pieza && pieza.name;
     return `<li class="${pieza ? 'filled' : 'empty'}">
       <span class="sum-cat mono">${escapeHtml(cat.label)}</span>
-      <span class="sum-piece">${pieza ? escapeHtml(pieza.name) : '—'}</span>
+      <span class="sum-piece">${pieza ? escapeHtml(nombreMostrado) : '—'}</span>
       <span class="sum-price mono">${pieza ? precioTexto(pieza.price) : ''}</span>
     </li>`;
   }).join('');
@@ -265,7 +270,10 @@ function copiarBuild() {
   let texto = t({ es: 'Mi PC gamer (armado en ArmaPC)', en: 'My gaming PC (built with ArmaPC)', pt: 'Meu PC gamer (montado no ArmaPC)' }) + '\n\n';
   for (const cat of CATEGORIAS_ORDENADAS) {
     const p = BUILD[cat.id];
-    if (p) texto += `- ${cat.label}: ${p.name} (US$${p.price})\n`;
+    if (p) {
+      const nombreMostrado = cat.id === 'storage' ? nombreVisibleProducto(cat.id, p.id, p.name) : p.name;
+      texto += `- ${cat.label}: ${nombreMostrado} (US$${p.price})\n`;
+    }
   }
   const total = totalBuild();
   const totalLabel = t({ es: 'Total aproximado', en: 'Approximate total', pt: 'Total aproximado' });
@@ -298,6 +306,12 @@ async function iniciar() {
 
   // Ordenar las categorías UNA sola vez (antes se reordenaba en cada render).
   CATEGORIAS_ORDENADAS = [...CATALOGO.categories].sort((a, b) => a.order - b.order);
+
+  // Piloto V2 (solo storage, ver js/v2-adapter.js): se espera antes del
+  // primer render para que el nombre real no cambie después de pintado; si
+  // falla, cargarV2() resuelve con V2_CATALOGO/V2_CROSSWALK en null y el
+  // nombre legacy se usa tal cual, sin bloquear el resto del configurador.
+  await cargarV2();
 
   MONEDA_ACTIVA = monedaElegida();
   TASAS = (await obtenerTasas()).tasas;

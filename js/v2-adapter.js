@@ -1,6 +1,7 @@
 // ===== Adaptador de solo lectura para el catálogo V2 (data/v2/) =====
-// Piloto: usado hoy por las categorías "storage" y "ram". El resto de
-// categorías sigue mostrando el nombre genérico de nivel tal como estaba.
+// Piloto: usado hoy por las categorías "storage", "ram", "motherboard" y
+// "psu". El resto de categorías sigue mostrando el nombre genérico de
+// nivel tal como estaba.
 //
 // Regla de fuente de verdad (ver docs/CONTRATO_V2.md):
 // - V2 es la fuente de verdad de PRODUCTOS reales (marca + modelo + MPN).

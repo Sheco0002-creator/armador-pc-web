@@ -1345,6 +1345,83 @@ scripts/validate-v2.js` → 67 entries válidas (21 family + 46 product),
 73 evidencias, 0 offers, 0 presets. `node --test` → 31/31.
 `data/catalog.json`, `data/components.json` y la UI intactos.
 
+## 0.36 Intel CPU (Ultra 7 265K, Ultra 9 285K) — investigado, BLOQUEADO por falta de MPN Tier-1/Tier-2 (2026-08-22)
+
+Se investigó el sourcing de `cpu-ultra7-265k` y `cpu-ultra9-285k` (las 2
+alternativas Intel usadas realmente en los tiers media/extrema, sin
+mapping desde que se creó el crosswalk CPU en §0.33). A diferencia del
+resto del catálogo, este caso terminó **bloqueado por una razón nueva**:
+no falta acceso a una fuente — sobra evidencia de identidad y
+especificaciones técnicas, pero falta específicamente el `partNumber`
+(MPN/ordering code) desde una fuente que el propio contrato permita
+citar.
+
+**Fuentes intentadas para `intel.com`/`ark.intel.com`** (identidad,
+specs, MPN): 403 Forbidden consistente en todas las variantes probadas,
+tanto con `WebFetch` como con `curl` + user-agent de navegador (mismo
+patrón ya documentado para Intel Z890 en §0.17 — a diferencia de AMD,
+donde el mismo truco de UA sí funcionó en §0.33).
+
+**Fuentes oficiales de Intel que sí respondieron 200 OK** (dominios
+alternativos de Intel, no bloqueados):
+- `download.intel.com/newsroom/2024/client-computing/Product-Brief-
+  Intel-Core-Ultra-200S-series-processors.pdf` — Product Brief oficial
+  con "SKU Chart" comparativo de 285K/265K/265KF/245K/245KF. **Confirma
+  con evidencia Tier-1**: núcleos (265K: 20 = 8P+12E; 285K: 24 = 8P+16E),
+  hilos, caché L2/L3, clocks base y turbo (P-core y Thermal Velocity
+  Boost — para 265K el máximo real es P-Core Max Turbo 5.4GHz / TVB
+  hasta 5.5GHz, **no confundir ambos valores**), Base Power 125W y
+  Maximum Turbo Power 250W para ambos SKUs (esto corrige y confirma un
+  dato que en la ronda de sourcing previa solo tenía respaldo de
+  retailers para el 285K), memoria DDR5-6400 2 canales máx 192GB (dato
+  oficial que corrige un 256GB reportado erróneamente por retailers).
+  **No incluye**: socket explícito ni ningún código de ordering/MPN.
+- `cdrdv2-public.intel.com/844516/...Arrow Lake-S Datasheet
+  Addendum...pdf` (doc. 844516-1.0) — cargó 200 OK pero es para "Edge
+  Platforms" (variante embebida/industrial), no contiene tabla de
+  ordering codes ni corresponde a los SKUs de escritorio 265K/285K.
+
+**Fuentes oficiales de Intel bloqueadas (403) tras múltiples intentos**:
+`ark.intel.com` (ambos SKUs), datasheet técnico completo Volume 1/2
+(`cdrdv2-public.intel.com/832586/...`, variantes de revisión 001 y 006),
+Specification Update (`cdrdv2-public.intel.com/834774/...`, rev 012) —
+este último es el documento que normalmente contendría la tabla de
+S-Spec/ordering code, y es precisamente el que no se pudo obtener.
+
+**El bloqueo real**: el único dato de `partNumber` encontrado
+(`BX80768265K` / `BX80768285K`) proviene exclusivamente de retailers
+(Newegg, GigaParts, B&H, Staples, CCL, PCPartPicker, CentralComputer).
+El vocabulario `data/v2/schema/vocab/sourceKind.json` prohíbe
+explícitamente que un retailer sea un `officialSources.kind` válido
+("Tiendas/marketplaces NUNCA son un kind válido aquí"), y el validador
+(`scripts/validate-v2.js`, reglas V-01/V-03) exige `partNumber` no-nulo
+para que un `product` sea `selectable=true`. Sin `partNumber`
+verificable, el producto no puede ser `selectable=true`, y sin eso
+`js/v2-adapter.js` nunca lo resolvería — crear el `product` de todas
+formas habría sido equivalente a no mapear nada, o habría requerido
+citar una fuente Tier-3 disfrazada de Tier-1, lo cual viola la
+disciplina central del proyecto.
+
+**Decisión**: no se creó ninguna entrada `family`/`product` para Intel
+CPU. `cpu-ultra7-265k` y `cpu-ultra9-285k` permanecen sin mapping,
+mostrando el nombre legacy tal cual (comportamiento de fallback ya
+validado en el resto del catálogo). El piloto de UI para CPU
+(`CATEGORIAS_PILOTO_V2`) **no se implementa** mientras este bloqueo siga
+vigente — de las 8 categorías del sitio, CPU es la única sin migrar.
+
+**Camino para desbloquear en el futuro**: (a) reintentar
+`ark.intel.com`/el Specification Update completo si Intel cambia sus
+reglas de bloqueo de bots, o (b) decidir explícitamente aceptar MPN con
+evidencia Tier-3 documentada como excepción consciente, lo que
+requeriría modificar `docs/CONTRATO_V2.md` y potencialmente
+`scripts/validate-v2.js`/`sourceKind.json` — cambio de reglas del
+contrato, no solo de datos, pendiente de decisión explícita.
+
+No se modificó `catalog.v2.json`, `crosswalk.v2.json`, `evidence.v2.json`,
+ningún archivo `js/`, HTML, ni `data/components.json`. `node
+scripts/validate-v2.js` → 67 entries válidas (sin cambios), `node --test`
+→ 31/31 (sin cambios).
+
 ## 0. Principio rector
 
 Cada archivo tiene una única responsabilidad. Ningún campo puede tomar prestada
@@ -1559,9 +1636,13 @@ duplicados), `V-NO-COMMERCIAL` (precio/vendedor/stock fuera de catalog),
 - **Trabajo post-cierre de Fase 3 ("Fase 4" informal — resolver candidatos
   bloqueados)**: ZOTAC y GIGABYTE siguen bloqueados (confirmado
   exhaustivamente en esta ronda, ver hallazgos de sesión). AMD CPU
-  resuelto (§0.33). GPU AMD (RX 9060 XT, RX 9070 XT) e Intel CPU
-  (Ultra 7 265K, Ultra 9 285K) no investigados todavía — quedan sin
-  ninguna family/product en V2.
+  resuelto (§0.33). GPU AMD (RX 9060 XT, RX 9070 XT) resuelto (§0.34,
+  §0.35) — GPU cerrado al 100%. Intel CPU (Ultra 7 265K, Ultra 9 285K)
+  **investigado y BLOQUEADO** (§0.36): identidad/specs con evidencia
+  Tier-1 (Intel Product Brief), pero sin `partNumber` verificable por
+  fuente Tier-1/Tier-2 — el vocabulario `sourceKind` prohíbe retailers
+  como fuente citable. Quedan sin ninguna family/product en V2 hasta
+  que se resuelva el MPN o se autorice una excepción documentada.
 - **Fase 4 formal (no iniciada)**: `offers.v2.json` piloto con resolución por región.
 - **Fase 5 (no iniciada)**: `presets.v2.json` piloto + motor de compatibilidad real.
 - **Fase 6 (no iniciada)**: evaluar reemplazo gradual de `data/catalog.json` en la UI.

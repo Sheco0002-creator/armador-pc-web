@@ -41,7 +41,7 @@ function bloquePrecio(valor) {
 
 // Categorías cubiertas hoy por el piloto V2 (ver js/v2-adapter.js). Ampliar
 // esta lista es lo único necesario para sumar una categoría más al piloto.
-const CATEGORIAS_PILOTO_V2 = ['storage', 'ram', 'motherboard', 'psu', 'case'];
+const CATEGORIAS_PILOTO_V2 = ['storage', 'ram', 'motherboard', 'psu', 'case', 'gpu'];
 
 // Arma la fila de un componente resolviendo su id contra el catálogo real.
 // Piloto V2: si existe un producto real verificado en el crosswalk para esta

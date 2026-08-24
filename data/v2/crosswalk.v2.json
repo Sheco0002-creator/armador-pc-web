@@ -169,7 +169,7 @@
       "category": "cpu",
       "legacyId": "cpu-r9-9950x3d",
       "productId": "prod-amd-ryzen9-9950x3d",
-      "note": "Legacy 'AMD Ryzen 9 9950X3D' (AM5, 170W) -> AMD Ryzen 9 9950X3D (Product ID Boxed 100-100000719WOF), family-amd-ryzen9-9950x3d. Coincide exactamente. La evidencia de este producto tambien permitio actualizar la family (socket null->AM5, cache.l3MB null->128MB). Nota: cpu-ultra7-265k y cpu-ultra9-285k (Intel), usados como alternativa en media y extrema respectivamente, quedan sin mapping -- no existe ninguna family/product Intel CPU en V2, fuera de alcance de esta Fase 4 (enfocada en AMD)."
+      "note": "Legacy 'AMD Ryzen 9 9950X3D' (AM5, 170W) -> AMD Ryzen 9 9950X3D (Product ID Boxed 100-100000719WOF), family-amd-ryzen9-9950x3d. Coincide exactamente. La evidencia de este producto tambien permitio actualizar la family (socket null->AM5, cache.l3MB null->128MB)."
     },
     {
       "category": "gpu",
@@ -182,6 +182,18 @@
       "legacyId": "gpu-9060xt",
       "productId": "prod-asus-prime-rx9060xt-o16g",
       "note": "Legacy 'AMD RX 9060 XT 16GB' (length 270mm, powerDraw 180W, recommendedPsu 600W) -> ASUS Prime Radeon RX 9060 XT OC Edition 16GB (PRIME-RX9060XT-O16G), family-amd-rx9060xt. Coincide en capacidad (16GB) y modelo exacto; la fuente oficial de AMD solo documenta la variante de 16GB, sin ambiguedad con la variante de 8GB tambien existente en el mercado. PSU recomendada real (550W, ASUS) es menor a la del legacy (600W) pero consistente con el margen conservador ya visto en otros escenarios del proyecto. Resuelto con el mismo mecanismo que gpu-9070xt (curl con user-agent de navegador contra amd.com). interface.pcieGen queda null tanto en family como en product: AMD no lo declara, y el campo 'Bus Standard' de ASUS contenia el valor claramente erroneo 'OpenGL' (mismo problema ya detectado en el ASUS RTX 5060), por lo que no se uso."
+    },
+    {
+      "category": "cpu",
+      "legacyId": "cpu-ultra7-265k",
+      "productId": "cpu-ultra7-265k",
+      "note": "Legacy 'Intel Core Ultra 7 265K' -> Intel Core Ultra 7 265K (partNumber BX80768265K), family-intel-coreultra7-265k. Coincide exactamente por nombre/modelo. partNumber sourced bajo la excepcion formal Tier-3 cerrada documentada en docs/CONTRATO_V2.md §0.37 (identidad y especificaciones principales con evidencia Tier-1 -- Intel Product Brief -- pero MPN sin evidencia Tier-1/Tier-2 accesible tras sourcing agotado; ver tambien §0.36)."
+    },
+    {
+      "category": "cpu",
+      "legacyId": "cpu-ultra9-285k",
+      "productId": "cpu-ultra9-285k",
+      "note": "Legacy 'Intel Core Ultra 9 285K' -> Intel Core Ultra 9 285K (partNumber BX80768285K), family-intel-coreultra9-285k. Coincide exactamente por nombre/modelo. partNumber sourced bajo la excepcion formal Tier-3 cerrada documentada en docs/CONTRATO_V2.md §0.37 (identidad y especificaciones principales con evidencia Tier-1 -- Intel Product Brief -- pero MPN sin evidencia Tier-1/Tier-2 accesible tras sourcing agotado; ver tambien §0.36)."
     }
   ]
 }

@@ -1,6 +1,6 @@
 // ===== Adaptador de solo lectura para el catálogo V2 (data/v2/) =====
 // Piloto: usado hoy por las categorías "storage", "ram", "motherboard",
-// "psu", "case", "gpu" y "cooling". El resto de categorías sigue
+// "psu", "case", "gpu", "cooling" y "cpu". El resto de categorías sigue
 // mostrando el nombre genérico de nivel tal como estaba.
 //
 // Regla de fuente de verdad (ver docs/CONTRATO_V2.md):

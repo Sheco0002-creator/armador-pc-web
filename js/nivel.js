@@ -39,9 +39,13 @@ function bloquePrecio(valor) {
   return `<div class="comp-price-wrap">${usd}${localHtml}</div>`;
 }
 
-// Categorías cubiertas hoy por el piloto V2 (ver js/v2-adapter.js). Ampliar
-// esta lista es lo único necesario para sumar una categoría más al piloto.
+// Categorías cubiertas hoy por el piloto V2 de NOMBRE (ver js/v2-adapter.js).
+// Ampliar esta lista es lo único necesario para sumar una categoría más.
 const CATEGORIAS_PILOTO_V2 = ['storage', 'ram', 'motherboard', 'psu', 'case', 'gpu', 'cooling', 'cpu'];
+
+// Piloto de SPECS, más acotado que el de nombre: solo las categorías con un
+// formateador dedicado en specsVisiblesProducto() de js/v2-adapter.js.
+const CATEGORIAS_PILOTO_V2_SPECS = ['cpu'];
 
 // Arma la fila de un componente resolviendo su id contra el catálogo real.
 // Piloto V2: si existe un producto real verificado en el crosswalk para esta
@@ -52,7 +56,8 @@ function filaComponente(cat, piezaId, altId) {
   const pieza = buscarPieza(cat.id, piezaId);
   if (!pieza) return ''; // referencia rota — no debería pasar tras la validación, pero no rompemos el render
   const nombreMostrado = CATEGORIAS_PILOTO_V2.includes(cat.id) ? nombreVisibleProducto(cat.id, piezaId, pieza.name) : pieza.name;
-  const specs = pieza.specs ? `<span class="comp-specs">${escapeHtml(pieza.specs)}</span>` : '';
+  const specsTexto = CATEGORIAS_PILOTO_V2_SPECS.includes(cat.id) ? (specsVisiblesProducto(cat.id, piezaId) || pieza.specs) : pieza.specs;
+  const specs = specsTexto ? `<span class="comp-specs">${escapeHtml(specsTexto)}</span>` : '';
   let alt = '';
   if (altId) {
     const piezaAlt = buscarPieza(cat.id, altId);

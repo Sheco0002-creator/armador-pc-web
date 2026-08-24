@@ -32,6 +32,10 @@ function totalBuild() {
 // esta lista es lo único necesario para sumar una categoría más al piloto.
 const CATEGORIAS_PILOTO_V2 = ['storage', 'ram', 'motherboard', 'psu', 'case', 'gpu', 'cooling', 'cpu'];
 
+// Piloto de SPECS, más acotado que el de nombre: solo las categorías con un
+// formateador dedicado en specsVisiblesProducto() de js/v2-adapter.js.
+const CATEGORIAS_PILOTO_V2_SPECS = ['cpu'];
+
 // --- Dibujar una categoría (tarjeta que se abre para elegir) ---
 // 'antesIncompatibles' viene precalculado desde dibujarCategorias para no
 // recomputar el estado "antes" de la build en cada una de las N piezas de
@@ -63,11 +67,12 @@ function dibujarCategoria(cat, antesIncompatibles) {
       // Piloto V2 (storage, ram): nombre comercial real cuando hay mapping
       // verificado en el crosswalk; si no, el nombre legacy tal cual.
       const nombreMostrado = CATEGORIAS_PILOTO_V2.includes(cat.id) ? nombreVisibleProducto(cat.id, pieza.id, pieza.name) : pieza.name;
+      const specsTexto = CATEGORIAS_PILOTO_V2_SPECS.includes(cat.id) ? (specsVisiblesProducto(cat.id, pieza.id) || pieza.specs) : pieza.specs;
 
       html += `<button class="${clases.join(' ')}" data-pick="${cat.id}:${pieza.id}"${!compat.ok ? ' disabled' : ''}>
         <span class="option-main" data-preview="${cat.id}" data-preview-label="${escapeHtml(nombreMostrado)}">
           <span class="option-name">${escapeHtml(nombreMostrado)}</span>
-          ${pieza.specs ? `<span class="option-specs">${escapeHtml(pieza.specs)}</span>` : ''}
+          ${specsTexto ? `<span class="option-specs">${escapeHtml(specsTexto)}</span>` : ''}
           ${!compat.ok ? `<span class="option-reason">⚠ ${escapeHtml(compat.razon)}</span>` : ''}
         </span>
         <span class="option-price mono">${precioTexto(pieza.price)}</span>

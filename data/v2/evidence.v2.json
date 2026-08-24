@@ -512,6 +512,27 @@
       "claim": "Fetch directo exitoso de la pagina oficial de especificaciones tecnicas de ASUS (asus.com, dominio propio del fabricante) para 'ASUS Prime Radeon RX 9060 XT OC Edition 16GB GDDR6'. Cita textual: Model 'PRIME-RX9060XT-O16G'; GPU 'AMD Radeon RX 9060 XT'; Stream Processors '2048'; Boost Clock 'up to 3330 MHz (OC mode) / up to 3310 MHz (Default mode)'; Memory '16GB GDDR6', Memory Speed '20 Gbps', Memory Interface '128-bit'; Dimensions '304 x 126 x 50mm'; Power Connector '1 x 8-pin'; Recommended PSU '550W' (nota explicita de ASUS: basada en 'a fully overclocked GPU and CPU system configuration'); Slot Width '2.5 Slot'. El campo 'Bus Standard' de esta pagina contiene el valor claramente erroneo/mezclado 'OpenGL' -- mismo problema de extraccion ya detectado antes en el ASUS RTX 5060 (ver evidencia ev-asus-rtx5060oc-01) -- por eso NO se uso para interface.pcieGen, que queda null + unknownFields tanto a nivel product como a nivel family. power.consumptionW tampoco aparece declarado explicitamente en la tabla (solo la recomendacion de PSU) -- queda null + unknownFields. No se uso ningun retailer/agregador como fuente.",
       "accessedAt": "2026-08-22T00:00:00Z",
       "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-intel-arrowlakes-productbrief-01",
+      "sourceId": "src-intel-arrowlakes-productbrief-01",
+      "claim": "EVIDENCIA TIER-1 (identidad y especificaciones, NO el MPN). Fetch directo exitoso (200 OK) al Product Brief oficial de Intel en PDF (download.intel.com, dominio propio del fabricante, no bloqueado a diferencia de ark.intel.com/intel.com/products/sku que devuelven 403) para 'Intel Core Ultra 200S series processors'. Contiene una tabla 'SKU Chart' comparativa de 285K/265K/265KF/245K/245KF. Cita textual/tabular usada para Core Ultra 7 265K: 20 cores (8 P-cores + 12 E-cores), 20 threads, P-core Base Clock 3.9 GHz, E-core Base Clock 3.3 GHz, P-core Max Turbo Frequency 5.4 GHz, Max Turbo Frequency con Thermal Velocity Boost 5.5 GHz, Base Power 125W, Maximum Turbo Power 250W, memoria DDR5-6400 2 canales maximo 192GB. Para Core Ultra 9 285K: 24 cores (8 P-cores + 16 E-cores), 24 threads, P-core Base Clock 3.7 GHz, E-core Base Clock 3.2 GHz, P-core Max Turbo Frequency 5.5 GHz, Max Turbo Frequency con Thermal Velocity Boost 5.7 GHz, Base Power 125W, Maximum Turbo Power 250W, misma memoria DDR5-6400 2 canales maximo 192GB. IMPORTANTE: este documento NO incluye socket explicito (se conoce por otras fuentes del proyecto -- placas Z890, coolers -- que la plataforma Arrow Lake-S usa LGA1851, pero al no estar citado en ESTE documento para el CPU especificamente, se deja socket=null + unknownFields en ambas family, en vez de presentarlo como confirmado por este Product Brief). Este documento tampoco incluye ningun ordering code / MPN / codigo de caja -- ver ev-intel-265k-mpn-tier3-01 / ev-intel-285k-mpn-tier3-01 para el MPN, que es evidencia Tier-3 separada y no debe confundirse con esta.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-intel-265k-mpn-tier3-01",
+      "sourceId": "src-intel-265k-mpn-tier3-01",
+      "claim": "EVIDENCIA TIER-3 (retailer, NO oficial de Intel) -- usada exclusivamente bajo la excepcion formal y cerrada documentada en docs/CONTRATO_V2.md §0.37, unicamente para el campo identity.partNumber de 'cpu-ultra7-265k'. Listado de Newegg para 'Intel Core Ultra 7 265K, Arrow Lake 20-Core (8P+12E), LGA 1851, 125W Desktop Processor' que cita el codigo de producto 'BX80768265K'. ARK, el Specification Update completo (documento que normalmente contendria la tabla oficial de S-Spec/ordering code) y las paginas 'Ordering and Compliance Information' de intel.com devolvieron 403 de forma consistente en todos los intentos documentados (incluido curl con user-agent de navegador), por lo que no existe evidencia Tier-1/Tier-2 accesible para este MPN. Este dato NUNCA debe tratarse como confirmado por Intel ni citarse como si proviniera de una fuente oficial.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-23T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-intel-285k-mpn-tier3-01",
+      "sourceId": "src-intel-285k-mpn-tier3-01",
+      "claim": "EVIDENCIA TIER-3 (retailer, NO oficial de Intel) -- usada exclusivamente bajo la excepcion formal y cerrada documentada en docs/CONTRATO_V2.md §0.37, unicamente para el campo identity.partNumber de 'cpu-ultra9-285k'. Listado de Newegg para 'Intel Core Ultra 9 285K, Arrow Lake 24-Core (8P+16E), LGA 1851, 125W Desktop Processor' que cita el codigo de producto 'BX80768285K'. ARK, el Specification Update completo y las paginas 'Ordering and Compliance Information' de intel.com devolvieron 403 de forma consistente en todos los intentos documentados (incluido curl con user-agent de navegador), por lo que no existe evidencia Tier-1/Tier-2 accesible para este MPN. Este dato NUNCA debe tratarse como confirmado por Intel ni citarse como si proviniera de una fuente oficial.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-23T00:00:00Z"
     }
   ]
 }

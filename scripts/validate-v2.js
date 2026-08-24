@@ -17,6 +17,24 @@ const path = require('path');
 const V2_DIR = path.join(__dirname, '..', 'data', 'v2');
 const VOCAB_DIR = path.join(V2_DIR, 'schema', 'vocab');
 const STALE_THRESHOLD_DAYS = 30;
+
+/**
+ * Allowlist cerrada de la excepcion Tier-3 documentada en docs/CONTRATO_V2.md
+ * (seccion "Excepciones aprobadas" / CPU Intel). NO agregar ids aqui sin una
+ * enmienda formal del contrato: esto NO convierte retailer en un sourceKind
+ * valido de forma general, solo bypassa el chequeo V-04 de tienda/vocabulario
+ * para el officialSource marcado `tier3: true` de estos dos productos, y solo
+ * cuando ademas traen verification.tier3Exception valido (ver isValidTier3Exception).
+ */
+const TIER3_MPN_EXCEPTIONS = Object.freeze(['cpu-ultra7-265k', 'cpu-ultra9-285k']);
+
+function isValidTier3Exception(exc) {
+  return !!exc
+    && typeof exc.approvedBy === 'string' && exc.approvedBy.trim().length > 0
+    && isValidIsoUtc(exc.approvedAt)
+    && typeof exc.reason === 'string' && exc.reason.trim().length > 0
+    && typeof exc.contractRef === 'string' && exc.contractRef.trim().length > 0;
+}
 const FORBIDDEN_CATALOG_KEYS = ['price', 'seller', 'stock', 'currency'];
 const STORE_DOMAIN_HINTS = ['amazon.', 'mercadolibre.', 'mercadolivre.', 'newegg.', 'bestbuy.', 'aliexpress.', 'ebay.', 'walmart.'];
 const PLACEHOLDER_URL_PATTERNS = [
@@ -184,16 +202,34 @@ function validateCatalog(catalog, evidence, vocab) {
       errors.push(err('V-11', file, id, `verification.verifiedAt no es ISO8601 UTC valido: ${entry.verification.verifiedAt}`));
     }
 
+    // V-TIER3-EXC: excepcion cerrada allowlist(codigo) + flag(dato) para MPN Tier-3
+    const tier3Allowed = TIER3_MPN_EXCEPTIONS.includes(entry.id);
+    const tier3Exception = entry.verification && entry.verification.tier3Exception;
+    const tier3Valid = tier3Allowed && isValidTier3Exception(tier3Exception);
+    if (tier3Allowed && !tier3Valid) {
+      errors.push(err('V-TIER3-EXC', file, id, 'Producto en TIER3_MPN_EXCEPTIONS requiere verification.tier3Exception valido (approvedBy, approvedAt ISO8601, reason, contractRef)'));
+    }
+    if (!tier3Allowed && tier3Exception) {
+      errors.push(err('V-TIER3-EXC', file, id, 'verification.tier3Exception solo esta permitido para productId incluido en la allowlist TIER3_MPN_EXCEPTIONS'));
+    }
+
     // V-04: officialSources
     for (const src of entry.officialSources || []) {
+      // Bypass exclusivo: solo si la entrada tiene una excepcion Tier-3 valida
+      // Y este officialSource individual esta marcado explicitamente `tier3: true`.
+      // Cualquier otra combinacion cae en el chequeo normal (tienda prohibida).
+      const isTier3Source = tier3Valid === true && src.tier3 === true;
+
       if (isPlaceholderOrInvalidUrl(src.url)) {
         errors.push(err('V-04', file, id, `officialSources url invalida o placeholder: ${src.url}`));
       }
-      if (isStoreUrl(src.url)) {
-        errors.push(err('V-04', file, id, `officialSources no puede apuntar a una tienda: ${src.url}`));
-      }
-      if (!vocab.sourceKind || !vocab.sourceKind.includes(src.kind)) {
-        errors.push(err('V-VOCAB', file, id, `officialSources.kind '${src.kind}' no pertenece al vocabulario sourceKind`));
+      if (!isTier3Source) {
+        if (isStoreUrl(src.url)) {
+          errors.push(err('V-04', file, id, `officialSources no puede apuntar a una tienda: ${src.url}`));
+        }
+        if (!vocab.sourceKind || !vocab.sourceKind.includes(src.kind)) {
+          errors.push(err('V-VOCAB', file, id, `officialSources.kind '${src.kind}' no pertenece al vocabulario sourceKind`));
+        }
       }
     }
     if (status === 'verified' && (!entry.officialSources || entry.officialSources.length === 0)) {
@@ -470,4 +506,6 @@ module.exports = {
   validatePresets,
   validateAll,
   STALE_THRESHOLD_DAYS,
+  TIER3_MPN_EXCEPTIONS,
+  isValidTier3Exception,
 };

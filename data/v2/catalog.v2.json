@@ -3471,6 +3471,210 @@
           "kind": "manufacturer-page"
         }
       ]
+    },
+    {
+      "id": "family-intel-coreultra7-265k",
+      "type": "family",
+      "category": "cpu",
+      "displayName": "Intel Core Ultra 7 265K",
+      "selectable": false,
+      "technical": {
+        "socket": null,
+        "coresPhysical": 20,
+        "coresPerformance": 8,
+        "coresEfficient": 12,
+        "threads": 20,
+        "baseClockMHz": {
+          "pCore": 3900,
+          "eCore": 3300
+        },
+        "boostClockMHz": {
+          "pCoreMaxTurbo": 5400,
+          "thermalVelocityBoost": 5500
+        },
+        "tdpW": {
+          "base": 125,
+          "maxTurbo": 250
+        },
+        "memory": {
+          "type": "DDR5-6400",
+          "channels": 2,
+          "maxCapacityGB": 192
+        }
+      },
+      "technicalFieldEvidence": {
+        "coresPhysical": ["ev-intel-arrowlakes-productbrief-01"],
+        "coresPerformance": ["ev-intel-arrowlakes-productbrief-01"],
+        "coresEfficient": ["ev-intel-arrowlakes-productbrief-01"],
+        "threads": ["ev-intel-arrowlakes-productbrief-01"],
+        "baseClockMHz.pCore": ["ev-intel-arrowlakes-productbrief-01"],
+        "baseClockMHz.eCore": ["ev-intel-arrowlakes-productbrief-01"],
+        "boostClockMHz.pCoreMaxTurbo": ["ev-intel-arrowlakes-productbrief-01"],
+        "boostClockMHz.thermalVelocityBoost": ["ev-intel-arrowlakes-productbrief-01"],
+        "tdpW.base": ["ev-intel-arrowlakes-productbrief-01"],
+        "tdpW.maxTurbo": ["ev-intel-arrowlakes-productbrief-01"],
+        "memory.type": ["ev-intel-arrowlakes-productbrief-01"],
+        "memory.channels": ["ev-intel-arrowlakes-productbrief-01"],
+        "memory.maxCapacityGB": ["ev-intel-arrowlakes-productbrief-01"]
+      },
+      "unknownFields": [
+        "socket"
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-23T00:00:00Z",
+        "verifiedBy": "manual-review-tier3-exception-cpu"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-intel-arrowlakes-productbrief-01",
+          "url": "https://download.intel.com/newsroom/2024/client-computing/Product-Brief-Intel-Core-Ultra-200S-series-processors.pdf",
+          "kind": "datasheet"
+        }
+      ]
+    },
+    {
+      "id": "cpu-ultra7-265k",
+      "type": "product",
+      "category": "cpu",
+      "familyId": "family-intel-coreultra7-265k",
+      "identity": {
+        "brand": "Intel",
+        "commercialName": "Intel Core Ultra 7 265K",
+        "model": "Core Ultra 7 265K",
+        "partNumber": "BX80768265K",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {},
+      "technicalFieldEvidence": {},
+      "unknownFields": [],
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-23T00:00:00Z",
+        "verifiedBy": "manual-review-tier3-exception-cpu",
+        "tier3Exception": {
+          "approvedBy": "Sheco0002",
+          "approvedAt": "2026-08-23T00:00:00Z",
+          "reason": "Sourcing Tier-1/Tier-2 del MPN agotado tras multiples intentos (ARK y paginas oficiales Ordering and Compliance Information de intel.com devuelven 403 de forma consistente, incluso con curl y user-agent de navegador). Identidad y especificaciones principales si cuentan con evidencia Tier-1 (Intel Product Brief). El unico MPN disponible (BX80768265K) proviene exclusivamente de retailers. Excepcion formal autorizada explicitamente por el usuario, cerrada a este productId.",
+          "contractRef": "docs/CONTRATO_V2.md §0.37"
+        }
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-intel-arrowlakes-productbrief-01",
+          "url": "https://download.intel.com/newsroom/2024/client-computing/Product-Brief-Intel-Core-Ultra-200S-series-processors.pdf",
+          "kind": "datasheet"
+        },
+        {
+          "sourceId": "src-intel-265k-mpn-tier3-01",
+          "url": "https://www.newegg.com/intel-core-ultra-7-265k-arrow-lake-lga-1851-desktop-cpu-processor/p/N82E16819118506",
+          "kind": "retailer-tier3-exception",
+          "tier3": true
+        }
+      ]
+    },
+    {
+      "id": "family-intel-coreultra9-285k",
+      "type": "family",
+      "category": "cpu",
+      "displayName": "Intel Core Ultra 9 285K",
+      "selectable": false,
+      "technical": {
+        "socket": null,
+        "coresPhysical": 24,
+        "coresPerformance": 8,
+        "coresEfficient": 16,
+        "threads": 24,
+        "baseClockMHz": {
+          "pCore": 3700,
+          "eCore": 3200
+        },
+        "boostClockMHz": {
+          "pCoreMaxTurbo": 5500,
+          "thermalVelocityBoost": 5700
+        },
+        "tdpW": {
+          "base": 125,
+          "maxTurbo": 250
+        },
+        "memory": {
+          "type": "DDR5-6400",
+          "channels": 2,
+          "maxCapacityGB": 192
+        }
+      },
+      "technicalFieldEvidence": {
+        "coresPhysical": ["ev-intel-arrowlakes-productbrief-01"],
+        "coresPerformance": ["ev-intel-arrowlakes-productbrief-01"],
+        "coresEfficient": ["ev-intel-arrowlakes-productbrief-01"],
+        "threads": ["ev-intel-arrowlakes-productbrief-01"],
+        "baseClockMHz.pCore": ["ev-intel-arrowlakes-productbrief-01"],
+        "baseClockMHz.eCore": ["ev-intel-arrowlakes-productbrief-01"],
+        "boostClockMHz.pCoreMaxTurbo": ["ev-intel-arrowlakes-productbrief-01"],
+        "boostClockMHz.thermalVelocityBoost": ["ev-intel-arrowlakes-productbrief-01"],
+        "tdpW.base": ["ev-intel-arrowlakes-productbrief-01"],
+        "tdpW.maxTurbo": ["ev-intel-arrowlakes-productbrief-01"],
+        "memory.type": ["ev-intel-arrowlakes-productbrief-01"],
+        "memory.channels": ["ev-intel-arrowlakes-productbrief-01"],
+        "memory.maxCapacityGB": ["ev-intel-arrowlakes-productbrief-01"]
+      },
+      "unknownFields": [
+        "socket"
+      ],
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-23T00:00:00Z",
+        "verifiedBy": "manual-review-tier3-exception-cpu"
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-intel-arrowlakes-productbrief-01",
+          "url": "https://download.intel.com/newsroom/2024/client-computing/Product-Brief-Intel-Core-Ultra-200S-series-processors.pdf",
+          "kind": "datasheet"
+        }
+      ]
+    },
+    {
+      "id": "cpu-ultra9-285k",
+      "type": "product",
+      "category": "cpu",
+      "familyId": "family-intel-coreultra9-285k",
+      "identity": {
+        "brand": "Intel",
+        "commercialName": "Intel Core Ultra 9 285K",
+        "model": "Core Ultra 9 285K",
+        "partNumber": "BX80768285K",
+        "gtin": null
+      },
+      "selectable": true,
+      "technical": {},
+      "technicalFieldEvidence": {},
+      "unknownFields": [],
+      "verification": {
+        "status": "verified",
+        "verifiedAt": "2026-08-23T00:00:00Z",
+        "verifiedBy": "manual-review-tier3-exception-cpu",
+        "tier3Exception": {
+          "approvedBy": "Sheco0002",
+          "approvedAt": "2026-08-23T00:00:00Z",
+          "reason": "Sourcing Tier-1/Tier-2 del MPN agotado tras multiples intentos (ARK y paginas oficiales Ordering and Compliance Information de intel.com devuelven 403 de forma consistente, incluso con curl y user-agent de navegador). Identidad y especificaciones principales si cuentan con evidencia Tier-1 (Intel Product Brief). El unico MPN disponible (BX80768285K) proviene exclusivamente de retailers. Excepcion formal autorizada explicitamente por el usuario, cerrada a este productId.",
+          "contractRef": "docs/CONTRATO_V2.md §0.37"
+        }
+      },
+      "officialSources": [
+        {
+          "sourceId": "src-intel-arrowlakes-productbrief-01",
+          "url": "https://download.intel.com/newsroom/2024/client-computing/Product-Brief-Intel-Core-Ultra-200S-series-processors.pdf",
+          "kind": "datasheet"
+        },
+        {
+          "sourceId": "src-intel-285k-mpn-tier3-01",
+          "url": "https://www.newegg.com/intel-core-ultra-9-285k-arrow-lake-lga-1851-desktop-cpu-processor/p/N82E16819118505",
+          "kind": "retailer-tier3-exception",
+          "tier3": true
+        }
+      ]
     }
   ]
 }

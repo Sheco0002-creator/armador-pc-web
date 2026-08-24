@@ -1422,6 +1422,89 @@ ningún archivo `js/`, HTML, ni `data/components.json`. `node
 scripts/validate-v2.js` → 67 entries válidas (sin cambios), `node --test`
 → 31/31 (sin cambios).
 
+## 0.37 Excepción formal Tier-3 para MPN de CPU Intel (265K/285K) — ENMIENDA AL CONTRATO (2026-08-23)
+
+**Esta sección es una enmienda formal a las reglas V-01/V-03/V-04 del
+contrato, no una nota de bitácora.** Autoriza, de forma cerrada y auditable,
+que exactamente dos `product` del catálogo usen evidencia Tier-3 (retailer)
+para su `identity.partNumber`, algo que el contrato prohíbe de manera general
+en el resto del catálogo.
+
+**Motivo de la excepción.** El sourcing Tier-1/Tier-2 para el MPN de
+`cpu-ultra7-265k` y `cpu-ultra9-285k` quedó agotado (ver §0.36): `ark.intel.com`
+y las páginas oficiales "Ordering and Compliance Information"
+(`intel.com/.../ordering.html`) devolvieron 403 Forbidden de forma consistente
+en todos los intentos, incluyendo reintentos con `curl` + User-Agent de
+navegador (mismo mecanismo que sí funcionó para AMD y GPU AMD en §0.33-§0.35).
+La identidad y especificaciones principales de ambos SKU sí cuentan con
+evidencia Tier-1 real y accesible (Intel Product Brief oficial en
+`download.intel.com`, ver `ev-intel-arrowlakes-productbrief-01`), pero ese
+documento **no incluye ordering code/MPN ni socket explícito**. El único dato
+de MPN disponible (`BX80768265K` / `BX80768285K`) proviene exclusivamente de
+retailers (Newegg, confirmado también por otros retailers en investigaciones
+previas), y `sourceKind.json` prohíbe explícitamente que una tienda sea un
+`officialSources.kind` válido.
+
+**Los dos únicos `productId` autorizados por esta excepción:**
+- `cpu-ultra7-265k`
+- `cpu-ultra9-285k`
+
+Ningún otro producto, presente o futuro, queda autorizado por esta sección.
+Extender la excepción a cualquier otro `productId` requiere una nueva
+enmienda formal explícita a este documento — nunca se hace implícita ni
+automáticamente disponible.
+
+**Mecanismo técnico (doble gate obligatorio, ninguna condición basta por sí
+sola):**
+
+1. **Allowlist en código** (`scripts/validate-v2.js`, constante
+   `TIER3_MPN_EXCEPTIONS = ['cpu-ultra7-265k', 'cpu-ultra9-285k']`) — vive en
+   código versionado, no en datos, por lo que ampliarla pasa por el mismo
+   control de cambios que cualquier otra modificación del validador.
+2. **Flag obligatorio en el dato** (`verification.tier3Exception` en
+   `catalog.v2.json`, con `approvedBy`, `approvedAt` ISO8601, `reason` y
+   `contractRef` apuntando a esta sección) — auditable, con responsabilidad
+   explícita.
+
+El bypass de la regla V-04 (prohibición de URLs de tienda / vocabulario
+`sourceKind`) solo se activa para un `officialSource` individual cuando **a
+la vez**: (a) el `id` de la entrada está en la allowlist de código, (b) la
+entrada trae `verification.tier3Exception` válido, y (c) ese
+`officialSource` específico está marcado `"tier3": true`. Cualquier otra
+combinación —otro producto con el flag, o uno de estos dos CPU sin el flag o
+con el flag mal formado— sigue sometida a las reglas normales del contrato y
+falla la validación. `sourceKind.json` **no se modificó**: no se agregó
+ningún valor tipo "retailer" al vocabulario global, por lo que Tier-3 sigue
+sin ser una fuente válida para el resto del catálogo.
+
+**Qué NO cambia esta excepción:**
+- No convierte retailer en `sourceKind` válido de forma general.
+- No relaja V-01/V-03/V-04 para ningún otro producto.
+- No modifica el comportamiento de Storage, RAM, Motherboard, PSU, Case, GPU
+  ni Cooling.
+- El socket de ambas family (`family-intel-coreultra7-265k`,
+  `family-intel-coreultra9-285k`) permanece `null` + `unknownFields`, porque
+  el Product Brief no lo cita explícitamente para el CPU — no se presenta
+  como confirmado por esa fuente aunque el socket LGA1851 sea de conocimiento
+  general del proyecto por otras vías (placas Z890, coolers).
+
+**Procedimiento de revocación.** Si en el futuro aparece evidencia Tier-1/2
+real para el MPN (por ejemplo, si Intel deja de bloquear el acceso a ARK o al
+Specification Update), la excepción debe reemplazarse, no simplemente
+apagarse:
+1. Verificar la nueva fuente y crear evidencia Tier-1/2 real en
+   `evidence.v2.json`.
+2. Actualizar `officialSources` de ambos `product` para citar esa fuente en
+   vez del `officialSource` marcado `tier3: true` (que debe eliminarse).
+3. Eliminar `verification.tier3Exception` de ambas entradas.
+4. Quitar ambos ids de `TIER3_MPN_EXCEPTIONS` en `scripts/validate-v2.js`.
+5. Marcar esta sección como histórica/cerrada en este documento (sin
+   borrarla), indicando la fecha y la fuente que la volvió innecesaria.
+
+No se modificó ningún mapping de las otras 7 categorías, ni
+`sourceKind.json`, ni las reglas V-01/V-02/V-05/V-06/V-07 más allá de lo aquí
+descrito.
+
 ## 0. Principio rector
 
 Cada archivo tiene una única responsabilidad. Ningún campo puede tomar prestada
@@ -1638,11 +1721,14 @@ duplicados), `V-NO-COMMERCIAL` (precio/vendedor/stock fuera de catalog),
   exhaustivamente en esta ronda, ver hallazgos de sesión). AMD CPU
   resuelto (§0.33). GPU AMD (RX 9060 XT, RX 9070 XT) resuelto (§0.34,
   §0.35) — GPU cerrado al 100%. Intel CPU (Ultra 7 265K, Ultra 9 285K)
-  **investigado y BLOQUEADO** (§0.36): identidad/specs con evidencia
-  Tier-1 (Intel Product Brief), pero sin `partNumber` verificable por
-  fuente Tier-1/Tier-2 — el vocabulario `sourceKind` prohíbe retailers
-  como fuente citable. Quedan sin ninguna family/product en V2 hasta
-  que se resuelva el MPN o se autorice una excepción documentada.
+  investigado y bloqueado por MPN sin evidencia Tier-1/Tier-2 (§0.36),
+  **desbloqueado mediante excepción formal Tier-3 cerrada** (§0.37,
+  2026-08-23): identidad/specs siguen con evidencia Tier-1 (Intel Product
+  Brief); el `partNumber` usa evidencia Tier-3 (retailer) bajo un
+  mecanismo de doble gate (allowlist en código + flag auditable en el
+  dato) limitado exclusivamente a `cpu-ultra7-265k` y `cpu-ultra9-285k`.
+  `sourceKind.json` no se modificó — Tier-3 sigue sin ser válido para el
+  resto del catálogo.
 - **Fase 4 formal (no iniciada)**: `offers.v2.json` piloto con resolución por región.
 - **Fase 5 (no iniciada)**: `presets.v2.json` piloto + motor de compatibilidad real.
 - **Fase 6 (no iniciada)**: evaluar reemplazo gradual de `data/catalog.json` en la UI.

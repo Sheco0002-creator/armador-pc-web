@@ -16,6 +16,7 @@ const {
   validateOffers,
   validatePresets,
   validateAll,
+  TIER3_MPN_EXCEPTIONS,
 } = require('../../scripts/validate-v2.js');
 
 const vocab = loadVocab(path.join(__dirname, '..', '..', 'data', 'v2', 'schema', 'vocab'));
@@ -412,6 +413,109 @@ test('catalog.v2 rechaza entrada con campo price/seller/stock', () => {
   const catalog = catalogWith([baseFamily({ price: { amount: 100 } })]);
   const errors = validateCatalog(catalog, baseEvidence(), vocab);
   assert.ok(errors.some((e) => e.rule === 'V-NO-COMMERCIAL'));
+});
+
+// ---------------------------------------------------------------------------
+// V-TIER3-EXC: excepcion cerrada allowlist(codigo) + flag(dato) para MPN
+// Tier-3 de CPU Intel (docs/CONTRATO_V2.md §0.37)
+// ---------------------------------------------------------------------------
+
+function tier3Product(id, overrides = {}) {
+  return baseProduct({
+    id,
+    category: 'cpu',
+    familyId: 'family-intel-tier3-test',
+    identity: { brand: 'Intel', commercialName: 'Test CPU', model: 'Test', partNumber: 'BX-TEST' },
+    officialSources: [
+      { sourceId: 'src-tier1', url: 'https://download.intel.com/test/brief.pdf', kind: 'datasheet' },
+      { sourceId: 'src-tier3', url: 'https://www.newegg.com/test-cpu/p/N82E1', kind: 'retailer-tier3-exception', tier3: true },
+    ],
+    ...overrides,
+  });
+}
+
+function tier3ExceptionFlag(overrides = {}) {
+  return {
+    approvedBy: 'test-approver',
+    approvedAt: '2026-08-23T00:00:00Z',
+    reason: 'test reason',
+    contractRef: 'docs/CONTRATO_V2.md §0.37',
+    ...overrides,
+  };
+}
+
+function tier3Evidence() {
+  return {
+    schemaVersion: '2.0.0',
+    generatedAt: '2026-08-23T00:00:00Z',
+    evidence: [
+      { evidenceId: 'ev-1', sourceId: 'src-1', claim: 'x', accessedAt: '2026-08-10T00:00:00Z', verifiedAt: '2026-08-10T00:00:00Z' },
+      { evidenceId: 'ev-tier1', sourceId: 'src-tier1', claim: 'x', accessedAt: '2026-08-22T00:00:00Z', verifiedAt: '2026-08-22T00:00:00Z' },
+      { evidenceId: 'ev-tier3', sourceId: 'src-tier3', claim: 'x', accessedAt: '2026-08-22T00:00:00Z', verifiedAt: '2026-08-23T00:00:00Z' },
+    ],
+  };
+}
+
+test('V-TIER3-EXC: cpu-ultra7-265k con allowlist + flag valido no genera error (PASS)', () => {
+  assert.ok(TIER3_MPN_EXCEPTIONS.includes('cpu-ultra7-265k'));
+  const catalog = catalogWith([
+    tier3Product('cpu-ultra7-265k', { verification: { status: 'verified', verifiedAt: '2026-08-23T00:00:00Z', tier3Exception: tier3ExceptionFlag() } }),
+  ]);
+  const errors = validateCatalog(catalog, tier3Evidence(), vocab);
+  assert.equal(errors.filter((e) => e.rule === 'V-TIER3-EXC' || e.rule === 'V-04' || e.rule === 'V-VOCAB').length, 0);
+});
+
+test('V-TIER3-EXC: cpu-ultra9-285k con allowlist + flag valido no genera error (PASS)', () => {
+  assert.ok(TIER3_MPN_EXCEPTIONS.includes('cpu-ultra9-285k'));
+  const catalog = catalogWith([
+    tier3Product('cpu-ultra9-285k', { verification: { status: 'verified', verifiedAt: '2026-08-23T00:00:00Z', tier3Exception: tier3ExceptionFlag() } }),
+  ]);
+  const errors = validateCatalog(catalog, tier3Evidence(), vocab);
+  assert.equal(errors.filter((e) => e.rule === 'V-TIER3-EXC' || e.rule === 'V-04' || e.rule === 'V-VOCAB').length, 0);
+});
+
+test('V-TIER3-EXC: producto distinto (no allowlisted) con tier3Exception es error (FAIL)', () => {
+  const catalog = catalogWith([
+    tier3Product('cpu-otro-no-permitido', { verification: { status: 'verified', verifiedAt: '2026-08-23T00:00:00Z', tier3Exception: tier3ExceptionFlag() } }),
+  ]);
+  const errors = validateCatalog(catalog, tier3Evidence(), vocab);
+  assert.ok(errors.some((e) => e.rule === 'V-TIER3-EXC'));
+  // Ademas, sin la excepcion activa, el officialSource de tienda sigue rechazado por las reglas normales.
+  assert.ok(errors.some((e) => e.rule === 'V-04'));
+});
+
+test('V-TIER3-EXC: CPU permitido en allowlist SIN tier3Exception es error (FAIL)', () => {
+  const catalog = catalogWith([
+    tier3Product('cpu-ultra7-265k', { verification: { status: 'verified', verifiedAt: '2026-08-23T00:00:00Z' } }),
+  ]);
+  const errors = validateCatalog(catalog, tier3Evidence(), vocab);
+  assert.ok(errors.some((e) => e.rule === 'V-TIER3-EXC'));
+});
+
+test('V-TIER3-EXC: CPU permitido con tier3Exception mal formado (falta reason) es error (FAIL)', () => {
+  const flag = tier3ExceptionFlag();
+  delete flag.reason;
+  const catalog = catalogWith([
+    tier3Product('cpu-ultra7-265k', { verification: { status: 'verified', verifiedAt: '2026-08-23T00:00:00Z', tier3Exception: flag } }),
+  ]);
+  const errors = validateCatalog(catalog, tier3Evidence(), vocab);
+  assert.ok(errors.some((e) => e.rule === 'V-TIER3-EXC'));
+});
+
+test('V-TIER3-EXC: id fuera de la allowlist (simulando allowlist "removida" para ese id) con flag valido sigue en FAIL', () => {
+  // No se modifica la allowlist real (vive en codigo); se simula el efecto usando
+  // un id que nunca estara en ella, verificando que el flag por si solo no basta.
+  const catalog = catalogWith([
+    tier3Product('cpu-fuera-de-allowlist', { verification: { status: 'verified', verifiedAt: '2026-08-23T00:00:00Z', tier3Exception: tier3ExceptionFlag() } }),
+  ]);
+  const errors = validateCatalog(catalog, tier3Evidence(), vocab);
+  assert.ok(errors.some((e) => e.rule === 'V-TIER3-EXC'));
+  assert.ok(errors.some((e) => e.rule === 'V-04'));
+});
+
+test('V-TIER3-EXC: el resto del catalogo (productos normales sin tier3) no sufre regresiones', () => {
+  const errors = validateCatalog(catalogWithSelectableProduct(), baseEvidence(), vocab);
+  assert.equal(errors.filter((e) => e.rule === 'V-TIER3-EXC').length, 0);
 });
 
 // ---------------------------------------------------------------------------

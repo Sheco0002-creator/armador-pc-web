@@ -45,7 +45,7 @@ const CATEGORIAS_PILOTO_V2 = ['storage', 'ram', 'motherboard', 'psu', 'case', 'g
 
 // Piloto de SPECS, más acotado que el de nombre: solo las categorías con un
 // formateador dedicado en specsVisiblesProducto() de js/v2-adapter.js.
-const CATEGORIAS_PILOTO_V2_SPECS = ['cpu'];
+const CATEGORIAS_PILOTO_V2_SPECS = ['cpu', 'motherboard', 'ram', 'psu', 'gpu', 'storage', 'cooling', 'case'];
 
 // Arma la fila de un componente resolviendo su id contra el catálogo real.
 // Piloto V2: si existe un producto real verificado en el crosswalk para esta

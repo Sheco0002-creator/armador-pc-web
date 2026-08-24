@@ -34,7 +34,7 @@ const CATEGORIAS_PILOTO_V2 = ['storage', 'ram', 'motherboard', 'psu', 'case', 'g
 
 // Piloto de SPECS, más acotado que el de nombre: solo las categorías con un
 // formateador dedicado en specsVisiblesProducto() de js/v2-adapter.js.
-const CATEGORIAS_PILOTO_V2_SPECS = ['cpu'];
+const CATEGORIAS_PILOTO_V2_SPECS = ['cpu', 'motherboard', 'ram', 'psu', 'gpu', 'storage', 'cooling', 'case'];
 
 // --- Dibujar una categoría (tarjeta que se abre para elegir) ---
 // 'antesIncompatibles' viene precalculado desde dibujarCategorias para no

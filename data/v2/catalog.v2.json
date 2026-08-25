@@ -1351,7 +1351,8 @@
       "unknownFields": [],
       "compatibility": {
         "provides": [
-          { "key": "formFactor", "value": "ATX" }
+          { "key": "formFactor", "value": "ATX" },
+          { "key": "gpuPowerConnector", "value": "8-pin" }
         ]
       },
       "verification": {
@@ -2384,7 +2385,8 @@
       "unknownFields": [],
       "compatibility": {
         "provides": [
-          { "key": "formFactor", "value": "ATX" }
+          { "key": "formFactor", "value": "ATX" },
+          { "key": "gpuPowerConnector", "value": "8-pin" }
         ]
       },
       "verification": {
@@ -2454,7 +2456,8 @@
       "compatibility": {
         "provides": [
           { "key": "formFactor", "value": "ATX" },
-          { "key": "gpuPowerConnector", "value": "12V-2x6" }
+          { "key": "gpuPowerConnector", "value": "12V-2x6" },
+          { "key": "gpuPowerConnector", "value": "8-pin" }
         ]
       },
       "verification": {
@@ -2522,7 +2525,8 @@
       "compatibility": {
         "provides": [
           { "key": "formFactor", "value": "ATX" },
-          { "key": "gpuPowerConnector", "value": "12V-2x6" }
+          { "key": "gpuPowerConnector", "value": "12V-2x6" },
+          { "key": "gpuPowerConnector", "value": "8-pin" }
         ]
       },
       "verification": {
@@ -2591,7 +2595,8 @@
       "compatibility": {
         "provides": [
           { "key": "formFactor", "value": "ATX" },
-          { "key": "gpuPowerConnector", "value": "12V-2x6" }
+          { "key": "gpuPowerConnector", "value": "12V-2x6" },
+          { "key": "gpuPowerConnector", "value": "8-pin" }
         ]
       },
       "verification": {

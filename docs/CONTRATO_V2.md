@@ -1616,7 +1616,7 @@ Nunca comparación de texto libre. Vocabularios definidos en Fase 1:
 `storageInterface`, `storageFormFactor`, `storageProtocol`,
 `gpuPowerConnector`.
 
-### 8.1 Equivalencias de `gpuPowerConnector` pendientes de decisión (2026-08-25)
+### 8.1 Equivalencias de `gpuPowerConnector` (última actualización: 2026-08-25, Fase 7.5)
 
 Durante Fase 7.4 (punto 2: promover conectores PCIe de PSU desde
 `technical.connectors` a `compatibility.provides`) se identificaron 3 casos
@@ -1624,43 +1624,53 @@ donde la fuente Tier-1 cita un conector real, pero el string exacto no
 coincide con ningún valor de `vocab/gpuPowerConnector.json`
 (`6-pin, 8-pin, 12VHPWR, 12V-2x6`). En los 3 casos el dato crudo ya está
 evidenciado en `technical.connectors`/`technical.power.connector` — lo que
-falta es una decisión de **equivalencia de vocabulario**, no de sourcing:
+faltaba era una decisión de **equivalencia de vocabulario**, no de sourcing.
 
-1. **`PCIe (6+2-pin)` / `pcie6plus2pinCount`** (presente en varias PSU, ej.
-   `prod-thermaltake-smart-bx3-550w`: *"PCIe (6+2-pin): 2"*,
-   `prod-corsair-rm650e`: *"PCIe 8-pin (6+2): 3 total"*) — terminología
-   estándar de la industria para el mismo conector físico que el vocabulario
-   llama `8-pin`, pero nunca se promovió a `compatibility.provides` para
-   ninguna PSU del catálogo (se prefirió promover únicamente el conector que
-   coincide textualmente, `12V-2x6`, cuando la fuente lo declara así).
-2. **`PCI-E 5.0 (16 pin)` / `pcie5_16pinCount`** (`prod-msi-mag-a850gl-pcie5`,
-   PSU) — ya evaluado y explícitamente rechazado en
-   `ev-msi-a850glpcie5-01`: *"No se agrego el conector PCI-E 5.0 de 16 pines
-   a compatibility.provides/requires porque '16-pin' no coincide con el
-   vocabulario controlado gpuPowerConnector (mismo criterio ya aplicado a
-   las GPU MSI/ASUS)"*. Mismo tipo de caso que el `power.connector: "16-pin"`
-   de `prod-asus-rtx5090-tuf-o32g-gaming` / `prod-asus-rtx5080-tuf-o16g-gaming`
-   (GPU) — conector de 16 pines sin equivalencia definida.
-3. **`"3x8-pin"`** (`prod-asus-prime-rx9070xt-o16g`, GPU,
-   `technical.power.connector`) — caso independiente de los dos anteriores:
-   no es un conector de 16 pines sino la notación de **tres** conectores de
-   8 pines simultáneos. Sin evidencia/decisión que confirme si debe
-   representarse como una sola entrada `8-pin` (ya que cada uno de los 3
-   individualmente sí coincide con el vocabulario), como tres entradas
-   `8-pin` repetidas, o dejarse sin promover hasta definir cómo modelar
-   cantidad de conectores en `compatibility.requires` (hoy el schema no
-   distingue "requiere 1x 8-pin" de "requiere 3x 8-pin").
+**Caso 1 — RESUELTO (Fase 7.5, 2026-08-25).** `PCIe (6+2-pin)` /
+`pcie6plus2pinCount`: terminología estándar de la industria para el mismo
+conector físico que el vocabulario llama `8-pin` (un conector PCIe de 6+2
+pines es, físicamente, un conector de 8 pines). Se decidió tratarlo como
+equivalente formal de `8-pin` y promoverlo a `compatibility.provides` en
+**todas y solo** las entradas cuyo `technical.connectors.pcie6plus2pinCount`
+existe literalmente (5 entradas, verificado exhaustivamente sobre
+`catalog.v2.json`):
+- `prod-msi-mag-a850gl-pcie5`
+- `prod-thermaltake-smart-bx3-550w`
+- `prod-corsair-rm650e` (además de su `12V-2x6` ya existente — una PSU
+  puede proveer ambos tipos de conector simultáneamente, no son excluyentes)
+- `prod-corsair-rm750e` (ídem)
+- `prod-corsair-hx1200i-cp9020307-na` (ídem)
 
-**Decisión pendiente, explícitamente NO tomada (2026-08-25, a pedido del
-usuario)**: si `pcie6plus2pinCount` debe tratarse como equivalente formal de
-`8-pin`; si `pcie5_16pinCount`/`"16-pin"` deben tratarse como equivalentes
-de `12VHPWR`; y cómo representar `"3x8-pin"` (equivalencia de valor +
-cantidad, caso 3) — en los 3 casos como regla de contrato documentada, no
-como inferencia caso por caso. Hasta que se decida, **estos valores
-permanecen sin promover a `compatibility.provides/requires`** en todas las
-entradas afectadas, y la regla de compatibilidad PSU↔GPU sigue sin
-implementarse en `js/compatibilidad.js` (bloqueada por este mismo motivo,
-entre otros — ver §9.1).
+`prod-corsair-rm1000e-atx31` **no** se tocó: su campo se llama
+`pcie8pinCount`, no `pcie6plus2pinCount` — mismo significado físico
+probable, pero un nombre de campo distinto que no fue parte de la
+autorización explícita de este cambio (queda para una decisión futura si se
+quiere unificar el criterio también a ese nombre de campo).
+
+**Caso 2 — PENDIENTE.** `PCI-E 5.0 (16 pin)` / `pcie5_16pinCount`
+(`prod-msi-mag-a850gl-pcie5`, PSU) — ya evaluado y explícitamente rechazado
+en `ev-msi-a850glpcie5-01`: *"No se agrego el conector PCI-E 5.0 de 16
+pines a compatibility.provides/requires porque '16-pin' no coincide con el
+vocabulario controlado gpuPowerConnector (mismo criterio ya aplicado a las
+GPU MSI/ASUS)"*. Mismo tipo de caso que el `power.connector: "16-pin"` de
+`prod-asus-rtx5090-tuf-o32g-gaming` / `prod-asus-rtx5080-tuf-o16g-gaming`
+(GPU) — conector de 16 pines sin equivalencia definida (¿`12VHPWR` o
+`12V-2x6`? son conectores de 16 pines distintos entre sí).
+
+**Caso 3 — PENDIENTE.** `"3x8-pin"` (`prod-asus-prime-rx9070xt-o16g`, GPU,
+`technical.power.connector`) — no es un conector de 16 pines sino la
+notación de **tres** conectores de 8 pines simultáneos. Sin decisión que
+confirme cómo representar cantidad en `compatibility.requires` (hoy el
+schema no distingue "requiere 1x 8-pin" de "requiere 3x 8-pin").
+
+**Decisión pendiente para los casos 2 y 3, explícitamente NO tomada**: si
+`pcie5_16pinCount`/`"16-pin"` deben tratarse como equivalentes de
+`12VHPWR` (o de `12V-2x6`); y cómo representar `"3x8-pin"` (equivalencia de
+valor + cantidad). Hasta que se decidan, esos 2 valores permanecen sin
+promover a `compatibility.provides/requires`, y la regla de compatibilidad
+PSU↔GPU sigue sin implementarse en `js/compatibilidad.js` (el caso 1
+resuelto es un requisito necesario pero no suficiente para esa regla — ver
+§9.1).
 
 ## 9. Motor de compatibilidad — resultado por par
 

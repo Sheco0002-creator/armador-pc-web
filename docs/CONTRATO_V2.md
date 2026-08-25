@@ -1616,6 +1616,52 @@ Nunca comparación de texto libre. Vocabularios definidos en Fase 1:
 `storageInterface`, `storageFormFactor`, `storageProtocol`,
 `gpuPowerConnector`.
 
+### 8.1 Equivalencias de `gpuPowerConnector` pendientes de decisión (2026-08-25)
+
+Durante Fase 7.4 (punto 2: promover conectores PCIe de PSU desde
+`technical.connectors` a `compatibility.provides`) se identificaron 3 casos
+donde la fuente Tier-1 cita un conector real, pero el string exacto no
+coincide con ningún valor de `vocab/gpuPowerConnector.json`
+(`6-pin, 8-pin, 12VHPWR, 12V-2x6`). En los 3 casos el dato crudo ya está
+evidenciado en `technical.connectors`/`technical.power.connector` — lo que
+falta es una decisión de **equivalencia de vocabulario**, no de sourcing:
+
+1. **`PCIe (6+2-pin)` / `pcie6plus2pinCount`** (presente en varias PSU, ej.
+   `prod-thermaltake-smart-bx3-550w`: *"PCIe (6+2-pin): 2"*,
+   `prod-corsair-rm650e`: *"PCIe 8-pin (6+2): 3 total"*) — terminología
+   estándar de la industria para el mismo conector físico que el vocabulario
+   llama `8-pin`, pero nunca se promovió a `compatibility.provides` para
+   ninguna PSU del catálogo (se prefirió promover únicamente el conector que
+   coincide textualmente, `12V-2x6`, cuando la fuente lo declara así).
+2. **`PCI-E 5.0 (16 pin)` / `pcie5_16pinCount`** (`prod-msi-mag-a850gl-pcie5`,
+   PSU) — ya evaluado y explícitamente rechazado en
+   `ev-msi-a850glpcie5-01`: *"No se agrego el conector PCI-E 5.0 de 16 pines
+   a compatibility.provides/requires porque '16-pin' no coincide con el
+   vocabulario controlado gpuPowerConnector (mismo criterio ya aplicado a
+   las GPU MSI/ASUS)"*. Mismo tipo de caso que el `power.connector: "16-pin"`
+   de `prod-asus-rtx5090-tuf-o32g-gaming` / `prod-asus-rtx5080-tuf-o16g-gaming`
+   (GPU) — conector de 16 pines sin equivalencia definida.
+3. **`"3x8-pin"`** (`prod-asus-prime-rx9070xt-o16g`, GPU,
+   `technical.power.connector`) — caso independiente de los dos anteriores:
+   no es un conector de 16 pines sino la notación de **tres** conectores de
+   8 pines simultáneos. Sin evidencia/decisión que confirme si debe
+   representarse como una sola entrada `8-pin` (ya que cada uno de los 3
+   individualmente sí coincide con el vocabulario), como tres entradas
+   `8-pin` repetidas, o dejarse sin promover hasta definir cómo modelar
+   cantidad de conectores en `compatibility.requires` (hoy el schema no
+   distingue "requiere 1x 8-pin" de "requiere 3x 8-pin").
+
+**Decisión pendiente, explícitamente NO tomada (2026-08-25, a pedido del
+usuario)**: si `pcie6plus2pinCount` debe tratarse como equivalente formal de
+`8-pin`; si `pcie5_16pinCount`/`"16-pin"` deben tratarse como equivalentes
+de `12VHPWR`; y cómo representar `"3x8-pin"` (equivalencia de valor +
+cantidad, caso 3) — en los 3 casos como regla de contrato documentada, no
+como inferencia caso por caso. Hasta que se decida, **estos valores
+permanecen sin promover a `compatibility.provides/requires`** en todas las
+entradas afectadas, y la regla de compatibilidad PSU↔GPU sigue sin
+implementarse en `js/compatibilidad.js` (bloqueada por este mismo motivo,
+entre otros — ver §9.1).
+
 ## 9. Motor de compatibilidad — resultado por par
 
 Precedencia total: `incompatible > unknown > warning > compatible`.

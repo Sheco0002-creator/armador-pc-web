@@ -100,6 +100,12 @@
       "note": "Legacy '1200W 80+ Platinum, ATX 3.1 / PCIe 5.x' -> CORSAIR HX1200i (CP-9020307-NA), family-psu-atx. Coincide exactamente. Se uso especificamente esta SKU y no otras variantes de 'HX1200i' (CP-9020070-NA, CP-9020281-NA) que no declaran ATX 3.1/PCIe 5.1."
     },
     {
+      "category": "psu",
+      "legacyId": "psu-1000",
+      "productId": "prod-corsair-rm1000e-atx31",
+      "note": "Legacy '1000W 80+ Platinum, ATX 3.1' -> CORSAIR RM1000e (CP-9020294-NA), family-psu-atx. Coincide en wattage (1000W) y version ATX (3.1); la certificacion real declarada por Corsair es 'Cybenetics Gold (up to 89%)', no '80+ Platinum' como dice el legacy -- diferencia de etiqueta de certificacion, no de wattage."
+    },
+    {
       "category": "motherboard",
       "legacyId": "mb-b650",
       "productId": "prod-asus-tuf-gaming-b650-plus",

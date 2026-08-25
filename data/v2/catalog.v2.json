@@ -3443,6 +3443,9 @@
         "physical": { "lengthMm": 304, "heightMm": 126, "thicknessMm": 50, "slotWidth": 2.5 },
         "power": { "connector": "8-pin", "consumptionW": null, "recommendedPsuW": 550 }
       },
+      "compatibility": {
+        "requires": [{ "key": "gpuPowerConnector", "value": "8-pin" }]
+      },
       "technicalFieldEvidence": {
         "compute.streamProcessors": ["ev-asus-primerx9060xt-01"],
         "clocks.boostClockMHz": ["ev-asus-primerx9060xt-01"],

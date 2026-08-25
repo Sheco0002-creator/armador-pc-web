@@ -306,6 +306,42 @@ caso('26. Los 4 tiers REALES publicados (data/components.json) no reportan incom
   return { ok: rotos.length === 0, detalle: rotos.length ? 'TIERS ROTOS:\n' + rotos.join('\n') : 'Los 4 tiers (entrada/media/alta/extrema) siguen sin incompatibilidad de formFactor ni mounting kit.' };
 });
 
+// ===== 27-32: tests ESENCIALES de UI (specsVisiblesProducto) — auditoría de formateadores =====
+// Cubren la única lógica condicional real (sufijo 3D V-Cache), el caso no
+// obvio de que specs y compatibilidad son independientes para CPU Intel, y
+// los 4 fallbacks reales de "sin mapping V2" que existen hoy en el catálogo
+// (mb-b650m, ram-16, cool-aio-240, case-matx — ver Fase 7.1).
+
+caso('27. specsVisiblesProducto CPU real con 3D V-Cache (cpu-r7-9850x3d) agrega el sufijo', () => {
+  const texto = specsVisiblesProducto('cpu', 'cpu-r7-9850x3d');
+  return { ok: texto === '8 núcleos / 16 hilos, 3D V-Cache', detalle: 'texto=' + JSON.stringify(texto) };
+});
+
+caso('28. specsVisiblesProducto CPU Intel (cpu-ultra7-265k): specs SÍ resuelven vía family pese a que compatibilidad esté bloqueada (socket=null)', () => {
+  const texto = specsVisiblesProducto('cpu', 'cpu-ultra7-265k');
+  return { ok: texto === '20 núcleos / 20 hilos', detalle: 'texto=' + JSON.stringify(texto) + ' (specs y compatibilidad son independientes: el merge trae coresPhysical/threads de la family aunque el socket siga sin evidencia)' };
+});
+
+caso('29. specsVisiblesProducto Motherboard sin mapping (mb-b650m) devuelve null — el llamador debe usar Legacy', () => {
+  const texto = specsVisiblesProducto('motherboard', 'mb-b650m');
+  return { ok: texto === null, detalle: 'texto=' + JSON.stringify(texto) };
+});
+
+caso('30. specsVisiblesProducto RAM sin mapping (ram-16) devuelve null — el llamador debe usar Legacy', () => {
+  const texto = specsVisiblesProducto('ram', 'ram-16');
+  return { ok: texto === null, detalle: 'texto=' + JSON.stringify(texto) };
+});
+
+caso('31. specsVisiblesProducto Cooling sin mapping (cool-aio-240) devuelve null — el llamador debe usar Legacy', () => {
+  const texto = specsVisiblesProducto('cooling', 'cool-aio-240');
+  return { ok: texto === null, detalle: 'texto=' + JSON.stringify(texto) };
+});
+
+caso('32. specsVisiblesProducto Case sin mapping (case-matx) devuelve null — el llamador debe usar Legacy', () => {
+  const texto = specsVisiblesProducto('case', 'case-matx');
+  return { ok: texto === null, detalle: 'texto=' + JSON.stringify(texto) };
+});
+
 // ===== Resumen =====
 document.getElementById('resumen').innerHTML =
   `<strong>${pasaron} de ${pasaron + fallaron} pruebas pasaron</strong>` +

@@ -1904,26 +1904,87 @@ duplicados), `V-NO-COMMERCIAL` (precio/vendedor/stock fuera de catalog),
 
 Ninguna fase ≥4 (formal) se implementa hasta aprobación explícita.
 
-**Nota (2026-08-24): trabajo real hecho fuera de esta numeración formal.**
+**Nota (2026-08-24, actualizada 2026-08-25): trabajo real hecho fuera de
+esta numeración formal.**
 En sesiones posteriores a este plan se hizo, con autorización explícita caso
 por caso pero sin renumerar esta sección, trabajo que en la práctica
 corresponde a las Fases 5/6 de arriba, referido informalmente como
 "Fase 7.x" en esas sesiones (no confundir con una "Fase 7" formal, que no
-existe en este documento):
+existe como tal en el plan numerado de arriba):
 - Piloto de nombre/specs V2 extendido a las 8/8 categorías en la UI
   (`js/v2-adapter.js`, `js/configurador.js`, `js/nivel.js`) — esto es, en la
   práctica, la Fase 6 de arriba, aunque nunca se marcó formalmente como tal.
-- `compatibility.provides/requires` completado para 2 huecos puntuales con
-  evidencia ya existente (ver §9.1 y el historial de commits).
+- `compatibility.provides/requires` completado para varios huecos puntuales
+  con evidencia ya existente, incluidas las 3 equivalencias de vocabulario
+  de `gpuPowerConnector` documentadas en §8.1 (2 de 3 resueltas: PCIe
+  6+2-pin↔8-pin y PCIe 5.0 16-pin↔12VHPWR; la 3ª, `"3x8-pin"`, sigue
+  pendiente a propósito).
 - `compatibility.constraints` diseñado y poblado para GPU-length↔Case y
   Cooler-height↔Case (ver §9.1).
 - `js/compatibilidad.js` extendido para consumir V2 de forma opcional
-  (fallback a Legacy por regla, no por build completo) en 4 pares:
-  CPU↔MB socket, RAM↔MB tipo, GPU↔Case largo, Cooler↔Case altura — esto es,
-  en la práctica, un motor de compatibilidad real parcial (parte de la
-  Fase 5 de arriba), aunque no incluye `presets.v2.json`.
+  (fallback a Legacy por regla, no por build completo) en **5 pares**:
+  CPU↔MB socket, RAM↔MB tipo, GPU↔Case largo, Cooler↔Case altura,
+  PSU↔GPU conector (ver §9.2) — esto es, en la práctica, un motor de
+  compatibilidad real parcial (parte de la Fase 5 de arriba), aunque no
+  incluye `presets.v2.json`.
 - `presets.v2.json` sigue vacío y sin piloto — la Fase 5 de arriba sigue
-  incompleta en ese aspecto.
+  incompleta en ese aspecto; no forma parte del cierre descrito abajo.
+
+**Cierre formal de la serie informal "Fase 7.x" (compatibilidad V2),
+2026-08-25.** Se declara cerrada la serie 7.1→7.5.3 bajo el siguiente
+criterio, verificado contra el estado real del repositorio en el commit
+`2418b9e73022390ba3b34675d2bc68a0327275b1`:
+
+1. **5 reglas de compatibilidad conectadas a V2** con fallback Legacy
+   por-regla (nunca por build completo): CPU↔MB socket, RAM↔MB memoryType,
+   GPU↔Case length, Cooler↔Case height (aire), PSU↔GPU connector.
+2. **Tests en verde**: `tests/compatibilidad.test.html` (Legacy) 12/12 sin
+   modificar; `tests/compatibilidad-v2.test.html` 19/19, incluyendo
+   verificación explícita de que los 4 tiers reales de
+   `data/components.json` (`entrada`/`media`/`alta`/`extrema`) no quedan
+   marcados incompatibles por ninguna regla migrada.
+3. **§8.1 casos 1 y 2 resueltos** (PCIe 6+2-pin↔8-pin, PCIe 5.0
+   16-pin↔12VHPWR); **caso 3 (`"3x8-pin"`) queda explícitamente fuera de
+   este cierre**, pendiente de una decisión futura sobre cómo representar
+   cantidad de conectores en `compatibility.requires` — no bloquea el
+   cierre porque afecta a una sola entry (`prod-asus-prime-rx9070xt-o16g`)
+   que ya cae correctamente al fallback Legacy.
+4. `node scripts/validate-v2.js` → `OK: entries=71 offers=0 presets=0
+   evidence=76`; `node --test tests/v2/validate-v2.test.js` → 38/38 PASS.
+
+**Huecos identificados que NO forman parte de este cierre** (no son
+defectos de la Fase 7 — son trabajo de alcance distinto, cada uno
+clasificado explícitamente):
+- **Falta de evidencia** (sin fuente Tier-1/2 disponible): socket de CPU
+  Intel (`family-intel-coreultra7-265k`/`-285k`, §0.37); TDP↔VRM
+  motherboard (cero dato de VRM en todo el catálogo); GPU height↔Case
+  (ningún `case` tiene campo de altura vertical); conector de 5 GPU sin
+  evidencia (`prod-nvidia-rtx5070/5080/5090-founders-edition`,
+  `prod-pny-rtx5060-overclocked`, `prod-asus-rtx5070-dual-oc`); 4 legacyId
+  de `data/components.json` sin producto V2 candidato (`mb-b650m`,
+  `ram-16`, `case-matx`, `cool-aio-240`, ver crosswalk).
+- **Decisión de diseño/alcance pendiente**: radiador AIO↔case (requiere un
+  operador `in`/`notIn` no definido en el schema); Storage↔MB (el dato
+  crudo existe en `technical.storage.*` de las 6 motherboards pero nunca se
+  decidió promoverlo a `compatibility`); PSU wattage↔consumo del sistema
+  (no encaja en el modelo `provides/requires/constraints`, es una suma de
+  3 componentes); §8.1 caso 3 (`"3x8-pin"`, ver punto 3 arriba).
+- **Fuera de alcance de esta serie** (reglas Legacy nunca evaluadas para
+  migración, ni pedidas): MB↔Case formFactor; Cooler↔CPU (mounting kit +
+  aviso de TDP).
+
+De las 10 entries de `catalog.v2.json` sin ningún bloque `compatibility`,
+la composición exacta (verificada 2026-08-25) es: 5 GPU sin evidencia de
+conector (arriba) + 4 entries de CPU Intel (2 `family` + 2 `product`,
+socket sin evidencia) + `family-cooling-aio-liquid` (excluida a propósito
+de Fase 7.2 porque no tiene el campo `physical.productHeightMm` que sí
+tienen los coolers de aire) = 10. Todas caen correctamente al fallback
+Legacy, verificado por los tests.
+
+Cerrar esta serie **no significa** que el catálogo V2 quedó completo — los
+huecos de arriba siguen existiendo y son legítimos de resolver en el
+futuro, cada uno bajo su propia decisión explícita, no como continuación
+automática de esta serie.
 
 Esta nota documenta el estado real sin modificar el plan de fases formal de
 arriba, que sigue siendo la referencia de qué falta por aprobar

@@ -1632,6 +1632,71 @@ slot width; GPU+PSU: conectores/potencia; SSD+MB: formato/interfaz/
 protocolo; RAM+MB: generación DDR/formato/capacidad) se implementan en
 Fase ≥2 sobre datos verificados reales — no implementadas en Fase 1.
 
+### 9.1 Semántica de `compatibility.constraints` (fijada en Fase 7.2/7.3)
+
+`provides`/`requires` resuelven igualdad discreta contra un vocabulario
+cerrado (ej. `socket=AM5`). No sirven para comparaciones numéricas continuas
+(longitud de GPU, altura de cooler, etc.) — para eso existe
+`compatibility.constraints`, con esta forma:
+
+```json
+{ "key": "<dotPath dentro del technical propio>", "operator": "<= | >= | < | > | ==", "against": "<category>:<dotPath dentro del technical de la contraparte>" }
+```
+
+- **`key`**: dot-path dentro del `technical` de la propia entrada, ya
+  fusionado family+product (mismo merge que usa `_mergeTechnical` en
+  `js/v2-adapter.js`, nunca reimplementado). Ej. `"physical.lengthMm"`.
+- **`operator`**: uno de `<=, >=, <, >, ==` (mismo enum que ya valida
+  `V-12` en `scripts/v2-validators/catalog.js`).
+- **`against`**: `"<category>:<dotPath>"` — `category` debe pertenecer a
+  `vocab/category.json` y apunta a la entrada de esa categoría seleccionada
+  en el mismo build; `dotPath` es la ruta dentro del `technical` fusionado
+  de esa entrada. El prefijo de categoría es obligatorio porque, a
+  diferencia de `provides/requires`, un constraint numérico necesita saber
+  de qué categoría específica traer el valor de comparación (ej. un `case`
+  tiene tanto `maxGpuLengthMm` como `maxCoolerHeightMm`).
+
+**Dirección**: lo declara siempre el componente que "debe caber", nunca el
+contenedor — mismo patrón direccional que ya usa `requires` (el cooler
+`requires` el socket, la motherboard `provides` el socket, nunca al revés).
+El contenedor (ej. `case`) no declara nada nuevo: sus campos numéricos ya
+están en `technical` y se referencian vía `against`.
+
+**Nivel de declaración**: a nivel `family`, no `product` — la regla (qué
+campo comparar, con qué operador, contra qué) es idéntica para todos los
+productos de una family (ej. toda GPU compara `physical.lengthMm` contra
+`case:maxGpuLengthMm`, sin importar el board partner); solo el valor propio
+cambia por producto, y ya se resuelve con el merge family+product existente.
+Una family que no aplica el constraint (ej. `family-cooling-aio-liquid`, que
+no tiene `physical.productHeightMm`) simplemente no lo declara — nunca se
+copia un constraint entre families de naturaleza distinta sin verificar que
+el campo exista.
+
+**Evaluación** (implementada en `js/compatibilidad.js`, funciones
+`_v2EvaluarConstraints`/`_v2AplicarOperador`, Fase 7.3): para cada
+constraint declarado en la family de la pieza propia cuyo `against` apunte a
+la categoría de la contraparte, se resuelven ambos valores (self y contra)
+vía el merge family+product; si cualquiera de los dos es `null`/no existe
+(sin mapping V2, o campo con evidencia insuficiente), ese constraint se
+descarta como no evaluable — el llamador debe usar el dato Legacy
+equivalente para ese chequeo específico (fallback por-regla, no por build
+completo). Si ambos valores existen, se aplica `operator`; si falla ⇒
+`incompatible` (máxima precedencia, ver arriba); si cumple, no bloquea.
+
+**Constraints implementados hoy** (`data/v2/catalog.v2.json`, Fase 7.2):
+- Todas las `family` de GPU: `physical.lengthMm <= case:maxGpuLengthMm`.
+- `family-cooling-air-tower`: `physical.productHeightMm <= case:maxCoolerHeightMm`.
+- `family-cooling-aio-liquid`: sin constraint (no tiene ese campo).
+
+Fuera de alcance por ahora (sin resolver): radiador AIO↔case (las dos únicas
+`case` del catálogo declaran `radiatorSupport` con formas de dato distintas
+entre sí — desglosado por posición vs. lista plana — que un operador binario
+no representa; requeriría un operador nuevo tipo `in`/`notIn`, no aprobado
+todavía), TDP CPU↔VRM motherboard (cero dato de VRM en todo el catálogo),
+PSU wattage↔consumo del sistema (no es una comparación 1:1 entre dos
+entries, es una suma de 3 componentes — CPU+GPU+base — que el modelo actual
+no representa).
+
 ## 10. `presets.v2.json`
 
 Referencian solo `productId`, nunca `offerId`. Un preset es `publishable=true`
@@ -1730,7 +1795,35 @@ duplicados), `V-NO-COMMERCIAL` (precio/vendedor/stock fuera de catalog),
   `sourceKind.json` no se modificó — Tier-3 sigue sin ser válido para el
   resto del catálogo.
 - **Fase 4 formal (no iniciada)**: `offers.v2.json` piloto con resolución por región.
-- **Fase 5 (no iniciada)**: `presets.v2.json` piloto + motor de compatibilidad real.
-- **Fase 6 (no iniciada)**: evaluar reemplazo gradual de `data/catalog.json` en la UI.
+- **Fase 5 (parcialmente iniciada fuera de esta numeración formal — ver nota
+  abajo)**: `presets.v2.json` piloto (no iniciado) + motor de compatibilidad
+  real (parcialmente implementado, ver nota).
+- **Fase 6 (no iniciada formalmente, pero ver nota)**: evaluar reemplazo
+  gradual de `data/catalog.json` en la UI.
 
 Ninguna fase ≥4 (formal) se implementa hasta aprobación explícita.
+
+**Nota (2026-08-24): trabajo real hecho fuera de esta numeración formal.**
+En sesiones posteriores a este plan se hizo, con autorización explícita caso
+por caso pero sin renumerar esta sección, trabajo que en la práctica
+corresponde a las Fases 5/6 de arriba, referido informalmente como
+"Fase 7.x" en esas sesiones (no confundir con una "Fase 7" formal, que no
+existe en este documento):
+- Piloto de nombre/specs V2 extendido a las 8/8 categorías en la UI
+  (`js/v2-adapter.js`, `js/configurador.js`, `js/nivel.js`) — esto es, en la
+  práctica, la Fase 6 de arriba, aunque nunca se marcó formalmente como tal.
+- `compatibility.provides/requires` completado para 2 huecos puntuales con
+  evidencia ya existente (ver §9.1 y el historial de commits).
+- `compatibility.constraints` diseñado y poblado para GPU-length↔Case y
+  Cooler-height↔Case (ver §9.1).
+- `js/compatibilidad.js` extendido para consumir V2 de forma opcional
+  (fallback a Legacy por regla, no por build completo) en 4 pares:
+  CPU↔MB socket, RAM↔MB tipo, GPU↔Case largo, Cooler↔Case altura — esto es,
+  en la práctica, un motor de compatibilidad real parcial (parte de la
+  Fase 5 de arriba), aunque no incluye `presets.v2.json`.
+- `presets.v2.json` sigue vacío y sin piloto — la Fase 5 de arriba sigue
+  incompleta en ese aspecto.
+
+Esta nota documenta el estado real sin modificar el plan de fases formal de
+arriba, que sigue siendo la referencia de qué falta por aprobar
+explícitamente antes de avanzar más.

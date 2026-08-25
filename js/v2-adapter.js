@@ -121,6 +121,42 @@ function technicalVisibleProducto(categoriaId, legacyId) {
   return _mergeTechnical(producto.technical || {}, family ? family.technical || {} : {});
 }
 
+// ===== Piloto de COMPATIBILIDAD (Fase 7.3, ver docs/CONTRATO_V2.md) =====
+// Usado opcionalmente por js/compatibilidad.js: si este archivo no está
+// cargado (ej. tests/compatibilidad.test.html no lo carga a propósito para
+// mantener el motor Legacy aislado), compatibilidad.js sigue funcionando
+// 100% con datos Legacy sin ningún error, porque solo llama a
+// entradaCompatibilidadV2 detrás de un `typeof === 'function'`.
+
+// Merge de compatibility a nivel de arreglo: concatena provides/requires/
+// constraints de family y product (product no "gana" sobre family como en
+// _mergeTechnical porque aquí no hay conflicto de valor a resolver — cada
+// entrada de compatibility es independiente, y hoy en la práctica
+// constraints solo existe a nivel family (ver Fase 7.2) mientras que
+// provides/requires puede existir en ambos niveles sin pisarse).
+function _mergeCompatibility(productCompat, familyCompat) {
+  const p = productCompat || {};
+  const f = familyCompat || {};
+  return {
+    provides: [...(f.provides || []), ...(p.provides || [])],
+    requires: [...(f.requires || []), ...(p.requires || [])],
+    constraints: [...(f.constraints || []), ...(p.constraints || [])],
+  };
+}
+
+// Technical + compatibility combinados (family + product) para un legacyId
+// de una categoría dada. Devuelve { technical, compatibility } o null si no
+// hay mapping/producto/V2 no cargó — nunca un objeto con datos inventados.
+function entradaCompatibilidadV2(categoriaId, legacyId) {
+  const producto = _entradaProductoV2(categoriaId, legacyId);
+  if (!producto) return null;
+  const family = _familyDeProducto(producto);
+  return {
+    technical: _mergeTechnical(producto.technical || {}, family ? family.technical || {} : {}),
+    compatibility: _mergeCompatibility(producto.compatibility, family ? family.compatibility : null),
+  };
+}
+
 // Formateador de specs de CPU: usa solo los campos con la misma forma en
 // AMD e Intel (coresPhysical, threads son números planos en ambos). No
 // incluye desglose P-core/E-core ni packaging — mantenido simple a

@@ -20,6 +20,80 @@
 // Los textos se resuelven vía t({es,en,pt}) (definido en main.js) para que el
 // motor de reglas hable en el idioma activo de la página sin duplicar lógica.
 
+// ===== Integración V2 (Fase 7.3, opcional, con fallback a Legacy) =====
+// Estas funciones son la única conexión de este motor con data/v2/. Son
+// puramente defensivas: si js/v2-adapter.js no está cargado (por ejemplo
+// tests/compatibilidad.test.html no lo carga a propósito, para mantener el
+// motor Legacy 100% aislado y probable sin depender de V2), o si la pieza
+// no tiene mapping/evidencia V2 completos, devuelven null y el llamador usa
+// el dato Legacy tal cual — nunca se inventa ni se completa un valor V2 a
+// medias. Ver docs/CONTRATO_V2.md para el contrato completo de constraints.
+
+function _v2Disponible() {
+  return typeof entradaCompatibilidadV2 === 'function';
+}
+
+// Valor de compatibility.provides para `key` (ej. 'socket', 'memoryType') de
+// la `pieza` (debe traer `.id`, como ya lo hace cada item real de
+// data/components.json) de la categoría dada. null si no hay mapping V2, si
+// V2 no cargó, o si esa entrada no declara ese `provides`.
+function _v2ProvidesValor(categoria, pieza, key) {
+  if (!_v2Disponible() || !pieza || !pieza.id) return null;
+  const entrada = entradaCompatibilidadV2(categoria, pieza.id);
+  if (!entrada) return null;
+  const campo = (entrada.compatibility.provides || []).find((f) => f.key === key);
+  return campo ? campo.value : null;
+}
+
+// Valor de technical (V2, family+product ya fusionado) en la ruta con
+// puntos `dotPath` para la `pieza` de la categoría dada. null si no hay
+// mapping V2, si V2 no cargó, o si el campo no tiene evidencia (queda null
+// en el propio dato de catalog.v2.json).
+function _v2TechnicalValor(categoria, pieza, dotPath) {
+  if (!_v2Disponible() || !pieza || !pieza.id) return null;
+  const entrada = entradaCompatibilidadV2(categoria, pieza.id);
+  if (!entrada) return null;
+  const valor = dotPath.split('.').reduce((v, k) => (v == null ? undefined : v[k]), entrada.technical);
+  return valor == null ? null : valor;
+}
+
+function _v2AplicarOperador(a, operador, b) {
+  switch (operador) {
+    case '<=': return a <= b;
+    case '>=': return a >= b;
+    case '<': return a < b;
+    case '>': return a > b;
+    case '==': return a === b;
+    default: return true; // operador desconocido: nunca bloquea (defensivo)
+  }
+}
+
+// Evalúa los compatibility.constraints declarados en V2 (a nivel family,
+// ver Fase 7.2) para `pieza` de `categoria` contra `piezaContra` de
+// `categoriaContra`, resolviendo `against: "categoria:dotPath"`. Devuelve
+// una lista de { key, operator, selfValue, contraValue, cumple } SOLO para
+// los constraints evaluables con datos V2 reales (mapping completo en
+// ambos lados + ambos valores no-null). Si no hay ninguno evaluable,
+// devuelve null: el llamador debe usar Legacy para ese chequeo.
+function _v2EvaluarConstraints(categoria, pieza, categoriaContra, piezaContra) {
+  if (!_v2Disponible() || !pieza || !pieza.id || !piezaContra || !piezaContra.id) return null;
+  const entrada = entradaCompatibilidadV2(categoria, pieza.id);
+  if (!entrada) return null;
+  const resultados = [];
+  for (const c of entrada.compatibility.constraints || []) {
+    const separador = (c.against || '').indexOf(':');
+    if (separador === -1) continue;
+    const contraCategoria = c.against.slice(0, separador);
+    const contraPath = c.against.slice(separador + 1);
+    if (contraCategoria !== categoriaContra) continue;
+    const selfValue = _v2TechnicalValor(categoria, pieza, c.key);
+    const contraValue = _v2TechnicalValor(categoriaContra, piezaContra, contraPath);
+    if (selfValue == null || contraValue == null) continue;
+    resultados.push({ key: c.key, operator: c.operator, selfValue, contraValue, cumple: _v2AplicarOperador(selfValue, c.operator, contraValue) });
+  }
+  return resultados.length > 0 ? resultados : null;
+}
+
 // Consumo estimado del sistema: CPU + GPU + ~100W del resto (placa, discos,
 // ventiladores, etc.). Es una estimación de referencia, no un cálculo exacto.
 function consumoEstimado(build) {
@@ -51,29 +125,41 @@ function revisarCompatibilidad(build) {
   // Socket + chipset + "compatibilidad conocida": en este catálogo el socket
   // determina la familia de chipset (AM5 -> B650/X870/X870E, LGA1851 -> Z890),
   // así que revisar el socket cubre las tres cosas a la vez con dato real.
-  if (cpu && mb && cpu.socket !== mb.socket) {
-    problemas.push({
-      nivel: 'incompatible',
-      texto: t({
-        es: `Incompatible: el procesador usa socket ${cpu.socket} y la placa madre (chipset ${mb.chipset}, socket ${mb.socket}) no lo acepta.`,
-        en: `Incompatible: the processor uses socket ${cpu.socket} and the motherboard (chipset ${mb.chipset}, socket ${mb.socket}) doesn't support it.`,
-        pt: `Incompatível: o processador usa o soquete ${cpu.socket} e a placa-mãe (chipset ${mb.chipset}, soquete ${mb.socket}) não o aceita.`,
-      }),
-    });
-  }
+  //
+  // El socket "efectivo" viene de V2 (compatibility.provides, ver Fase 7.3)
+  // cuando hay mapping+evidencia completos; si no (ej. CPU Intel, cuyo
+  // socket sigue sin evidencia Tier-1/2 propia — ver docs/CONTRATO_V2.md
+  // §0.37), se usa el dato Legacy tal cual, que siempre está presente en
+  // data/components.json. Nunca se inventa un valor.
+  if (cpu && mb) {
+    const cpuSocket = _v2ProvidesValor('cpu', cpu, 'socket') ?? cpu.socket;
+    const mbSocket = _v2ProvidesValor('motherboard', mb, 'socket') ?? mb.socket;
 
-  // TDP "cuando sea relevante": no tenemos el dato de cuánta potencia soporta
-  // el VRM de cada placa, así que para procesadores de consumo alto lo decimos
-  // en vez de asumir que sí (o que no) aguanta.
-  if (cpu && mb && cpu.socket === mb.socket && cpu.tdp >= 120) {
-    problemas.push({
-      nivel: 'no_verificado',
-      texto: t({
-        es: `No verificado: el procesador consume ${cpu.tdp}W y no tenemos datos de la capacidad de entrega de energía (VRM) de esta placa madre para confirmar que lo soporta sin límites.`,
-        en: `Not verified: the processor draws ${cpu.tdp}W and we don't have data on this motherboard's power delivery (VRM) capacity to confirm it can handle it without limits.`,
-        pt: `Não verificado: o processador consome ${cpu.tdp}W e não temos dados sobre a capacidade de entrega de energia (VRM) desta placa-mãe para confirmar que ela suporta sem limites.`,
-      }),
-    });
+    if (cpuSocket !== mbSocket) {
+      problemas.push({
+        nivel: 'incompatible',
+        texto: t({
+          es: `Incompatible: el procesador usa socket ${cpuSocket} y la placa madre (chipset ${mb.chipset}, socket ${mbSocket}) no lo acepta.`,
+          en: `Incompatible: the processor uses socket ${cpuSocket} and the motherboard (chipset ${mb.chipset}, socket ${mbSocket}) doesn't support it.`,
+          pt: `Incompatível: o processador usa o soquete ${cpuSocket} e a placa-mãe (chipset ${mb.chipset}, soquete ${mbSocket}) não o aceita.`,
+        }),
+      });
+    }
+
+    // TDP "cuando sea relevante": no tenemos el dato de cuánta potencia
+    // soporta el VRM de cada placa (tampoco existe en V2, ver Fase 7.2), así
+    // que para procesadores de consumo alto lo decimos en vez de asumir que
+    // sí (o que no) aguanta.
+    if (cpuSocket === mbSocket && cpu.tdp >= 120) {
+      problemas.push({
+        nivel: 'no_verificado',
+        texto: t({
+          es: `No verificado: el procesador consume ${cpu.tdp}W y no tenemos datos de la capacidad de entrega de energía (VRM) de esta placa madre para confirmar que lo soporta sin límites.`,
+          en: `Not verified: the processor draws ${cpu.tdp}W and we don't have data on this motherboard's power delivery (VRM) capacity to confirm it can handle it without limits.`,
+          pt: `Não verificado: o processador consome ${cpu.tdp}W e não temos dados sobre a capacidade de entrega de energia (VRM) desta placa-mãe para confirmar que ela suporta sem limites.`,
+        }),
+      });
+    }
   }
 
   // Nota: la compatibilidad de BIOS no se revisa porque no existe ningún dato
@@ -82,29 +168,37 @@ function revisarCompatibilidad(build) {
 
   // ===== RAM ↔ Placa madre =====
 
-  if (ram && mb && ram.ramType !== mb.ramType) {
-    problemas.push({
-      nivel: 'incompatible',
-      texto: t({
-        es: `Incompatible: esta placa madre utiliza ${mb.ramType} y la memoria seleccionada es ${ram.ramType}.`,
-        en: `Incompatible: this motherboard uses ${mb.ramType} and the selected RAM is ${ram.ramType}.`,
-        pt: `Incompatível: esta placa-mãe usa ${mb.ramType} e a memória selecionada é ${ram.ramType}.`,
-      }),
-    });
-  }
+  // El tipo de memoria "efectivo" viene de V2 (compatibility.provides
+  // key=memoryType, ver Fase 7.3) cuando hay mapping+evidencia completos;
+  // si no, se usa el dato Legacy tal cual.
+  if (ram && mb) {
+    const ramTipo = _v2ProvidesValor('ram', ram, 'memoryType') ?? ram.ramType;
+    const mbTipo = _v2ProvidesValor('motherboard', mb, 'memoryType') ?? mb.ramType;
 
-  // Capacidad máxima, frecuencia soportada y cantidad de slots: ninguna placa
-  // madre del catálogo tiene estos datos todavía, así que no podemos
-  // confirmarlo — lo decimos en vez de asumir que encaja.
-  if (ram && mb && ram.ramType === mb.ramType) {
-    problemas.push({
-      nivel: 'no_verificado',
-      texto: t({
-        es: 'No verificado: no tenemos la cantidad de slots, la capacidad máxima ni la frecuencia máxima soportada de esta placa madre para confirmar que acepta esta memoria más allá del tipo (DDR5).',
-        en: "Not verified: we don't have the number of slots, maximum capacity, or maximum supported frequency for this motherboard to confirm it accepts this RAM beyond the type (DDR5).",
-        pt: 'Não verificado: não temos a quantidade de slots, a capacidade máxima nem a frequência máxima suportada desta placa-mãe para confirmar que ela aceita esta memória além do tipo (DDR5).',
-      }),
-    });
+    if (ramTipo !== mbTipo) {
+      problemas.push({
+        nivel: 'incompatible',
+        texto: t({
+          es: `Incompatible: esta placa madre utiliza ${mbTipo} y la memoria seleccionada es ${ramTipo}.`,
+          en: `Incompatible: this motherboard uses ${mbTipo} and the selected RAM is ${ramTipo}.`,
+          pt: `Incompatível: esta placa-mãe usa ${mbTipo} e a memória selecionada é ${ramTipo}.`,
+        }),
+      });
+    }
+
+    // Capacidad máxima, frecuencia soportada y cantidad de slots: ninguna
+    // placa madre (Legacy ni V2) tiene estos datos todavía, así que no
+    // podemos confirmarlo — lo decimos en vez de asumir que encaja.
+    if (ramTipo === mbTipo) {
+      problemas.push({
+        nivel: 'no_verificado',
+        texto: t({
+          es: 'No verificado: no tenemos la cantidad de slots, la capacidad máxima ni la frecuencia máxima soportada de esta placa madre para confirmar que acepta esta memoria más allá del tipo (DDR5).',
+          en: "Not verified: we don't have the number of slots, maximum capacity, or maximum supported frequency for this motherboard to confirm it accepts this RAM beyond the type (DDR5).",
+          pt: 'Não verificado: não temos a quantidade de slots, a capacidade máxima nem a frequência máxima suportada desta placa-mãe para confirmar que ela aceita esta memória além do tipo (DDR5).',
+        }),
+      });
+    }
   }
 
   // ===== Placa madre ↔ Gabinete =====
@@ -123,28 +217,42 @@ function revisarCompatibilidad(build) {
 
   // ===== GPU ↔ Gabinete =====
 
-  if (gpu && gab && gpu.length > gab.maxGpuLength) {
-    problemas.push({
-      nivel: 'incompatible',
-      texto: t({
-        es: `GPU incompatible: ${gpu.length} mm. El gabinete admite hasta ${gab.maxGpuLength} mm.`,
-        en: `Incompatible GPU: ${gpu.length} mm. The case supports up to ${gab.maxGpuLength} mm.`,
-        pt: `GPU incompatível: ${gpu.length} mm. O gabinete admite até ${gab.maxGpuLength} mm.`,
-      }),
-    });
-  }
+  // Longitud "efectiva": si V2 tiene mapping+evidencia completos para GPU y
+  // gabinete, y la family de la GPU declara el constraint physical.lengthMm
+  // contra case:maxGpuLengthMm (ver Fase 7.2), se usa ese par de valores;
+  // si no, se usa el dato Legacy tal cual.
+  if (gpu && gab) {
+    const constraintsLargo = _v2EvaluarConstraints('gpu', gpu, 'case', gab);
+    const largoV2 = constraintsLargo && constraintsLargo.find((r) => r.key === 'physical.lengthMm');
+    const largoGpu = largoV2 ? largoV2.selfValue : gpu.length;
+    const largoMaxCase = largoV2 ? largoV2.contraValue : gab.maxGpuLength;
+    const cabeEnLargo = largoV2 ? largoV2.cumple : largoGpu <= largoMaxCase;
 
-  // Altura de la GPU (clearance vertical contra el gabinete): no tenemos la
-  // altura de ninguna tarjeta ni el espacio vertical disponible del gabinete.
-  if (gpu && gab && gpu.length <= gab.maxGpuLength) {
-    problemas.push({
-      nivel: 'no_verificado',
-      texto: t({
-        es: 'No verificado: no tenemos la altura de la tarjeta gráfica ni el espacio vertical del gabinete para confirmar que no choca con otras piezas.',
-        en: "Not verified: we don't have the graphics card's height or the case's vertical clearance to confirm it doesn't clash with other parts.",
-        pt: 'Não verificado: não temos a altura da placa de vídeo nem o espaço vertical do gabinete para confirmar que não colide com outras peças.',
-      }),
-    });
+    if (!cabeEnLargo) {
+      problemas.push({
+        nivel: 'incompatible',
+        texto: t({
+          es: `GPU incompatible: ${largoGpu} mm. El gabinete admite hasta ${largoMaxCase} mm.`,
+          en: `Incompatible GPU: ${largoGpu} mm. The case supports up to ${largoMaxCase} mm.`,
+          pt: `GPU incompatível: ${largoGpu} mm. O gabinete admite até ${largoMaxCase} mm.`,
+        }),
+      });
+    }
+
+    // Altura de la GPU (clearance vertical contra el gabinete): no tenemos la
+    // altura de ninguna tarjeta ni el espacio vertical disponible del
+    // gabinete (tampoco en V2), así que este chequeo sigue siempre
+    // "no verificado" sin importar el largo.
+    if (cabeEnLargo) {
+      problemas.push({
+        nivel: 'no_verificado',
+        texto: t({
+          es: 'No verificado: no tenemos la altura de la tarjeta gráfica ni el espacio vertical del gabinete para confirmar que no choca con otras piezas.',
+          en: "Not verified: we don't have the graphics card's height or the case's vertical clearance to confirm it doesn't clash with other parts.",
+          pt: 'Não verificado: não temos a altura da placa de vídeo nem o espaço vertical do gabinete para confirmar que não colide com outras peças.',
+        }),
+      });
+    }
   }
 
   // ===== Refrigeración ↔ CPU =====
@@ -173,15 +281,29 @@ function revisarCompatibilidad(build) {
 
   // ===== Refrigeración ↔ Gabinete =====
 
-  if (cooling && cooling.type === 'aire' && gab && cooling.height > gab.maxCoolerHeight) {
-    problemas.push({
-      nivel: 'incompatible',
-      texto: t({
-        es: `Incompatible: el disipador mide ${cooling.height} mm de alto y el gabinete admite hasta ${gab.maxCoolerHeight} mm.`,
-        en: `Incompatible: the cooler is ${cooling.height} mm tall and the case supports up to ${gab.maxCoolerHeight} mm.`,
-        pt: `Incompatível: o dissipador mede ${cooling.height} mm de altura e o gabinete admite até ${gab.maxCoolerHeight} mm.`,
-      }),
-    });
+  // Altura "efectiva" del cooler de aire: si V2 tiene mapping+evidencia
+  // completos y la family del cooler declara el constraint
+  // physical.productHeightMm contra case:maxCoolerHeightMm (ver Fase 7.2),
+  // se usa ese par; si no, Legacy tal cual. Solo aplica a coolers de aire —
+  // family-cooling-aio-liquid no declara este constraint a propósito (no
+  // tiene ese campo, ver docs/CONTRATO_V2.md).
+  if (cooling && cooling.type === 'aire' && gab) {
+    const constraintsAltura = _v2EvaluarConstraints('cooling', cooling, 'case', gab);
+    const alturaV2 = constraintsAltura && constraintsAltura.find((r) => r.key === 'physical.productHeightMm');
+    const alturaCooler = alturaV2 ? alturaV2.selfValue : cooling.height;
+    const alturaMaxCase = alturaV2 ? alturaV2.contraValue : gab.maxCoolerHeight;
+    const cabeEnAltura = alturaV2 ? alturaV2.cumple : alturaCooler <= alturaMaxCase;
+
+    if (!cabeEnAltura) {
+      problemas.push({
+        nivel: 'incompatible',
+        texto: t({
+          es: `Incompatible: el disipador mide ${alturaCooler} mm de alto y el gabinete admite hasta ${alturaMaxCase} mm.`,
+          en: `Incompatible: the cooler is ${alturaCooler} mm tall and the case supports up to ${alturaMaxCase} mm.`,
+          pt: `Incompatível: o dissipador mede ${alturaCooler} mm de altura e o gabinete admite até ${alturaMaxCase} mm.`,
+        }),
+      });
+    }
   }
 
   // Radiador de refrigeración líquida: no tenemos el tamaño del radiador ni

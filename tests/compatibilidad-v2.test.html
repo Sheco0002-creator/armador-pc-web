@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Pruebas — Motor de compatibilidad + V2 (Fase 7.3) — ArmaPC</title>
+<style>
+  body { background:#0D1512; color:#EDEDE6; font-family: monospace; padding: 24px; line-height: 1.6; }
+  h1 { font-size: 18px; }
+  .pass { color: #5FAE8C; }
+  .fail { color: #e08a6a; font-weight: bold; }
+  .caso { border-bottom: 1px solid #2A3B32; padding: 10px 0; }
+  .detalle { color: #9CA89E; font-size: 12px; margin-left: 20px; white-space: pre-wrap; }
+  #resumen { margin-top: 20px; padding: 12px; border: 1px solid #2A3B32; }
+</style>
+</head>
+<body>
+<h1>Pruebas del camino V2 del motor de compatibilidad (Fase 7.3)</h1>
+<p style="color:#9CA89E; font-size:13px;">
+  Requiere servidor local (ver CLAUDE.md) porque js/v2-adapter.js hace fetch()
+  de data/v2/catalog.v2.json y data/v2/crosswalk.v2.json — abrir vía
+  file:// no cargará los datos y todos los casos de fallback quedarán
+  correctos, pero los de "usa V2" fallarán por falta de datos, no por un bug.
+</p>
+<div id="resultados">Ejecutando…</div>
+<div id="resumen"></div>
+
+<!-- Carga los módulos REALES del sitio, no copias. Este archivo es
+     complementario a tests/compatibilidad.test.html (que verifica el motor
+     100% Legacy, sin cargar v2-adapter.js a propósito, para mantener esa
+     prueba aislada) — aquí sí se carga v2-adapter.js para ejercer el camino
+     V2 con datos reales de data/v2/. -->
+<script src="../js/main.js"></script>
+<script src="../js/v2-adapter.js"></script>
+<script src="../js/compatibilidad.js"></script>
+<script>
+(async () => {
+// ===== Marco de pruebas mínimo (idéntico al de compatibilidad.test.html) =====
+let pasaron = 0, fallaron = 0;
+const cont = document.getElementById('resultados');
+cont.innerHTML = '';
+
+function caso(nombre, fn) {
+  let ok, detalle;
+  try {
+    const r = fn();
+    ok = r.ok;
+    detalle = r.detalle;
+  } catch (e) {
+    ok = false;
+    detalle = 'Excepción: ' + e.message;
+  }
+  if (ok) pasaron++; else fallaron++;
+  const div = document.createElement('div');
+  div.className = 'caso';
+  div.innerHTML = `<span class="${ok ? 'pass' : 'fail'}">${ok ? '✓ PASS' : '✗ FAIL'}</span> — ${nombre}` +
+    (detalle ? `<div class="detalle">${detalle}</div>` : '');
+  cont.appendChild(div);
+}
+
+function tieneNivel(problemas, nivel, contieneTexto) {
+  return problemas.some((p) => p.nivel === nivel && (!contieneTexto || p.texto.includes(contieneTexto)));
+}
+
+// Espera a que V2 cargue (o falle) antes de correr los casos — mismo
+// mecanismo que ya usa js/configurador.js antes del primer render.
+await cargarV2();
+
+// ===== Piezas Legacy reales (mismos ids que data/components.json) =====
+// Se arman a mano con los mismos ids + campos reales, para no depender de
+// un fetch adicional de data/components.json dentro de esta prueba.
+const cpuR5 = { id: 'cpu-r5-9600x', socket: 'AM5', tdp: 65 };
+const cpuUltra7 = { id: 'cpu-ultra7-265k', socket: 'LGA1851', tdp: 125 }; // Intel: V2 socket=null (ver Fase 7.2)
+const mbB650 = { id: 'mb-b650', socket: 'AM5', ramType: 'DDR5', formFactor: 'ATX', chipset: 'B650', name: 'B650' };
+const mbZ890 = { id: 'mb-z890', socket: 'LGA1851', ramType: 'DDR5', formFactor: 'ATX', chipset: 'Z890', name: 'Z890' };
+const ram32 = { id: 'ram-32', ramType: 'DDR5', modules: 2 };
+const gpu5080 = { id: 'gpu-5080', length: 340, powerDraw: 360, recommendedPsu: 850 }; // Legacy=340mm, V2 real=338mm
+const gpu5060 = { id: 'gpu-5060', length: 245, powerDraw: 145, recommendedPsu: 550 };
+const caseMid = { id: 'case-mid', supports: ['ATX', 'mATX', 'ITX'], maxGpuLength: 360, maxCoolerHeight: 170, name: 'Mid-tower' }; // V2 real: mismos valores
+const caseMatx = { id: 'case-matx', supports: ['mATX', 'ITX'], maxGpuLength: 320, maxCoolerHeight: 165, name: 'Micro-ATX' }; // SIN mapping V2 (Fase 7.1)
+const coolPremium = { id: 'cool-torre-premium', type: 'aire', socketSupport: ['AM5', 'LGA1851'], height: 160, tdpCapacity: 150 };
+const coolAio360 = { id: 'cool-aio-360', type: 'liquida', socketSupport: ['AM5', 'LGA1851'], height: undefined, tdpCapacity: undefined };
+
+// ===== 1-3: helpers V2 de bajo nivel, con datos reales =====
+
+caso('1. _v2ProvidesValor: CPU AMD real (cpu-r5-9600x) resuelve socket=AM5 vía V2', () => {
+  const v = _v2ProvidesValor('cpu', cpuR5, 'socket');
+  return { ok: v === 'AM5', detalle: 'valor V2=' + JSON.stringify(v) };
+});
+
+caso('2. _v2ProvidesValor: CPU Intel real (cpu-ultra7-265k) NO resuelve socket (V2=null, confirmado Fase 7.2)', () => {
+  const v = _v2ProvidesValor('cpu', cpuUltra7, 'socket');
+  return { ok: v === null, detalle: 'valor V2=' + JSON.stringify(v) + ' (debe ser null: sin evidencia Tier-1/2 para el socket del CPU Intel)' };
+});
+
+caso('3. _v2ProvidesValor: Motherboard Z890 real SÍ resuelve socket=LGA1851 vía V2 (aunque el CPU Intel no lo tenga)', () => {
+  const v = _v2ProvidesValor('motherboard', mbZ890, 'socket');
+  return { ok: v === 'LGA1851', detalle: 'valor V2=' + JSON.stringify(v) };
+});
+
+// ===== 4: fallback end-to-end para el par CPU Intel + MB Z890 =====
+
+caso('4. Build CPU Intel + MB Z890: sin socket V2 en el CPU, debe caer a Legacy y dar compatible (ambos LGA1851 en components.json)', () => {
+  const build = { cpu: cpuUltra7, motherboard: mbZ890 };
+  const p = revisarCompatibilidad(build);
+  const sinIncompatibleDeSocket = !tieneNivel(p, 'incompatible', 'socket');
+  return { ok: sinIncompatibleDeSocket, detalle: JSON.stringify(p.map(x => x.nivel)) };
+});
+
+// ===== 5-6: RAM↔MB vía V2 =====
+
+caso('5. _v2ProvidesValor: RAM real (ram-32) resuelve memoryType=DDR5 vía V2', () => {
+  const v = _v2ProvidesValor('ram', ram32, 'memoryType');
+  return { ok: v === 'DDR5', detalle: 'valor V2=' + JSON.stringify(v) };
+});
+
+caso('6. Build MB B650 + RAM 32GB (ambas DDR5 vía V2): sin incompatibilidad', () => {
+  const build = { motherboard: mbB650, ram: ram32 };
+  const p = revisarCompatibilidad(build);
+  return { ok: !tieneNivel(p, 'incompatible'), detalle: JSON.stringify(p.map(x => x.nivel)) };
+});
+
+// ===== 7-8: GPU↔Case constraint vía V2, con prueba de que el valor SÍ viene de V2 =====
+
+caso('7. _v2EvaluarConstraints: GPU 5080 real vs Case Mid real usa 338mm de V2 (no 340mm de Legacy) y cumple', () => {
+  const r = _v2EvaluarConstraints('gpu', gpu5080, 'case', caseMid);
+  const encontrado = r && r.find((x) => x.key === 'physical.lengthMm');
+  const ok = !!encontrado && encontrado.selfValue === 338 && encontrado.contraValue === 360 && encontrado.cumple === true;
+  return { ok, detalle: 'resultado=' + JSON.stringify(encontrado) + ' (338 es el valor V2 real, distinto del 340 de Legacy — prueba que se usó V2 y no una coincidencia)' };
+});
+
+caso('8. Build GPU 5080 + Case Mid (constraint V2 cumple): sin incompatibilidad de largo', () => {
+  const build = { gpu: gpu5080, case: caseMid };
+  const p = revisarCompatibilidad(build);
+  return { ok: !tieneNivel(p, 'incompatible', 'GPU incompatible'), detalle: JSON.stringify(p.map(x => x.nivel)) };
+});
+
+// ===== 9-10: fallback a Legacy cuando el Case no tiene mapping V2 (case-matx, ver Fase 7.1) =====
+
+caso('9. _v2EvaluarConstraints: Case Micro-ATX (sin mapping V2) devuelve null — no hay dato V2 para comparar', () => {
+  const r = _v2EvaluarConstraints('gpu', gpu5060, 'case', caseMatx);
+  return { ok: r === null, detalle: 'resultado=' + JSON.stringify(r) };
+});
+
+caso('10. Build GPU 5080 + Case Micro-ATX (sin mapping V2, debe usar Legacy: 340mm > 320mm): incompatible con los números Legacy', () => {
+  const build = { gpu: gpu5080, case: caseMatx };
+  const p = revisarCompatibilidad(build);
+  const mensaje = p.find((x) => x.nivel === 'incompatible' && x.texto.includes('340') && x.texto.includes('320'));
+  return { ok: !!mensaje, detalle: mensaje ? mensaje.texto : JSON.stringify(p) };
+});
+
+// ===== 11-12: Cooler↔Case, incluyendo exclusión explícita de líquida =====
+
+caso('11. _v2EvaluarConstraints: Cooler de aire real (cool-torre-premium) vs Case Mid real resuelve altura vía V2', () => {
+  const r = _v2EvaluarConstraints('cooling', coolPremium, 'case', caseMid);
+  const encontrado = r && r.find((x) => x.key === 'physical.productHeightMm');
+  const ok = !!encontrado && encontrado.selfValue === 160 && encontrado.contraValue === 170 && encontrado.cumple === true;
+  return { ok, detalle: 'resultado=' + JSON.stringify(encontrado) };
+});
+
+caso('12. _v2EvaluarConstraints: AIO líquida (cool-aio-360) NO tiene constraint de altura en V2 (family-cooling-aio-liquid excluida a propósito, Fase 7.2)', () => {
+  const r = _v2EvaluarConstraints('cooling', coolAio360, 'case', caseMid);
+  return { ok: r === null, detalle: 'resultado=' + JSON.stringify(r) };
+});
+
+// ===== Resumen =====
+document.getElementById('resumen').innerHTML =
+  `<strong>${pasaron} de ${pasaron + fallaron} pruebas pasaron</strong>` +
+  (fallaron > 0 ? `<span class="fail"> — ${fallaron} fallaron</span>` : '<span class="pass"> — todas OK</span>') +
+  (V2_CATALOGO_CARGADO_OK() ? '' : '<div style="color:#e08a6a;margin-top:8px;">⚠ V2 no cargó (¿estás abriendo este archivo con file:// en vez de un servidor local? ver CLAUDE.md) — los casos que dependen de datos V2 reales van a fallar por eso, no por un bug del motor.</div>');
+
+function V2_CATALOGO_CARGADO_OK() {
+  // Heurística simple: si el caso 1 (socket AM5 real vía V2) no resolvió,
+  // asumimos que V2 no cargó (red/servidor), para dar un mensaje más útil
+  // que una lista de fallos sin contexto.
+  return _v2ProvidesValor('cpu', cpuR5, 'socket') === 'AM5';
+}
+})();
+</script>
+</body>
+</html>

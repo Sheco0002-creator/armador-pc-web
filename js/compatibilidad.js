@@ -254,16 +254,29 @@ function revisarCompatibilidad(build) {
 
   // ===== Placa madre ↔ Gabinete =====
 
-  if (mb && gab && !(gab.supports || []).includes(mb.formFactor)) {
-    const soportados = (gab.supports || []).join(', ') || t({ es: 'ningún formato conocido', en: 'no known form factor', pt: 'nenhum formato conhecido' });
-    problemas.push({
-      nivel: 'incompatible',
-      texto: t({
-        es: `Incompatible: la placa madre es formato ${mb.formFactor} y el gabinete ${gab.name} solo admite ${soportados}.`,
-        en: `Incompatible: the motherboard is ${mb.formFactor} form factor and the ${gab.name} case only supports ${soportados}.`,
-        pt: `Incompatível: a placa-mãe é formato ${mb.formFactor} e o gabinete ${gab.name} só admite ${soportados}.`,
-      }),
-    });
+  // Formato "efectivo": si V2 tiene mapping+evidencia completos para ambas
+  // piezas (motherboard con compatibility.provides.formFactor, case con
+  // compatibility.provides.formFactor — puede tener varios valores a la
+  // vez, ver Fase 7.2), se usa ese par; si no, se usa el dato Legacy tal
+  // cual (mb.formFactor / gab.supports).
+  if (mb && gab) {
+    const mbFormFactorV2 = _v2ProvidesValor('motherboard', mb, 'formFactor');
+    const caseFormFactorsV2 = _v2ProvidesValores('case', gab, 'formFactor');
+    const v2Resuelto = mbFormFactorV2 != null && caseFormFactorsV2.length > 0;
+    const mbFormFactor = v2Resuelto ? mbFormFactorV2 : mb.formFactor;
+    const soportadosArray = v2Resuelto ? caseFormFactorsV2 : (gab.supports || []);
+
+    if (!soportadosArray.includes(mbFormFactor)) {
+      const soportados = soportadosArray.join(', ') || t({ es: 'ningún formato conocido', en: 'no known form factor', pt: 'nenhum formato conhecido' });
+      problemas.push({
+        nivel: 'incompatible',
+        texto: t({
+          es: `Incompatible: la placa madre es formato ${mbFormFactor} y el gabinete ${gab.name} solo admite ${soportados}.`,
+          en: `Incompatible: the motherboard is ${mbFormFactor} form factor and the ${gab.name} case only supports ${soportados}.`,
+          pt: `Incompatível: a placa-mãe é formato ${mbFormFactor} e o gabinete ${gab.name} só admite ${soportados}.`,
+        }),
+      });
+    }
   }
 
   // ===== GPU ↔ Gabinete =====
@@ -308,15 +321,29 @@ function revisarCompatibilidad(build) {
 
   // ===== Refrigeración ↔ CPU =====
 
-  if (cooling && cpu && !(cooling.socketSupport || []).includes(cpu.socket)) {
-    problemas.push({
-      nivel: 'incompatible',
-      texto: t({
-        es: `Incompatible: esta refrigeración no tiene kit de montaje para el socket ${cpu.socket} del procesador.`,
-        en: `Incompatible: this cooler doesn't have a mounting kit for the processor's ${cpu.socket} socket.`,
-        pt: `Incompatível: este cooler não tem kit de montagem para o soquete ${cpu.socket} do processador.`,
-      }),
-    });
+  // Socket "efectivo" para el kit de montaje: si V2 tiene mapping+evidencia
+  // completos (CPU con compatibility.provides.socket, cooler con
+  // compatibility.requires.socket — varios valores a la vez), se usa ese
+  // par; si no (ej. CPU Intel sin socket evidenciado, ver Fase 7.2), se usa
+  // el dato Legacy tal cual. El aviso de capacidad TDP (abajo) no se toca:
+  // sigue 100% Legacy, sin cambios.
+  if (cooling && cpu) {
+    const cpuSocketMontajeV2 = _v2ProvidesValor('cpu', cpu, 'socket');
+    const coolerSocketsV2 = _v2RequiresValores('cooling', cooling, 'socket');
+    const montajeV2Resuelto = cpuSocketMontajeV2 != null && coolerSocketsV2.length > 0;
+    const cpuSocketMontaje = montajeV2Resuelto ? cpuSocketMontajeV2 : cpu.socket;
+    const coolerSocketsMontaje = montajeV2Resuelto ? coolerSocketsV2 : (cooling.socketSupport || []);
+
+    if (!coolerSocketsMontaje.includes(cpuSocketMontaje)) {
+      problemas.push({
+        nivel: 'incompatible',
+        texto: t({
+          es: `Incompatible: esta refrigeración no tiene kit de montaje para el socket ${cpuSocketMontaje} del procesador.`,
+          en: `Incompatible: this cooler doesn't have a mounting kit for the processor's ${cpuSocketMontaje} socket.`,
+          pt: `Incompatível: este cooler não tem kit de montagem para o soquete ${cpuSocketMontaje} do processador.`,
+        }),
+      });
+    }
   }
 
   if (cooling && cpu && (cooling.socketSupport || []).includes(cpu.socket) && cooling.tdpCapacity < cpu.tdp) {

@@ -90,6 +90,20 @@ const psu650 = { id: 'psu-650', wattage: 650 };
 const psu850 = { id: 'psu-850', wattage: 850 };
 const psu1200 = { id: 'psu-1200', wattage: 1200 };
 
+// Piezas adicionales para MB<->Case formFactor y Cooler<->CPU mounting kit
+// (mismas 2 reglas nuevas), incluyendo los 4 tiers reales completos.
+const mbB650m = { id: 'mb-b650m', socket: 'AM5', ramType: 'DDR5', formFactor: 'mATX', chipset: 'B650', name: 'B650M' }; // SIN mapping V2 (Fase 7.1)
+const mbX870 = { id: 'mb-x870', socket: 'AM5', ramType: 'DDR5', formFactor: 'ATX', chipset: 'X870', name: 'X870' };
+const mbX870e = { id: 'mb-x870e', socket: 'AM5', ramType: 'DDR5', formFactor: 'ATX', chipset: 'X870E', name: 'X870E' };
+// mb-b650 real, pero con formFactor Legacy deliberadamente falso (mATX) para probar que la regla usa V2 (ATX) y no este campo.
+const mbB650FormFactorFalso = { id: 'mb-b650', socket: 'AM5', ramType: 'DDR5', formFactor: 'mATX', chipset: 'B650', name: 'B650' };
+const caseFull = { id: 'case-full', supports: ['ATX', 'mATX', 'ITX'], maxGpuLength: 400, maxCoolerHeight: 180, name: 'Full-tower' };
+const cpuR7 = { id: 'cpu-r7-9700x', socket: 'AM5', tdp: 65 };
+const cpuR9 = { id: 'cpu-r9-9950x3d', socket: 'AM5', tdp: 170 };
+const coolSimple = { id: 'cool-torre-simple', type: 'aire', socketSupport: ['AM5', 'LGA1851'], height: 155, tdpCapacity: 95 };
+// cool-torre-simple real, pero con socketSupport Legacy deliberadamente falso (sin AM5) para probar que la regla usa V2.
+const coolSimpleSocketFalso = { id: 'cool-torre-simple', type: 'aire', socketSupport: ['LGA1200'], height: 155, tdpCapacity: 95 };
+
 // ===== 1-3: helpers V2 de bajo nivel, con datos reales =====
 
 caso('1. _v2ProvidesValor: CPU AMD real (cpu-r5-9600x) resuelve socket=AM5 vía V2', () => {
@@ -226,6 +240,70 @@ caso('19. Los 4 tiers REALES publicados (data/components.json) no reportan incom
     if (incompatibleDeConector) rotos.push(tier.nombre + ': ' + incompatibleDeConector.texto);
   }
   return { ok: rotos.length === 0, detalle: rotos.length ? 'TIERS ROTOS:\n' + rotos.join('\n') : 'Los 4 tiers (entrada/media/alta/extrema) siguen sin incompatibilidad de conector.' };
+});
+
+// ===== 20-22: regla MB<->Case formFactor vía V2 =====
+
+caso('20. Build MB B650 (formFactor Legacy FALSO "mATX") + Case Mid: usa V2 (ATX real), ignora el campo Legacy y da compatible', () => {
+  const build = { motherboard: mbB650FormFactorFalso, case: caseMid };
+  const p = revisarCompatibilidad(build);
+  return { ok: !tieneNivel(p, 'incompatible'), detalle: JSON.stringify(p.map(x => x.nivel)) };
+});
+
+caso('21. Build MB B650M (sin mapping V2) + Case Mid: cae a Legacy, compatible (mATX está en gab.supports Legacy)', () => {
+  const build = { motherboard: mbB650m, case: caseMid };
+  const p = revisarCompatibilidad(build);
+  return { ok: !tieneNivel(p, 'incompatible'), detalle: JSON.stringify(p.map(x => x.nivel)) };
+});
+
+caso('22. Build 100% sintético (sin .id, EATX vs case que solo admite ATX): incompatible vía Legacy puro, el fallback total sigue funcionando', () => {
+  const mbSintetica = { formFactor: 'EATX', name: 'sintética' };
+  const caseSintetico = { supports: ['ATX'], name: 'case sintético' };
+  const build = { motherboard: mbSintetica, case: caseSintetico };
+  const p = revisarCompatibilidad(build);
+  const mensaje = p.find((x) => x.nivel === 'incompatible' && x.texto.includes('EATX'));
+  return { ok: !!mensaje, detalle: mensaje ? mensaje.texto : JSON.stringify(p) };
+});
+
+// ===== 23-25: regla Cooler<->CPU mounting kit vía V2 =====
+
+caso('23. Build Cooler simple (socketSupport Legacy FALSO, sin AM5) + CPU R5 (AM5): usa V2 (AM5 real), ignora el campo Legacy y da compatible', () => {
+  const build = { cooling: coolSimpleSocketFalso, cpu: cpuR5 };
+  const p = revisarCompatibilidad(build);
+  return { ok: !tieneNivel(p, 'incompatible', 'kit de montaje'), detalle: JSON.stringify(p.map(x => x.nivel)) };
+});
+
+caso('24. Build CPU Intel (sin socket V2) + Cooler simple real: cae a Legacy, compatible (LGA1851 está en cooling.socketSupport Legacy)', () => {
+  const build = { cooling: coolSimple, cpu: cpuUltra7 };
+  const p = revisarCompatibilidad(build);
+  return { ok: !tieneNivel(p, 'incompatible', 'kit de montaje'), detalle: JSON.stringify(p.map(x => x.nivel)) };
+});
+
+caso('25. Build 100% sintético (cooler solo LGA1200, CPU AM5): incompatible vía Legacy puro, el fallback total sigue funcionando', () => {
+  const coolingSintetico = { type: 'aire', socketSupport: ['LGA1200'], height: 100, tdpCapacity: 100 };
+  const cpuSintetico = { socket: 'AM5', tdp: 65 };
+  const build = { cooling: coolingSintetico, cpu: cpuSintetico };
+  const p = revisarCompatibilidad(build);
+  const mensaje = p.find((x) => x.nivel === 'incompatible' && x.texto.includes('kit de montaje'));
+  return { ok: !!mensaje, detalle: mensaje ? mensaje.texto : JSON.stringify(p) };
+});
+
+// ===== 26: los 4 tiers reales, verificando las 2 reglas nuevas a la vez =====
+
+caso('26. Los 4 tiers REALES publicados (data/components.json) no reportan incompatibilidad de MB<->Case formFactor ni Cooler<->CPU mounting kit', () => {
+  const tiers = [
+    { nombre: 'entrada', motherboard: mbB650, case: caseMid, cooling: coolSimple, cpu: cpuR5 },
+    { nombre: 'media', motherboard: mbX870, case: caseMid, cooling: coolPremium, cpu: cpuR7 },
+    { nombre: 'alta', motherboard: mbX870, case: caseMid, cooling: coolAio360, cpu: { id: 'cpu-r7-9850x3d', socket: 'AM5', tdp: 120 } },
+    { nombre: 'extrema', motherboard: mbX870e, case: caseFull, cooling: coolAio360, cpu: cpuR9 },
+  ];
+  const rotos = [];
+  for (const tier of tiers) {
+    const p = revisarCompatibilidad({ motherboard: tier.motherboard, case: tier.case, cooling: tier.cooling, cpu: tier.cpu });
+    const incompatibleFormFactorOKit = p.find((x) => x.nivel === 'incompatible' && (x.texto.includes('formato') || x.texto.includes('kit de montaje')));
+    if (incompatibleFormFactorOKit) rotos.push(tier.nombre + ': ' + incompatibleFormFactorOKit.texto);
+  }
+  return { ok: rotos.length === 0, detalle: rotos.length ? 'TIERS ROTOS:\n' + rotos.join('\n') : 'Los 4 tiers (entrada/media/alta/extrema) siguen sin incompatibilidad de formFactor ni mounting kit.' };
 });
 
 // ===== Resumen =====

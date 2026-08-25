@@ -1798,6 +1798,45 @@ publicados en `data/components.json` (`media`: `gpu-5070` + `psu-650`;
 implementar, ver los 4 tests de tiers reales en
 `tests/compatibilidad-v2.test.html`.
 
+### 9.3 Reglas MB↔Case formFactor y Cooler↔CPU mounting kit (implementadas
+tras la auditoría de las 8 categorías, 2026-08-25)
+
+Tras auditar en modo solo lectura las 8 categorías del catálogo (Motherboard,
+RAM, GPU, Storage, PSU, Case, Cooling, CPU), se identificaron 2 reglas que
+seguían 100% Legacy pese a tener los datos V2 necesarios completos en ambos
+lados del par — a diferencia de otros huecos de compatibilidad (Storage↔MB,
+Cooler↔Case líquida, PSU↔consumo, TDP↔VRM), estas 2 no tenían ningún
+bloqueo de evidencia ni de diseño pendiente, solo nunca habían sido
+autorizadas. Se implementaron siguiendo exactamente el mismo patrón que las
+5 reglas anteriores (V2 si ambos lados resuelven, fallback Legacy por-pieza
+si no):
+
+- **MB↔Case formFactor**: usa `compatibility.provides.formFactor` de la
+  motherboard (un solo valor) contra `compatibility.provides.formFactor`
+  del case (puede tener varios valores a la vez, ej.
+  `[MiniITX, MicroATX, ATX, EATX]`). Si cualquiera de los dos no resuelve
+  (sin mapping, o motherboard sin `formFactor` evidenciado — ej. MSI Z890
+  Tomahawk, no alcanzable hoy vía ningún legacyId real), cae al Legacy
+  actual (`mb.formFactor` / `gab.supports`).
+- **Cooler↔CPU mounting kit (socket)**: usa `compatibility.provides.socket`
+  del CPU (un solo valor; `null` en ambas family Intel, ver §0.37) contra
+  `compatibility.requires.socket` del cooler (varios valores a la vez, ej.
+  `[AM5, AM4, LGA1700, LGA1851, LGA1200]`). Si el CPU no resuelve (CPU
+  Intel) o el cooler no tiene mapping, cae al Legacy actual
+  (`cpu.socket` / `cooling.socketSupport`). El aviso de capacidad TDP de
+  esta misma sección (`cooling.tdpCapacity < cpu.tdp`) **no se tocó**, sigue
+  100% Legacy — queda fuera de esta implementación (ver huecos restantes en
+  §9.1).
+
+Verificado antes de implementar: los 4 tiers reales usan exclusivamente
+motherboards/cases/coolers/CPU con `formFactor`/`socket` completos en V2
+(los 3 chipsets AMD B650/X870/X870E, ambos cases, los 3 coolers mapeados,
+las 3 CPU AMD de los tiers) — ningún tier real depende del fallback Legacy
+para estas 2 reglas. Tests nuevos en `tests/compatibilidad-v2.test.html`
+(casos 20-26) incluyen una prueba de procedencia explícita (pieza real con
+un campo Legacy deliberadamente falso, para confirmar que el resultado usa
+el valor V2 y no el Legacy) y la verificación de los 4 tiers reales.
+
 ## 10. `presets.v2.json`
 
 Referencian solo `productId`, nunca `offerId`. Un preset es `publishable=true`

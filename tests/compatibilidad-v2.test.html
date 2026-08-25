@@ -342,6 +342,77 @@ caso('32. specsVisiblesProducto Case sin mapping (case-matx) devuelve null — e
   return { ok: texto === null, detalle: 'texto=' + JSON.stringify(texto) };
 });
 
+// ===== 33-45: tests RECOMENDADO de UI (specsVisiblesProducto / nombreVisibleProducto) =====
+// Cobertura básica de "caso normal" para las 8 categorías, más los 3 casos
+// reales de campos opcionales presentes/ausentes, más nombreVisibleProducto
+// (mapping real y fallback sin mapping) — completan la matriz de la
+// auditoría de formateadores (los ESENCIALES ya están en los casos 27-32).
+
+caso('33. specsVisiblesProducto CPU caso normal (cpu-r5-9600x)', () => {
+  const texto = specsVisiblesProducto('cpu', 'cpu-r5-9600x');
+  return { ok: texto === '6 núcleos / 12 hilos', detalle: 'texto=' + JSON.stringify(texto) };
+});
+
+caso('34. specsVisiblesProducto Motherboard caso normal (mb-b650)', () => {
+  const texto = specsVisiblesProducto('motherboard', 'mb-b650');
+  return { ok: texto === 'ATX, AM5', detalle: 'texto=' + JSON.stringify(texto) };
+});
+
+caso('35. specsVisiblesProducto RAM caso normal (ram-32)', () => {
+  const texto = specsVisiblesProducto('ram', 'ram-32');
+  return { ok: texto === '2x16 GB', detalle: 'texto=' + JSON.stringify(texto) };
+});
+
+caso('36. specsVisiblesProducto PSU caso normal sin pcieCompliance (psu-650)', () => {
+  const texto = specsVisiblesProducto('psu', 'psu-650');
+  return { ok: texto === 'ATX 3.1', detalle: 'texto=' + JSON.stringify(texto) };
+});
+
+caso('37. specsVisiblesProducto GPU caso normal (gpu-5060)', () => {
+  const texto = specsVisiblesProducto('gpu', 'gpu-5060');
+  return { ok: texto === '8GB GDDR7', detalle: 'texto=' + JSON.stringify(texto) };
+});
+
+caso('38. specsVisiblesProducto Storage caso normal con protocol+pcieGen (ssd-nvme-2tb)', () => {
+  const texto = specsVisiblesProducto('storage', 'ssd-nvme-2tb');
+  return { ok: texto === 'PCIe NVMe 4.0, 7450 MB/s', detalle: 'texto=' + JSON.stringify(texto) };
+});
+
+caso('39. specsVisiblesProducto Cooling caso normal con disipación (cool-torre-simple)', () => {
+  const texto = specsVisiblesProducto('cooling', 'cool-torre-simple');
+  return { ok: texto === 'aire, 220W disipación', detalle: 'texto=' + JSON.stringify(texto) };
+});
+
+caso('40. specsVisiblesProducto Case caso normal (case-mid)', () => {
+  const texto = specsVisiblesProducto('case', 'case-mid');
+  return { ok: texto === 'mid-tower, hasta 360mm GPU', detalle: 'texto=' + JSON.stringify(texto) };
+});
+
+caso('41. specsVisiblesProducto PSU con pcieCompliance presente (psu-1200)', () => {
+  const texto = specsVisiblesProducto('psu', 'psu-1200');
+  return { ok: texto === 'ATX 3.1 / PCIe 5.1', detalle: 'texto=' + JSON.stringify(texto) + ' (único PSU mapeado con pcieCompliance real)' };
+});
+
+caso('42. specsVisiblesProducto Storage sin protocol/pcieGen, formato SATA (ssd-sata-1tb)', () => {
+  const texto = specsVisiblesProducto('storage', 'ssd-sata-1tb');
+  return { ok: texto === 'SATA, 560 MB/s', detalle: 'texto=' + JSON.stringify(texto) + ' (los opcionales ausentes no dejan residuo de formato)' };
+});
+
+caso('43. specsVisiblesProducto Cooling AIO sin thermalDissipationW (cool-aio-360)', () => {
+  const texto = specsVisiblesProducto('cooling', 'cool-aio-360');
+  return { ok: texto === 'liquida', detalle: 'texto=' + JSON.stringify(texto) + ' (sin sufijo de disipación: el AIO real no lo tiene evidenciado)' };
+});
+
+caso('44. nombreVisibleProducto con mapping real (cpu-r5-9600x) devuelve el nombre comercial V2', () => {
+  const nombre = nombreVisibleProducto('cpu', 'cpu-r5-9600x', 'AMD Ryzen 5 9600X (nombre Legacy genérico)');
+  return { ok: nombre === 'AMD Ryzen 5 9600X', detalle: 'nombre=' + JSON.stringify(nombre) };
+});
+
+caso('45. nombreVisibleProducto sin mapping (ram-16) devuelve el nombre Legacy tal cual', () => {
+  const nombre = nombreVisibleProducto('ram', 'ram-16', '16 GB DDR5-6000');
+  return { ok: nombre === '16 GB DDR5-6000', detalle: 'nombre=' + JSON.stringify(nombre) };
+});
+
 // ===== Resumen =====
 document.getElementById('resumen').innerHTML =
   `<strong>${pasaron} de ${pasaron + fallaron} pruebas pasaron</strong>` +

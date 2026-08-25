@@ -703,6 +703,9 @@
       "compatibility": {
         "provides": [
           { "key": "pcieGen", "value": "5.0" }
+        ],
+        "requires": [
+          { "key": "gpuPowerConnector", "value": "12VHPWR" }
         ]
       },
       "verification": {
@@ -761,6 +764,9 @@
       "compatibility": {
         "provides": [
           { "key": "pcieGen", "value": "5.0" }
+        ],
+        "requires": [
+          { "key": "gpuPowerConnector", "value": "12VHPWR" }
         ]
       },
       "verification": {
@@ -819,6 +825,9 @@
       "compatibility": {
         "provides": [
           { "key": "pcieGen", "value": "5.0" }
+        ],
+        "requires": [
+          { "key": "gpuPowerConnector", "value": "12VHPWR" }
         ]
       },
       "verification": {
@@ -918,6 +927,11 @@
         "power.recommendedPsuW": ["ev-asus-rtx5090oc-01"]
       },
       "unknownFields": ["power.consumptionW"],
+      "compatibility": {
+        "requires": [
+          { "key": "gpuPowerConnector", "value": "12VHPWR" }
+        ]
+      },
       "verification": {
         "status": "verified",
         "verifiedAt": "2026-08-22T00:00:00Z",
@@ -967,6 +981,11 @@
         "power.recommendedPsuW": ["ev-asus-rtx5080oc-01"]
       },
       "unknownFields": ["power.consumptionW"],
+      "compatibility": {
+        "requires": [
+          { "key": "gpuPowerConnector", "value": "12VHPWR" }
+        ]
+      },
       "verification": {
         "status": "verified",
         "verifiedAt": "2026-08-22T00:00:00Z",
@@ -1352,7 +1371,8 @@
       "compatibility": {
         "provides": [
           { "key": "formFactor", "value": "ATX" },
-          { "key": "gpuPowerConnector", "value": "8-pin" }
+          { "key": "gpuPowerConnector", "value": "8-pin" },
+          { "key": "gpuPowerConnector", "value": "12VHPWR" }
         ]
       },
       "verification": {
@@ -3057,6 +3077,9 @@
       "compatibility": {
         "provides": [
           { "key": "pcieGen", "value": "5.0" }
+        ],
+        "requires": [
+          { "key": "gpuPowerConnector", "value": "12VHPWR" }
         ]
       },
       "verification": {

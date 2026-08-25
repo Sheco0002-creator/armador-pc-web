@@ -1647,30 +1647,48 @@ probable, pero un nombre de campo distinto que no fue parte de la
 autorización explícita de este cambio (queda para una decisión futura si se
 quiere unificar el criterio también a ese nombre de campo).
 
-**Caso 2 — PENDIENTE.** `PCI-E 5.0 (16 pin)` / `pcie5_16pinCount`
-(`prod-msi-mag-a850gl-pcie5`, PSU) — ya evaluado y explícitamente rechazado
-en `ev-msi-a850glpcie5-01`: *"No se agrego el conector PCI-E 5.0 de 16
-pines a compatibility.provides/requires porque '16-pin' no coincide con el
-vocabulario controlado gpuPowerConnector (mismo criterio ya aplicado a las
-GPU MSI/ASUS)"*. Mismo tipo de caso que el `power.connector: "16-pin"` de
-`prod-asus-rtx5090-tuf-o32g-gaming` / `prod-asus-rtx5080-tuf-o16g-gaming`
-(GPU) — conector de 16 pines sin equivalencia definida (¿`12VHPWR` o
-`12V-2x6`? son conectores de 16 pines distintos entre sí).
+**Caso 2 — RESUELTO (Fase 7.5.2, 2026-08-25).** `PCI-E 5.0 (16 pin)` /
+`pcie5_16pinCount` / `"16-pin"`: se autorizó formalmente tratar esta
+terminología (el conector nativo PCIe 5.0/ATX 3.x de 16 pines para GPU de
+alta gama) como equivalente de `12VHPWR` en el vocabulario controlado. Esta
+es una **regla general del contrato**, no una inferencia aislada por
+producto: cualquier entrada cuyo dato Tier-1 declare literalmente
+`pcie5_16pinCount`, `"PCI-E 5.0 (16 pin)"` o `"16-pin"` en
+`technical.connectors`/`technical.power.connector` se considera equivalente
+a `gpuPowerConnector: "12VHPWR"`. Se promovió a `compatibility` en **todas
+y solo** las 7 entradas donde ese valor existe literalmente y ya está
+evidenciado (verificado exhaustivamente sobre `catalog.v2.json`):
+- `prod-msi-mag-a850gl-pcie5` (PSU) — `provides` (además de `8-pin` y
+  `formFactor` ya existentes; una PSU puede proveer varios tipos de
+  conector a la vez).
+- `prod-msi-rtx5070-12g-gaming-trio-oc` (GPU) — `requires`.
+- `prod-msi-rtx5080-16g-gaming-trio` (GPU) — `requires`.
+- `prod-msi-rtx5090-32g-gaming-trio-oc` (GPU) — `requires`.
+- `prod-asus-rtx5090-tuf-o32g-gaming` (GPU) — `requires` (bloque
+  `compatibility` nuevo, la entrada no tenía ninguno).
+- `prod-asus-rtx5080-tuf-o16g-gaming` (GPU) — `requires` (ídem, bloque
+  nuevo).
+- `prod-pny-rtx5070-oc-triple-fan` (GPU) — `requires`.
+
+Nota: esta búsqueda exhaustiva encontró 4 GPU adicionales (3 MSI, 1 PNY)
+con `power.connector: "16-pin"` evidenciado que no habían sido detectadas
+en el hallazgo original de Fase 7.4 (que solo mencionaba las 2 ASUS TUF),
+porque ya tenían un `compatibility.provides` parcial (`pcieGen`) y por eso
+no aparecían en el listado de entradas "sin `compatibility`" de
+diagnósticos previos.
 
 **Caso 3 — PENDIENTE.** `"3x8-pin"` (`prod-asus-prime-rx9070xt-o16g`, GPU,
 `technical.power.connector`) — no es un conector de 16 pines sino la
 notación de **tres** conectores de 8 pines simultáneos. Sin decisión que
 confirme cómo representar cantidad en `compatibility.requires` (hoy el
-schema no distingue "requiere 1x 8-pin" de "requiere 3x 8-pin").
+schema no distingue "requiere 1x 8-pin" de "requiere 3x 8-pin"). Sigue sin
+resolverse, sin promover, y explícitamente fuera de esta fase.
 
-**Decisión pendiente para los casos 2 y 3, explícitamente NO tomada**: si
-`pcie5_16pinCount`/`"16-pin"` deben tratarse como equivalentes de
-`12VHPWR` (o de `12V-2x6`); y cómo representar `"3x8-pin"` (equivalencia de
-valor + cantidad). Hasta que se decidan, esos 2 valores permanecen sin
-promover a `compatibility.provides/requires`, y la regla de compatibilidad
-PSU↔GPU sigue sin implementarse en `js/compatibilidad.js` (el caso 1
-resuelto es un requisito necesario pero no suficiente para esa regla — ver
-§9.1).
+**Estado de la regla PSU↔GPU**: con los casos 1 y 2 resueltos, la mayoría
+de las PSU y GPU del catálogo ya tienen su conector expuesto en
+`compatibility.provides`/`requires`. La regla de compatibilidad PSU↔GPU
+**sigue sin implementarse en `js/compatibilidad.js`** — esta fase solo
+preparó datos, no tocó el motor (ver §9.1).
 
 ## 9. Motor de compatibilidad — resultado por par
 

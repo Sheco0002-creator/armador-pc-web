@@ -82,6 +82,9 @@
       "compatibility": {
         "provides": [
           { "key": "pcieGen", "value": "5.0" }
+        ],
+        "constraints": [
+          { "key": "physical.lengthMm", "operator": "<=", "against": "case:maxGpuLengthMm" }
         ]
       },
       "verification": {
@@ -290,6 +293,9 @@
       "compatibility": {
         "provides": [
           { "key": "pcieGen", "value": "5.0" }
+        ],
+        "constraints": [
+          { "key": "physical.lengthMm", "operator": "<=", "against": "case:maxGpuLengthMm" }
         ]
       },
       "verification": {
@@ -333,6 +339,9 @@
       "compatibility": {
         "provides": [
           { "key": "pcieGen", "value": "5.0" }
+        ],
+        "constraints": [
+          { "key": "physical.lengthMm", "operator": "<=", "against": "case:maxGpuLengthMm" }
         ]
       },
       "verification": {
@@ -376,6 +385,9 @@
       "compatibility": {
         "provides": [
           { "key": "pcieGen", "value": "5.0" }
+        ],
+        "constraints": [
+          { "key": "physical.lengthMm", "operator": "<=", "against": "case:maxGpuLengthMm" }
         ]
       },
       "verification": {
@@ -2037,6 +2049,11 @@
         "type": ["ev-deepcool-ak400-family-01"]
       },
       "unknownFields": [],
+      "compatibility": {
+        "constraints": [
+          { "key": "physical.productHeightMm", "operator": "<=", "against": "case:maxCoolerHeightMm" }
+        ]
+      },
       "verification": {
         "status": "verified",
         "verifiedAt": "2026-08-22T00:00:00Z",
@@ -3309,6 +3326,11 @@
         "power.recommendedPsuW": ["ev-amd-rx9070xt-01"]
       },
       "unknownFields": ["interface.pcieGen"],
+      "compatibility": {
+        "constraints": [
+          { "key": "physical.lengthMm", "operator": "<=", "against": "case:maxGpuLengthMm" }
+        ]
+      },
       "verification": {
         "status": "verified",
         "verifiedAt": "2026-08-22T00:00:00Z",
@@ -3409,6 +3431,11 @@
         "power.recommendedPsuW": ["ev-amd-rx9060xt-01"]
       },
       "unknownFields": ["interface.pcieGen"],
+      "compatibility": {
+        "constraints": [
+          { "key": "physical.lengthMm", "operator": "<=", "against": "case:maxGpuLengthMm" }
+        ]
+      },
       "verification": {
         "status": "verified",
         "verifiedAt": "2026-08-22T00:00:00Z",

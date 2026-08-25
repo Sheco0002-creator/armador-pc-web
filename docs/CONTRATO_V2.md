@@ -1771,6 +1771,33 @@ PSU wattage↔consumo del sistema (no es una comparación 1:1 entre dos
 entries, es una suma de 3 componentes — CPU+GPU+base — que el modelo actual
 no representa).
 
+### 9.2 Regla PSU↔GPU en el motor (implementada en Fase 7.5.3, 2026-08-25)
+
+`js/compatibilidad.js` (`_v2ConectorGpuPsuMatch`) compara `compatibility.requires`
+de `gpuPowerConnector` en la GPU contra `compatibility.provides` de la PSU,
+siguiendo la regla general del motor (`requires` de A sin match en `provides`
+de B ⇒ `incompatible`, ver §9). Si cualquiera de los dos lados no tiene
+mapping V2 o la GPU no declara ningún `requires` de conector (ej. las GPU
+sin evidencia de Fase 7.4/7.5, o el caso pendiente `"3x8-pin"` de §8.1), la
+regla cae al Legacy actual (`no_verificado`), sin cambios de comportamiento.
+
+**Equivalencia de motor, no de vocabulario** (autorizada explícitamente para
+esta regla): `12VHPWR` y `12V-2x6` se tratan como intercambiables
+únicamente dentro de `_v2ConectorEquivalente()` — son revisiones del mismo
+conector físico de 16 pines (ATX 3.0 vs. ATX 3.1), compatibles en la
+inmensa mayoría de los cables reales. **`vocab/gpuPowerConnector.json`
+sigue teniendo los 4 valores separados sin cambios** — esta equivalencia
+vive solo en el motor, no en el contrato de datos, y no aplica a ningún
+otro par (`6-pin`/`8-pin`/`12VHPWR`/`12V-2x6` siguen siendo todos distintos
+entre sí salvo este único caso).
+
+**Motivo de esta equivalencia** (no arbitraria): sin ella, un matching
+estricto habría marcado como `incompatible` 2 de los 4 tiers reales
+publicados en `data/components.json` (`media`: `gpu-5070` + `psu-650`;
+`extrema`: `gpu-5090` + `psu-1200`) — verificado explícitamente antes de
+implementar, ver los 4 tests de tiers reales en
+`tests/compatibilidad-v2.test.html`.
+
 ## 10. `presets.v2.json`
 
 Referencian solo `productId`, nunca `offerId`. Un preset es `publishable=true`

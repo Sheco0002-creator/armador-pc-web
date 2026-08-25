@@ -80,6 +80,16 @@ const caseMatx = { id: 'case-matx', supports: ['mATX', 'ITX'], maxGpuLength: 320
 const coolPremium = { id: 'cool-torre-premium', type: 'aire', socketSupport: ['AM5', 'LGA1851'], height: 160, tdpCapacity: 150 };
 const coolAio360 = { id: 'cool-aio-360', type: 'liquida', socketSupport: ['AM5', 'LGA1851'], height: undefined, tdpCapacity: undefined };
 
+// Piezas adicionales para la regla PSU<->GPU (Fase 7.5.3) — mismos ids que
+// data/components.json, incluyendo los 4 tiers reales publicados en el sitio.
+const gpu5070 = { id: 'gpu-5070', length: 300, powerDraw: 250, recommendedPsu: 650 };
+const gpu5090 = { id: 'gpu-5090', length: 360, powerDraw: 575, recommendedPsu: 1000 };
+const gpu9070xt = { id: 'gpu-9070xt', length: 330, powerDraw: 300, recommendedPsu: 750 }; // "3x8-pin" pendiente (§8.1 caso 3): sin requires en V2
+const psu550 = { id: 'psu-550', wattage: 550 };
+const psu650 = { id: 'psu-650', wattage: 650 };
+const psu850 = { id: 'psu-850', wattage: 850 };
+const psu1200 = { id: 'psu-1200', wattage: 1200 };
+
 // ===== 1-3: helpers V2 de bajo nivel, con datos reales =====
 
 caso('1. _v2ProvidesValor: CPU AMD real (cpu-r5-9600x) resuelve socket=AM5 vía V2', () => {
@@ -160,6 +170,62 @@ caso('11. _v2EvaluarConstraints: Cooler de aire real (cool-torre-premium) vs Cas
 caso('12. _v2EvaluarConstraints: AIO líquida (cool-aio-360) NO tiene constraint de altura en V2 (family-cooling-aio-liquid excluida a propósito, Fase 7.2)', () => {
   const r = _v2EvaluarConstraints('cooling', coolAio360, 'case', caseMid);
   return { ok: r === null, detalle: 'resultado=' + JSON.stringify(r) };
+});
+
+// ===== 13-19: regla PSU<->GPU vía V2 (Fase 7.5.3) =====
+
+caso('13. _v2ConectorGpuPsuMatch: GPU 5060 (requiere 8-pin) + PSU 550 (provee 8-pin): match exacto', () => {
+  const r = _v2ConectorGpuPsuMatch(gpu5060, psu550);
+  const ok = !!r && r.match === true && JSON.stringify(r.gpuRequires) === '["8-pin"]' && JSON.stringify(r.psuProvides) === '["8-pin"]';
+  return { ok, detalle: 'r=' + JSON.stringify(r) };
+});
+
+caso('14. _v2ConectorGpuPsuMatch: GPU 5090 (requiere 12VHPWR) + PSU 650 (provee 12V-2x6/8-pin): match por EQUIVALENCIA', () => {
+  const r = _v2ConectorGpuPsuMatch(gpu5090, psu650);
+  const ok = !!r && r.match === true && JSON.stringify(r.gpuRequires) === '["12VHPWR"]' && JSON.stringify(r.psuProvides) === '["12V-2x6","8-pin"]';
+  return { ok, detalle: 'r=' + JSON.stringify(r) + ' (12VHPWR<->12V-2x6 tratados como equivalentes solo para este matching, ver docs/CONTRATO_V2.md §9.2)' };
+});
+
+caso('15. _v2ConectorGpuPsuMatch: GPU 5090 (requiere 12VHPWR) + PSU 550 (provee SOLO 8-pin): sin match, incompatibilidad real', () => {
+  const r = _v2ConectorGpuPsuMatch(gpu5090, psu550);
+  const ok = !!r && r.match === false;
+  return { ok, detalle: 'r=' + JSON.stringify(r) };
+});
+
+caso('16. Build GPU 5090 + PSU 550 (sin conector compatible): revisarCompatibilidad reporta incompatible', () => {
+  const build = { gpu: gpu5090, psu: psu550 };
+  const p = revisarCompatibilidad(build);
+  const mensaje = p.find((x) => x.nivel === 'incompatible' && x.texto.includes('12VHPWR') && x.texto.includes('8-pin'));
+  return { ok: !!mensaje, detalle: mensaje ? mensaje.texto : JSON.stringify(p) };
+});
+
+caso('17. _v2ConectorGpuPsuMatch: GPU RX9070XT sin requires en V2 ("3x8-pin" pendiente, §8.1 caso 3) devuelve null -> fallback Legacy', () => {
+  const r = _v2ConectorGpuPsuMatch(gpu9070xt, psu650);
+  return { ok: r === null, detalle: 'r=' + JSON.stringify(r) };
+});
+
+caso('18. Build GPU RX9070XT + PSU 650 (sin requires V2): revisarCompatibilidad cae a Legacy (no_verificado, nunca bloquea)', () => {
+  const build = { gpu: gpu9070xt, psu: psu650 };
+  const p = revisarCompatibilidad(build);
+  const sinIncompatibleDeConector = !tieneNivel(p, 'incompatible');
+  const tieneNoVerificado = tieneNivel(p, 'no_verificado');
+  return { ok: sinIncompatibleDeConector && tieneNoVerificado, detalle: JSON.stringify(p.map(x => x.nivel)) };
+});
+
+caso('19. Los 4 tiers REALES publicados (data/components.json) no reportan incompatibilidad de conector PSU<->GPU', () => {
+  const tiers = [
+    { nombre: 'entrada', gpu: gpu5060, psu: psu550 },
+    { nombre: 'media', gpu: gpu5070, psu: psu650 },
+    { nombre: 'alta', gpu: gpu5080, psu: psu850 },
+    { nombre: 'extrema', gpu: gpu5090, psu: psu1200 },
+  ];
+  const rotos = [];
+  for (const tier of tiers) {
+    const p = revisarCompatibilidad({ gpu: tier.gpu, psu: tier.psu });
+    const incompatibleDeConector = p.find((x) => x.nivel === 'incompatible' && (x.texto.includes('VHPWR') || x.texto.includes('conector')));
+    if (incompatibleDeConector) rotos.push(tier.nombre + ': ' + incompatibleDeConector.texto);
+  }
+  return { ok: rotos.length === 0, detalle: rotos.length ? 'TIERS ROTOS:\n' + rotos.join('\n') : 'Los 4 tiers (entrada/media/alta/extrema) siguen sin incompatibilidad de conector.' };
 });
 
 // ===== Resumen =====

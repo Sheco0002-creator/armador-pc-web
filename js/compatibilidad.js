@@ -68,6 +68,57 @@ function _v2AplicarOperador(a, operador, b) {
   }
 }
 
+// Todos los valores de compatibility.requires para `key` de la `pieza` de
+// la categoría dada. Array vacío si no hay mapping V2, si V2 no cargó, o si
+// esa entrada no declara ningún `requires` con esa key.
+function _v2RequiresValores(categoria, pieza, key) {
+  if (!_v2Disponible() || !pieza || !pieza.id) return [];
+  const entrada = entradaCompatibilidadV2(categoria, pieza.id);
+  if (!entrada) return [];
+  return (entrada.compatibility.requires || []).filter((f) => f.key === key).map((f) => f.value);
+}
+
+// Todos los valores de compatibility.provides para `key` de la `pieza` de
+// la categoría dada (a diferencia de _v2ProvidesValor, que solo devuelve el
+// primero — aquí puede haber varios, ej. una PSU que provee 8-pin Y
+// 12V-2x6 a la vez). Array vacío si no hay mapping/evidencia.
+function _v2ProvidesValores(categoria, pieza, key) {
+  if (!_v2Disponible() || !pieza || !pieza.id) return [];
+  const entrada = entradaCompatibilidadV2(categoria, pieza.id);
+  if (!entrada) return [];
+  return (entrada.compatibility.provides || []).filter((f) => f.key === key).map((f) => f.value);
+}
+
+// Equivalencia de MOTOR (no de vocabulario — vocab/gpuPowerConnector.json
+// sigue teniendo los 4 valores separados) usada exclusivamente para decidir
+// si un conector "provisto" satisface un conector "requerido" en el par
+// PSU<->GPU. 12VHPWR (ATX 3.0) y 12V-2x6 (ATX 3.1) son revisiones del mismo
+// conector de 16 pines, intercambiables en la inmensa mayoría de los cables
+// reales — autorizado explícitamente para esta regla (ver docs/CONTRATO_V2.md
+// §8.1/§9.2). El resto de combinaciones (6-pin/8-pin/12VHPWR/12V-2x6 entre
+// sí) NO son equivalentes.
+function _v2ConectorEquivalente(valorProvisto, valorRequerido) {
+  if (valorProvisto === valorRequerido) return true;
+  const par = ['12VHPWR', '12V-2x6'];
+  return par.includes(valorProvisto) && par.includes(valorRequerido);
+}
+
+// Evalúa si el conector que requiere la GPU está satisfecho por alguno de
+// los que provee la PSU (con la equivalencia 12VHPWR<->12V-2x6 de arriba).
+// Devuelve { match: boolean, gpuRequires, psuProvides } SOLO si ambos lados
+// tienen mapping V2 y la GPU declara al menos un `requires` de
+// gpuPowerConnector; si no, devuelve null y el llamador debe usar Legacy
+// (ej. las GPU sin evidencia de conector, o el caso pendiente "3x8-pin").
+function _v2ConectorGpuPsuMatch(gpu, psu) {
+  if (!_v2Disponible() || !gpu || !gpu.id || !psu || !psu.id) return null;
+  const gpuRequires = _v2RequiresValores('gpu', gpu, 'gpuPowerConnector');
+  if (gpuRequires.length === 0) return null;
+  const psuProvides = _v2ProvidesValores('psu', psu, 'gpuPowerConnector');
+  if (psuProvides.length === 0) return null;
+  const match = gpuRequires.some((req) => psuProvides.some((prov) => _v2ConectorEquivalente(prov, req)));
+  return { match, gpuRequires, psuProvides };
+}
+
 // Evalúa los compatibility.constraints declarados en V2 (a nivel family,
 // ver Fase 7.2) para `pieza` de `categoria` contra `piezaContra` de
 // `categoriaContra`, resolviendo `against: "categoria:dotPath"`. Devuelve
@@ -361,17 +412,36 @@ function revisarCompatibilidad(build) {
     }
   }
 
-  // Conectores de la fuente hacia la GPU: no tenemos el detalle de qué
-  // conectores trae cada fuente ni cuáles necesita cada tarjeta.
+  // Conectores de la fuente hacia la GPU: si V2 tiene mapping+evidencia
+  // completos para ambas piezas y la GPU declara qué conector requiere (ver
+  // Fase 7.5), se compara contra los que provee la PSU (12VHPWR/12V-2x6
+  // tratados como equivalentes solo para este matching, ver
+  // _v2ConectorEquivalente); si no, se usa el Legacy tal cual: no tenemos
+  // el detalle de qué conectores trae cada fuente ni cuáles necesita cada
+  // tarjeta.
   if (psu && gpu) {
-    problemas.push({
-      nivel: 'no_verificado',
-      texto: t({
-        es: 'No verificado: no tenemos el detalle de los conectores de esta fuente ni los que requiere la tarjeta gráfica (por ejemplo PCIe de 12 pines) para confirmar que incluye el correcto.',
-        en: "Not verified: we don't have the connector details for this power supply or the ones the graphics card requires (e.g. 12-pin PCIe) to confirm it includes the right one.",
-        pt: 'Não verificado: não temos o detalhe dos conectores desta fonte nem os que a placa de vídeo requer (por exemplo, PCIe de 12 pinos) para confirmar que inclui o correto.',
-      }),
-    });
+    const conectorV2 = _v2ConectorGpuPsuMatch(gpu, psu);
+    if (conectorV2) {
+      if (!conectorV2.match) {
+        problemas.push({
+          nivel: 'incompatible',
+          texto: t({
+            es: `Incompatible: la tarjeta gráfica requiere un conector ${conectorV2.gpuRequires.join('/')} y esta fuente no lo incluye (provee ${conectorV2.psuProvides.join('/')}).`,
+            en: `Incompatible: the graphics card requires a ${conectorV2.gpuRequires.join('/')} connector and this power supply doesn't include one (it provides ${conectorV2.psuProvides.join('/')}).`,
+            pt: `Incompatível: a placa de vídeo requer um conector ${conectorV2.gpuRequires.join('/')} e esta fonte não o inclui (fornece ${conectorV2.psuProvides.join('/')}).`,
+          }),
+        });
+      }
+    } else {
+      problemas.push({
+        nivel: 'no_verificado',
+        texto: t({
+          es: 'No verificado: no tenemos el detalle de los conectores de esta fuente ni los que requiere la tarjeta gráfica (por ejemplo PCIe de 12 pines) para confirmar que incluye el correcto.',
+          en: "Not verified: we don't have the connector details for this power supply or the ones the graphics card requires (e.g. 12-pin PCIe) to confirm it includes the right one.",
+          pt: 'Não verificado: não temos o detalhe dos conectores desta fonte nem os que a placa de vídeo requer (por exemplo, PCIe de 12 pinos) para confirmar que inclui o correto.',
+        }),
+      });
+    }
   }
 
   return problemas;

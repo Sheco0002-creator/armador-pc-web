@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "space grotesk",
+        "createdAt": "2026-08-26T09:22:15.737Z",
+        "reason": "Preexistente en las 57 páginas del sitio (git blame: anterior a esta sesión); cambiar la tipografía es pulido global, explícitamente fuera de alcance de la Fase 0+1 aprobada (solo fondo ambiental de Sobre ArmaPC)"
+      }
+    ]
+  }
+}

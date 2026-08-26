@@ -36,6 +36,57 @@
 </head>
 <body>
 
+<div class="ambient-bg ambient-bg--static ambient-bg--minimal" aria-hidden="true">
+  <svg class="ambient-trace-a" viewBox="0 0 480 420" fill="none">
+    <path d="M40 30 H210 V110 H380 V190" stroke="#5FAE8C" stroke-width="1" opacity="0.16"/>
+    <path d="M40 30 V-10" stroke="#5FAE8C" stroke-width="1" opacity="0.16"/>
+    <circle cx="210" cy="110" r="3" fill="#D4A24C" opacity="0.2"/>
+    <circle cx="380" cy="190" r="3" fill="#D4A24C" opacity="0.2"/>
+    <circle cx="40" cy="30" r="2.5" fill="#5FAE8C" opacity="0.18"/>
+  </svg>
+  <svg class="ambient-trace-b" viewBox="0 0 480 420" fill="none">
+    <path d="M90 420 V300 H260 V200 H440" stroke="#5FAE8C" stroke-width="1" opacity="0.16"/>
+    <path d="M440 200 V170" stroke="#5FAE8C" stroke-width="1" opacity="0.16"/>
+    <circle cx="260" cy="200" r="3" fill="#D4A24C" opacity="0.2"/>
+    <circle cx="90" cy="420" r="2.5" fill="#5FAE8C" opacity="0.18"/>
+    <circle cx="440" cy="200" r="2.5" fill="#5FAE8C" opacity="0.18"/>
+  </svg>
+  <svg class="ambient-cpu" viewBox="0 0 100 100" fill="none">
+    <rect x="26" y="26" width="48" height="48" rx="4" stroke="#5FAE8C" stroke-width="1.5" opacity="0.3"/>
+    <rect x="38" y="38" width="24" height="24" rx="2" stroke="#D4A24C" stroke-width="1.2" opacity="0.3"/>
+    <g stroke="#5FAE8C" stroke-width="1.5" opacity="0.22">
+      <line x1="34" y1="20" x2="34" y2="26"/><line x1="50" y1="20" x2="50" y2="26"/><line x1="66" y1="20" x2="66" y2="26"/>
+      <line x1="34" y1="74" x2="34" y2="80"/><line x1="50" y1="74" x2="50" y2="80"/><line x1="66" y1="74" x2="66" y2="80"/>
+      <line x1="20" y1="34" x2="26" y2="34"/><line x1="20" y1="50" x2="26" y2="50"/><line x1="20" y1="66" x2="26" y2="66"/>
+      <line x1="74" y1="34" x2="80" y2="34"/><line x1="74" y1="50" x2="80" y2="50"/><line x1="74" y1="66" x2="80" y2="66"/>
+    </g>
+  </svg>
+  <svg class="ambient-ram" viewBox="0 0 60 100" fill="none">
+    <rect x="10" y="8" width="14" height="84" rx="2" stroke="#5FAE8C" stroke-width="1.5" opacity="0.28"/>
+    <rect x="36" y="8" width="14" height="84" rx="2" stroke="#5FAE8C" stroke-width="1.5" opacity="0.28"/>
+    <g stroke="#D4A24C" stroke-width="1.2" opacity="0.22">
+      <line x1="13" y1="20" x2="21" y2="20"/><line x1="13" y1="32" x2="21" y2="32"/><line x1="13" y1="44" x2="21" y2="44"/>
+      <line x1="39" y1="20" x2="47" y2="20"/><line x1="39" y1="32" x2="47" y2="32"/><line x1="39" y1="44" x2="47" y2="44"/>
+    </g>
+  </svg>
+  <svg class="ambient-gpu" viewBox="0 0 100 64" fill="none">
+    <rect x="10" y="14" width="80" height="40" rx="4" stroke="#5FAE8C" stroke-width="1.5" opacity="0.26"/>
+    <rect x="7" y="12" width="4" height="46" rx="1" fill="#D4A24C" opacity="0.22"/>
+    <circle cx="34" cy="34" r="11" stroke="#5FAE8C" stroke-width="1.3" opacity="0.24"/>
+    <circle cx="66" cy="34" r="11" stroke="#5FAE8C" stroke-width="1.3" opacity="0.24"/>
+  </svg>
+  <svg class="ambient-fan" viewBox="0 0 100 100" fill="none">
+    <circle cx="50" cy="50" r="34" stroke="#5FAE8C" stroke-width="1.5" opacity="0.26"/>
+    <circle cx="50" cy="50" r="4" fill="#D4A24C" opacity="0.22"/>
+    <g stroke="#5FAE8C" stroke-width="1.3" opacity="0.2">
+      <line x1="50" y1="16" x2="50" y2="30"/><line x1="50" y1="70" x2="50" y2="84"/>
+      <line x1="16" y1="50" x2="30" y2="50"/><line x1="70" y1="50" x2="84" y2="50"/>
+      <line x1="26" y1="26" x2="36" y2="36"/><line x1="64" y1="64" x2="74" y2="74"/>
+      <line x1="74" y1="26" x2="64" y2="36"/><line x1="26" y1="74" x2="36" y2="64"/>
+    </g>
+  </svg>
+</div>
+
 <header class="site-header">
   <div class="container header-inner">
     <a href="../index.html" class="logo">Arma<span>PC</span></a>
@@ -70,7 +121,7 @@
 
       <p class="guide-intro">Before building your PC, it helps to know what each part does. You don't need to be technical: here's every component explained the way you'd explain it to a friend. With this, everything else on the site will be much easier to follow.</p>
 
-      <h2>The main components</h2>
+      <h2 data-reveal>The main components</h2>
 
       <h3 class="hoverable" data-preview="cpu">Processor (CPU)</h3>
       <p>It's the "brain" of the PC. It handles the calculations that keep everything running: the operating system, programs, and much of a game's logic. When you see names like "<span class="hoverable-inline" data-preview="cpu" data-preview-label="AMD Ryzen 5">Ryzen 5</span>" or "<span class="hoverable-inline" data-preview="cpu" data-preview-label="Intel Core Ultra 7">Core Ultra 7</span>", that's the processor. Two specs you'll hear often: <strong>cores</strong> (how many tasks it can handle in parallel) and <strong>clock speed</strong> in GHz (how fast it resolves each one).</p>
@@ -98,7 +149,7 @@
 
       <div class="ad-slot mono">Ad space</div>
 
-      <h2>Terms you'll hear often</h2>
+      <h2 data-reveal>Terms you'll hear often</h2>
 
       <dl class="glossary">
         <dt class="hoverable" data-preview="socket">Socket</dt>
@@ -121,13 +172,13 @@
       </dl>
 
       <div class="guide-cta">
-        <h3>Ready to build yours?</h3>
+        <h3 data-reveal>Ready to build yours?</h3>
         <p>Now that you know the parts, try the configurator: pick each one and the system tells you if they fit together.</p>
         <a href="../configurador.html" class="btn btn-primary">Go to the configurator</a>
       </div>
 
             <div class="guide-related">
-        <h3>Keep learning</h3>
+        <h3 data-reveal>Keep learning</h3>
         <div class="related-cards">
           <a href="compatibilidad.html" class="guide-card">
             <span class="guide-tag mono">GUIDE</span>
@@ -156,5 +207,6 @@
 
 <script src="../../js/main.js"></script>
 <script src="../../js/previews.js"></script>
+<script src="../../js/motion.js"></script>
 </body>
 </html>

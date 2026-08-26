@@ -36,6 +36,57 @@
 </head>
 <body>
 
+<div class="ambient-bg ambient-bg--static ambient-bg--minimal" aria-hidden="true">
+  <svg class="ambient-trace-a" viewBox="0 0 480 420" fill="none">
+    <path d="M40 30 H210 V110 H380 V190" stroke="#5FAE8C" stroke-width="1" opacity="0.16"/>
+    <path d="M40 30 V-10" stroke="#5FAE8C" stroke-width="1" opacity="0.16"/>
+    <circle cx="210" cy="110" r="3" fill="#D4A24C" opacity="0.2"/>
+    <circle cx="380" cy="190" r="3" fill="#D4A24C" opacity="0.2"/>
+    <circle cx="40" cy="30" r="2.5" fill="#5FAE8C" opacity="0.18"/>
+  </svg>
+  <svg class="ambient-trace-b" viewBox="0 0 480 420" fill="none">
+    <path d="M90 420 V300 H260 V200 H440" stroke="#5FAE8C" stroke-width="1" opacity="0.16"/>
+    <path d="M440 200 V170" stroke="#5FAE8C" stroke-width="1" opacity="0.16"/>
+    <circle cx="260" cy="200" r="3" fill="#D4A24C" opacity="0.2"/>
+    <circle cx="90" cy="420" r="2.5" fill="#5FAE8C" opacity="0.18"/>
+    <circle cx="440" cy="200" r="2.5" fill="#5FAE8C" opacity="0.18"/>
+  </svg>
+  <svg class="ambient-cpu" viewBox="0 0 100 100" fill="none">
+    <rect x="26" y="26" width="48" height="48" rx="4" stroke="#5FAE8C" stroke-width="1.5" opacity="0.3"/>
+    <rect x="38" y="38" width="24" height="24" rx="2" stroke="#D4A24C" stroke-width="1.2" opacity="0.3"/>
+    <g stroke="#5FAE8C" stroke-width="1.5" opacity="0.22">
+      <line x1="34" y1="20" x2="34" y2="26"/><line x1="50" y1="20" x2="50" y2="26"/><line x1="66" y1="20" x2="66" y2="26"/>
+      <line x1="34" y1="74" x2="34" y2="80"/><line x1="50" y1="74" x2="50" y2="80"/><line x1="66" y1="74" x2="66" y2="80"/>
+      <line x1="20" y1="34" x2="26" y2="34"/><line x1="20" y1="50" x2="26" y2="50"/><line x1="20" y1="66" x2="26" y2="66"/>
+      <line x1="74" y1="34" x2="80" y2="34"/><line x1="74" y1="50" x2="80" y2="50"/><line x1="74" y1="66" x2="80" y2="66"/>
+    </g>
+  </svg>
+  <svg class="ambient-ram" viewBox="0 0 60 100" fill="none">
+    <rect x="10" y="8" width="14" height="84" rx="2" stroke="#5FAE8C" stroke-width="1.5" opacity="0.28"/>
+    <rect x="36" y="8" width="14" height="84" rx="2" stroke="#5FAE8C" stroke-width="1.5" opacity="0.28"/>
+    <g stroke="#D4A24C" stroke-width="1.2" opacity="0.22">
+      <line x1="13" y1="20" x2="21" y2="20"/><line x1="13" y1="32" x2="21" y2="32"/><line x1="13" y1="44" x2="21" y2="44"/>
+      <line x1="39" y1="20" x2="47" y2="20"/><line x1="39" y1="32" x2="47" y2="32"/><line x1="39" y1="44" x2="47" y2="44"/>
+    </g>
+  </svg>
+  <svg class="ambient-gpu" viewBox="0 0 100 64" fill="none">
+    <rect x="10" y="14" width="80" height="40" rx="4" stroke="#5FAE8C" stroke-width="1.5" opacity="0.26"/>
+    <rect x="7" y="12" width="4" height="46" rx="1" fill="#D4A24C" opacity="0.22"/>
+    <circle cx="34" cy="34" r="11" stroke="#5FAE8C" stroke-width="1.3" opacity="0.24"/>
+    <circle cx="66" cy="34" r="11" stroke="#5FAE8C" stroke-width="1.3" opacity="0.24"/>
+  </svg>
+  <svg class="ambient-fan" viewBox="0 0 100 100" fill="none">
+    <circle cx="50" cy="50" r="34" stroke="#5FAE8C" stroke-width="1.5" opacity="0.26"/>
+    <circle cx="50" cy="50" r="4" fill="#D4A24C" opacity="0.22"/>
+    <g stroke="#5FAE8C" stroke-width="1.3" opacity="0.2">
+      <line x1="50" y1="16" x2="50" y2="30"/><line x1="50" y1="70" x2="50" y2="84"/>
+      <line x1="16" y1="50" x2="30" y2="50"/><line x1="70" y1="50" x2="84" y2="50"/>
+      <line x1="26" y1="26" x2="36" y2="36"/><line x1="64" y1="64" x2="74" y2="74"/>
+      <line x1="74" y1="26" x2="64" y2="36"/><line x1="26" y1="74" x2="36" y2="64"/>
+    </g>
+  </svg>
+</div>
+
 <header class="site-header">
   <div class="container header-inner">
     <a href="../index.html" class="logo">Arma<span>PC</span></a>
@@ -70,40 +121,40 @@
 
       <p class="guide-intro">Building your first PC is exciting, but it's also easy to trip over mistakes others have already made before you. The good news: almost all of them are avoidable once you know what to look for. Here are the most frequent ones, explained so you don't fall into them.</p>
 
-      <h2>1. Skimping too much on the power supply</h2>
+      <h2 data-reveal>1. Skimping too much on the power supply</h2>
       <p>It's the classic mistake. After spending on the processor and the <span class="hoverable-inline" data-preview="gpu" data-preview-label="Graphics card">graphics card</span>, many people want to cut costs on the <span class="hoverable-inline" data-preview="psu" data-preview-label="Power supply">power supply</span> by buying the cheapest one they can find. It's a bad idea: the PSU powers every other component, and a low-quality one can be unstable or, in the worst case, damage the rest of the build. You don't need the most expensive one, but you do need one from a reliable brand, with certification (80+ Bronze at minimum) and enough watts for your build with margin to spare. Think of it as a house's foundation: you don't see it, but it holds everything up.</p>
 
-      <h2>2. Forgetting cooling (or underestimating it)</h2>
+      <h2 data-reveal>2. Forgetting cooling (or underestimating it)</h2>
       <p>Some processors don't include <span class="hoverable-inline" data-preview="cooling" data-preview-label="Cooling">cooling</span> in the box, and more than one person has been surprised while building their PC to discover that piece is missing. Others buy a cooler that's too weak for a powerful processor, which ends up overheating and losing performance to protect itself. Before buying, confirm whether your processor includes a cooler, and if not, budget for one that matches the heat it generates.</p>
 
-      <h2>3. Not checking compatibility before buying</h2>
+      <h2 data-reveal>3. Not checking compatibility before buying</h2>
       <p>Buying a processor and a <span class="hoverable-inline" data-preview="motherboard" data-preview-label="Motherboard">motherboard</span> with a different <span class="hoverable-inline" data-preview="socket" data-preview-label="Socket">socket</span>, or <span class="hoverable-inline" data-preview="ram" data-preview-label="RAM">RAM</span> the board doesn't support, is one of the most expensive mistakes — because it means returning parts or being stuck with something you can't use. The rule is simple: before you pay, verify everything fits together. We have a <a href="compatibilidad.html">full compatibility guide</a>, and our <a href="../configurador.html">configurator</a> checks this for you automatically as you choose parts.</p>
 
       <div class="ad-slot mono">Ad space</div>
 
-      <h2>4. Unbalancing the budget</h2>
+      <h2 data-reveal>4. Unbalancing the budget</h2>
       <p>Spending almost everything on an extremely powerful <span class="hoverable-inline" data-preview="gpu" data-preview-label="Powerful graphics card">graphics card</span> and leaving scraps for everything else is a rookie mistake. An expensive GPU paired with a very weak processor creates a <span class="hoverable-inline" data-preview="cuello-botella" data-preview-label="Bottleneck">bottleneck</span>: the card can't perform at its best because the processor can't keep up. The key is balance: every part should be roughly at the same level as the others. A balanced build beats one with a star part and everything else lagging.</p>
 
-      <h2>5. Buying too little RAM (or too much)</h2>
+      <h2 data-reveal>5. Buying too little RAM (or too much)</h2>
       <p>Sticking with 8 GB of <span class="hoverable-inline" data-preview="ram" data-preview-label="RAM">RAM</span> today will leave you short in many current games. But going to the other extreme and buying 64 GB "just in case" when you're only going to game is throwing money at something that would perform better spent on the graphics card. For gaming, 16 GB is the comfortable minimum and 32 GB is the sweet spot with room for the future. Adjust based on what you'll actually do.</p>
 
-      <h2>6. Ignoring case size</h2>
+      <h2 data-reveal>6. Ignoring case size</h2>
       <p>Falling in love with a huge <span class="hoverable-inline" data-preview="gpu" data-preview-label="Graphics card">graphics card</span> and finding out it doesn't fit in your <span class="hoverable-inline" data-preview="case" data-preview-label="Case">case</span> is more common than you'd think. High-end GPUs are long, and premium air coolers are tall. Before buying, check that the case has enough room for the card's length and the cooler's height. A detail that gets overlooked and ruins the build.</p>
 
-      <h2>7. Obsessing over "today's" prices</h2>
+      <h2 data-reveal>7. Obsessing over "today's" prices</h2>
       <p>Component prices change constantly, especially in today's market. Rushing to buy a "deal" without comparing, or endlessly waiting for the perfect price that never comes, are two sides of the same mistake. Set your budget, compare across two or three stores, and buy when you find a reasonable price. The perfect PC at the perfect price doesn't exist; a good PC at a fair price does.</p>
 
-      <h2>8. Not planning before buying</h2>
+      <h2 data-reveal>8. Not planning before buying</h2>
       <p>The mistake that includes all the others: buying individual parts without a well-thought-out list. Put together your full build <em>on paper</em> (or in a configurator) before spending a single dollar. That way you see the real total, catch incompatibilities, and avoid surprises. Five minutes of planning saves you weeks of headaches.</p>
 
       <div class="guide-cta">
-        <h3>Avoid all of these mistakes at once</h3>
+        <h3 data-reveal>Avoid all of these mistakes at once</h3>
         <p>The configurator builds the full list for you, checks compatibility, and shows you the total. The safest way to get it right.</p>
         <a href="../configurador.html" class="btn btn-primary">Go to the configurator</a>
       </div>
 
             <div class="guide-related">
-        <h3>Keep learning</h3>
+        <h3 data-reveal>Keep learning</h3>
         <div class="related-cards">
           <a href="glosario.html" class="guide-card">
             <span class="guide-tag mono">BASICS</span>
@@ -132,5 +183,6 @@
 
 <script src="../../js/main.js"></script>
 <script src="../../js/previews.js"></script>
+<script src="../../js/motion.js"></script>
 </body>
 </html>

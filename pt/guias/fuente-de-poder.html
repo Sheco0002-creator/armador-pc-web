@@ -36,6 +36,57 @@
 </head>
 <body>
 
+<div class="ambient-bg ambient-bg--static ambient-bg--minimal" aria-hidden="true">
+  <svg class="ambient-trace-a" viewBox="0 0 480 420" fill="none">
+    <path d="M40 30 H210 V110 H380 V190" stroke="#5FAE8C" stroke-width="1" opacity="0.16"/>
+    <path d="M40 30 V-10" stroke="#5FAE8C" stroke-width="1" opacity="0.16"/>
+    <circle cx="210" cy="110" r="3" fill="#D4A24C" opacity="0.2"/>
+    <circle cx="380" cy="190" r="3" fill="#D4A24C" opacity="0.2"/>
+    <circle cx="40" cy="30" r="2.5" fill="#5FAE8C" opacity="0.18"/>
+  </svg>
+  <svg class="ambient-trace-b" viewBox="0 0 480 420" fill="none">
+    <path d="M90 420 V300 H260 V200 H440" stroke="#5FAE8C" stroke-width="1" opacity="0.16"/>
+    <path d="M440 200 V170" stroke="#5FAE8C" stroke-width="1" opacity="0.16"/>
+    <circle cx="260" cy="200" r="3" fill="#D4A24C" opacity="0.2"/>
+    <circle cx="90" cy="420" r="2.5" fill="#5FAE8C" opacity="0.18"/>
+    <circle cx="440" cy="200" r="2.5" fill="#5FAE8C" opacity="0.18"/>
+  </svg>
+  <svg class="ambient-cpu" viewBox="0 0 100 100" fill="none">
+    <rect x="26" y="26" width="48" height="48" rx="4" stroke="#5FAE8C" stroke-width="1.5" opacity="0.3"/>
+    <rect x="38" y="38" width="24" height="24" rx="2" stroke="#D4A24C" stroke-width="1.2" opacity="0.3"/>
+    <g stroke="#5FAE8C" stroke-width="1.5" opacity="0.22">
+      <line x1="34" y1="20" x2="34" y2="26"/><line x1="50" y1="20" x2="50" y2="26"/><line x1="66" y1="20" x2="66" y2="26"/>
+      <line x1="34" y1="74" x2="34" y2="80"/><line x1="50" y1="74" x2="50" y2="80"/><line x1="66" y1="74" x2="66" y2="80"/>
+      <line x1="20" y1="34" x2="26" y2="34"/><line x1="20" y1="50" x2="26" y2="50"/><line x1="20" y1="66" x2="26" y2="66"/>
+      <line x1="74" y1="34" x2="80" y2="34"/><line x1="74" y1="50" x2="80" y2="50"/><line x1="74" y1="66" x2="80" y2="66"/>
+    </g>
+  </svg>
+  <svg class="ambient-ram" viewBox="0 0 60 100" fill="none">
+    <rect x="10" y="8" width="14" height="84" rx="2" stroke="#5FAE8C" stroke-width="1.5" opacity="0.28"/>
+    <rect x="36" y="8" width="14" height="84" rx="2" stroke="#5FAE8C" stroke-width="1.5" opacity="0.28"/>
+    <g stroke="#D4A24C" stroke-width="1.2" opacity="0.22">
+      <line x1="13" y1="20" x2="21" y2="20"/><line x1="13" y1="32" x2="21" y2="32"/><line x1="13" y1="44" x2="21" y2="44"/>
+      <line x1="39" y1="20" x2="47" y2="20"/><line x1="39" y1="32" x2="47" y2="32"/><line x1="39" y1="44" x2="47" y2="44"/>
+    </g>
+  </svg>
+  <svg class="ambient-gpu" viewBox="0 0 100 64" fill="none">
+    <rect x="10" y="14" width="80" height="40" rx="4" stroke="#5FAE8C" stroke-width="1.5" opacity="0.26"/>
+    <rect x="7" y="12" width="4" height="46" rx="1" fill="#D4A24C" opacity="0.22"/>
+    <circle cx="34" cy="34" r="11" stroke="#5FAE8C" stroke-width="1.3" opacity="0.24"/>
+    <circle cx="66" cy="34" r="11" stroke="#5FAE8C" stroke-width="1.3" opacity="0.24"/>
+  </svg>
+  <svg class="ambient-fan" viewBox="0 0 100 100" fill="none">
+    <circle cx="50" cy="50" r="34" stroke="#5FAE8C" stroke-width="1.5" opacity="0.26"/>
+    <circle cx="50" cy="50" r="4" fill="#D4A24C" opacity="0.22"/>
+    <g stroke="#5FAE8C" stroke-width="1.3" opacity="0.2">
+      <line x1="50" y1="16" x2="50" y2="30"/><line x1="50" y1="70" x2="50" y2="84"/>
+      <line x1="16" y1="50" x2="30" y2="50"/><line x1="70" y1="50" x2="84" y2="50"/>
+      <line x1="26" y1="26" x2="36" y2="36"/><line x1="64" y1="64" x2="74" y2="74"/>
+      <line x1="74" y1="26" x2="64" y2="36"/><line x1="26" y1="74" x2="36" y2="64"/>
+    </g>
+  </svg>
+</div>
+
 <header class="site-header">
   <div class="container header-inner">
     <a href="../index.html" class="logo">Arma<span>PC</span></a>
@@ -70,37 +121,37 @@
 
       <p class="guide-intro">A <span class="hoverable-inline" data-preview="psu" data-preview-label="Fonte de alimentação">fonte de alimentação</span> é a peça menos glamourosa de um PC e, por isso mesmo, a que mais gente negligencia. Erro. É ela que alimenta de eletricidade tudo o mais, e escolhê-la bem é fundamental para que seu equipamento funcione de forma estável e dure anos. Aqui explicamos como acertar sem gastar a mais.</p>
 
-      <h2>O que ela faz exatamente</h2>
+      <h2 data-reveal>O que ela faz exatamente</h2>
       <p>A fonte pega a corrente da tomada e a converte na eletricidade que cada componente precisa, na quantidade certa. Alimenta o processador, a <span class="hoverable-inline" data-preview="gpu" data-preview-label="Placa de vídeo">placa de vídeo</span>, a <span class="hoverable-inline" data-preview="motherboard" data-preview-label="Placa-mãe">placa-mãe</span>, os discos... tudo. Se falhar ou for de má qualidade, pode afetar (ou até danificar) as outras peças. Por isso não é onde vale a pena economizar.</p>
 
-      <h2>Quantos watts eu preciso?</h2>
+      <h2 data-reveal>Quantos watts eu preciso?</h2>
       <p>Os watts (W) são a quantidade de energia que a fonte consegue entregar. A regra é ter o suficiente para todo o seu equipamento, <strong>com boa margem de sobra</strong>. O que mais consome, de longe, é a placa de vídeo.</p>
       <p>A forma simples de calcular: some o consumo do processador e da GPU, adicione uns 100 W para o resto, e escolha uma fonte que supere esse número com folga — idealmente 30-40% a mais. Essa margem não é desperdício: uma fonte que trabalha no limite esquenta, faz barulho e se desgasta antes. Uma com margem trabalha fresca, silenciosa e dura mais.</p>
       <p>Como referência rápida desta geração: um PC de entrada costuma ficar confortável com 550-650 W, um intermediário com 750 W, e um topo de linha com 850-1000 W. Nosso <a href="../configurador.html">configurador</a> faz esse cálculo por você e avisa se a fonte que você escolheu fica aquém.</p>
 
       <div class="ad-slot mono">Espaço publicitário</div>
 
-      <h2>A certificação 80+: o que significa</h2>
+      <h2 data-reveal>A certificação 80+: o que significa</h2>
       <p>Você vai ver que as fontes trazem um selo como "80+ Bronze", "80+ Gold", "80+ Platinum". Isso é uma certificação de <strong>eficiência</strong>: indica quão bem a fonte converte a eletricidade sem desperdiçá-la em forma de calor. Do menor para o maior: Bronze, Silver, Gold, Platinum, Titanium.</p>
       <p>O que isso significa para você? Uma fonte mais eficiente desperdiça menos energia (você gasta um pouco menos de luz), gera menos calor e costuma ser de melhor qualidade geral. Para a maioria das pessoas, <strong>80+ Bronze é o mínimo recomendável</strong> e <strong>80+ Gold é o ponto ideal</strong> entre preço e qualidade. Você não precisa de Platinum ou Titanium a menos que busque o melhor do melhor.</p>
 
-      <h2>Modular, semi-modular ou não modular</h2>
+      <h2 data-reveal>Modular, semi-modular ou não modular</h2>
       <p>Esse termo se refere aos cabos. Numa fonte <strong>não modular</strong>, todos os cabos vêm fixos (você use os que usar). Numa <strong>modular</strong>, você conecta só os cabos que precisa, o que deixa o interior do <span class="hoverable-inline" data-preview="case" data-preview-label="Gabinete">gabinete</span> mais organizado e com melhor fluxo de ar. A <strong>semi-modular</strong> é um meio-termo. Não afeta o desempenho, mas uma modular deixa a montagem mais limpa e caprichada. É um conforto, não uma necessidade.</p>
 
-      <h2>O padrão ATX 3.1 e as placas novas</h2>
+      <h2 data-reveal>O padrão ATX 3.1 e as placas novas</h2>
       <p>As fontes modernas vêm com o padrão "ATX 3.1", projetado para as placas de vídeo atuais, que têm picos de consumo elevados. Se você vai usar uma GPU de geração recente, vale a pena uma fonte ATX 3.1 com o conector adequado, porque ela é pensada justamente para lidar com esses picos sem problemas. Um detalhe que evita dores de cabeça com as placas novas.</p>
 
-      <h2>Resumindo</h2>
+      <h2 data-reveal>Resumindo</h2>
       <p>Escolha uma fonte de uma <strong>marca confiável</strong>, com <strong>watts suficientes e margem</strong> para seu equipamento, pelo menos <strong>80+ Bronze</strong> (melhor Gold), e ATX 3.1 se você usar uma GPU recente. Não é a peça para economizar: é a fundação que sustenta e protege tudo o mais.</p>
 
       <div class="guide-cta">
-        <h3>Deixe o configurador calcular os watts por você</h3>
+        <h3 data-reveal>Deixe o configurador calcular os watts por você</h3>
         <p>Escolha suas peças e o sistema diz quanta potência você precisa e avisa se a fonte fica aquém.</p>
         <a href="../configurador.html" class="btn btn-primary">Ir para o configurador</a>
       </div>
 
             <div class="guide-related">
-        <h3>Continue aprendendo</h3>
+        <h3 data-reveal>Continue aprendendo</h3>
         <div class="related-cards">
           <a href="errores-comunes.html" class="guide-card">
             <span class="guide-tag mono">DICAS</span>
@@ -129,5 +180,6 @@
 
 <script src="../../js/main.js"></script>
 <script src="../../js/previews.js"></script>
+<script src="../../js/motion.js"></script>
 </body>
 </html>

@@ -173,6 +173,10 @@ a:focus-visible, button:focus-visible {
   * { transition: none !important; }
   .hp-art { animation: none; }
   .hover-preview { transform: none; }
+  .ambient-bg { animation: none; opacity: 1; }
+  .ambient-cpu, .ambient-ram, .ambient-gpu, .ambient-fan { animation: none; }
+  .option.selected, .cat-options, .summary-list li { animation: none; }
+  .comp-row:hover, .level-pill:hover, .contact-card:hover { transform: none; }
 }
 
 /* ===== Responsive / móvil ===== */
@@ -246,7 +250,7 @@ a:focus-visible, button:focus-visible {
   font-family: var(--font-display);
   font-size: 14px;
   font-weight: 500;
-  transition: border-color 0.2s, color 0.2s;
+  transition: border-color 0.2s, color 0.2s, transform 0.2s;
 }
 .level-pill:hover { border-color: var(--accent-mint); color: var(--text); }
 .level-pill.active { border-color: var(--accent); color: var(--accent); }
@@ -587,3 +591,105 @@ a:focus-visible, button:focus-visible {
 .power-ok span:last-child { color: var(--accent-mint); }
 .power-warn span:last-child { color: var(--accent); }
 .power-bad span:last-child { color: #e08a6a; }
+
+/* ===== Fondo ambiental (Sobre ArmaPC) =====
+   Capa decorativa fija detrás del contenido, en el mismo lenguaje visual
+   que .trace-line del hero (circuito + nodos) y previews.js (iconos de
+   línea): opacidad baja, deriva lenta, sin interacción, sin JS. Pensada
+   para vivir en los márgenes de .container-narrow, nunca sobre el texto. */
+.ambient-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  animation: ambient-fade-in 2.5s ease-out 0.2s forwards;
+}
+.ambient-bg svg { position: absolute; fill: none; }
+
+.ambient-trace-a { top: -60px; left: -60px; width: 420px; height: 368px; }
+.ambient-trace-b { bottom: -60px; right: -60px; width: 420px; height: 368px; }
+.ambient-cpu { top: 16%; left: 3%; width: 170px; height: 170px; animation: ambient-drift-a 68s ease-in-out infinite alternate; }
+.ambient-ram { top: 10%; right: 5%; width: 120px; height: 180px; animation: ambient-drift-b 84s ease-in-out infinite alternate; }
+.ambient-gpu { bottom: 14%; right: 4%; width: 220px; height: 141px; animation: ambient-drift-c 76s ease-in-out infinite alternate; }
+.ambient-fan { bottom: 16%; left: 5%; width: 150px; height: 150px; animation: ambient-drift-d 92s ease-in-out infinite alternate; }
+
+@keyframes ambient-fade-in { to { opacity: 1; } }
+@keyframes ambient-drift-a { to { transform: translate(14px, -10px) rotate(1.5deg); } }
+@keyframes ambient-drift-b { to { transform: translate(-10px, 14px) rotate(-1.5deg); } }
+@keyframes ambient-drift-c { to { transform: translate(-16px, -8px) rotate(1deg); } }
+@keyframes ambient-drift-d { to { transform: translate(10px, 12px) rotate(-1deg); } }
+
+@media (max-width: 760px) {
+  .ambient-cpu { width: 110px; height: 110px; }
+  .ambient-ram { width: 84px; height: 126px; }
+  .ambient-gpu { width: 150px; height: 96px; }
+  .ambient-fan { width: 100px; height: 100px; }
+  .ambient-trace-a, .ambient-trace-b { width: 300px; height: 263px; }
+}
+
+/* ===== Fondo ambiental: variantes estática y mínima (Fase 2) =====
+   Mismo componente .ambient-bg de la Fase 1, sin deriva continua: para
+   Configurador, Presupuestos (niveles), Guías, Privacidad y Contacto el
+   fondo está presente pero quieto — la "ambientación" es visual, no un
+   segundo foco de atención. --minimal lo atenúa aún más para las páginas
+   donde la lectura es la prioridad absoluta (Guías, Privacidad). */
+.ambient-bg--static .ambient-cpu,
+.ambient-bg--static .ambient-ram,
+.ambient-bg--static .ambient-gpu,
+.ambient-bg--static .ambient-fan {
+  animation: none;
+}
+.ambient-bg--minimal { filter: opacity(0.55); }
+
+/* ===== Scroll-reveal progresivo (Fase 2) =====
+   Mejora progresiva: sin JS (o con prefers-reduced-motion), [data-reveal]
+   no tiene ningún estilo aplicado y se ve normal desde el inicio — ver
+   js/motion.js. Solo cuando JS confirma que puede animar, agrega
+   .js-reveal-ready a <html> y estos elementos parten ocultos. */
+.js-reveal-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.js-reveal-ready [data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Configurador: feedback de interacción (Fase 2) =====
+   Selectores intactos (.option, .cat-options, .summary-list ya existían);
+   estas reglas solo agregan una animación de entrada/pulso que dispara al
+   montarse el nodo, sin ningún cambio en configurador.js. */
+@keyframes option-select-pulse {
+  0% { background: rgba(212, 162, 76, 0.28); }
+  100% { background: rgba(212, 162, 76, 0.08); }
+}
+.option.selected { animation: option-select-pulse 0.5s ease-out; }
+
+@keyframes panel-enter {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.cat-options { animation: panel-enter 0.28s ease-out; }
+.summary-list li { animation: panel-enter 0.3s ease-out; }
+
+/* ===== Presupuestos (niveles): feedback de interacción (Fase 2) ===== */
+.comp-row { transition: background-color 0.2s; border-radius: 8px; }
+.comp-row:hover { background: rgba(95, 174, 140, 0.06); }
+.level-pill:hover { transform: translateY(-1px); }
+
+/* ===== Contacto: microinteracciones (Fase 2) =====
+   Selector [data-reveal] igualado en especificidad con la regla de
+   scroll-reveal de arriba (misma especificidad, pero definida después):
+   así esta lista de transition "gana" completa y cubre tanto el reveal
+   (opacity/transform) como el hover (transform/border-color/box-shadow)
+   sin que una silencie a la otra. */
+.contact-card[data-reveal] {
+  transition: opacity 0.6s ease-out, transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+.contact-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+}

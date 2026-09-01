@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-ArmaPC (tupcgamer.com) — a static educational site (HTML + CSS + vanilla JS, no framework, no build step) that teaches people how to build a gaming PC, with an interactive configurator that checks part compatibility in real time. Published via GitHub Pages (see `CNAME`). No `package.json`, no `npm install`, no bundler.
+ArmaPC (tupcgamer.com) — an educational site that teaches people how to build a gaming PC, with an interactive configurator that checks part compatibility in real time. Published via GitHub Pages (see `CNAME`). The home (`/`, `/en/`, `/pt/`) now has an Astro build step — generated from `src/pages/**/index.astro` + `src/i18n/*.json`, with `package.json` / `npm`. Every other page (configurador, guías, niveles, sobre, contacto, privacidad) is still static HTML + CSS + vanilla JS with no build step, served from `public/`.
 
 ## Commands
 

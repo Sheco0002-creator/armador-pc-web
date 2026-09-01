@@ -1,0 +1,22 @@
+---
+import { t } from '../../i18n';
+import type { Lang } from '../../i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const p = lang === 'es' ? '' : `/${lang}`;
+---
+<section class="lp-section lp-cta">
+  <div class="container lp-cta-inner">
+    <h2 class="lp-display lp-display-sm">{t(lang, 'home.cta.title')}</h2>
+    <p>{t(lang, 'home.cta.text')}</p>
+    <div class="lp-hero-actions">
+      <a href={`${p}/configurador.html`} class="lp-btn lp-btn-primary">
+        {t(lang, 'home.cta.primary')}
+        <span class="lp-btn-arrow" aria-hidden="true">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+      <a href={`${p}/contacto.html`} class="lp-btn lp-btn-outline">{t(lang, 'home.cta.secondary')}</a>
+    </div>
+  </div>
+</section>

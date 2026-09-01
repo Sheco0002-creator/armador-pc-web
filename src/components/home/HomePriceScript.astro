@@ -1,0 +1,37 @@
+---
+// Porta js/home.js: los precios de las tarjetas de nivel se calculan sumando
+// los componentes reales del catálogo — nunca se escriben a mano.
+interface Props { dataUrl: string; verCatalogo: string }
+const { dataUrl, verCatalogo } = Astro.props;
+---
+<script define:vars={{ dataUrl, verCatalogo }}>
+  (async function cargarPreciosDeNiveles() {
+    const spans = document.querySelectorAll('[data-tier-price]');
+    if (spans.length === 0) return;
+
+    let catalogo;
+    try {
+      catalogo = await (await fetch(dataUrl)).json();
+    } catch (e) {
+      spans.forEach((s) => { s.textContent = verCatalogo; });
+      return;
+    }
+
+    const porId = {};
+    for (const c of catalogo.categories) {
+      porId[c.id] = {};
+      for (const i of c.items) porId[c.id][i.id] = i;
+    }
+
+    spans.forEach((span) => {
+      const tierId = span.getAttribute('data-tier-price');
+      const tier = catalogo.tiers.find((tr) => tr.id === tierId);
+      if (!tier) { span.textContent = verCatalogo; return; }
+      const total = Object.entries(tier.components).reduce((suma, [catId, piezaId]) => {
+        const pieza = porId[catId] && porId[catId][piezaId];
+        return suma + (pieza ? pieza.price : 0);
+      }, 0);
+      span.textContent = `US$${total.toLocaleString('en-US')}`;
+    });
+  })();
+</script>

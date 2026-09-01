@@ -1,0 +1,36 @@
+---
+import { t } from '../../i18n';
+import type { Lang } from '../../i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const p = lang === 'es' ? '' : `/${lang}`;
+
+const guias = [
+  { slug: 'elegir-gpu', key: 'g1' },
+  { slug: 'compatibilidad', key: 'g2' },
+  { slug: 'glosario', key: 'g3' },
+];
+---
+<section class="lp-section lp-guides">
+  <div class="container">
+    <div class="lp-section-head">
+      <div>
+        <p class="lp-kicker mono">{t(lang, 'home.guides.kicker')}</p>
+        <h2 class="lp-display lp-display-sm">{t(lang, 'home.guides.title')}</h2>
+      </div>
+      <a href={`${p}/guias.html`} class="lp-ghost-btn">
+        {t(lang, 'home.guides.verTodas')}
+        <span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+    </div>
+    <div class="lp-guide-grid">
+      {guias.map((g) => (
+        <a href={`${p}/guias/${g.slug}.html`} class="lp-guide-card" data-reveal>
+          <span class="lp-guide-tag mono">{t(lang, `home.guides.${g.key}Tag`)}</span>
+          <h3>{t(lang, `home.guides.${g.key}Title`)}</h3>
+          <span class="lp-guide-go mono">{t(lang, 'home.guides.leer')}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

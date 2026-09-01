@@ -1,0 +1,48 @@
+---
+import { t } from '../../i18n';
+import type { Lang } from '../../i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const p = lang === 'es' ? '' : `/${lang}`;
+
+const tiers = [
+  { id: 'entrada', img: 'entrada.jpg', w: 760, h: 695, top: false },
+  { id: 'media', img: 'media.jpg', w: 760, h: 799, top: false },
+  { id: 'alta', img: 'alta.jpg', w: 760, h: 678, top: false },
+  { id: 'extrema', img: 'extrema.jpg', w: 760, h: 507, top: true },
+];
+---
+<section id="presupuestos" class="lp-section lp-tiers">
+  <div class="container lp-tiers-grid">
+
+    <div class="lp-tiers-intro" data-reveal>
+      <p class="lp-badge mono">{t(lang, 'home.tiers.badge')}</p>
+      <h2 class="lp-display">{t(lang, 'home.tiers.titleA')}<br>{t(lang, 'home.tiers.titleB')}</h2>
+      <p>{t(lang, 'home.tiers.intro')}</p>
+      <a href={`${p}/configurador.html`} class="lp-ghost-btn lp-ghost-btn-lg">
+        {t(lang, 'home.tiers.cta')}
+        <span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+    </div>
+
+    <div class="lp-tier-cards">
+      {tiers.map((tier) => (
+        <a href={`${p}/niveles/${tier.id}.html`} class={tier.top ? 'lp-tier-card lp-tier-card-top' : 'lp-tier-card'} data-reveal>
+          <span class="lp-tier-head">
+            <span class="lp-tier-name mono">{t(lang, `home.tiers.${tier.id}Name`)}</span>
+            <span class="lp-tier-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </span>
+          <span class="lp-tier-photo">
+            <img src={`/img/niveles/${tier.img}`} width={tier.w} height={tier.h} loading="lazy" decoding="async"
+                 alt={t(lang, `home.tiers.${tier.id}Alt`)}>
+          </span>
+          <span class="lp-tier-desc">{t(lang, `home.tiers.${tier.id}Desc`)}</span>
+          <span class="lp-tier-price-row">
+            <span class="lp-tier-from">{t(lang, 'home.tiers.desde')}</span>
+            <span class="lp-tier-price mono" data-tier-price={tier.id}>…</span>
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

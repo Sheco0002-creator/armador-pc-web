@@ -3,8 +3,17 @@ import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import NavScript from '../../components/NavScript.astro';
-import { t } from '../../i18n';
+import Hero from '../../components/home/Hero.astro';
+import Accesos from '../../components/home/Accesos.astro';
+import Presupuestos from '../../components/home/Presupuestos.astro';
+import Sobre from '../../components/home/Sobre.astro';
+import AdSlot from '../../components/home/AdSlot.astro';
+import Guias from '../../components/home/Guias.astro';
+import Cierre from '../../components/home/Cierre.astro';
+import HomePriceScript from '../../components/home/HomePriceScript.astro';
+import { t, rutaLocalizada } from '../../i18n';
 const lang = 'en';
+const dataUrl = rutaLocalizada('/data/components.json', lang);
 ---
 <Base
   lang={lang}
@@ -14,7 +23,17 @@ const lang = 'en';
   ogLocale="en_US"
 >
   <Header lang={lang} current="inicio" />
-  <main><p>home en — pendiente Task 5</p></main>
+  <main>
+    <Hero lang={lang} />
+    <Accesos lang={lang} />
+    <Presupuestos lang={lang} />
+    <Sobre lang={lang} />
+    <AdSlot lang={lang} />
+    <Guias lang={lang} />
+    <Cierre lang={lang} />
+  </main>
   <Footer lang={lang} />
   <NavScript />
+  <HomePriceScript dataUrl={dataUrl} verCatalogo={t(lang, 'home.tiers.verCatalogo')} />
+  <script src="/js/motion.js" is:inline></script>
 </Base>

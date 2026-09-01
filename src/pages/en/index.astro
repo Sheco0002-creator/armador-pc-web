@@ -1,0 +1,20 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import NavScript from '../../components/NavScript.astro';
+import { t } from '../../i18n';
+const lang = 'en';
+---
+<Base
+  lang={lang}
+  title={t(lang, 'meta.homeTitle')}
+  description={t(lang, 'meta.homeDesc')}
+  canonical="https://tupcgamer.com/en/"
+  ogLocale="en_US"
+>
+  <Header lang={lang} current="inicio" />
+  <main><p>home en — pendiente Task 5</p></main>
+  <Footer lang={lang} />
+  <NavScript />
+</Base>

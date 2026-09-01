@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   site: 'https://tupcgamer.com',
   base: '/',
-  build: { format: 'file' },
+  build: { format: 'directory' },
   i18n: {
     defaultLocale: 'es',
     locales: ['es', 'en', 'pt'],

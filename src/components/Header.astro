@@ -1,0 +1,44 @@
+---
+import { t } from '../i18n';
+import type { Lang } from '../i18n';
+interface Props { lang: Lang; current?: string }
+const { lang, current } = Astro.props;
+const p = lang === 'es' ? '' : `/${lang}`;
+const home = lang === 'es' ? '/' : `/${lang}/`;
+---
+<header class="site-header">
+  <div class="container header-inner">
+    <a href={home} class="logo">
+      <svg class="logo-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 2.6 20.4 7v10L12 21.4 3.6 17V7L12 2.6Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+        <path d="M12 12 20.4 7M12 12v9.4M12 12 3.6 7" stroke="currentColor" stroke-width="1.1" stroke-opacity="0.55"/>
+      </svg>
+      <span class="logo-text">Arma<span>PC</span></span>
+    </a>
+    <nav class="main-nav" id="main-nav" aria-label="Principal">
+      <a href={home} class={current === 'inicio' ? 'is-current' : undefined} aria-current={current === 'inicio' ? 'page' : undefined}>{t(lang, 'nav.inicio')}</a>
+      <a href={`${p}/configurador.html`}>{t(lang, 'nav.configurador')}</a>
+      <a href="#presupuestos">{t(lang, 'nav.presupuesto')}</a>
+      <a href={`${p}/guias.html`}>{t(lang, 'nav.guias')}</a>
+      <a href={`${p}/contacto.html`}>{t(lang, 'nav.contacto')}</a>
+      <a href={`${p}/sobre.html`}>{t(lang, 'nav.sobre')}</a>
+      <a href={`${p}/configurador.html`} class="nav-cta">
+        {t(lang, 'nav.comenzar')}
+        <span class="nav-cta-arrow" aria-hidden="true">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+      <div class="lang-switch mono" id="lang-switch">
+        <button type="button" class="lang-toggle" aria-haspopup="true" aria-expanded="false">{t(lang, 'lang.label')} <span class="lang-arrow">▾</span></button>
+        <div class="lang-menu" hidden>
+          <a href="/">Español</a>
+          <a href="/en/">English</a>
+          <a href="/pt/">Português</a>
+        </div>
+      </div>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>

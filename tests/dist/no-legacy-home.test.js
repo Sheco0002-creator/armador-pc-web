@@ -4,6 +4,7 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 
 test('no quedó index.html legacy en la raíz del repo', () => {
+  assert.ok(!existsSync(join(process.cwd(), 'index.html')), 'index.html sigue existiendo');
   assert.ok(!existsSync(join(process.cwd(), 'en', 'index.html')), 'en/index.html sigue existiendo');
   assert.ok(!existsSync(join(process.cwd(), 'pt', 'index.html')), 'pt/index.html sigue existiendo');
 });

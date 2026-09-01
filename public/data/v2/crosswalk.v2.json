@@ -1,0 +1,205 @@
+{
+  "schemaVersion": "2.0.0",
+  "generatedAt": "2026-08-22T00:00:00Z",
+  "description": "Mapeo explicito, solo de lectura, entre ids de data/components.json (legacy) y productId de data/v2/catalog.v2.json. No es parte del contrato V2 (no lo valida scripts/validate-v2.js). No se usa en la UI/legacy todavia; existe unicamente como referencia preparatoria para una futura Fase 6 (reemplazo gradual del legacy). Cada mapping.legacyId debe existir en data/components.json (categories[].items[].id) y cada mapping.productId debe existir en data/v2/catalog.v2.json como entry type=product selectable=true.",
+  "mappings": [
+    {
+      "category": "storage",
+      "legacyId": "ssd-sata-1tb",
+      "productId": "prod-samsung-870evo-1tb",
+      "note": "Legacy 'SSD SATA 1TB' (interface SATA) -> Samsung 870 EVO 1TB, family-storage-sata."
+    },
+    {
+      "category": "storage",
+      "legacyId": "ssd-nvme-1tb",
+      "productId": "prod-wd-black-sn850x-1tb",
+      "note": "Legacy 'SSD NVMe 1TB Gen4' -> WD_BLACK SN850X 1TB, family-storage-nvme-pcie4."
+    },
+    {
+      "category": "storage",
+      "legacyId": "ssd-nvme-2tb",
+      "productId": "prod-samsung-990pro-2tb",
+      "note": "Legacy 'SSD NVMe 2TB Gen4' -> Samsung 990 PRO 2TB, family-storage-nvme-pcie4."
+    },
+    {
+      "category": "storage",
+      "legacyId": "ssd-nvme-4tb",
+      "productId": "prod-samsung-9100pro-4tb",
+      "note": "Legacy 'SSD NVMe 4TB Gen5' -> Samsung 9100 PRO 4TB, family-storage-nvme-pcie5."
+    },
+    {
+      "category": "case",
+      "legacyId": "case-mid",
+      "productId": "prod-corsair-4000d-airflow",
+      "note": "Legacy 'Mid-tower ATX' (maxGpuLength 360mm, maxCoolerHeight 170mm) -> CORSAIR 4000D AIRFLOW (CC-9011201-WW), family-case-atx-mid-tower. Coincide exactamente con los limites del legacy."
+    },
+    {
+      "category": "case",
+      "legacyId": "case-full",
+      "productId": "prod-corsair-7000d-airflow",
+      "note": "Legacy 'Full-tower ATX' (maxGpuLength 400mm, maxCoolerHeight 180mm) -> CORSAIR 7000D AIRFLOW (CC-9011218-WW), family-case-atx-full-tower. El producto real (450mm/190mm) supera ambos limites minimos del legacy."
+    },
+    {
+      "category": "cooling",
+      "legacyId": "cool-torre-simple",
+      "productId": "prod-deepcool-ak400",
+      "note": "Legacy 'Torre de aire simple' (altura 155mm, TDP 95W) -> DeepCool AK400 (R-AK400-BKNNMN-G-1), family-cooling-air-tower. Altura de producto 155mm coincide exactamente; disipacion 220W supera el minimo legacy."
+    },
+    {
+      "category": "cooling",
+      "legacyId": "cool-torre-premium",
+      "productId": "prod-deepcool-ak620-wh",
+      "note": "Legacy 'Torre de aire premium' (altura 160mm, TDP 180W) -> DeepCool AK620 WH (R-AK620-WHNNMT-G-1), family-cooling-air-tower. Altura 160mm coincide exactamente; disipacion 260W supera el minimo legacy."
+    },
+    {
+      "category": "cooling",
+      "legacyId": "cool-aio-360",
+      "productId": "prod-corsair-icue-link-h150i-rgb",
+      "note": "Legacy 'Refrigeracion liquida AIO 360mm' (TDP 350W) -> CORSAIR iCUE LINK H150i RGB (CW-9061003-WW), family-cooling-aio-liquid. Radiador 360mm y sockets AM5/LGA1851 coinciden; el TDP en watts no pudo verificarse porque Corsair (y la industria de AIO en general, confirmado tambien contra NZXT) no publica esa cifra -- queda como limitacion documentada, no como campo inventado."
+    },
+    {
+      "category": "ram",
+      "legacyId": "ram-32",
+      "productId": "prod-corsair-vengeance-ddr5-6000-32gb",
+      "note": "Legacy '32 GB DDR5-6000' (2x16GB) -> CORSAIR VENGEANCE 32GB (2x16GB) DDR5-6000 CL36 (CMK32GX5M2B6000C36), family-memory-ddr5. Coincide exactamente. Mapping agregado de forma retroactiva: el product ya existia desde antes de esta auditoria, pero no se habia agregado al crosswalk."
+    },
+    {
+      "category": "ram",
+      "legacyId": "ram-64",
+      "productId": "prod-corsair-vengeance-ddr5-6000-64gb",
+      "note": "Legacy '64 GB DDR5-6000' (2x32GB) -> CORSAIR VENGEANCE 64GB (2x32GB) DDR5-6000 CL40 (CMK64GX5M2B6000C40), family-memory-ddr5. Coincide exactamente en capacidad, tipo, modulos y velocidad."
+    },
+    {
+      "category": "psu",
+      "legacyId": "psu-550",
+      "productId": "prod-thermaltake-smart-bx3-550w",
+      "note": "Legacy '550W 80+ Bronze, ATX 3.1' -> Thermaltake Smart BX3 Bronze 550W (PS-SPD-0550NNFABU-3), family-psu-atx. Coincide exactamente (unico candidato Bronze 550W que declara ATX 3.1 explicitamente; MSI MAG A550BN/A550BNL descartados por no declararlo)."
+    },
+    {
+      "category": "psu",
+      "legacyId": "psu-650",
+      "productId": "prod-corsair-rm650e",
+      "note": "Legacy '650W 80+ Gold, ATX 3.1' -> CORSAIR RM650e (CP-9020302-NA), family-psu-atx. Coincide exactamente."
+    },
+    {
+      "category": "psu",
+      "legacyId": "psu-750",
+      "productId": "prod-corsair-rm750e",
+      "note": "Legacy '750W 80+ Gold, ATX 3.1' -> CORSAIR RM750e (CP-9020295-NA), family-psu-atx. Coincide exactamente."
+    },
+    {
+      "category": "psu",
+      "legacyId": "psu-850",
+      "productId": "prod-msi-mag-a850gl-pcie5",
+      "note": "Legacy '850W 80+ Gold, ATX 3.1' -> MSI MAG A850GL PCIE5, family-psu-atx. Coincide exactamente. Mapping agregado de forma retroactiva: el product ya existia desde antes de esta auditoria (Fase 3, seccion PSU inicial), pero no se habia agregado al crosswalk."
+    },
+    {
+      "category": "psu",
+      "legacyId": "psu-1200",
+      "productId": "prod-corsair-hx1200i-cp9020307-na",
+      "note": "Legacy '1200W 80+ Platinum, ATX 3.1 / PCIe 5.x' -> CORSAIR HX1200i (CP-9020307-NA), family-psu-atx. Coincide exactamente. Se uso especificamente esta SKU y no otras variantes de 'HX1200i' (CP-9020070-NA, CP-9020281-NA) que no declaran ATX 3.1/PCIe 5.1."
+    },
+    {
+      "category": "psu",
+      "legacyId": "psu-1000",
+      "productId": "prod-corsair-rm1000e-atx31",
+      "note": "Legacy '1000W 80+ Platinum, ATX 3.1' -> CORSAIR RM1000e (CP-9020294-NA), family-psu-atx. Coincide en wattage (1000W) y version ATX (3.1); la certificacion real declarada por Corsair es 'Cybenetics Gold (up to 89%)', no '80+ Platinum' como dice el legacy -- diferencia de etiqueta de certificacion, no de wattage."
+    },
+    {
+      "category": "motherboard",
+      "legacyId": "mb-b650",
+      "productId": "prod-asus-tuf-gaming-b650-plus",
+      "note": "Legacy 'B650' (ATX, AM5, DDR5, chipset B650) -> ASUS TUF GAMING B650-PLUS, family-amd-am5. Coincide exactamente."
+    },
+    {
+      "category": "motherboard",
+      "legacyId": "mb-x870",
+      "productId": "prod-asus-tuf-gaming-x870-plus-wifi",
+      "note": "Legacy 'X870' (ATX, AM5, DDR5, chipset X870) -> ASUS TUF GAMING X870-PLUS WIFI, family-amd-am5. Coincide exactamente."
+    },
+    {
+      "category": "motherboard",
+      "legacyId": "mb-x870e",
+      "productId": "prod-asus-rog-strix-x870e-e-gaming-wifi",
+      "note": "Legacy 'X870E' (ATX gama alta, AM5, DDR5, chipset X870E) -> ASUS ROG STRIX X870E-E GAMING WIFI, family-amd-am5. Coincide exactamente."
+    },
+    {
+      "category": "motherboard",
+      "legacyId": "mb-z890",
+      "productId": "prod-asus-tuf-gaming-z890-pro-wifi",
+      "note": "Legacy 'Z890' (ATX, LGA1851, DDR5, chipset Z890) -> ASUS TUF GAMING Z890-PRO WIFI, family-intel-z890. Coincide exactamente. Mapping agregado de forma retroactiva: el product ya existia desde antes de esta auditoria (junto con prod-msi-mag-z890-tomahawk-wifi y prod-asrock-z890-pro-a, tambien validos), pero nunca se habia agregado al crosswalk."
+    },
+    {
+      "category": "gpu",
+      "legacyId": "gpu-5060",
+      "productId": "prod-msi-rtx5060-8g-gaming-oc",
+      "note": "Legacy 'NVIDIA RTX 5060 8GB' (length 245mm, powerDraw 145W, recommendedPsu 550W) -> MSI GeForce RTX 5060 8G GAMING OC (G5060-8GC), family-nvidia-rtx5060. Se eligio MSI como canonico entre los 3 products de la family (PNY/MSI/ASUS) por ser el unico sin ningun unknownFields. Mapping agregado de forma retroactiva: los products de GPU existen desde Fase 2/3 temprana, pero GPU nunca habia tenido ningun mapping en el crosswalk (a diferencia de storage/case/cooling/psu/motherboard/ram, ya completados)."
+    },
+    {
+      "category": "gpu",
+      "legacyId": "gpu-5070",
+      "productId": "prod-msi-rtx5070-12g-gaming-trio-oc",
+      "note": "Legacy 'NVIDIA RTX 5070 12GB' (length 300mm, powerDraw 250W, recommendedPsu 650W) -> MSI GeForce RTX 5070 12G GAMING TRIO OC (G5070-12GTC), family-nvidia-rtx5070. Se eligio MSI como canonico entre los 4 products de la family (NVIDIA FE/MSI/ASUS/PNY) por ser el unico sin ningun unknownFields. Mapping retroactivo, mismo motivo que gpu-5060."
+    },
+    {
+      "category": "gpu",
+      "legacyId": "gpu-5080",
+      "productId": "prod-msi-rtx5080-16g-gaming-trio",
+      "note": "Legacy 'NVIDIA RTX 5080 16GB' (length 340mm, powerDraw 360W, recommendedPsu 850W) -> MSI GeForce RTX 5080 16G GAMING TRIO (G5080-16GT), family-nvidia-rtx5080. Se eligio MSI como canonico entre los 3 products de la family (NVIDIA FE/MSI/ASUS) por ser el unico sin ningun unknownFields. Mapping retroactivo, mismo motivo que gpu-5060."
+    },
+    {
+      "category": "gpu",
+      "legacyId": "gpu-5090",
+      "productId": "prod-msi-rtx5090-32g-gaming-trio-oc",
+      "note": "Legacy 'NVIDIA RTX 5090 32GB' (length 360mm, powerDraw 575W, recommendedPsu 1000W) -> MSI GeForce RTX 5090 32G GAMING TRIO OC (G5090-32GTC), family-nvidia-rtx5090. Se eligio MSI como canonico entre los 3 products de la family (NVIDIA FE/MSI/ASUS) por ser el unico sin ningun unknownFields. Mapping retroactivo, mismo motivo que gpu-5060. Nota: gpu-9060xt (AMD RX 9060 XT) y gpu-9070xt (AMD RX 9070 XT), usados como alternativa en entrada y media respectivamente, NO tienen ningun mapping porque no existe ninguna family/product AMD GPU en V2. AMD GPU sigue bloqueado; AMD CPU se resolvio en Fase 4 (ver mappings de category=cpu) usando curl con user-agent de navegador contra amd.com en vez de WebFetch."
+    },
+    {
+      "category": "cpu",
+      "legacyId": "cpu-r5-9600x",
+      "productId": "prod-amd-ryzen5-9600x",
+      "note": "Legacy 'AMD Ryzen 5 9600X' (AM5, 65W) -> AMD Ryzen 5 9600X (Product ID Boxed 100-100001405WOF), family-amd-ryzen5-9600x. Coincide exactamente. Primer product AMD CPU del proyecto: Fase 4 resolvio el bloqueo historico de amd.com usando curl con user-agent de navegador (WebFetch seguia dando timeout) contra la pagina oficial de producto, obteniendo el Product ID/OPN real por primera vez."
+    },
+    {
+      "category": "cpu",
+      "legacyId": "cpu-r7-9700x",
+      "productId": "prod-amd-ryzen7-9700x",
+      "note": "Legacy 'AMD Ryzen 7 9700X' (AM5, 65W) -> AMD Ryzen 7 9700X (Product ID Boxed 100-100001404WOF), family-amd-ryzen7-9700x. Coincide exactamente."
+    },
+    {
+      "category": "cpu",
+      "legacyId": "cpu-r7-9850x3d",
+      "productId": "prod-amd-ryzen7-9850x3d",
+      "note": "Legacy 'AMD Ryzen 7 9850X3D' (AM5, 120W) -> AMD Ryzen 7 9850X3D (Product ID Boxed 100-100001973WOF), family-amd-ryzen7-9850x3d. Coincide exactamente. La evidencia de este producto tambien permitio actualizar la family (socket null->AM5, cache.l3MB null->96MB)."
+    },
+    {
+      "category": "cpu",
+      "legacyId": "cpu-r9-9950x3d",
+      "productId": "prod-amd-ryzen9-9950x3d",
+      "note": "Legacy 'AMD Ryzen 9 9950X3D' (AM5, 170W) -> AMD Ryzen 9 9950X3D (Product ID Boxed 100-100000719WOF), family-amd-ryzen9-9950x3d. Coincide exactamente. La evidencia de este producto tambien permitio actualizar la family (socket null->AM5, cache.l3MB null->128MB)."
+    },
+    {
+      "category": "gpu",
+      "legacyId": "gpu-9070xt",
+      "productId": "prod-asus-prime-rx9070xt-o16g",
+      "note": "Legacy 'AMD RX 9070 XT 16GB' (length 330mm, powerDraw 300W, recommendedPsu 750W) -> ASUS Prime Radeon RX 9070 XT OC Edition (PRIME-RX9070XT-O16G), family-amd-rx9070xt. PSU recomendada coincide exactamente (750W); powerDraw legacy (300W) es cercano al Typical Board Power oficial del chip (304W, family-amd-rx9070xt); longitud legacy (330mm) es menor a la de este producto especifico (312mm, en realidad esta placa es mas corta). Primera family/product AMD GPU del proyecto -- resuelto en Fase 4 con el mismo mecanismo que AMD CPU (curl con user-agent de navegador contra amd.com, donde WebFetch seguia fallando)."
+    },
+    {
+      "category": "gpu",
+      "legacyId": "gpu-9060xt",
+      "productId": "prod-asus-prime-rx9060xt-o16g",
+      "note": "Legacy 'AMD RX 9060 XT 16GB' (length 270mm, powerDraw 180W, recommendedPsu 600W) -> ASUS Prime Radeon RX 9060 XT OC Edition 16GB (PRIME-RX9060XT-O16G), family-amd-rx9060xt. Coincide en capacidad (16GB) y modelo exacto; la fuente oficial de AMD solo documenta la variante de 16GB, sin ambiguedad con la variante de 8GB tambien existente en el mercado. PSU recomendada real (550W, ASUS) es menor a la del legacy (600W) pero consistente con el margen conservador ya visto en otros escenarios del proyecto. Resuelto con el mismo mecanismo que gpu-9070xt (curl con user-agent de navegador contra amd.com). interface.pcieGen queda null tanto en family como en product: AMD no lo declara, y el campo 'Bus Standard' de ASUS contenia el valor claramente erroneo 'OpenGL' (mismo problema ya detectado en el ASUS RTX 5060), por lo que no se uso."
+    },
+    {
+      "category": "cpu",
+      "legacyId": "cpu-ultra7-265k",
+      "productId": "cpu-ultra7-265k",
+      "note": "Legacy 'Intel Core Ultra 7 265K' -> Intel Core Ultra 7 265K (partNumber BX80768265K), family-intel-coreultra7-265k. Coincide exactamente por nombre/modelo. partNumber sourced bajo la excepcion formal Tier-3 cerrada documentada en docs/CONTRATO_V2.md §0.37 (identidad y especificaciones principales con evidencia Tier-1 -- Intel Product Brief -- pero MPN sin evidencia Tier-1/Tier-2 accesible tras sourcing agotado; ver tambien §0.36)."
+    },
+    {
+      "category": "cpu",
+      "legacyId": "cpu-ultra9-285k",
+      "productId": "cpu-ultra9-285k",
+      "note": "Legacy 'Intel Core Ultra 9 285K' -> Intel Core Ultra 9 285K (partNumber BX80768285K), family-intel-coreultra9-285k. Coincide exactamente por nombre/modelo. partNumber sourced bajo la excepcion formal Tier-3 cerrada documentada en docs/CONTRATO_V2.md §0.37 (identidad y especificaciones principales con evidencia Tier-1 -- Intel Product Brief -- pero MPN sin evidencia Tier-1/Tier-2 accesible tras sourcing agotado; ver tambien §0.36)."
+    }
+  ]
+}

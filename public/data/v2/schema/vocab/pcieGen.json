@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "2.0.0",
+  "key": "pcieGen",
+  "description": "Generacion de PCI Express soportada/requerida por GPU, SSD M.2/PCIe y motherboard. Usado en GPU+motherboard y SSD+motherboard.",
+  "values": ["3.0", "4.0", "5.0"]
+}

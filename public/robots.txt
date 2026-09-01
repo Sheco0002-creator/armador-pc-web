@@ -1,0 +1,6 @@
+# Permitir que todos los buscadores rastreen todo el sitio.
+User-agent: *
+Allow: /
+
+# Ubicación del mapa del sitio, para ayudar a Google a indexar todo.
+Sitemap: https://tupcgamer.com/sitemap.xml

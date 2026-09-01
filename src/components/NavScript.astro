@@ -1,0 +1,30 @@
+<script is:inline>
+  document.querySelectorAll('.lang-switch').forEach((switcher) => {
+    const toggle = switcher.querySelector('.lang-toggle');
+    const menu = switcher.querySelector('.lang-menu');
+    if (!toggle || !menu) return;
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const abierto = !menu.hidden;
+      menu.hidden = abierto;
+      toggle.setAttribute('aria-expanded', String(!abierto));
+    });
+    document.addEventListener('click', (e) => {
+      if (!switcher.contains(e.target)) { menu.hidden = true; toggle.setAttribute('aria-expanded', 'false'); }
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { menu.hidden = true; toggle.setAttribute('aria-expanded', 'false'); }
+    });
+  });
+  const navToggle = document.getElementById('nav-toggle');
+  const mainNav = document.getElementById('main-nav');
+  if (navToggle && mainNav) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = mainNav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+    mainNav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => { mainNav.classList.remove('open'); navToggle.setAttribute('aria-expanded', 'false'); });
+    });
+  }
+</script>

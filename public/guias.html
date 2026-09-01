@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guías para armar tu PC gamer — ArmaPC</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="description" content="Guías para aprender a armar tu propia PC gamer desde cero: glosario, compatibilidad de componentes y cómo elegir cada pieza.">
+<link rel="canonical" href="https://tupcgamer.com/guias.html">
+<link rel="alternate" hreflang="es" href="https://tupcgamer.com/guias.html">
+<link rel="alternate" hreflang="en" href="https://tupcgamer.com/en/guias.html">
+<link rel="alternate" hreflang="pt" href="https://tupcgamer.com/pt/guias.html">
+<link rel="alternate" hreflang="x-default" href="https://tupcgamer.com/guias.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ArmaPC">
+<meta property="og:title" content="Guías para armar tu PC gamer — ArmaPC">
+<meta property="og:description" content="Guías para aprender a armar tu propia PC gamer desde cero: glosario, compatibilidad de componentes y cómo elegir cada pieza.">
+<meta property="og:url" content="https://tupcgamer.com/guias.html">
+<meta property="og:locale" content="es_PE">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Guías para armar tu PC gamer — ArmaPC">
+<meta name="twitter:description" content="Guías para aprender a armar tu propia PC gamer desde cero: glosario, compatibilidad de componentes y cómo elegir cada pieza.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GH7D533JHR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GH7D533JHR');
+</script>
+</head>
+<body>
+
+<div class="ambient-bg ambient-bg--static ambient-bg--minimal" aria-hidden="true">
+  <svg class="ambient-trace-a" viewBox="0 0 480 420" fill="none">
+    <path d="M40 30 H210 V110 H380 V190" stroke="#5FAE8C" stroke-width="1" opacity="0.16"/>
+    <path d="M40 30 V-10" stroke="#5FAE8C" stroke-width="1" opacity="0.16"/>
+    <circle cx="210" cy="110" r="3" fill="#D4A24C" opacity="0.2"/>
+    <circle cx="380" cy="190" r="3" fill="#D4A24C" opacity="0.2"/>
+    <circle cx="40" cy="30" r="2.5" fill="#5FAE8C" opacity="0.18"/>
+  </svg>
+  <svg class="ambient-trace-b" viewBox="0 0 480 420" fill="none">
+    <path d="M90 420 V300 H260 V200 H440" stroke="#5FAE8C" stroke-width="1" opacity="0.16"/>
+    <path d="M440 200 V170" stroke="#5FAE8C" stroke-width="1" opacity="0.16"/>
+    <circle cx="260" cy="200" r="3" fill="#D4A24C" opacity="0.2"/>
+    <circle cx="90" cy="420" r="2.5" fill="#5FAE8C" opacity="0.18"/>
+    <circle cx="440" cy="200" r="2.5" fill="#5FAE8C" opacity="0.18"/>
+  </svg>
+  <svg class="ambient-cpu" viewBox="0 0 100 100" fill="none">
+    <rect x="26" y="26" width="48" height="48" rx="4" stroke="#5FAE8C" stroke-width="1.5" opacity="0.3"/>
+    <rect x="38" y="38" width="24" height="24" rx="2" stroke="#D4A24C" stroke-width="1.2" opacity="0.3"/>
+    <g stroke="#5FAE8C" stroke-width="1.5" opacity="0.22">
+      <line x1="34" y1="20" x2="34" y2="26"/><line x1="50" y1="20" x2="50" y2="26"/><line x1="66" y1="20" x2="66" y2="26"/>
+      <line x1="34" y1="74" x2="34" y2="80"/><line x1="50" y1="74" x2="50" y2="80"/><line x1="66" y1="74" x2="66" y2="80"/>
+      <line x1="20" y1="34" x2="26" y2="34"/><line x1="20" y1="50" x2="26" y2="50"/><line x1="20" y1="66" x2="26" y2="66"/>
+      <line x1="74" y1="34" x2="80" y2="34"/><line x1="74" y1="50" x2="80" y2="50"/><line x1="74" y1="66" x2="80" y2="66"/>
+    </g>
+  </svg>
+  <svg class="ambient-ram" viewBox="0 0 60 100" fill="none">
+    <rect x="10" y="8" width="14" height="84" rx="2" stroke="#5FAE8C" stroke-width="1.5" opacity="0.28"/>
+    <rect x="36" y="8" width="14" height="84" rx="2" stroke="#5FAE8C" stroke-width="1.5" opacity="0.28"/>
+    <g stroke="#D4A24C" stroke-width="1.2" opacity="0.22">
+      <line x1="13" y1="20" x2="21" y2="20"/><line x1="13" y1="32" x2="21" y2="32"/><line x1="13" y1="44" x2="21" y2="44"/>
+      <line x1="39" y1="20" x2="47" y2="20"/><line x1="39" y1="32" x2="47" y2="32"/><line x1="39" y1="44" x2="47" y2="44"/>
+    </g>
+  </svg>
+  <svg class="ambient-gpu" viewBox="0 0 100 64" fill="none">
+    <rect x="10" y="14" width="80" height="40" rx="4" stroke="#5FAE8C" stroke-width="1.5" opacity="0.26"/>
+    <rect x="7" y="12" width="4" height="46" rx="1" fill="#D4A24C" opacity="0.22"/>
+    <circle cx="34" cy="34" r="11" stroke="#5FAE8C" stroke-width="1.3" opacity="0.24"/>
+    <circle cx="66" cy="34" r="11" stroke="#5FAE8C" stroke-width="1.3" opacity="0.24"/>
+  </svg>
+  <svg class="ambient-fan" viewBox="0 0 100 100" fill="none">
+    <circle cx="50" cy="50" r="34" stroke="#5FAE8C" stroke-width="1.5" opacity="0.26"/>
+    <circle cx="50" cy="50" r="4" fill="#D4A24C" opacity="0.22"/>
+    <g stroke="#5FAE8C" stroke-width="1.3" opacity="0.2">
+      <line x1="50" y1="16" x2="50" y2="30"/><line x1="50" y1="70" x2="50" y2="84"/>
+      <line x1="16" y1="50" x2="30" y2="50"/><line x1="70" y1="50" x2="84" y2="50"/>
+      <line x1="26" y1="26" x2="36" y2="36"/><line x1="64" y1="64" x2="74" y2="74"/>
+      <line x1="74" y1="26" x2="64" y2="36"/><line x1="26" y1="74" x2="36" y2="64"/>
+    </g>
+  </svg>
+</div>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">Arma<span>PC</span></a>
+    <nav class="main-nav" id="main-nav" aria-label="Principal">
+      <a href="configurador.html">Configurador</a>
+      <a href="index.html#presupuestos">Presupuestos</a>
+      <a href="guias.html">Guías</a>
+      <a href="sobre.html">Sobre</a>
+      <div class="lang-switch mono" id="lang-switch">
+        <button type="button" class="lang-toggle" aria-haspopup="true" aria-expanded="false">Español <span class="lang-arrow">▾</span></button>
+        <div class="lang-menu" hidden>
+          <a href="en/guias.html">English</a>
+          <a href="pt/guias.html">Português</a>
+        </div>
+      </div>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="guides-hero">
+    <div class="container">
+      <p class="eyebrow mono">Aprende a armar tu PC</p>
+      <h1>Guías para armar tu PC gamer</h1>
+      <p class="hero-sub">Todo lo que necesitas saber para armar tu propia PC gamer con confianza, explicado desde cero y sin tecnicismos innecesarios.</p>
+      <p class="hero-sub">¿Por dónde empezar a armar una PC gamer? Estas guías cubren, en orden, todo lo que necesitas decidir antes de comprar: qué es cada componente (glosario), cómo asegurarte de que las piezas sean compatibles entre sí (socket, tipo de RAM, tamaño de gabinete, potencia de fuente), y cómo elegir cada pieza individual — GPU, CPU, RAM y fuente de poder — según tu presupuesto y para qué vas a usar la PC.</p>
+      <p class="hero-sub">No son guías genéricas: están escritas pensando en quien arma su primera PC y quiere evitar los errores más caros (fuente barata, cuello de botella entre CPU y GPU, quedarse corto de RAM). Si prefieres ir directo a un presupuesto armado, usa el <a href="configurador.html">configurador</a> y elige tu nivel: <a href="niveles/entrada.html">entrada</a>, <a href="niveles/media.html">media</a>, <a href="niveles/alta.html">alta</a> o <a href="niveles/extrema.html">extrema</a>.</p>
+    </div>
+  </section>
+
+  <section class="guides-list-section">
+    <div class="container">
+      <div id="guides-list" class="guides-list">
+        <noscript>
+        <a href="guias/glosario.html" class="guide-list-card">
+          <span class="guide-tag mono">BÁSICOS</span>
+          <h2>Glosario para principiantes</h2>
+          <p>Qué es cada pieza de una PC, explicado en palabras simples: CPU, GPU, RAM, placa madre y el resto, sin tecnicismos.</p>
+          <span class="guide-meta mono">7 min de lectura</span>
+        </a>
+        <a href="guias/compatibilidad.html" class="guide-list-card">
+          <span class="guide-tag mono">GUÍA</span>
+          <h2>Compatibilidad de componentes</h2>
+          <p>Las reglas que hacen que las piezas encajen entre sí: socket, tipo de RAM, tamaño del gabinete y potencia de la fuente. Lo mismo que revisa el configurador.</p>
+          <span class="guide-meta mono">9 min de lectura</span>
+        </a>
+        <a href="guias/elegir-gpu.html" class="guide-list-card">
+          <span class="guide-tag mono">GPU</span>
+          <h2>Cómo elegir tu tarjeta gráfica</h2>
+          <p>La pieza que más define tu experiencia gamer. Cómo elegirla según la resolución a la que juegas, sin pagar de más ni quedarte corto.</p>
+          <span class="guide-meta mono">8 min de lectura</span>
+        </a>
+        <a href="guias/errores-comunes.html" class="guide-list-card">
+          <span class="guide-tag mono">CONSEJOS</span>
+          <h2>Errores comunes al armar tu primera PC</h2>
+          <p>Los tropiezos más frecuentes al armar tu primer equipo — fuente barata, mal presupuesto, olvidar la refrigeración — y cómo evitarlos todos.</p>
+          <span class="guide-meta mono">8 min de lectura</span>
+        </a>
+        <a href="guias/cuanta-ram.html" class="guide-list-card">
+          <span class="guide-tag mono">RAM</span>
+          <h2>¿Cuánta RAM necesito?</h2>
+          <p>16 GB, 32 GB o más: cuánta memoria necesitas de verdad según lo que hagas con tu PC, sin gastar de más ni quedarte corto.</p>
+          <span class="guide-meta mono">6 min de lectura</span>
+        </a>
+        <a href="guias/fuente-de-poder.html" class="guide-list-card">
+          <span class="guide-tag mono">FUENTE</span>
+          <h2>Guía de fuentes de poder</h2>
+          <p>Cuántos watts necesitas, qué significa la certificación 80+ y por qué la fuente es la pieza donde no conviene ahorrar.</p>
+          <span class="guide-meta mono">7 min de lectura</span>
+        </a>
+        <a href="guias/elegir-cpu.html" class="guide-list-card">
+          <span class="guide-tag mono">CPU</span>
+          <h2>Cómo elegir tu procesador</h2>
+          <p>Núcleos, caché y socket: en qué fijarte de verdad al elegir el cerebro de tu PC, y por qué el más caro no siempre es el mejor para jugar.</p>
+          <span class="guide-meta mono">8 min de lectura</span>
+        </a>
+        <a href="guias/almacenamiento.html" class="guide-list-card">
+          <span class="guide-tag mono">SSD</span>
+          <h2>Guía de almacenamiento (SSD)</h2>
+          <p>NVMe vs SATA, cuántos GB o TB necesitas y por qué la velocidad importa más para cargar juegos que para tu FPS.</p>
+          <span class="guide-meta mono">6 min de lectura</span>
+        </a>
+        <a href="guias/gabinete-refrigeracion.html" class="guide-list-card">
+          <span class="guide-tag mono">GABINETE</span>
+          <h2>Guía de gabinete y refrigeración</h2>
+          <p>Factor de forma, flujo de aire, y refrigeración por aire vs líquida (AIO): cómo elegir sin complicarte.</p>
+          <span class="guide-meta mono">7 min de lectura</span>
+        </a>
+        </noscript>
+        <p class="loading mono">Cargando guías…</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>© 2026 ArmaPC</span>
+    <div class="footer-links">
+      <a href="sobre.html">Sobre</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="privacidad.html">Privacidad</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/guias.js"></script>
+<script src="js/motion.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "2.0.0",
+  "key": "offerVerificationStatus",
+  "description": "Estado de verificacion comercial de una oferta en offers.v2.json. 'stale' es obligatorio cuando observedAt tiene mas de 30 dias respecto de la fecha de evaluacion (regla V-14).",
+  "values": ["verified", "stale", "unverifiable"]
+}

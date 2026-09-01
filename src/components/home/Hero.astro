@@ -1,0 +1,253 @@
+---
+import { t } from '../../i18n';
+import type { Lang } from '../../i18n';
+import HeroAnim from './HeroAnim.astro';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const p = lang === 'es' ? '' : `/${lang}`;
+---
+<section class="lp-hero">
+  <div class="lp-hero-glow" aria-hidden="true"></div>
+
+  <div class="container lp-hero-grid">
+
+    <div class="lp-hero-copy">
+      <p class="lp-badge mono">{t(lang, 'home.hero.badge')}</p>
+      <h1 class="lp-hero-title">
+        <span>{t(lang, 'home.hero.title1')}</span>
+        <span>{t(lang, 'home.hero.title2')}</span>
+      </h1>
+      <p class="lp-hero-sub">{t(lang, 'home.hero.sub')}</p>
+      <div class="lp-hero-actions">
+        <a href={`${p}/configurador.html`} class="lp-btn lp-btn-primary">
+          {t(lang, 'home.hero.ctaPrimary')}
+          <span class="lp-btn-arrow" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+        <a href={`${p}/guias/compatibilidad.html`} class="lp-btn-play">
+          <span class="lp-play-ring" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M6.2 4.6 11 8l-4.8 3.4V4.6Z" fill="currentColor"/></svg>
+          </span>
+          {t(lang, 'home.hero.ctaGuide')}
+        </a>
+      </div>
+    </div>
+
+    <div class="lp-hero-art" aria-hidden="true">
+      <svg viewBox="0 0 680 620" fill="none" focusable="false">
+        <defs>
+          <linearGradient id="lp-pcb" x1="0.1" y1="0" x2="0.9" y2="1">
+            <stop offset="0%" stop-color="#20322A"/>
+            <stop offset="100%" stop-color="#111C17"/>
+          </linearGradient>
+          <linearGradient id="lp-metal" x1="0" y1="0" x2="0.35" y2="1">
+            <stop offset="0%" stop-color="#31473D"/>
+            <stop offset="100%" stop-color="#16211C"/>
+          </linearGradient>
+          <linearGradient id="lp-copper" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#E4BA6D"/>
+            <stop offset="100%" stop-color="#8A6A2F"/>
+          </linearGradient>
+          <radialGradient id="lp-spot" cx="50%" cy="42%" r="58%">
+            <stop offset="0%" stop-color="#5FAE8C" stop-opacity="0.20"/>
+            <stop offset="60%" stop-color="#5FAE8C" stop-opacity="0.05"/>
+            <stop offset="100%" stop-color="#5FAE8C" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+
+        <rect x="0" y="0" width="680" height="620" fill="url(#lp-spot)"/>
+
+        <!-- Gabinete: solo la estructura, sin paneles, para no "enjaular" -->
+        <g class="lp-layer lp-layer-case" stroke="#5FAE8C" stroke-opacity="0.35" stroke-width="1.6" stroke-linejoin="round">
+          <path d="M392 132 H612 V498 H392 Z"/>
+          <path d="M392 132 L436 100 H656 L612 132"/>
+          <path d="M612 498 L656 466 V100"/>
+          <path d="M392 498 L436 466 H656" stroke-opacity="0.18"/>
+          <path d="M436 466 V100" stroke-opacity="0.18"/>
+        </g>
+
+        <!-- Líneas guía del despiece -->
+        <g class="lp-leads" stroke="#5FAE8C" stroke-width="1" stroke-dasharray="3 6" stroke-opacity="0.5">
+          <line x1="286" y1="176" x2="286" y2="248"/>
+          <line x1="352" y1="150" x2="352" y2="238"/>
+          <line x1="368" y1="150" x2="368" y2="238"/>
+          <line x1="262" y1="352" x2="262" y2="386"/>
+          <line x1="300" y1="440" x2="300" y2="516"/>
+          <line x1="500" y1="352" x2="500" y2="416"/>
+        </g>
+
+        <!-- Placa madre: ancla estructural del conjunto -->
+        <g class="lp-layer lp-layer-board">
+          <rect x="152" y="216" width="330" height="312" rx="10" fill="url(#lp-pcb)" stroke="#5FAE8C" stroke-width="1.6" stroke-opacity="0.5"/>
+          <!-- I/O trasero -->
+          <rect x="158" y="228" width="16" height="70" rx="2" fill="url(#lp-metal)" stroke="#5FAE8C" stroke-width="0.9" stroke-opacity="0.4"/>
+          <!-- socket vacío -->
+          <rect x="246" y="248" width="80" height="80" rx="4" fill="#0D1512" fill-opacity="0.8" stroke="#5FAE8C" stroke-width="1.2" stroke-opacity="0.55"/>
+          <rect x="258" y="260" width="56" height="56" rx="2" stroke="#5FAE8C" stroke-width="0.8" stroke-opacity="0.28"/>
+          <!-- slots DIMM -->
+          <rect x="346" y="238" width="10" height="116" rx="1.5" fill="#0D1512" fill-opacity="0.75" stroke="#5FAE8C" stroke-width="0.9" stroke-opacity="0.45"/>
+          <rect x="362" y="238" width="10" height="116" rx="1.5" fill="#0D1512" fill-opacity="0.75" stroke="#5FAE8C" stroke-width="0.9" stroke-opacity="0.45"/>
+          <rect x="378" y="238" width="10" height="116" rx="1.5" fill="#0D1512" fill-opacity="0.5" stroke="#5FAE8C" stroke-width="0.9" stroke-opacity="0.24"/>
+          <rect x="394" y="238" width="10" height="116" rx="1.5" fill="#0D1512" fill-opacity="0.5" stroke="#5FAE8C" stroke-width="0.9" stroke-opacity="0.24"/>
+          <!-- slot M.2 y PCIe x16 -->
+          <rect x="210" y="386" width="106" height="11" rx="2" fill="#0D1512" fill-opacity="0.75" stroke="#D4A24C" stroke-width="0.9" stroke-opacity="0.4"/>
+          <rect x="186" y="440" width="212" height="13" rx="2.5" fill="#0D1512" fill-opacity="0.8" stroke="#D4A24C" stroke-width="1" stroke-opacity="0.5"/>
+          <!-- chipset -->
+          <rect x="400" y="398" width="58" height="58" rx="4" fill="url(#lp-metal)" stroke="#5FAE8C" stroke-width="1" stroke-opacity="0.4"/>
+          <rect x="412" y="410" width="34" height="34" rx="2" stroke="#5FAE8C" stroke-width="0.8" stroke-opacity="0.25"/>
+          <!-- conectores de borde -->
+          <g fill="#5FAE8C" fill-opacity="0.28">
+            <rect x="452" y="322" width="24" height="9" rx="1.5"/>
+            <rect x="452" y="335" width="24" height="9" rx="1.5"/>
+            <rect x="452" y="348" width="24" height="9" rx="1.5"/>
+          </g>
+          <!-- trazas grabadas -->
+          <g stroke="#5FAE8C" stroke-width="0.9" stroke-opacity="0.2" fill="none">
+            <path d="M188 356 H222 V386"/>
+            <path d="M334 288 H346"/>
+            <path d="M188 408 V428 H236"/>
+            <path d="M334 340 H346"/>
+            <path d="M420 470 V492 H296"/>
+          </g>
+          <!-- orificios de montaje -->
+          <g fill="#D4A24C" fill-opacity="0.5">
+            <circle cx="167" cy="231" r="3"/>
+            <circle cx="467" cy="231" r="3"/>
+            <circle cx="167" cy="513" r="3"/>
+            <circle cx="467" cy="513" r="3"/>
+          </g>
+        </g>
+
+        <!-- SSD M.2 saliendo de su slot -->
+        <g class="lp-layer lp-layer-ssd">
+          <rect x="210" y="380" width="106" height="18" rx="2.5" fill="url(#lp-metal)" stroke="#D4A24C" stroke-width="1" stroke-opacity="0.6"/>
+          <rect x="218" y="385" width="42" height="8" rx="1" fill="#D4A24C" fill-opacity="0.35"/>
+          <rect x="268" y="385" width="16" height="8" rx="1" fill="#5FAE8C" fill-opacity="0.3"/>
+        </g>
+
+        <!-- CPU levantado del socket -->
+        <g class="lp-layer lp-layer-cpu">
+          <rect x="246" y="248" width="80" height="80" rx="4" fill="url(#lp-copper)" stroke="#E4BA6D" stroke-width="1.3"/>
+          <rect x="263" y="265" width="46" height="46" rx="2" fill="#0D1512" fill-opacity="0.45"/>
+          <g stroke="#0D1512" stroke-width="1" stroke-opacity="0.3">
+            <line x1="246" y1="268" x2="326" y2="268"/>
+            <line x1="246" y1="308" x2="326" y2="308"/>
+          </g>
+        </g>
+
+        <!-- RAM: dos módulos fuera de sus DIMM -->
+        <g class="lp-layer lp-layer-ram">
+          <g>
+            <rect x="343" y="234" width="16" height="124" rx="2" fill="url(#lp-metal)" stroke="#5FAE8C" stroke-width="1.2"/>
+            <rect x="346" y="246" width="10" height="84" rx="1" fill="#5FAE8C" fill-opacity="0.14"/>
+            <g stroke="#D4A24C" stroke-width="0.9" stroke-opacity="0.45">
+              <line x1="346" y1="262" x2="356" y2="262"/>
+              <line x1="346" y1="278" x2="356" y2="278"/>
+              <line x1="346" y1="294" x2="356" y2="294"/>
+            </g>
+          </g>
+          <g>
+            <rect x="359" y="234" width="16" height="124" rx="2" fill="url(#lp-metal)" stroke="#5FAE8C" stroke-width="1.2"/>
+            <rect x="362" y="246" width="10" height="84" rx="1" fill="#5FAE8C" fill-opacity="0.14"/>
+            <g stroke="#D4A24C" stroke-width="0.9" stroke-opacity="0.45">
+              <line x1="362" y1="262" x2="372" y2="262"/>
+              <line x1="362" y1="278" x2="372" y2="278"/>
+              <line x1="362" y1="294" x2="372" y2="294"/>
+            </g>
+          </g>
+        </g>
+
+        <!-- Fuente de poder -->
+        <g class="lp-layer lp-layer-psu">
+          <rect x="452" y="416" width="132" height="86" rx="6" fill="#1B2822" stroke="#5FAE8C" stroke-width="1.4" stroke-opacity="0.7"/>
+          <circle cx="518" cy="459" r="30" stroke="#5FAE8C" stroke-width="1.1" stroke-opacity="0.45"/>
+          <g stroke="#5FAE8C" stroke-width="0.9" stroke-opacity="0.3">
+            <path d="M518 429v60M488 459h60M497 438l42 42M539 438l-42 42"/>
+          </g>
+          <rect x="460" y="424" width="18" height="10" rx="1.5" fill="#D4A24C" fill-opacity="0.4"/>
+        </g>
+
+        <!-- GPU: la pieza protagonista -->
+        <g class="lp-layer lp-layer-gpu">
+          <rect x="176" y="442" width="12" height="106" rx="2" fill="url(#lp-copper)" fill-opacity="0.8"/>
+          <rect x="188" y="446" width="232" height="98" rx="7" fill="url(#lp-metal)" stroke="#5FAE8C" stroke-width="1.6"/>
+          <rect x="198" y="456" width="212" height="78" rx="4" stroke="#5FAE8C" stroke-width="0.9" stroke-opacity="0.26"/>
+          <circle cx="248" cy="495" r="27" stroke="#5FAE8C" stroke-width="1.3" stroke-opacity="0.6"/>
+          <circle cx="248" cy="495" r="4" fill="#D4A24C"/>
+          <circle cx="342" cy="495" r="27" stroke="#5FAE8C" stroke-width="1.3" stroke-opacity="0.6"/>
+          <circle cx="342" cy="495" r="4" fill="#D4A24C"/>
+          <rect x="296" y="446" width="48" height="6" rx="2" fill="#D4A24C" fill-opacity="0.42"/>
+        </g>
+
+        <!-- Refrigeración: la capa más elevada -->
+        <g class="lp-layer lp-layer-cooler">
+          <rect x="238" y="120" width="96" height="96" rx="8" fill="url(#lp-metal)" stroke="#5FAE8C" stroke-width="1.5"/>
+          <circle cx="286" cy="168" r="38" stroke="#5FAE8C" stroke-width="1.2" stroke-opacity="0.55"/>
+          <circle cx="286" cy="168" r="9" fill="#D4A24C" fill-opacity="0.65"/>
+          <g stroke="#5FAE8C" stroke-width="1.1" stroke-opacity="0.42" fill="none">
+            <path d="M286 168 C300 148 316 150 322 160"/>
+            <path d="M286 168 C306 182 304 198 294 204"/>
+            <path d="M286 168 C272 188 256 186 250 176"/>
+            <path d="M286 168 C266 154 268 138 278 132"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Rail de propuestas de valor -->
+    <ul class="lp-hero-rail">
+      <li class="lp-rail-item">
+        <span class="lp-hex" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 2.8 20 7.4v9.2L12 21.2 4 16.6V7.4L12 2.8Z" stroke="currentColor" stroke-width="1.3"/>
+            <path d="m8.6 12 2.4 2.4 4.4-4.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <div>
+          <strong class="mono">{t(lang, 'home.hero.rail1Title')}</strong>
+          <span>{t(lang, 'home.hero.rail1Text')}</span>
+        </div>
+      </li>
+      <li class="lp-rail-item">
+        <span class="lp-hex" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 2.8 20 7.4v9.2L12 21.2 4 16.6V7.4L12 2.8Z" stroke="currentColor" stroke-width="1.3"/>
+            <circle cx="12" cy="10.2" r="2.2" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M8.4 16.2c.5-1.9 1.9-2.9 3.6-2.9s3.1 1 3.6 2.9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <div>
+          <strong class="mono">{t(lang, 'home.hero.rail2Title')}</strong>
+          <span>{t(lang, 'home.hero.rail2Text')}</span>
+        </div>
+      </li>
+      <li class="lp-rail-item">
+        <span class="lp-hex" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 2.8 20 7.4v9.2L12 21.2 4 16.6V7.4L12 2.8Z" stroke="currentColor" stroke-width="1.3"/>
+            <path d="M8.6 9h6.8M8.6 12h6.8M8.6 15h4.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <div>
+          <strong class="mono">{t(lang, 'home.hero.rail3Title')}</strong>
+          <span>{t(lang, 'home.hero.rail3Text')}</span>
+        </div>
+      </li>
+      <li class="lp-rail-item">
+        <span class="lp-hex" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 2.8 20 7.4v9.2L12 21.2 4 16.6V7.4L12 2.8Z" stroke="currentColor" stroke-width="1.3"/>
+            <path d="M12 8.4v4l2.6 1.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <div>
+          <strong class="mono">{t(lang, 'home.hero.rail4Title')}</strong>
+          <span>{t(lang, 'home.hero.rail4Text')}</span>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+  <HeroAnim />
+</section>

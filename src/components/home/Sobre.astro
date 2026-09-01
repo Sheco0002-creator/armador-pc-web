@@ -1,0 +1,49 @@
+---
+import { t } from '../../i18n';
+import type { Lang } from '../../i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const p = lang === 'es' ? '' : `/${lang}`;
+---
+<section class="lp-section lp-about">
+  <div class="container">
+    <div class="lp-about-panel">
+
+      <div class="lp-about-copy" data-reveal>
+        <p class="lp-kicker mono">{t(lang, 'home.about.kicker')}</p>
+        <h2 class="lp-display lp-display-sm">{t(lang, 'home.about.titleA')}<br>{t(lang, 'home.about.titleB')}<br><span class="lp-muted">{t(lang, 'home.about.titleC')}</span></h2>
+        <p>{t(lang, 'home.about.text')}</p>
+        <a href={`${p}/sobre.html`} class="lp-ghost-btn lp-ghost-btn-lg">
+          {t(lang, 'home.about.cta')}
+          <span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+      </div>
+
+      <!-- Los números marcan una secuencia real: este es el orden en que
+           pasas por el sitio, del presupuesto a la lista de compra. -->
+      <ol class="lp-timeline">
+        <li class="lp-step" data-reveal>
+          <span class="lp-step-num">01</span>
+          <h3>{t(lang, 'home.about.step1Title')}</h3>
+          <p>{t(lang, 'home.about.step1Text')}</p>
+        </li>
+        <li class="lp-step" data-reveal>
+          <span class="lp-step-num">02</span>
+          <h3>{t(lang, 'home.about.step2Title')}</h3>
+          <p>{t(lang, 'home.about.step2Text')}</p>
+        </li>
+        <li class="lp-step" data-reveal>
+          <span class="lp-step-num">03</span>
+          <h3>{t(lang, 'home.about.step3Title')}</h3>
+          <p>{t(lang, 'home.about.step3Text')}</p>
+        </li>
+        <li class="lp-step" data-reveal>
+          <span class="lp-step-num">04</span>
+          <h3>{t(lang, 'home.about.step4Title')}</h3>
+          <p>{t(lang, 'home.about.step4Text')}</p>
+        </li>
+      </ol>
+
+    </div>
+  </div>
+</section>

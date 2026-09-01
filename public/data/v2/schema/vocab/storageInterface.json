@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "2.0.0",
+  "key": "storageInterface",
+  "description": "Bus electrico de un almacenamiento. Usado en SSD+motherboard (compatibility.provides/requires).",
+  "values": ["SATA", "PCIe"]
+}

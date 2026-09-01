@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://armapc.local/schema/offers.v2.schema.json",
+  "title": "ArmaPC offers.v2.json",
+  "description": "Precio, vendedor, region, moneda, stock y fecha observada. Producto != oferta: la identidad tecnica vive solo en catalog.v2.json.",
+  "type": "object",
+  "required": ["schemaVersion", "generatedAt", "offers"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": "2.0.0" },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "offers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "productId", "region", "currency", "price", "seller", "url", "observedAt", "verificationStatus"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "productId": { "type": "string", "description": "debe existir en catalog.v2.json como entry type=product (V-07/V-09)" },
+          "region": { "type": "string", "minLength": 1 },
+          "currency": { "type": "string", "minLength": 1 },
+          "price": {
+            "type": "object",
+            "required": ["amount"],
+            "properties": {
+              "amount": { "type": "number", "exclusiveMinimum": 0, "description": "V-08: sin amount>0 verificado, la oferta no debe crearse" },
+              "amountIsEstimate": { "type": "boolean" }
+            }
+          },
+          "seller": {
+            "type": "object",
+            "required": ["name"],
+            "properties": {
+              "name": { "type": "string" },
+              "kind": { "type": "string" }
+            }
+          },
+          "url": { "type": "string", "format": "uri", "pattern": "^https://" },
+          "observedAt": { "type": "string", "format": "date-time" },
+          "verificationStatus": {
+            "type": "string",
+            "description": "enum en vocab/offerVerificationStatus.json; 'stale' obligatorio si observedAt tiene >30 dias respecto a la evaluacion (V-14)"
+          },
+          "supersedesOfferId": { "type": ["string", "null"], "description": "si no es null debe existir como offers[].id (V-07)" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "2.0.0",
+  "key": "category",
+  "description": "Categorias de componente reconocidas por el contrato V2.",
+  "values": ["cpu", "motherboard", "ram", "gpu", "storage", "psu", "case", "cooling"]
+}

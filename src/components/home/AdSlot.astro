@@ -1,0 +1,9 @@
+---
+import { t } from '../../i18n';
+import type { Lang } from '../../i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+---
+<div class="container">
+  <div class="ad-slot mono">{t(lang, 'home.adSlot')}</div>
+</div>

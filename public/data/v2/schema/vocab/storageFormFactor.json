@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "2.0.0",
+  "key": "storageFormFactor",
+  "description": "Factor de forma fisico de un almacenamiento. Usado en SSD+motherboard/case.",
+  "values": ["M.2-2242", "M.2-2280", "M.2-22110", "2.5-inch", "3.5-inch"]
+}

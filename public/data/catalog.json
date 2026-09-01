@@ -1,0 +1,78 @@
+{
+  "updated": "2026-07",
+  "currency": "USD",
+  "tiers": [
+    {
+      "id": "entrada",
+      "name": "Entrada",
+      "priceMin": 850,
+      "priceMax": 1050,
+      "tagline": "Tu primer PC gamer serio",
+      "target": "1080p alto/ultra en la mayoría de juegos actuales, tasas altas en esports.",
+      "components": [
+        { "category": "cpu", "label": "Procesador", "recommended": { "name": "AMD Ryzen 5 9600X", "specs": "6 núcleos / 12 hilos, boost 5.4 GHz, socket AM5", "priceMin": 180, "priceMax": 200 }, "alternative": { "name": "Intel Core i5-13400" } },
+        { "category": "motherboard", "label": "Placa madre", "recommended": { "name": "B650 (AM5)", "priceMin": 100, "priceMax": 140 }, "alternative": { "name": "B760 (si eliges Intel)" } },
+        { "category": "ram", "label": "Memoria RAM", "recommended": { "name": "32 GB DDR5-6000 (2x16GB)", "priceMin": 150, "priceMax": 180 }, "alternative": null },
+        { "category": "gpu", "label": "Tarjeta gráfica", "recommended": { "name": "NVIDIA RTX 5060 8GB", "priceMin": 299, "priceMax": 350 }, "alternative": { "name": "AMD Radeon RX 9060 XT 16GB" } },
+        { "category": "storage", "label": "Almacenamiento", "recommended": { "name": "SSD NVMe 1TB Gen4", "priceMin": 70, "priceMax": 100 }, "alternative": { "name": "SSD SATA 1TB (más económico)" } },
+        { "category": "psu", "label": "Fuente de poder", "recommended": { "name": "650W 80+ Bronze/Gold ATX3.1", "priceMin": 70, "priceMax": 90 }, "alternative": null },
+        { "category": "case", "label": "Gabinete", "recommended": { "name": "Mid-tower, buen flujo de aire", "priceMin": 50, "priceMax": 80 }, "alternative": null },
+        { "category": "cooling", "label": "Refrigeración", "recommended": { "name": "Cooler de aire tipo torre simple", "priceMin": 20, "priceMax": 35 }, "alternative": { "name": "Cooler stock (si el CPU lo incluye)" } }
+      ]
+    },
+    {
+      "id": "media",
+      "name": "Media",
+      "priceMin": 1350,
+      "priceMax": 1700,
+      "tagline": "El punto dulce",
+      "target": "1440p alto/ultra con tasas altas, 4K viable ajustando configuración.",
+      "components": [
+        { "category": "cpu", "label": "Procesador", "recommended": { "name": "AMD Ryzen 7 9700X", "specs": "8 núcleos / 16 hilos", "priceMin": 300, "priceMax": 350 }, "alternative": { "name": "Intel Core Ultra 7 265K" } },
+        { "category": "motherboard", "label": "Placa madre", "recommended": { "name": "B650E / X870", "priceMin": 150, "priceMax": 220 }, "alternative": { "name": "Z890 (si eliges Intel)" } },
+        { "category": "ram", "label": "Memoria RAM", "recommended": { "name": "32 GB DDR5-6000", "priceMin": 150, "priceMax": 220 }, "alternative": { "name": "64 GB si también produces contenido" } },
+        { "category": "gpu", "label": "Tarjeta gráfica", "recommended": { "name": "NVIDIA RTX 5070 12GB", "specs": "MSRP oficial US$549", "priceMin": 549, "priceMax": 650 }, "alternative": { "name": "AMD Radeon RX 9070 XT" } },
+        { "category": "storage", "label": "Almacenamiento", "recommended": { "name": "SSD NVMe 1-2TB Gen4/Gen5", "priceMin": 100, "priceMax": 180 }, "alternative": null },
+        { "category": "psu", "label": "Fuente de poder", "recommended": { "name": "750W ATX3.1", "priceMin": 90, "priceMax": 120 }, "alternative": null },
+        { "category": "case", "label": "Gabinete", "recommended": { "name": "Mid-tower premium, buen airflow", "priceMin": 70, "priceMax": 110 }, "alternative": null },
+        { "category": "cooling", "label": "Refrigeración", "recommended": { "name": "Torre premium o AIO 240mm", "priceMin": 50, "priceMax": 100 }, "alternative": null }
+      ]
+    },
+    {
+      "id": "alta",
+      "name": "Alta",
+      "priceMin": 2200,
+      "priceMax": 2800,
+      "tagline": "1440p sin concesiones",
+      "target": "4K alto/ultra en muchos títulos, monitores de alta tasa de refresco.",
+      "components": [
+        { "category": "cpu", "label": "Procesador", "recommended": { "name": "AMD Ryzen 7 9850X3D", "specs": "8 núcleos / 16 hilos, 3D V-Cache", "priceMin": 499, "priceMax": 550 }, "alternative": { "name": "AMD Ryzen 9 9900X" } },
+        { "category": "motherboard", "label": "Placa madre", "recommended": { "name": "X870 / X870E", "priceMin": 220, "priceMax": 320 }, "alternative": null },
+        { "category": "ram", "label": "Memoria RAM", "recommended": { "name": "32 GB DDR5-6000", "priceMin": 150, "priceMax": 350 }, "alternative": { "name": "64 GB si produces contenido" } },
+        { "category": "gpu", "label": "Tarjeta gráfica", "recommended": { "name": "NVIDIA RTX 5080", "specs": "MSRP oficial US$999", "priceMin": 999, "priceMax": 1200 }, "alternative": null },
+        { "category": "storage", "label": "Almacenamiento", "recommended": { "name": "SSD NVMe 2TB Gen4/Gen5", "priceMin": 180, "priceMax": 300 }, "alternative": null },
+        { "category": "psu", "label": "Fuente de poder", "recommended": { "name": "850-1000W ATX3.1", "priceMin": 130, "priceMax": 200 }, "alternative": null },
+        { "category": "case", "label": "Gabinete", "recommended": { "name": "Mid/full-tower, gran flujo de aire", "priceMin": 90, "priceMax": 150 }, "alternative": null },
+        { "category": "cooling", "label": "Refrigeración", "recommended": { "name": "AIO 360mm o aire premium", "priceMin": 100, "priceMax": 180 }, "alternative": null }
+      ]
+    },
+    {
+      "id": "extrema",
+      "name": "Extrema",
+      "priceMin": 3800,
+      "priceMax": 5500,
+      "tagline": "Sin límites",
+      "target": "4K agresivo con ray tracing/path tracing, producción 3D, IA local pesada.",
+      "components": [
+        { "category": "cpu", "label": "Procesador", "recommended": { "name": "AMD Ryzen 9 9950X3D", "specs": "16 núcleos / 32 hilos, 3D V-Cache", "priceMin": 700, "priceMax": 800 }, "alternative": { "name": "Intel Core Ultra 9 (gama alta)" } },
+        { "category": "motherboard", "label": "Placa madre", "recommended": { "name": "X870E gama alta", "priceMin": 350, "priceMax": 500 }, "alternative": null },
+        { "category": "ram", "label": "Memoria RAM", "recommended": { "name": "64 GB DDR5-6000 mínimo", "priceMin": 350, "priceMax": 700 }, "alternative": { "name": "96-128 GB si el trabajo lo exige" } },
+        { "category": "gpu", "label": "Tarjeta gráfica", "recommended": { "name": "NVIDIA RTX 5090 32GB", "specs": "precio muy volátil por escasez", "priceMin": 2000, "priceMax": 2000 }, "alternative": null },
+        { "category": "storage", "label": "Almacenamiento", "recommended": { "name": "SSD NVMe 4TB Gen5 + secundario", "priceMin": 350, "priceMax": 500 }, "alternative": null },
+        { "category": "psu", "label": "Fuente de poder", "recommended": { "name": "1200W ATX3.1 / PCIe 5.x", "priceMin": 220, "priceMax": 300 }, "alternative": null },
+        { "category": "case", "label": "Gabinete", "recommended": { "name": "Full-tower premium", "priceMin": 150, "priceMax": 250 }, "alternative": null },
+        { "category": "cooling", "label": "Refrigeración", "recommended": { "name": "AIO 360mm premium o custom loop", "priceMin": 180, "priceMax": 350 }, "alternative": null }
+      ]
+    }
+  ]
+}

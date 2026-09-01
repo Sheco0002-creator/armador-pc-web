@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://armapc.local/schema/catalog.v2.schema.json",
+  "title": "ArmaPC catalog.v2.json",
+  "description": "Identidad y especificaciones tecnicas de families y products. NUNCA contiene precio, vendedor, stock ni URL comercial (ver reglas del contrato, seccion offers). Los valores de compatibility.provides/requires/constraints y verification.status/officialSources[].kind se validan contra data/v2/schema/vocab/*.json y las reglas V-01..V-13 en scripts/validate-v2.js; este schema solo cubre forma estructural.",
+  "type": "object",
+  "required": ["schemaVersion", "generatedAt", "entries"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": "2.0.0" },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "entries": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/entry" }
+    }
+  },
+  "$defs": {
+    "entry": {
+      "type": "object",
+      "required": ["id", "type", "category", "selectable", "technical", "technicalFieldEvidence", "unknownFields", "verification", "officialSources"],
+      "additionalProperties": true,
+      "not": {
+        "anyOf": [
+          { "required": ["price"] },
+          { "required": ["seller"] },
+          { "required": ["stock"] },
+          { "required": ["currency"] }
+        ]
+      },
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "type": { "type": "string", "description": "enum en vocab/entryType.json" },
+        "category": { "type": "string", "description": "enum en vocab/category.json" },
+        "familyId": { "type": ["string", "null"], "description": "obligatorio y referenciable si type=product (V-03/V-07)" },
+        "sourceType": { "type": "string", "description": "si vale 'legacy-generic-description' la entrada es invalida en catalog.v2 (V-13)" },
+        "identity": {
+          "type": "object",
+          "description": "obligatorio y completo si type=product y selectable=true (V-01/V-03)",
+          "properties": {
+            "brand": { "type": ["string", "null"] },
+            "commercialName": { "type": ["string", "null"] },
+            "model": { "type": ["string", "null"] },
+            "partNumber": { "type": ["string", "null"] },
+            "gtin": { "type": ["string", "null"] }
+          }
+        },
+        "selectable": { "type": "boolean" },
+        "technical": { "type": "object" },
+        "compatibility": {
+          "type": "object",
+          "properties": {
+            "provides": { "type": "array", "items": { "$ref": "#/$defs/compatField" } },
+            "requires": { "type": "array", "items": { "$ref": "#/$defs/compatField" } },
+            "constraints": { "type": "array", "items": { "$ref": "#/$defs/compatConstraint" } }
+          }
+        },
+        "technicalFieldEvidence": {
+          "type": "object",
+          "description": "mapa: dot-path en technical -> array de evidenceId existentes en evidence.v2.json (V-05/V-07)",
+          "additionalProperties": { "type": "array", "items": { "type": "string" } }
+        },
+        "unknownFields": {
+          "type": "array",
+          "description": "dot-paths de technical cuyo valor es null (V-06)",
+          "items": { "type": "string" }
+        },
+        "verification": {
+          "type": "object",
+          "required": ["status"],
+          "properties": {
+            "status": { "type": "string", "description": "enum en vocab/verificationStatus.json" },
+            "verifiedAt": { "type": ["string", "null"], "format": "date-time" },
+            "verifiedBy": { "type": ["string", "null"] }
+          }
+        },
+        "officialSources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["sourceId", "url", "kind"],
+            "properties": {
+              "sourceId": { "type": "string" },
+              "url": { "type": "string", "format": "uri", "pattern": "^https://" },
+              "kind": { "type": "string", "description": "enum en vocab/sourceKind.json" }
+            }
+          }
+        }
+      }
+    },
+    "compatField": {
+      "type": "object",
+      "required": ["key", "value"],
+      "properties": {
+        "key": { "type": "string" },
+        "value": { "type": "string", "description": "debe pertenecer al vocab controlado correspondiente a 'key' (V-12); nunca texto libre" }
+      }
+    },
+    "compatConstraint": {
+      "type": "object",
+      "required": ["key", "operator", "against"],
+      "properties": {
+        "key": { "type": "string" },
+        "operator": { "type": "string", "enum": ["<=", ">=", "<", ">", "=="] },
+        "against": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+---
+import type { Lang } from '../i18n';
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  canonical: string;
+  ogLocale: string;
+  bodyClass?: string;
+}
+const { lang, title, description, canonical, ogLocale, bodyClass } = Astro.props;
+---
+<!doctype html>
+<html lang={lang}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <link rel="alternate" hreflang="es" href="https://tupcgamer.com/" />
+  <link rel="alternate" hreflang="en" href="https://tupcgamer.com/en/" />
+  <link rel="alternate" hreflang="pt" href="https://tupcgamer.com/pt/" />
+  <link rel="alternate" hreflang="x-default" href="https://tupcgamer.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ArmaPC" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:locale" content={ogLocale} />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GH7D533JHR"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GH7D533JHR');
+  </script>
+</head>
+<body class={bodyClass}>
+  <slot />
+</body>
+</html>

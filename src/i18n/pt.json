@@ -1,0 +1,101 @@
+{
+  "meta": {
+    "homeTitle": "ArmaPC — Monte o PC gamer ideal, para qualquer orçamento",
+    "homeDesc": "Aprenda a montar seu próprio PC gamer, do modelo mais econômico ao mais potente, com um configurador que verifica a compatibilidade em tempo real."
+  },
+  "nav": { "inicio": "Início", "configurador": "Configurador", "presupuesto": "Orçamento", "guias": "Guias", "contacto": "Contato", "sobre": "Sobre", "comenzar": "Começar", "ariaNav": "Principal", "ariaOpenMenu": "Abrir menu" },
+  "footer": { "sobre": "Sobre", "contacto": "Contato", "privacidad": "Privacidade", "copyright": "© 2026 ArmaPC" },
+  "lang": { "label": "Português" },
+  "home": {
+    "adSlot": "Espaço publicitário",
+    "hero": {
+      "badge": "SEU PC. DO SEU JEITO.",
+      "title1": "Monte",
+      "title2": "seu PC",
+      "sub": "O guia interativo que acompanha você passo a passo para escolher, montar e entender o seu PC ideal.",
+      "ctaPrimary": "Começar agora",
+      "ctaGuide": "Ver guia rápido",
+      "rail1Title": "COMPATIBILIDADE VERIFICADA",
+      "rail1Text": "E avisamos quando não sabemos",
+      "rail2Title": "PARA TODOS",
+      "rail2Text": "Do iniciante em diante",
+      "rail3Title": "PASSO A PASSO",
+      "rail3Text": "Fácil de seguir",
+      "rail4Title": "SEMPRE ATUALIZADO",
+      "rail4Text": "Guias em dia"
+    },
+    "access": {
+      "aria": "Acessos principais",
+      "card1Title": "Configurador",
+      "card1Text": "Escolha cada componente e crie a sua configuração ideal.",
+      "card1Cta": "Configurar agora",
+      "card2Title": "Orçamento",
+      "card2Text": "Defina o seu orçamento e receba as melhores opções para você.",
+      "card2Cta": "Definir orçamento",
+      "card3Title": "Guias",
+      "card3Text": "Aprenda com nossos guias passo a passo e dicas.",
+      "card3Cta": "Ver guias",
+      "card4Title": "Contato",
+      "card4Text": "Tem dúvidas? Escreva para nós, estamos aqui para ajudar.",
+      "card4Cta": "Falar conosco",
+      "card5Title": "Privacidade",
+      "card5Text": "Saiba como protegemos as suas informações.",
+      "card5Cta": "Ler a política"
+    },
+    "tiers": {
+      "badge": "ESCOLHA SEU NÍVEL",
+      "titleA": "Configurações",
+      "titleB": "para cada nível",
+      "intro": "Explore configurações recomendadas conforme o seu orçamento e as suas necessidades. Do básico ao extremo.",
+      "cta": "Ver todas as configurações",
+      "desde": "A partir de",
+      "verCatalogo": "Ver catálogo",
+      "entradaName": "ENTRADA",
+      "entradaDesc": "Ideal para tarefas do dia a dia e uso básico.",
+      "entradaAlt": "Gabinete gamer preto com tres ventoinhas RGB frontais, painel lateral de vidro, cooler a ar e placa de video GeForce RTX",
+      "mediaName": "MÉDIA",
+      "mediaDesc": "Perfeita para jogar em 1080p e mais.",
+      "mediaAlt": "Gabinete gamer branco com refrigeracao liquida, radiador superior de tres ventoinhas RGB e placa de video GeForce RTX ROG",
+      "altaName": "ALTA",
+      "altaDesc": "Desempenho superior para jogos e criação.",
+      "altaAlt": "Gabinete gamer branco ROG com iluminacao laranja, refrigeracao liquida e radiador superior de tres ventoinhas",
+      "extremaName": "EXTREMA",
+      "extremaDesc": "Sem limites. O melhor para o melhor.",
+      "extremaAlt": "Gabinete gamer ROG de design angular em branco e preto, com refrigeracao liquida por tubos rigidos e iluminacao roxa e vermelha"
+    },
+    "about": {
+      "kicker": "— SOBRE A ARMAPC",
+      "titleA": "Construímos mais",
+      "titleB": "que PCs, construímos",
+      "titleC": "conhecimento.",
+      "text": "A ArmaPC nasceu para ajudar todo mundo a entender o mundo do hardware de forma clara, prática e sem complicação. Acreditamos que qualquer pessoa pode montar o seu PC ideal com a orientação certa.",
+      "cta": "Conheça a nossa história",
+      "step1Title": "Você define o orçamento",
+      "step1Text": "Escolhe um dos quatro níveis ou começa do zero, sem nada definido.",
+      "step2Title": "Você escolhe peça por peça",
+      "step2Text": "Cada componente com o seu preço e o que ele agrega, explicado na própria escolha.",
+      "step3Title": "Revisamos o conjunto",
+      "step3Text": "Soquete, tipo de memória, tamanho da placa de vídeo e consumo da fonte, na hora.",
+      "step4Title": "Você leva a lista",
+      "step4Text": "A build final, pronta para orçar na loja sem dúvida sobre nenhuma peça."
+    },
+    "guides": {
+      "kicker": "— RECURSOS",
+      "title": "Guias em destaque",
+      "verTodas": "Ver todos",
+      "leer": "Ler guia →",
+      "g1Tag": "GPU",
+      "g1Title": "Como escolher a sua placa de vídeo",
+      "g2Tag": "GUIA",
+      "g2Title": "Compatibilidade de componentes",
+      "g3Tag": "BÁSICOS",
+      "g3Title": "Glossário para iniciantes"
+    },
+    "cta": {
+      "title": "Vamos começar a sua build?",
+      "text": "Abra o configurador e monte peça por peça. É grátis, não pedimos e-mail e você pode voltar quando quiser.",
+      "primary": "Começar agora",
+      "secondary": "Falar conosco"
+    }
+  }
+}

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to choose your processor — ArmaPC</title>
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<meta name="description" content="Guide to choosing your gaming PC's processor (CPU): cores, cache, socket, and how to balance it with your graphics card without overspending.">
+<link rel="canonical" href="https://tupcgamer.com/en/guias/elegir-cpu.html">
+<link rel="alternate" hreflang="es" href="https://tupcgamer.com/guias/elegir-cpu.html">
+<link rel="alternate" hreflang="en" href="https://tupcgamer.com/en/guias/elegir-cpu.html">
+<link rel="alternate" hreflang="pt" href="https://tupcgamer.com/pt/guias/elegir-cpu.html">
+<link rel="alternate" hreflang="x-default" href="https://tupcgamer.com/guias/elegir-cpu.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ArmaPC">
+<meta property="og:title" content="How to choose your processor — ArmaPC">
+<meta property="og:description" content="Guide to choosing your gaming PC's processor (CPU): cores, cache, socket, and how to balance it with your graphics card without overspending.">
+<meta property="og:url" content="https://tupcgamer.com/en/guias/elegir-cpu.html">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How to choose your processor — ArmaPC">
+<meta name="twitter:description" content="Guide to choosing your gaming PC's processor (CPU): cores, cache, socket, and how to balance it with your graphics card without overspending.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/style.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GH7D533JHR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GH7D533JHR');
+</script>
+</head>
+<body>
+
+<div class="ambient-bg ambient-bg--static ambient-bg--minimal" aria-hidden="true">
+  <svg class="ambient-trace-a" viewBox="0 0 480 420" fill="none">
+    <path d="M40 30 H210 V110 H380 V190" stroke="#5FAE8C" stroke-width="1" opacity="0.16"/>
+    <path d="M40 30 V-10" stroke="#5FAE8C" stroke-width="1" opacity="0.16"/>
+    <circle cx="210" cy="110" r="3" fill="#D4A24C" opacity="0.2"/>
+    <circle cx="380" cy="190" r="3" fill="#D4A24C" opacity="0.2"/>
+    <circle cx="40" cy="30" r="2.5" fill="#5FAE8C" opacity="0.18"/>
+  </svg>
+  <svg class="ambient-trace-b" viewBox="0 0 480 420" fill="none">
+    <path d="M90 420 V300 H260 V200 H440" stroke="#5FAE8C" stroke-width="1" opacity="0.16"/>
+    <path d="M440 200 V170" stroke="#5FAE8C" stroke-width="1" opacity="0.16"/>
+    <circle cx="260" cy="200" r="3" fill="#D4A24C" opacity="0.2"/>
+    <circle cx="90" cy="420" r="2.5" fill="#5FAE8C" opacity="0.18"/>
+    <circle cx="440" cy="200" r="2.5" fill="#5FAE8C" opacity="0.18"/>
+  </svg>
+  <svg class="ambient-cpu" viewBox="0 0 100 100" fill="none">
+    <rect x="26" y="26" width="48" height="48" rx="4" stroke="#5FAE8C" stroke-width="1.5" opacity="0.3"/>
+    <rect x="38" y="38" width="24" height="24" rx="2" stroke="#D4A24C" stroke-width="1.2" opacity="0.3"/>
+    <g stroke="#5FAE8C" stroke-width="1.5" opacity="0.22">
+      <line x1="34" y1="20" x2="34" y2="26"/><line x1="50" y1="20" x2="50" y2="26"/><line x1="66" y1="20" x2="66" y2="26"/>
+      <line x1="34" y1="74" x2="34" y2="80"/><line x1="50" y1="74" x2="50" y2="80"/><line x1="66" y1="74" x2="66" y2="80"/>
+      <line x1="20" y1="34" x2="26" y2="34"/><line x1="20" y1="50" x2="26" y2="50"/><line x1="20" y1="66" x2="26" y2="66"/>
+      <line x1="74" y1="34" x2="80" y2="34"/><line x1="74" y1="50" x2="80" y2="50"/><line x1="74" y1="66" x2="80" y2="66"/>
+    </g>
+  </svg>
+  <svg class="ambient-ram" viewBox="0 0 60 100" fill="none">
+    <rect x="10" y="8" width="14" height="84" rx="2" stroke="#5FAE8C" stroke-width="1.5" opacity="0.28"/>
+    <rect x="36" y="8" width="14" height="84" rx="2" stroke="#5FAE8C" stroke-width="1.5" opacity="0.28"/>
+    <g stroke="#D4A24C" stroke-width="1.2" opacity="0.22">
+      <line x1="13" y1="20" x2="21" y2="20"/><line x1="13" y1="32" x2="21" y2="32"/><line x1="13" y1="44" x2="21" y2="44"/>
+      <line x1="39" y1="20" x2="47" y2="20"/><line x1="39" y1="32" x2="47" y2="32"/><line x1="39" y1="44" x2="47" y2="44"/>
+    </g>
+  </svg>
+  <svg class="ambient-gpu" viewBox="0 0 100 64" fill="none">
+    <rect x="10" y="14" width="80" height="40" rx="4" stroke="#5FAE8C" stroke-width="1.5" opacity="0.26"/>
+    <rect x="7" y="12" width="4" height="46" rx="1" fill="#D4A24C" opacity="0.22"/>
+    <circle cx="34" cy="34" r="11" stroke="#5FAE8C" stroke-width="1.3" opacity="0.24"/>
+    <circle cx="66" cy="34" r="11" stroke="#5FAE8C" stroke-width="1.3" opacity="0.24"/>
+  </svg>
+  <svg class="ambient-fan" viewBox="0 0 100 100" fill="none">
+    <circle cx="50" cy="50" r="34" stroke="#5FAE8C" stroke-width="1.5" opacity="0.26"/>
+    <circle cx="50" cy="50" r="4" fill="#D4A24C" opacity="0.22"/>
+    <g stroke="#5FAE8C" stroke-width="1.3" opacity="0.2">
+      <line x1="50" y1="16" x2="50" y2="30"/><line x1="50" y1="70" x2="50" y2="84"/>
+      <line x1="16" y1="50" x2="30" y2="50"/><line x1="70" y1="50" x2="84" y2="50"/>
+      <line x1="26" y1="26" x2="36" y2="36"/><line x1="64" y1="64" x2="74" y2="74"/>
+      <line x1="74" y1="26" x2="64" y2="36"/><line x1="26" y1="74" x2="36" y2="64"/>
+    </g>
+  </svg>
+</div>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="../index.html" class="logo">Arma<span>PC</span></a>
+    <nav class="main-nav" id="main-nav" aria-label="Main">
+      <a href="../configurador.html">Configurator</a>
+      <a href="../index.html#presupuestos">Budgets</a>
+      <a href="../guias.html">Guides</a>
+      <a href="../sobre.html">About</a>
+      <div class="lang-switch mono" id="lang-switch">
+        <button type="button" class="lang-toggle" aria-haspopup="true" aria-expanded="false">English <span class="lang-arrow">▾</span></button>
+        <div class="lang-menu" hidden>
+          <a href="../../guias/elegir-cpu.html">Español</a>
+          <a href="../../pt/guias/elegir-cpu.html">Português</a>
+        </div>
+      </div>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <article class="guide-article">
+    <div class="container container-narrow">
+      <nav class="breadcrumb mono" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a> / <a href="../guias.html">Guides</a> / Choosing a CPU
+      </nav>
+      <span class="guide-tag mono">CPU</span>
+      <h1>How to choose your processor</h1>
+      <p class="guide-meta mono">8 min read</p>
+
+      <p class="guide-intro">The <span class="hoverable-inline" data-preview="cpu" data-preview-label="Processor">processor</span> is the brain of your PC: it determines smoothness, stability, and much of how your build will feel over time. Choosing it well doesn't mean buying the most expensive one, but the one that best balances with the rest of your build. Here's what actually matters.</p>
+
+      <h2 data-reveal>Cores and threads: how many do I need?</h2>
+      <p><strong>Cores</strong> are like "workers" inside the processor: each one can handle a task. <strong>Threads</strong> are each core's ability to handle more than one thing at a time. More cores help when you're doing several heavy things in parallel (editing video, streaming while gaming, etc.).</p>
+      <p>But here's a fact that surprises many people: <strong>for gaming, you don't need the most cores possible.</strong> Most games make good use of 6 to 8 cores, and beyond that the gaming benefit is small. A modern 6- or 8-core processor is more than enough for gaming. 12- or 16-core chips make sense if you also do heavy creative work, not just gaming.</p>
+
+      <h2 data-reveal>Gaming's secret ingredient: cache</h2>
+      <p>This is the factor most people overlook and that matters most for games. <strong>Cache</strong> is ultra-fast memory inside the processor. When the CPU needs game data, it looks there first; the more cache it has, the less it has to wait, which translates into smoother gameplay.</p>
+      <p>That's why, in 2026, AMD processors with stacked cache technology (the ones with "X3D" in the name) are gaming kings: that extra cache gives them a real performance edge in games, sometimes noticeably ahead of more expensive chips without that technology. If gaming is your top priority, a processor with lots of cache usually outperforms one with more cores but less cache.</p>
+
+      <div class="ad-slot mono">Ad space</div>
+
+      <h2 data-reveal>AMD or Intel: which is better?</h2>
+      <p>Both brands are good and both use <span class="hoverable-inline" data-preview="ram" data-preview-label="RAM">DDR5 RAM</span>. The practical difference in 2026:</p>
+      <ul>
+        <li><strong>AMD</strong> clearly leads in pure gaming thanks to its stacked-cache (X3D) models. If gaming is your focus, it's usually the stronger bet.</li>
+        <li><strong>Intel</strong> is very competitive in productivity tasks and offers solid mid-range options, with integration for AI tasks.</li>
+      </ul>
+      <p>There's no single right answer: it depends on your budget and whether you do other heavy things besides gaming. Both will give you a great experience.</p>
+
+      <h2 data-reveal>The socket: don't overlook it</h2>
+      <p>Every processor uses a specific <span class="hoverable-inline" data-preview="socket" data-preview-label="Socket">socket</span>, and the <span class="hoverable-inline" data-preview="motherboard" data-preview-label="Motherboard">motherboard</span> must have that same socket. Current AMD chips use socket AM5; Intel Core Ultra chips use LGA1851. One point in AMD's favor: its AM5 platform has a longer upgrade path, meaning you're more likely to be able to upgrade to a newer processor in the future without replacing the motherboard. Always check that the CPU's socket and the motherboard's socket match — it's the golden rule of <a href="compatibilidad.html">compatibility</a>.</p>
+
+      <h2 data-reveal>Balance with the graphics card</h2>
+      <p>A common mistake is spending everything on the processor and skimping on the <span class="hoverable-inline" data-preview="gpu" data-preview-label="Graphics card">graphics card</span> (or the other way around). For gaming, the GPU is usually the more decisive part, so the processor should keep up without stealing budget from the card. The idea is <span class="hoverable-inline" data-preview="cuello-botella" data-preview-label="Bottleneck">balance</span>: a mid-range CPU with a good GPU performs better, for gaming, than a very expensive CPU with a weak GPU.</p>
+
+      <h2 data-reveal>Don't forget cooling</h2>
+      <p>More powerful processors generate more heat and need <span class="hoverable-inline" data-preview="cooling" data-preview-label="Cooling">cooling</span> to match. Some don't include a cooler in the box, so confirm whether yours does or whether you need to budget for one separately. An overheating processor throttles its performance to protect itself, so cooling it properly is part of choosing it well.</p>
+
+      <h2 data-reveal>In summary</h2>
+      <p>For gaming: prioritize <strong>cache</strong> over core count, 6-8 cores are enough, check the <strong>socket</strong> against your motherboard, balance it with the GPU, and factor in cooling. You don't need the top-of-the-line model for a great experience — you need the right processor for your use case.</p>
+
+      <div class="guide-cta">
+        <h3 data-reveal>Build around the ideal CPU</h3>
+        <p>In the configurator you choose your processor and the system checks that the motherboard, cooling, and everything else keeps up.</p>
+        <a href="../configurador.html" class="btn btn-primary">Go to the configurator</a>
+      </div>
+
+            <div class="guide-related">
+        <h3 data-reveal>Keep learning</h3>
+        <div class="related-cards">
+          <a href="elegir-gpu.html" class="guide-card">
+            <span class="guide-tag mono">GPU</span>
+            <h4>How to choose your graphics card</h4>
+          </a>
+          <a href="fuente-de-poder.html" class="guide-card">
+            <span class="guide-tag mono">PSU</span>
+            <h4>Power supply guide</h4>
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>© 2026 ArmaPC</span>
+    <div class="footer-links">
+      <a href="../sobre.html">About</a>
+      <a href="../contacto.html">Contact</a>
+      <a href="../privacidad.html">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../js/main.js"></script>
+<script src="../../js/previews.js"></script>
+<script src="../../js/motion.js"></script>
+</body>
+</html>

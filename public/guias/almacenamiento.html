@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía de almacenamiento (SSD) — ArmaPC</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="description" content="Cómo elegir el almacenamiento de tu PC gamer: NVMe vs SATA, cuántos GB o TB necesitas y por qué la velocidad importa para cargar juegos.">
+<link rel="canonical" href="https://tupcgamer.com/guias/almacenamiento.html">
+<link rel="alternate" hreflang="es" href="https://tupcgamer.com/guias/almacenamiento.html">
+<link rel="alternate" hreflang="en" href="https://tupcgamer.com/en/guias/almacenamiento.html">
+<link rel="alternate" hreflang="pt" href="https://tupcgamer.com/pt/guias/almacenamiento.html">
+<link rel="alternate" hreflang="x-default" href="https://tupcgamer.com/guias/almacenamiento.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ArmaPC">
+<meta property="og:title" content="Guía de almacenamiento (SSD) — ArmaPC">
+<meta property="og:description" content="Cómo elegir el almacenamiento de tu PC gamer: NVMe vs SATA, cuántos GB o TB necesitas y por qué la velocidad importa para cargar juegos.">
+<meta property="og:url" content="https://tupcgamer.com/guias/almacenamiento.html">
+<meta property="og:locale" content="es_PE">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Guía de almacenamiento (SSD) — ArmaPC">
+<meta name="twitter:description" content="Cómo elegir el almacenamiento de tu PC gamer: NVMe vs SATA, cuántos GB o TB necesitas y por qué la velocidad importa para cargar juegos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GH7D533JHR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GH7D533JHR');
+</script>
+</head>
+<body>
+
+<div class="ambient-bg ambient-bg--static ambient-bg--minimal" aria-hidden="true">
+  <svg class="ambient-trace-a" viewBox="0 0 480 420" fill="none">
+    <path d="M40 30 H210 V110 H380 V190" stroke="#5FAE8C" stroke-width="1" opacity="0.16"/>
+    <path d="M40 30 V-10" stroke="#5FAE8C" stroke-width="1" opacity="0.16"/>
+    <circle cx="210" cy="110" r="3" fill="#D4A24C" opacity="0.2"/>
+    <circle cx="380" cy="190" r="3" fill="#D4A24C" opacity="0.2"/>
+    <circle cx="40" cy="30" r="2.5" fill="#5FAE8C" opacity="0.18"/>
+  </svg>
+  <svg class="ambient-trace-b" viewBox="0 0 480 420" fill="none">
+    <path d="M90 420 V300 H260 V200 H440" stroke="#5FAE8C" stroke-width="1" opacity="0.16"/>
+    <path d="M440 200 V170" stroke="#5FAE8C" stroke-width="1" opacity="0.16"/>
+    <circle cx="260" cy="200" r="3" fill="#D4A24C" opacity="0.2"/>
+    <circle cx="90" cy="420" r="2.5" fill="#5FAE8C" opacity="0.18"/>
+    <circle cx="440" cy="200" r="2.5" fill="#5FAE8C" opacity="0.18"/>
+  </svg>
+  <svg class="ambient-cpu" viewBox="0 0 100 100" fill="none">
+    <rect x="26" y="26" width="48" height="48" rx="4" stroke="#5FAE8C" stroke-width="1.5" opacity="0.3"/>
+    <rect x="38" y="38" width="24" height="24" rx="2" stroke="#D4A24C" stroke-width="1.2" opacity="0.3"/>
+    <g stroke="#5FAE8C" stroke-width="1.5" opacity="0.22">
+      <line x1="34" y1="20" x2="34" y2="26"/><line x1="50" y1="20" x2="50" y2="26"/><line x1="66" y1="20" x2="66" y2="26"/>
+      <line x1="34" y1="74" x2="34" y2="80"/><line x1="50" y1="74" x2="50" y2="80"/><line x1="66" y1="74" x2="66" y2="80"/>
+      <line x1="20" y1="34" x2="26" y2="34"/><line x1="20" y1="50" x2="26" y2="50"/><line x1="20" y1="66" x2="26" y2="66"/>
+      <line x1="74" y1="34" x2="80" y2="34"/><line x1="74" y1="50" x2="80" y2="50"/><line x1="74" y1="66" x2="80" y2="66"/>
+    </g>
+  </svg>
+  <svg class="ambient-ram" viewBox="0 0 60 100" fill="none">
+    <rect x="10" y="8" width="14" height="84" rx="2" stroke="#5FAE8C" stroke-width="1.5" opacity="0.28"/>
+    <rect x="36" y="8" width="14" height="84" rx="2" stroke="#5FAE8C" stroke-width="1.5" opacity="0.28"/>
+    <g stroke="#D4A24C" stroke-width="1.2" opacity="0.22">
+      <line x1="13" y1="20" x2="21" y2="20"/><line x1="13" y1="32" x2="21" y2="32"/><line x1="13" y1="44" x2="21" y2="44"/>
+      <line x1="39" y1="20" x2="47" y2="20"/><line x1="39" y1="32" x2="47" y2="32"/><line x1="39" y1="44" x2="47" y2="44"/>
+    </g>
+  </svg>
+  <svg class="ambient-gpu" viewBox="0 0 100 64" fill="none">
+    <rect x="10" y="14" width="80" height="40" rx="4" stroke="#5FAE8C" stroke-width="1.5" opacity="0.26"/>
+    <rect x="7" y="12" width="4" height="46" rx="1" fill="#D4A24C" opacity="0.22"/>
+    <circle cx="34" cy="34" r="11" stroke="#5FAE8C" stroke-width="1.3" opacity="0.24"/>
+    <circle cx="66" cy="34" r="11" stroke="#5FAE8C" stroke-width="1.3" opacity="0.24"/>
+  </svg>
+  <svg class="ambient-fan" viewBox="0 0 100 100" fill="none">
+    <circle cx="50" cy="50" r="34" stroke="#5FAE8C" stroke-width="1.5" opacity="0.26"/>
+    <circle cx="50" cy="50" r="4" fill="#D4A24C" opacity="0.22"/>
+    <g stroke="#5FAE8C" stroke-width="1.3" opacity="0.2">
+      <line x1="50" y1="16" x2="50" y2="30"/><line x1="50" y1="70" x2="50" y2="84"/>
+      <line x1="16" y1="50" x2="30" y2="50"/><line x1="70" y1="50" x2="84" y2="50"/>
+      <line x1="26" y1="26" x2="36" y2="36"/><line x1="64" y1="64" x2="74" y2="74"/>
+      <line x1="74" y1="26" x2="64" y2="36"/><line x1="26" y1="74" x2="36" y2="64"/>
+    </g>
+  </svg>
+</div>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="../index.html" class="logo">Arma<span>PC</span></a>
+    <nav class="main-nav" id="main-nav" aria-label="Principal">
+      <a href="../configurador.html">Configurador</a>
+      <a href="../index.html#presupuestos">Presupuestos</a>
+      <a href="../guias.html">Guías</a>
+      <a href="../sobre.html">Sobre</a>
+      <div class="lang-switch mono" id="lang-switch">
+        <button type="button" class="lang-toggle" aria-haspopup="true" aria-expanded="false">Español <span class="lang-arrow">▾</span></button>
+        <div class="lang-menu" hidden>
+          <a href="../en/guias/almacenamiento.html">English</a>
+          <a href="../pt/guias/almacenamiento.html">Português</a>
+        </div>
+      </div>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <article class="guide-article">
+    <div class="container container-narrow">
+      <nav class="breadcrumb mono" aria-label="Ruta de navegación">
+        <a href="../index.html">Inicio</a> / <a href="../guias.html">Guías</a> / Almacenamiento
+      </nav>
+      <span class="guide-tag mono">SSD</span>
+      <h1>Guía de almacenamiento (SSD)</h1>
+      <p class="guide-meta mono">6 min de lectura</p>
+
+      <p class="guide-intro">El <span class="hoverable-inline" data-preview="storage" data-preview-label="Almacenamiento">almacenamiento</span> es donde vive todo: el sistema operativo, tus juegos, tus archivos. No define tu FPS en el juego, pero sí cuánto esperas para que todo cargue — desde encender la PC hasta entrar a una partida. Aquí te explicamos qué elegir sin gastar de más.</p>
+
+      <h2 class="hoverable" data-preview="storage">NVMe vs SATA: la diferencia real</h2>
+      <p>Hoy casi todo el almacenamiento nuevo es <strong>SSD</strong> (unidad de estado sólido) — los discos duros mecánicos quedaron para almacenamiento masivo barato, no para un PC gamer. Dentro de los SSD hay dos tipos:</p>
+      <ul>
+        <li><strong>NVMe:</strong> se conecta directo a la placa madre por un slot M.2, sin cables. Es varias veces más rápido que el SATA — la diferencia se nota sobre todo al instalar juegos grandes o cargar niveles con mucha carga de texturas.</li>
+        <li><strong>SATA:</strong> usa la misma conexión que los discos duros viejos. Sigue siendo mucho más rápido que un disco mecánico, pero más lento que un NVMe. A cambio, suele ser algo más barato.</li>
+      </ul>
+      <p>Para una PC gamer nueva, la recomendación general es ir directo a NVMe como unidad principal (donde va el sistema operativo y tus juegos favoritos) — la diferencia de precio ya no es tan grande como antes, y el salto en velocidad de carga vale la pena.</p>
+
+      <h2 data-reveal>¿Cuántos GB o TB necesito?</h2>
+      <p>Los juegos actuales pesan cada vez más — no es raro que un solo título ocupe 80-150 GB. Como referencia:</p>
+      <ul>
+        <li><strong>500 GB:</strong> el mínimo hoy, y ya se siente justo. Alcanza para el sistema operativo y unos pocos juegos grandes a la vez.</li>
+        <li><strong>1 TB:</strong> el punto de partida cómodo para la mayoría. Te deja espacio para varios juegos instalados sin estar borrando y reinstalando todo el tiempo.</li>
+        <li><strong>2 TB o más:</strong> ideal si juegas varios títulos pesados a la vez, o si además guardas mucho contenido (video, fotos, proyectos).</li>
+      </ul>
+      <p>Un truco común: combinar un NVMe rápido y no muy grande (500 GB-1 TB) para el sistema y los juegos que juegas seguido, con un segundo disco SATA más grande y barato para el resto. Muchas placas madre tienen espacio para varias unidades.</p>
+
+      <div class="ad-slot mono">Espacio publicitario</div>
+
+      <h2 data-reveal>¿Por qué no afecta tanto los FPS?</h2>
+      <p>Es una confusión común: un SSD más rápido no te da más cuadros por segundo durante el juego — eso depende del procesador y la tarjeta gráfica. Lo que sí cambia es <em>cuánto esperas</em>: tiempos de carga más cortos, streaming de texturas más fluido en mundos abiertos grandes (menos popping o texturas borrosas apareciendo tarde), e instalaciones/actualizaciones más rápidas. Es una mejora de experiencia, no de rendimiento en el juego en sí.</p>
+
+      <h2 class="hoverable" data-preview="motherboard">Compatibilidad con la placa madre</h2>
+      <p>Antes de comprar, conviene saber que no todas las <span class="hoverable-inline" data-preview="motherboard" data-preview-label="Placa madre">placas madre</span> tienen la misma cantidad de slots M.2, ni todos corren a la misma velocidad (Gen3, Gen4, Gen5 — cada generación es más rápida, pero también más cara). Si tu presupuesto es ajustado, un NVMe Gen4 sigue siendo una excelente opción hoy; el salto a Gen5 recién se nota en tareas muy exigentes, no tanto en gaming.</p>
+
+      <h2 data-reveal>En resumen</h2>
+      <p>Para la mayoría: un <strong>NVMe de al menos 1 TB</strong> como unidad principal es el punto dulce entre precio, velocidad y espacio. Si tu presupuesto es muy ajustado, un SATA de 1 TB sigue siendo una mejora enorme frente a un disco mecánico. Y si necesitas más espacio del que puedes pagar en NVMe, combinar con un SATA grande es una solución práctica y económica.</p>
+
+      <div class="guide-cta">
+        <h3 data-reveal>Arma tu build con el almacenamiento justo</h3>
+        <p>En el configurador puedes comparar las opciones de almacenamiento y ver cómo cambia el precio total de tu build.</p>
+        <a href="../configurador.html" class="btn btn-primary">Ir al configurador</a>
+      </div>
+
+            <div class="guide-related">
+        <h3 data-reveal>Sigue aprendiendo</h3>
+        <div class="related-cards">
+          <a href="fuente-de-poder.html" class="guide-card">
+            <span class="guide-tag mono">FUENTE</span>
+            <h4>Guía de fuentes de poder</h4>
+          </a>
+          <a href="compatibilidad.html" class="guide-card">
+            <span class="guide-tag mono">GUÍA</span>
+            <h4>Compatibilidad de componentes</h4>
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>© 2026 ArmaPC</span>
+    <div class="footer-links">
+      <a href="../sobre.html">Sobre</a>
+      <a href="../contacto.html">Contacto</a>
+      <a href="../privacidad.html">Privacidad</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script src="../js/previews.js"></script>
+<script src="../js/motion.js"></script>
+</body>
+</html>

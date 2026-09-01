@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compatibilidad de componentes — ArmaPC</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="description" content="Las reglas que hacen que las piezas de una PC encajen: socket, tipo de RAM, tamaño del gabinete, potencia de la fuente y refrigeración. Explicado con ejemplos.">
+<link rel="canonical" href="https://tupcgamer.com/guias/compatibilidad.html">
+<link rel="alternate" hreflang="es" href="https://tupcgamer.com/guias/compatibilidad.html">
+<link rel="alternate" hreflang="en" href="https://tupcgamer.com/en/guias/compatibilidad.html">
+<link rel="alternate" hreflang="pt" href="https://tupcgamer.com/pt/guias/compatibilidad.html">
+<link rel="alternate" hreflang="x-default" href="https://tupcgamer.com/guias/compatibilidad.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ArmaPC">
+<meta property="og:title" content="Compatibilidad de componentes — ArmaPC">
+<meta property="og:description" content="Las reglas que hacen que las piezas de una PC encajen: socket, tipo de RAM, tamaño del gabinete, potencia de la fuente y refrigeración. Explicado con ejemplos.">
+<meta property="og:url" content="https://tupcgamer.com/guias/compatibilidad.html">
+<meta property="og:locale" content="es_PE">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Compatibilidad de componentes — ArmaPC">
+<meta name="twitter:description" content="Las reglas que hacen que las piezas de una PC encajen: socket, tipo de RAM, tamaño del gabinete, potencia de la fuente y refrigeración. Explicado con ejemplos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GH7D533JHR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GH7D533JHR');
+</script>
+</head>
+<body>
+
+<div class="ambient-bg ambient-bg--static ambient-bg--minimal" aria-hidden="true">
+  <svg class="ambient-trace-a" viewBox="0 0 480 420" fill="none">
+    <path d="M40 30 H210 V110 H380 V190" stroke="#5FAE8C" stroke-width="1" opacity="0.16"/>
+    <path d="M40 30 V-10" stroke="#5FAE8C" stroke-width="1" opacity="0.16"/>
+    <circle cx="210" cy="110" r="3" fill="#D4A24C" opacity="0.2"/>
+    <circle cx="380" cy="190" r="3" fill="#D4A24C" opacity="0.2"/>
+    <circle cx="40" cy="30" r="2.5" fill="#5FAE8C" opacity="0.18"/>
+  </svg>
+  <svg class="ambient-trace-b" viewBox="0 0 480 420" fill="none">
+    <path d="M90 420 V300 H260 V200 H440" stroke="#5FAE8C" stroke-width="1" opacity="0.16"/>
+    <path d="M440 200 V170" stroke="#5FAE8C" stroke-width="1" opacity="0.16"/>
+    <circle cx="260" cy="200" r="3" fill="#D4A24C" opacity="0.2"/>
+    <circle cx="90" cy="420" r="2.5" fill="#5FAE8C" opacity="0.18"/>
+    <circle cx="440" cy="200" r="2.5" fill="#5FAE8C" opacity="0.18"/>
+  </svg>
+  <svg class="ambient-cpu" viewBox="0 0 100 100" fill="none">
+    <rect x="26" y="26" width="48" height="48" rx="4" stroke="#5FAE8C" stroke-width="1.5" opacity="0.3"/>
+    <rect x="38" y="38" width="24" height="24" rx="2" stroke="#D4A24C" stroke-width="1.2" opacity="0.3"/>
+    <g stroke="#5FAE8C" stroke-width="1.5" opacity="0.22">
+      <line x1="34" y1="20" x2="34" y2="26"/><line x1="50" y1="20" x2="50" y2="26"/><line x1="66" y1="20" x2="66" y2="26"/>
+      <line x1="34" y1="74" x2="34" y2="80"/><line x1="50" y1="74" x2="50" y2="80"/><line x1="66" y1="74" x2="66" y2="80"/>
+      <line x1="20" y1="34" x2="26" y2="34"/><line x1="20" y1="50" x2="26" y2="50"/><line x1="20" y1="66" x2="26" y2="66"/>
+      <line x1="74" y1="34" x2="80" y2="34"/><line x1="74" y1="50" x2="80" y2="50"/><line x1="74" y1="66" x2="80" y2="66"/>
+    </g>
+  </svg>
+  <svg class="ambient-ram" viewBox="0 0 60 100" fill="none">
+    <rect x="10" y="8" width="14" height="84" rx="2" stroke="#5FAE8C" stroke-width="1.5" opacity="0.28"/>
+    <rect x="36" y="8" width="14" height="84" rx="2" stroke="#5FAE8C" stroke-width="1.5" opacity="0.28"/>
+    <g stroke="#D4A24C" stroke-width="1.2" opacity="0.22">
+      <line x1="13" y1="20" x2="21" y2="20"/><line x1="13" y1="32" x2="21" y2="32"/><line x1="13" y1="44" x2="21" y2="44"/>
+      <line x1="39" y1="20" x2="47" y2="20"/><line x1="39" y1="32" x2="47" y2="32"/><line x1="39" y1="44" x2="47" y2="44"/>
+    </g>
+  </svg>
+  <svg class="ambient-gpu" viewBox="0 0 100 64" fill="none">
+    <rect x="10" y="14" width="80" height="40" rx="4" stroke="#5FAE8C" stroke-width="1.5" opacity="0.26"/>
+    <rect x="7" y="12" width="4" height="46" rx="1" fill="#D4A24C" opacity="0.22"/>
+    <circle cx="34" cy="34" r="11" stroke="#5FAE8C" stroke-width="1.3" opacity="0.24"/>
+    <circle cx="66" cy="34" r="11" stroke="#5FAE8C" stroke-width="1.3" opacity="0.24"/>
+  </svg>
+  <svg class="ambient-fan" viewBox="0 0 100 100" fill="none">
+    <circle cx="50" cy="50" r="34" stroke="#5FAE8C" stroke-width="1.5" opacity="0.26"/>
+    <circle cx="50" cy="50" r="4" fill="#D4A24C" opacity="0.22"/>
+    <g stroke="#5FAE8C" stroke-width="1.3" opacity="0.2">
+      <line x1="50" y1="16" x2="50" y2="30"/><line x1="50" y1="70" x2="50" y2="84"/>
+      <line x1="16" y1="50" x2="30" y2="50"/><line x1="70" y1="50" x2="84" y2="50"/>
+      <line x1="26" y1="26" x2="36" y2="36"/><line x1="64" y1="64" x2="74" y2="74"/>
+      <line x1="74" y1="26" x2="64" y2="36"/><line x1="26" y1="74" x2="36" y2="64"/>
+    </g>
+  </svg>
+</div>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="../index.html" class="logo">Arma<span>PC</span></a>
+    <nav class="main-nav" id="main-nav" aria-label="Principal">
+      <a href="../configurador.html">Configurador</a>
+      <a href="../index.html#presupuestos">Presupuestos</a>
+      <a href="../guias.html">Guías</a>
+      <a href="../sobre.html">Sobre</a>
+      <div class="lang-switch mono" id="lang-switch">
+        <button type="button" class="lang-toggle" aria-haspopup="true" aria-expanded="false">Español <span class="lang-arrow">▾</span></button>
+        <div class="lang-menu" hidden>
+          <a href="../en/guias/compatibilidad.html">English</a>
+          <a href="../pt/guias/compatibilidad.html">Português</a>
+        </div>
+      </div>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <article class="guide-article">
+    <div class="container container-narrow">
+      <nav class="breadcrumb mono" aria-label="Ruta de navegación">
+        <a href="../index.html">Inicio</a> / <a href="../guias.html">Guías</a> / Compatibilidad
+      </nav>
+      <span class="guide-tag mono">GUÍA</span>
+      <h1>Compatibilidad de componentes</h1>
+      <p class="guide-meta mono">9 min de lectura</p>
+
+      <p class="guide-intro">El error más común al armar una PC por primera vez es comprar piezas que no encajan entre sí. La buena noticia: las reglas de compatibilidad son pocas y lógicas. Estas son exactamente las mismas que revisa nuestro configurador en tiempo real, así que después de leer esto vas a entender <em>por qué</em> te avisa lo que te avisa.</p>
+
+      <h2 class="hoverable" data-preview="socket-match">1. El socket: procesador ↔ placa madre</h2>
+      <p>El <strong>socket</strong> es el conector físico donde entra el procesador en la placa madre. Es la regla número uno: el socket del procesador y el de la placa <strong>tienen que ser el mismo</strong>, o el procesador literalmente no entra.</p>
+      <p>Por ejemplo, los procesadores AMD Ryzen actuales usan socket <strong class="hoverable-inline" data-preview="socket" data-preview-label="Socket AM5">AM5</strong>, así que necesitan una placa madre AM5 (como las B650 o X870). Los Intel Core Ultra usan socket <strong class="hoverable-inline" data-preview="socket" data-preview-label="Socket LGA1851">LGA1851</strong> y necesitan placas de esa familia (como las Z890). Un Ryzen no entra en una placa Intel, y viceversa. Siempre revisa que coincidan.</p>
+
+      <h2 class="hoverable" data-preview="ram-slot">2. El tipo de RAM: memoria ↔ placa madre</h2>
+      <p>La memoria RAM viene en generaciones, y la actual es <strong class="hoverable-inline" data-preview="ram" data-preview-label="Memoria DDR5">DDR5</strong>. La placa madre está diseñada para un tipo específico: una placa DDR5 solo acepta RAM DDR5. No son intercambiables — ni siquiera entran físicamente en la ranura equivocada. Como casi todo lo actual es DDR5, esto rara vez da problemas hoy, pero es bueno saberlo si comparas piezas de distintas épocas.</p>
+
+      <h2 class="hoverable" data-preview="board-fit">3. El tamaño: placa madre ↔ gabinete</h2>
+      <p>Las placas madre vienen en tamaños estándar (el "factor de forma"): <strong class="hoverable-inline" data-preview="factor-forma" data-preview-label="ATX (grande)">ATX</strong> (grande), <strong class="hoverable-inline" data-preview="factor-forma" data-preview-label="Micro-ATX (mediana)">Micro-ATX</strong> (mediana) e <strong class="hoverable-inline" data-preview="factor-forma" data-preview-label="Mini-ITX (compacta)">Mini-ITX</strong> (compacta). El gabinete indica qué tamaños admite. La regla es simple: la placa debe caber en el gabinete.</p>
+      <p>Un gabinete grande (mid-tower o full-tower) suele admitir los tres tamaños. Uno compacto solo admite las placas pequeñas. Si eliges una placa ATX, necesitas un gabinete que la soporte.</p>
+
+      <div class="ad-slot mono">Espacio publicitario</div>
+
+      <h2 class="hoverable" data-preview="gpu-fit">4. El espacio físico: tarjeta gráfica ↔ gabinete</h2>
+      <p>Las tarjetas gráficas modernas son grandes, y las de gama alta pueden ser enormes. Cada gabinete tiene un largo máximo de GPU que admite (en milímetros). Si la tarjeta es más larga que ese máximo, no cierra la tapa — o directamente no entra.</p>
+      <p>Es un detalle que mucha gente pasa por alto y descubre tarde. Por eso el configurador compara el largo de la GPU con el espacio del gabinete y te avisa antes de que sea un problema.</p>
+
+      <h2 class="hoverable" data-preview="power-fit">5. La potencia: fuente ↔ todo el sistema</h2>
+      <p>La fuente de poder debe entregar suficientes <strong>watts</strong> para alimentar a todas las piezas, con margen de sobra. Las que más consumen son el procesador y, sobre todo, la tarjeta gráfica.</p>
+      <p>La forma sencilla de calcularlo: suma el consumo del procesador y la GPU, agrégale unos 100 W para el resto del sistema, y elige una fuente que supere ese número con holgura (idealmente un 40% más, para que no trabaje al límite). Una fuente al límite se estresa, hace ruido y dura menos. El configurador hace esta cuenta por ti y te recomienda un mínimo de watts.</p>
+
+      <h2 class="hoverable" data-preview="cooler-fit">6. La refrigeración: cooler ↔ procesador ↔ gabinete</h2>
+      <p>La refrigeración tiene que cumplir tres cosas a la vez:</p>
+      <ul>
+        <li>Ser compatible con el <strong>socket</strong> del procesador (la mayoría soporta varios, pero conviene confirmarlo).</li>
+        <li>Poder <strong>disipar el calor</strong> que genera ese procesador (un CPU potente necesita una refrigeración a su altura).</li>
+        <li>Si es de aire, <strong>caber en altura</strong> dentro del gabinete (los disipadores grandes no entran en gabinetes compactos).</li>
+      </ul>
+
+      <h2 data-reveal>El equilibrio general: evitar cuellos de botella</h2>
+      <p>Más allá de que las piezas "encajen", hay una compatibilidad más sutil: que estén <strong>equilibradas</strong> entre sí. Poner una tarjeta gráfica carísima junto a un procesador muy débil hace que la GPU no rinda al máximo, porque el procesador no le sigue el ritmo. Eso se llama <em>cuello de botella</em>. No rompe nada, pero es dinero desaprovechado. La idea es que ninguna pieza quede muy por debajo del resto.</p>
+
+      <div class="guide-cta">
+        <h3 data-reveal>Deja que el sistema lo revise por ti</h3>
+        <p>El configurador aplica todas estas reglas en tiempo real: elige tus piezas y te marca cualquier incompatibilidad con una explicación clara.</p>
+        <a href="../configurador.html" class="btn btn-primary">Ir al configurador</a>
+      </div>
+
+            <div class="guide-related">
+        <h3 data-reveal>Sigue aprendiendo</h3>
+        <div class="related-cards">
+          <a href="elegir-cpu.html" class="guide-card">
+            <span class="guide-tag mono">CPU</span>
+            <h4>Cómo elegir tu procesador</h4>
+          </a>
+          <a href="cuanta-ram.html" class="guide-card">
+            <span class="guide-tag mono">RAM</span>
+            <h4>¿Cuánta RAM necesito?</h4>
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>© 2026 ArmaPC</span>
+    <div class="footer-links">
+      <a href="../sobre.html">Sobre</a>
+      <a href="../contacto.html">Contacto</a>
+      <a href="../privacidad.html">Privacidad</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script src="../js/previews.js"></script>
+<script src="../js/motion.js"></script>
+</body>
+</html>

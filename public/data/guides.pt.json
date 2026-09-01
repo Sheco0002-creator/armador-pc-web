@@ -1,0 +1,77 @@
+{
+  "updated": "2026-07",
+  "guides": [
+    {
+      "slug": "glosario",
+      "file": "guias/glosario.html",
+      "tag": "BÁSICO",
+      "title": "Glossário para iniciantes",
+      "summary": "O que é cada peça de um PC, explicado em palavras simples: CPU, GPU, RAM, placa-mãe e o resto, sem termos técnicos.",
+      "readMinutes": 7
+    },
+    {
+      "slug": "compatibilidad",
+      "file": "guias/compatibilidad.html",
+      "tag": "GUIA",
+      "title": "Compatibilidade de componentes",
+      "summary": "As regras que fazem as peças se encaixarem: soquete, tipo de RAM, tamanho do gabinete e potência da fonte. As mesmas que o configurador verifica.",
+      "readMinutes": 9
+    },
+    {
+      "slug": "elegir-gpu",
+      "file": "guias/elegir-gpu.html",
+      "tag": "GPU",
+      "title": "Como escolher sua placa de vídeo",
+      "summary": "A peça que mais define sua experiência gamer. Como escolhê-la de acordo com a resolução em que você joga, sem pagar a mais nem ficar aquém.",
+      "readMinutes": 8
+    },
+    {
+      "slug": "errores-comunes",
+      "file": "guias/errores-comunes.html",
+      "tag": "DICAS",
+      "title": "Erros comuns ao montar seu primeiro PC",
+      "summary": "Os tropeços mais frequentes ao montar seu primeiro computador — fonte barata, orçamento mal planejado, esquecer a refrigeração — e como evitá-los todos.",
+      "readMinutes": 8
+    },
+    {
+      "slug": "cuanta-ram",
+      "file": "guias/cuanta-ram.html",
+      "tag": "RAM",
+      "title": "Quanta RAM eu preciso?",
+      "summary": "16 GB, 32 GB ou mais: quanta memória você realmente precisa de acordo com o que faz no seu PC, sem gastar a mais nem ficar aquém.",
+      "readMinutes": 6
+    },
+    {
+      "slug": "fuente-de-poder",
+      "file": "guias/fuente-de-poder.html",
+      "tag": "FONTE",
+      "title": "Guia de fontes de alimentação",
+      "summary": "Quantos watts você precisa, o que significa a certificação 80+ e por que a fonte é a peça em que não vale a pena economizar.",
+      "readMinutes": 7
+    },
+    {
+      "slug": "elegir-cpu",
+      "file": "guias/elegir-cpu.html",
+      "tag": "CPU",
+      "title": "Como escolher seu processador",
+      "summary": "Núcleos, cache e soquete: no que prestar atenção de verdade ao escolher o cérebro do seu PC, e por que o mais caro nem sempre é o melhor para jogar.",
+      "readMinutes": 8
+    },
+    {
+      "slug": "almacenamiento",
+      "file": "guias/almacenamiento.html",
+      "tag": "SSD",
+      "title": "Guia de armazenamento (SSD)",
+      "summary": "NVMe vs SATA, quantos GB ou TB você precisa e por que a velocidade importa mais para carregar jogos do que para o seu FPS.",
+      "readMinutes": 6
+    },
+    {
+      "slug": "gabinete-refrigeracion",
+      "file": "guias/gabinete-refrigeracion.html",
+      "tag": "GABINETE",
+      "title": "Guia de gabinete e refrigeração",
+      "summary": "Fator de forma, fluxo de ar, e refrigeração a ar vs líquida (AIO): como escolher sem complicar.",
+      "readMinutes": 7
+    }
+  ]
+}

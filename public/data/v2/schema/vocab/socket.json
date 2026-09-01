@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "2.0.0",
+  "key": "socket",
+  "description": "Zocalos de CPU reconocidos por el motor de compatibilidad (campo compatibility.provides/requires con key='socket'). Usado en CPU+motherboard.",
+  "values": ["AM5", "AM4", "LGA1700", "LGA1851", "LGA1200", "sTRX4", "TR5"]
+}

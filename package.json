@@ -11,5 +11,8 @@
   },
   "devDependencies": {
     "astro": "^4.15.0"
+  },
+  "dependencies": {
+    "animejs": "^3.2.2"
   }
 }

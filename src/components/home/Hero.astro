@@ -1,6 +1,7 @@
 ---
 import { t } from '../../i18n';
 import type { Lang } from '../../i18n';
+import HeroAnim from './HeroAnim.astro';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const p = lang === 'es' ? '' : `/${lang}`;
@@ -248,4 +249,5 @@ const p = lang === 'es' ? '' : `/${lang}`;
     </ul>
 
   </div>
+  <HeroAnim />
 </section>

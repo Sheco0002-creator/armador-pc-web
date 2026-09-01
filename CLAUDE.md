@@ -8,6 +8,15 @@ ArmaPC (tupcgamer.com) — a static educational site (HTML + CSS + vanilla JS, n
 
 ## Commands
 
+**Dev / build (Astro)** — la home ya está migrada a Astro:
+```
+npm install
+npm run dev      # servidor de desarrollo con hot-reload
+npm run build    # genera dist/ estático
+npm run check:dist  # verifica el output (node --test tests/dist/)
+```
+El resto de páginas todavía son HTML estático servido desde public/.
+
 **Run the site locally** (required for anything that `fetch()`s `data/*.json` — `file://` won't work):
 ```
 python3 -m http.server 8000
@@ -33,6 +42,8 @@ Both use only Node's built-ins (`node:test`, `node:assert`) — no dependencies,
 ### i18n: three parallel HTML trees, one shared backend
 
 Site content exists in 3 languages as **fully duplicated HTML files**, not templates: Spanish at the repo root, English under `en/`, Portuguese under `pt/` (mirroring `index.html`, `configurador.html`, `guias.html`, `sobre.html`, `contacto.html`, `privacidad.html`, `niveles/*.html`, `guias/*.html`). All three trees share the same `css/style.css` and `js/*.js` via relative `../` paths. The active language is read from `<html lang="es|en|pt">`; `rutaLocalizada()` in `js/main.js` rewrites a Spanish data path (`data/foo.json`) to its localized sibling (`data/foo.en.json`) so every JS module that fetches data automatically gets the right language without extra logic. **Editing content in one language does not propagate** — a change has to be applied by hand to the matching file in the other two trees.
+
+La home (`/`, `/en/`, `/pt/`) ya NO usa este patrón — se genera desde `src/pages/**/index.astro` + `src/i18n/*.json`. El resto de páginas sí.
 
 ### Compatibility engine (`js/compatibilidad.js`)
 

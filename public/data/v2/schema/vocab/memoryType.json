@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "2.0.0",
+  "key": "memoryType",
+  "description": "Generacion de memoria RAM. Usado en RAM+motherboard (compatibility.provides/requires).",
+  "values": ["DDR4", "DDR5"]
+}

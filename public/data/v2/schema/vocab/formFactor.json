@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "2.0.0",
+  "key": "formFactor",
+  "description": "Factor de forma de motherboard (compatibility.provides) y factor(es) de forma soportados por un gabinete (compatibility.requires/constraints). Usado en motherboard+case.",
+  "values": ["MiniITX", "MicroATX", "ATX", "EATX"]
+}

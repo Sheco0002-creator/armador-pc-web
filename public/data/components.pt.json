@@ -1,0 +1,489 @@
+{
+  "updated": "2026-08",
+  "currency": "USD",
+  "categories": [
+    {
+      "id": "cpu",
+      "label": "Processador",
+      "order": 1,
+      "items": [
+        {
+          "id": "cpu-r5-9600x",
+          "name": "AMD Ryzen 5 9600X",
+          "specs": "6 núcleos / 12 threads",
+          "price": 190,
+          "socket": "AM5",
+          "tdp": 65
+        },
+        {
+          "id": "cpu-r7-9700x",
+          "name": "AMD Ryzen 7 9700X",
+          "specs": "8 núcleos / 16 threads",
+          "price": 325,
+          "socket": "AM5",
+          "tdp": 65
+        },
+        {
+          "id": "cpu-r7-9850x3d",
+          "name": "AMD Ryzen 7 9850X3D",
+          "specs": "8 núcleos / 16 threads, 3D V-Cache",
+          "price": 525,
+          "socket": "AM5",
+          "tdp": 120
+        },
+        {
+          "id": "cpu-r9-9950x3d",
+          "name": "AMD Ryzen 9 9950X3D",
+          "specs": "16 núcleos / 32 threads, 3D V-Cache",
+          "price": 750,
+          "socket": "AM5",
+          "tdp": 170
+        },
+        {
+          "id": "cpu-ultra7-265k",
+          "name": "Intel Core Ultra 7 265K",
+          "specs": "20 núcleos",
+          "price": 400,
+          "socket": "LGA1851",
+          "tdp": 125
+        },
+        {
+          "id": "cpu-ultra9-285k",
+          "name": "Intel Core Ultra 9 285K",
+          "specs": "24 núcleos",
+          "price": 580,
+          "socket": "LGA1851",
+          "tdp": 125
+        }
+      ]
+    },
+    {
+      "id": "motherboard",
+      "label": "Placa-mãe",
+      "order": 2,
+      "items": [
+        {
+          "id": "mb-b650m",
+          "name": "B650M",
+          "specs": "mATX, AM5",
+          "price": 110,
+          "socket": "AM5",
+          "ramType": "DDR5",
+          "formFactor": "mATX",
+          "chipset": "B650"
+        },
+        {
+          "id": "mb-b650",
+          "name": "B650",
+          "specs": "ATX, AM5",
+          "price": 120,
+          "socket": "AM5",
+          "ramType": "DDR5",
+          "formFactor": "ATX",
+          "chipset": "B650"
+        },
+        {
+          "id": "mb-x870",
+          "name": "X870",
+          "specs": "ATX, AM5",
+          "price": 250,
+          "socket": "AM5",
+          "ramType": "DDR5",
+          "formFactor": "ATX",
+          "chipset": "X870"
+        },
+        {
+          "id": "mb-x870e",
+          "name": "X870E",
+          "specs": "ATX topo de linha, AM5",
+          "price": 400,
+          "socket": "AM5",
+          "ramType": "DDR5",
+          "formFactor": "ATX",
+          "chipset": "X870E"
+        },
+        {
+          "id": "mb-z890",
+          "name": "Z890",
+          "specs": "ATX, LGA1851",
+          "price": 300,
+          "socket": "LGA1851",
+          "ramType": "DDR5",
+          "formFactor": "ATX",
+          "chipset": "Z890"
+        }
+      ]
+    },
+    {
+      "id": "ram",
+      "label": "Memória RAM",
+      "order": 3,
+      "items": [
+        {
+          "id": "ram-16",
+          "name": "16 GB DDR5-6000",
+          "specs": "2x8 GB",
+          "price": 90,
+          "ramType": "DDR5",
+          "modules": 2
+        },
+        {
+          "id": "ram-32",
+          "name": "32 GB DDR5-6000",
+          "specs": "2x16 GB",
+          "price": 170,
+          "ramType": "DDR5",
+          "modules": 2
+        },
+        {
+          "id": "ram-64",
+          "name": "64 GB DDR5-6000",
+          "specs": "2x32 GB",
+          "price": 340,
+          "ramType": "DDR5",
+          "modules": 2
+        }
+      ]
+    },
+    {
+      "id": "gpu",
+      "label": "Placa de vídeo",
+      "order": 4,
+      "items": [
+        {
+          "id": "gpu-5060",
+          "name": "NVIDIA RTX 5060 8GB",
+          "specs": "1080p",
+          "price": 320,
+          "length": 245,
+          "powerDraw": 145,
+          "recommendedPsu": 550
+        },
+        {
+          "id": "gpu-9060xt",
+          "name": "AMD RX 9060 XT 16GB",
+          "specs": "1080p/1440p",
+          "price": 350,
+          "length": 270,
+          "powerDraw": 180,
+          "recommendedPsu": 600
+        },
+        {
+          "id": "gpu-5070",
+          "name": "NVIDIA RTX 5070 12GB",
+          "specs": "1440p",
+          "price": 600,
+          "length": 300,
+          "powerDraw": 250,
+          "recommendedPsu": 650
+        },
+        {
+          "id": "gpu-9070xt",
+          "name": "AMD RX 9070 XT 16GB",
+          "specs": "1440p",
+          "price": 600,
+          "length": 330,
+          "powerDraw": 300,
+          "recommendedPsu": 750
+        },
+        {
+          "id": "gpu-5080",
+          "name": "NVIDIA RTX 5080 16GB",
+          "specs": "4K",
+          "price": 1050,
+          "length": 340,
+          "powerDraw": 360,
+          "recommendedPsu": 850
+        },
+        {
+          "id": "gpu-5090",
+          "name": "NVIDIA RTX 5090 32GB",
+          "specs": "4K extremo",
+          "price": 2000,
+          "length": 360,
+          "powerDraw": 575,
+          "recommendedPsu": 1000
+        }
+      ]
+    },
+    {
+      "id": "storage",
+      "label": "Armazenamento",
+      "order": 5,
+      "items": [
+        {
+          "id": "ssd-sata-1tb",
+          "name": "SSD SATA 1TB",
+          "specs": "mais econômico",
+          "price": 60,
+          "interface": "SATA"
+        },
+        {
+          "id": "ssd-nvme-1tb",
+          "name": "SSD NVMe 1TB Gen4",
+          "specs": "rápido",
+          "price": 85,
+          "interface": "NVMe"
+        },
+        {
+          "id": "ssd-nvme-2tb",
+          "name": "SSD NVMe 2TB Gen4",
+          "specs": "amplo e rápido",
+          "price": 160,
+          "interface": "NVMe"
+        },
+        {
+          "id": "ssd-nvme-4tb",
+          "name": "SSD NVMe 4TB Gen5",
+          "specs": "desempenho máximo",
+          "price": 420,
+          "interface": "NVMe"
+        }
+      ]
+    },
+    {
+      "id": "psu",
+      "label": "Fonte de alimentação",
+      "order": 6,
+      "items": [
+        {
+          "id": "psu-550",
+          "name": "550W 80+ Bronze",
+          "specs": "ATX 3.1",
+          "price": 70,
+          "wattage": 550
+        },
+        {
+          "id": "psu-650",
+          "name": "650W 80+ Gold",
+          "specs": "ATX 3.1",
+          "price": 80,
+          "wattage": 650
+        },
+        {
+          "id": "psu-750",
+          "name": "750W 80+ Gold",
+          "specs": "ATX 3.1",
+          "price": 105,
+          "wattage": 750
+        },
+        {
+          "id": "psu-850",
+          "name": "850W 80+ Gold",
+          "specs": "ATX 3.1",
+          "price": 150,
+          "wattage": 850
+        },
+        {
+          "id": "psu-1000",
+          "name": "1000W 80+ Platinum",
+          "specs": "ATX 3.1",
+          "price": 190,
+          "wattage": 1000
+        },
+        {
+          "id": "psu-1200",
+          "name": "1200W 80+ Platinum",
+          "specs": "ATX 3.1 / PCIe 5.x",
+          "price": 260,
+          "wattage": 1200
+        }
+      ]
+    },
+    {
+      "id": "case",
+      "label": "Gabinete",
+      "order": 7,
+      "items": [
+        {
+          "id": "case-matx",
+          "name": "Micro-ATX",
+          "specs": "compacto",
+          "price": 70,
+          "supports": [
+            "mATX",
+            "ITX"
+          ],
+          "maxGpuLength": 320,
+          "maxCoolerHeight": 165
+        },
+        {
+          "id": "case-mid",
+          "name": "Mid-tower ATX",
+          "specs": "bom fluxo de ar",
+          "price": 90,
+          "supports": [
+            "ATX",
+            "mATX",
+            "ITX"
+          ],
+          "maxGpuLength": 360,
+          "maxCoolerHeight": 170
+        },
+        {
+          "id": "case-full",
+          "name": "Full-tower ATX",
+          "specs": "premium, espaço máximo",
+          "price": 180,
+          "supports": [
+            "ATX",
+            "mATX",
+            "ITX"
+          ],
+          "maxGpuLength": 400,
+          "maxCoolerHeight": 180
+        }
+      ]
+    },
+    {
+      "id": "cooling",
+      "label": "Refrigeração",
+      "order": 8,
+      "items": [
+        {
+          "id": "cool-torre-simple",
+          "name": "Torre de ar simples",
+          "specs": "econômico",
+          "price": 30,
+          "type": "aire",
+          "socketSupport": [
+            "AM5",
+            "LGA1851"
+          ],
+          "height": 155,
+          "tdpCapacity": 95
+        },
+        {
+          "id": "cool-torre-premium",
+          "name": "Torre de ar premium",
+          "specs": "silencioso",
+          "price": 80,
+          "type": "aire",
+          "socketSupport": [
+            "AM5",
+            "LGA1851"
+          ],
+          "height": 160,
+          "tdpCapacity": 180
+        },
+        {
+          "id": "cool-aio-240",
+          "name": "Water cooler AIO 240mm",
+          "specs": "líquida",
+          "price": 100,
+          "type": "liquida",
+          "socketSupport": [
+            "AM5",
+            "LGA1851"
+          ],
+          "tdpCapacity": 220
+        },
+        {
+          "id": "cool-aio-360",
+          "name": "Water cooler AIO 360mm",
+          "specs": "líquida premium",
+          "price": 160,
+          "type": "liquida",
+          "socketSupport": [
+            "AM5",
+            "LGA1851"
+          ],
+          "tdpCapacity": 350
+        }
+      ]
+    }
+  ],
+  "tiers": [
+    {
+      "id": "entrada",
+      "name": "Entrada",
+      "tagline": "Seu primeiro PC gamer de verdade",
+      "target": "1080p alto/ultra na maioria dos jogos atuais, taxas altas em esports.",
+      "priceMin": 850,
+      "priceMax": 1050,
+      "components": {
+        "cpu": "cpu-r5-9600x",
+        "motherboard": "mb-b650",
+        "ram": "ram-32",
+        "gpu": "gpu-5060",
+        "storage": "ssd-sata-1tb",
+        "psu": "psu-550",
+        "case": "case-mid",
+        "cooling": "cool-torre-simple"
+      },
+      "alternatives": {
+        "gpu": "gpu-9060xt",
+        "storage": "ssd-nvme-1tb"
+      }
+    },
+    {
+      "id": "media",
+      "name": "Média",
+      "tagline": "O ponto ideal",
+      "target": "1440p alto/ultra com taxas altas, 4K viável ajustando configurações.",
+      "priceMin": 1350,
+      "priceMax": 1700,
+      "components": {
+        "cpu": "cpu-r7-9700x",
+        "motherboard": "mb-x870",
+        "ram": "ram-32",
+        "gpu": "gpu-5070",
+        "storage": "ssd-nvme-1tb",
+        "psu": "psu-650",
+        "case": "case-mid",
+        "cooling": "cool-torre-premium"
+      },
+      "alternatives": {
+        "cpu": "cpu-ultra7-265k",
+        "motherboard": "mb-z890",
+        "ram": "ram-64",
+        "gpu": "gpu-9070xt",
+        "storage": "ssd-nvme-2tb",
+        "psu": "psu-750"
+      }
+    },
+    {
+      "id": "alta",
+      "name": "Alta",
+      "tagline": "1440p sem concessões",
+      "target": "4K alto/ultra em muitos títulos, monitores de alta taxa de atualização.",
+      "priceMin": 2200,
+      "priceMax": 2800,
+      "components": {
+        "cpu": "cpu-r7-9850x3d",
+        "motherboard": "mb-x870",
+        "ram": "ram-32",
+        "gpu": "gpu-5080",
+        "storage": "ssd-nvme-2tb",
+        "psu": "psu-850",
+        "case": "case-mid",
+        "cooling": "cool-aio-360"
+      },
+      "alternatives": {
+        "ram": "ram-64",
+        "storage": "ssd-nvme-4tb"
+      }
+    },
+    {
+      "id": "extrema",
+      "name": "Extrema",
+      "tagline": "Sem limites",
+      "target": "4K agressivo com ray tracing/path tracing, produção 3D, IA local pesada.",
+      "priceMin": 3800,
+      "priceMax": 5500,
+      "components": {
+        "cpu": "cpu-r9-9950x3d",
+        "motherboard": "mb-x870e",
+        "ram": "ram-64",
+        "gpu": "gpu-5090",
+        "storage": "ssd-nvme-4tb",
+        "psu": "psu-1200",
+        "case": "case-full",
+        "cooling": "cool-aio-360"
+      },
+      "alternatives": {
+        "cpu": "cpu-ultra9-285k"
+      }
+    }
+  ]
+}

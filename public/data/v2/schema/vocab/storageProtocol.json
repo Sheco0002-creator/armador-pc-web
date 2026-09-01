@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "2.0.0",
+  "key": "storageProtocol",
+  "description": "Protocolo logico de un almacenamiento. Usado en SSD+motherboard.",
+  "values": ["NVMe", "AHCI"]
+}

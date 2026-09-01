@@ -1,0 +1,538 @@
+{
+  "schemaVersion": "2.0.0",
+  "generatedAt": "2026-08-21T00:00:00Z",
+  "evidence": [
+    {
+      "evidenceId": "ev-amd-9600x-01",
+      "sourceId": "src-amd-9600x-01",
+      "claim": "Especificaciones oficiales AMD Ryzen 5 9600X: socket AM5, 6 nucleos / 12 hilos, reloj base 3.9 GHz, boost hasta 5.4 GHz, cache L3 32MB, TDP por defecto 65W.",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-nvidia-rtx5070-01",
+      "sourceId": "src-nvidia-rtx5070-01",
+      "claim": "Especificaciones oficiales NVIDIA GeForce RTX 5070: 6144 CUDA cores, reloj base 2.33 GHz, boost 2.51 GHz, 12GB GDDR7, bus de memoria 192-bit, TGP 250W, interfaz PCIe Gen 5. Potencia de sistema minima recomendada de 650W segun nota oficial ('based on a PC configured with a Ryzen 9 9950X processor', dependiente de contexto, no generalizable sin mas evidencia). El conector de alimentacion fisico exacto y el ancho de banda de memoria en GB/s no estan especificados textualmente en esta pagina oficial; se dejan como null/unknownFields en vez de inferirse.",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-amd-9700x-01",
+      "sourceId": "src-amd-9700x-01",
+      "claim": "Especificaciones oficiales AMD Ryzen 7 9700X: socket AM5, 8 nucleos / 16 hilos, reloj base 3.8 GHz, boost hasta 5.5 GHz, cache L3 32MB, TDP por defecto 65W.",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-amd-9850x3d-01",
+      "sourceId": "src-amd-9850x3d-01",
+      "claim": "La pagina oficial de drivers/downloads de AMD confirma la existencia del SKU 'AMD Ryzen 7 9850X3D' dentro de la serie Ryzen 9000. No se pudo acceder a una pagina de especificaciones tecnicas oficial de AMD para este modelo (www.amd.com bloqueo el acceso directo por proteccion anti-bot, y no aparecio en resultados de busqueda una pagina de specs propia de amd.com). Los numeros de cores/hilos/clocks/cache/TDP encontrados en fuentes de terceros (prensa especializada, Wikipedia) NO se usan como evidencia por no ser officialSource valido segun el contrato; por eso todos los campos tecnicos quedan en null y el producto en verification.status=partial.",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-amd-9950x3d-01",
+      "sourceId": "src-amd-9950x3d-01",
+      "claim": "Un hilo de soporte oficial de AMD (adaptivesupport.amd.com) confirma la existencia del SKU 'Ryzen 9 9950X3D'. No se pudo acceder a una pagina de especificaciones tecnicas oficial de AMD para este modelo (www.amd.com bloqueo el acceso directo, y las busquedas solo devolvieron notas de prensa/soporte sin tabla de specs, ademas de fuentes de terceros como Wikipedia/Tom's Hardware que no son officialSource valido). Todos los campos tecnicos quedan en null y el producto en verification.status=partial.",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-nvidia-rtx5060-01",
+      "sourceId": "src-nvidia-rtx5060-01",
+      "claim": "Especificaciones oficiales NVIDIA GeForce RTX 5060: 3840 CUDA cores, reloj base 2.28 GHz, boost 2.50 GHz, 8GB GDDR7, bus de memoria 128-bit, TGP 145W, interfaz PCIe Gen 5. Conector de alimentacion exacto y ancho de banda de memoria en GB/s no especificados textualmente en la pagina oficial; quedan null/unknownFields. No se menciona una cifra de 'Required System Power' para este modelo en la pagina oficial, por lo que tambien queda null.",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-nvidia-rtx5080-01",
+      "sourceId": "src-nvidia-rtx5080-01",
+      "claim": "Especificaciones oficiales NVIDIA GeForce RTX 5080: 10752 CUDA cores, reloj base 2.30 GHz, boost 2.62 GHz, 16GB GDDR7, bus de memoria 256-bit, TGP 360W, potencia de sistema requerida 850W, interfaz PCIe Gen 5. Conector de alimentacion exacto y ancho de banda de memoria en GB/s no especificados textualmente en la pagina oficial; quedan null/unknownFields.",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-nvidia-rtx5090-01",
+      "sourceId": "src-nvidia-rtx5090-01",
+      "claim": "Especificaciones oficiales NVIDIA GeForce RTX 5090: 21760 CUDA cores, reloj base 2.01 GHz, boost 2.41 GHz, 32GB GDDR7, bus de memoria 512-bit, TGP 575W, potencia de sistema requerida 1000W, interfaz PCIe Gen 5. Conector de alimentacion exacto y ancho de banda de memoria en GB/s no especificados textualmente en la pagina oficial; quedan null/unknownFields.",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-nvidia-rtx5070fe-01",
+      "sourceId": "src-nvidia-rtx5070fe-01",
+      "claim": "Pagina oficial de NVIDIA Marketplace (dominio propio de NVIDIA, marketplace.nvidia.com, no un retailer) para 'GeForce RTX 5070 Founders Edition' confirma nombre comercial exacto y manufacturer part number (MPN) 'NVGFT570'. El fetch directo a la pagina dio timeout (misma proteccion anti-bot observada en otras paginas de fabricante); la cita se obtuvo via busqueda web con la URL oficial explicita en los resultados, confirmada de forma consistente en 3 consultas independientes -- mismo mecanismo usado y documentado en el piloto de Fase 2 para paginas AMD. Dimensiones fisicas (largo/alto/ancho de slots) y tipo exacto de conector de alimentacion de esta variante no se pudieron confirmar en esta sesion; NO se completaron con fuentes de terceros/retailers (Best Buy mostraba un codigo distinto '900-1G146-2570-000' que no se uso por no poder confirmarse como el mismo identificador via fuente oficial) -- quedan null en unknownFields.",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-nvidia-rtx5080fe-01",
+      "sourceId": "src-nvidia-rtx5080fe-01",
+      "claim": "Pagina oficial de NVIDIA Marketplace (marketplace.nvidia.com, dominio propio de NVIDIA) para 'GeForce RTX 5080 Founders Edition' confirma nombre comercial exacto y MPN 'NVGFT580'. Fetch directo con timeout; cita obtenida via busqueda web con la URL oficial explicita en los resultados. Un retailer tercero (PCPartPicker) mostraba un codigo distinto '900-1G144-2545-000' que no se uso por no poder confirmarse como el mismo identificador via fuente oficial. Dimensiones fisicas y conector de alimentacion exacto no confirmados -> null/unknownFields.",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-nvidia-rtx5090fe-01",
+      "sourceId": "src-nvidia-rtx5090fe-01",
+      "claim": "Pagina oficial de NVIDIA Marketplace (marketplace.nvidia.com, dominio propio de NVIDIA) para 'GeForce RTX 5090 Founders Edition' confirma nombre comercial exacto y MPN 'NVGFT590'. Fetch directo con timeout; cita obtenida via busqueda web con la URL oficial explicita en los resultados, consistente en la busqueda. Dimensiones fisicas y conector de alimentacion exacto no confirmados -> null/unknownFields.",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-amd-9600x-02",
+      "sourceId": "src-amd-9600x-02",
+      "claim": "Fetch directo exitoso del press release oficial de AMD Investor Relations (ir.amd.com, dominio propio de AMD) 'AMD Unveils Next-Gen Zen 5 Ryzen Processors...'. Cita textual para Ryzen 5 9600X: cores/threads '6 / 12', boost/base 'Up to 5.4 GHz / 3.9 GHz', cache total '38MB' (corrobora L2 6MB + L3 32MB ya cargados desde otra fuente oficial), TDP '65W', PCIe 'Gen 5'. Socket no declarado explicitamente en este documento (se mantiene sourced solo por la fuente previa, src-amd-9600x-01).",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-amd-9700x-02",
+      "sourceId": "src-amd-9700x-02",
+      "claim": "Fetch directo exitoso del mismo press release oficial de AMD Investor Relations (ir.amd.com). Cita textual para Ryzen 7 9700X: cores/threads '8 / 16', boost/base 'Up to 5.5 GHz / 3.8 GHz', cache total '40MB' (corrobora L2 8MB + L3 32MB ya cargados desde otra fuente oficial), TDP '65W', PCIe 'Gen 5'. Socket no declarado explicitamente en este documento (se mantiene sourced solo por la fuente previa, src-amd-9700x-01).",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-amd-9850x3d-02",
+      "sourceId": "src-amd-9850x3d-02",
+      "claim": "Fetch directo exitoso del press release oficial de AMD Investor Relations (ir.amd.com) para el anuncio CES 2026 'AMD Expands AI Leadership Across Client, Graphics, and Software...'. Cita textual para Ryzen 7 9850X3D: cores/threads '8 C / 16 T', boost 'Up to 5.6' GHz, base '4.7 GHz', cache total '104 MB' (no se desglosa L3 especificamente, por eso cache.l3MB permanece null), TDP '120W'. El documento no especifica el socket. Con esta fuente, el producto pasa de verification.status=partial a verified, ya que ahora existe officialSource con datos tecnicos reales.",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-amd-9950x3d-02",
+      "sourceId": "src-amd-9950x3d-02",
+      "claim": "Fetch directo exitoso del press release oficial de AMD Investor Relations (ir.amd.com) para el anuncio CES 2025 'AMD Announces New Graphics and Gaming Products for Ultimate Gameplay Experience at CES'. Cita textual para Ryzen 9 9950X3D: cores/threads '16C/32T', boost/base 'Up to 5.7 / 4.3 GHz', cache total '144 MB' (no se desglosa L3 especificamente, por eso cache.l3MB permanece null), PCIe Gen 5 support, TDP '170W'. El documento no especifica el socket. Con esta fuente, el producto pasa de verification.status=partial a verified.",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-pny-rtx5060oc-01",
+      "sourceId": "src-pny-rtx5060oc-01",
+      "claim": "Pagina oficial de NVIDIA Marketplace (marketplace.nvidia.com, dominio propio de NVIDIA) para 'PNY GeForce RTX 5060 8GB Overclocked Dual Fan Graphics Card', fulfilled by PNY. Confirma MPN 'VCG50608DFXPB1-O', 8GB GDDR7, boost clock 2535 MHz (variante factory-overclocked, distinto del clock de referencia de family-nvidia-rtx5060), 3840 CUDA cores, bus de memoria 128-bit. RTX 5060 no tiene variante Founders Edition (confirmado: solo partners AIB listados en marketplace.nvidia.com), por eso este producto es de un fabricante partner (PNY) en vez de NVIDIA directo. Dimensiones fisicas (7.9x4.7x1.6 in) y conector de alimentacion (1x8-pin, 550W recomendado) aparecen consistentemente en multiples retailers (Best Buy, Exxact, Staples, B&H) pero NO se usan por no estar confirmados en una fuente oficial de PNY o NVIDIA -- quedan null en unknownFields.",
+      "accessedAt": "2026-08-21T00:00:00Z",
+      "verifiedAt": "2026-08-21T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-msi-rtx5060oc-01",
+      "sourceId": "src-msi-rtx5060oc-01",
+      "claim": "Datasheet oficial en PDF de MSI (storage-asset.msi.com, dominio propio del fabricante, obtenido con fetch directo y extraido con pdftotext), generado por MSI el 2026-05-04, para 'GeForce RTX 5060 8G GAMING OC'. Cita textual: Model Name 'G5060-8GC', Interface 'PCI Express Gen 5 x16 pin(uses x8)', Core Clocks 'Extreme Performance: 2640 MHz (MSI Center) Boost: 2625 MHz', CUDA Cores '3840 Units', Memory Speed '28 Gbps', Memory '8GB GDDR7', Memory Bus '128-bit', Power consumption '155 W', Power connectors '8-pin x 1', Recommended PSU '550 W', Card Dimension (mm) '248 x 135 x 41 mm', Weight (Card / Package) '649 g / 966 g'. Todos los campos tecnicos del producto quedan respaldados por esta fuente; no hay unknownFields para este producto.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-msi-rtx5060oc-02",
+      "sourceId": "src-msi-rtx5060oc-02",
+      "claim": "Pagina oficial de NVIDIA Marketplace (marketplace.nvidia.com, dominio propio de NVIDIA) para 'MSI GeForce RTX 5060 8G GAMING OC', fulfilled by MSI. Corrobora MPN 'G5060-8GC' (coincide exactamente con el Model Name del datasheet oficial de MSI) y boost clock 2625 MHz.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-asus-rtx5060oc-01",
+      "sourceId": "src-asus-rtx5060oc-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de especificaciones tecnicas de ASUS (asus.com, dominio propio del fabricante) para 'ASUS Dual GeForce RTX 5060 8GB GDDR7 OC Edition'. Cita textual: Model 'DUAL-RTX5060-O8G', CUDA Cores 3840, Video Memory '8GB GDDR7', Memory Speed 28 Gbps, Memory Interface 128-bit, Boost Clock (Default) 2535 MHz, OC Mode Clock 2565 MHz, Dimensions '228 x 123 x 50 mm', Form Factor '2.5 Slot' (dato declarado explicitamente por ASUS, no inferido del grosor), Power Connectors '1 x 8-pin', Recommended PSU '550W'. El campo 'Bus Standard' de la extraccion mostraba 'OpenGL', que es un valor claramente erroneo/mezclado para PCIe generation -- por eso interface.pcieGen se dejo null en vez de asumir un valor no confiable. TGP/consumo explicito no aparecio en la tabla -> power.consumptionW null.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-asus-rtx5060oc-02",
+      "sourceId": "src-asus-rtx5060oc-02",
+      "claim": "Pagina oficial de NVIDIA Marketplace (marketplace.nvidia.com, dominio propio de NVIDIA) para 'ASUS Dual NVIDIA GeForce RTX 5060 OC Edition', fulfilled by ASUS. Corrobora MPN 'DUAL-RTX5060-O8G' y boost clock 2.527-2.535 GHz (consistente con el dato oficial de asus.com).",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-msi-rtx5070trio-01",
+      "sourceId": "src-msi-rtx5070trio-01",
+      "claim": "Datasheet oficial en PDF de MSI (storage-asset.msi.com, dominio propio del fabricante, fetch directo, extraido con pdftotext), generado por MSI el 2026-04-30, para 'GeForce RTX 5070 12G GAMING TRIO OC'. Cita textual: Model Name 'G5070-12GTC', Interface 'PCI Express Gen 5', Core Clocks 'Extreme Performance: 2625 MHz (MSI Center) Boost: 2610 MHz', CUDA Cores '6144 Units', Memory Speed '28 Gbps', Memory '12GB GDDR7', Memory Bus '192-bit', Power consumption '250 W', Power connectors '16-pin x 1 (ATX 3.1 PSU recommended)', Recommended PSU '650 W', Card Dimension (mm) '338 x 140 x 50 mm', Weight (Card / Package) '1187 g / 1705 g'. El conector se guarda como texto literal 'power.connector=16-pin' en technical (campo libre); NO se agrego a compatibility.requires porque '16-pin' no coincide exactamente con ningun valor del vocabulario controlado gpuPowerConnector (6-pin/8-pin/12VHPWR/12V-2x6) y mapearlo a '12V-2x6' habria sido una inferencia no autorizada. Todos los campos tecnicos quedan respaldados; no hay unknownFields para este producto.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-msi-rtx5080trio-01",
+      "sourceId": "src-msi-rtx5080trio-01",
+      "claim": "Datasheet oficial en PDF de MSI (storage-asset.msi.com, dominio propio del fabricante), verificado de forma independiente con fetch directo + pdftotext (no se dio por valida la informacion aportada por el usuario en la instruccion sin re-verificarla desde el PDF real). Generado por MSI el 2026-01-06, para 'GeForce RTX 5080 16G GAMING TRIO'. Cita textual: Model Name 'G5080-16GT', Graphics Processing Unit 'NVIDIA GeForce RTX 5080', Interface 'PCI Express Gen 5', Core Clocks 'Extreme Performance: 2625 MHz (MSI Center) Boost: 2617 MHz (GAMING & SILENT Mode)', CUDA Cores '10752 Units', Memory Speed '30 Gbps', Memory '16GB GDDR7', Memory Bus '256-bit', Power consumption '360 W', Power connectors '16-pin x 1 (ATX 3.1 PSU recommended)', Recommended PSU '850 W', Card Dimension (mm) '338 x 140 x 50 mm', Weight (Card / Package) '1362 g / 1885 g'. El conector se guarda como texto literal 'power.connector=16-pin' en technical (campo libre); NO se agrego a compatibility.requires ni se convirtio a '12VHPWR'/'12V-2x6' porque el documento no usa esos terminos -- mapearlo habria sido una inferencia no autorizada. Todos los campos tecnicos quedan respaldados; no hay unknownFields para este producto.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-msi-rtx5090trio-01",
+      "sourceId": "src-msi-rtx5090trio-01",
+      "claim": "Datasheet oficial en PDF de MSI (storage-asset.msi.com, dominio propio del fabricante, fetch directo + pdftotext), generado por MSI el 2026-04-30, para 'GeForce RTX 5090 32G GAMING TRIO OC'. Cita textual: Model Name 'G5090-32GTC', Graphics Processing Unit 'NVIDIA GeForce RTX 5090', Interface 'PCI Express Gen 5', Core Clocks 'Extreme Performance: 2497 MHz (MSI Center) Boost: 2482 MHz (GAMING & SILENT Mode)', CUDA Cores '21760 Units', Memory Speed '28 Gbps', Memory '32GB GDDR7', Memory Bus '512-bit', Power consumption '575 W', Power connectors '16-pin x 1 (ATX 3.1 PSU recommended)', Recommended PSU '1000 W', Card Dimension (mm) '359 x 149 x 70 mm', Weight (Card / Package) '2119 g / 2735 g'. El conector se guarda como texto literal 'power.connector=16-pin' en technical (campo libre); NO se agrego a compatibility.requires ni se convirtio a '12VHPWR'/'12V-2x6' porque el documento no usa esos terminos -- mapearlo habria sido una inferencia no autorizada. Todos los campos tecnicos quedan respaldados; no hay unknownFields para este producto.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-asus-rtx5070oc-01",
+      "sourceId": "src-asus-rtx5070oc-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de especificaciones tecnicas de ASUS (asus.com, dominio propio del fabricante) para 'ASUS Dual GeForce RTX 5070 12GB GDDR7 OC Edition'. Cita textual: Model 'DUAL-RTX5070-O12G', GPU 'NVIDIA GeForce RTX 5070', CUDA Cores 6144, Video Memory '12GB GDDR7', Memory Speed '28 Gbps', Memory Interface '192-bit', Boost Clock 'OC mode: 2572MHz / Default mode: 2542MHz', Dimensions '249 x 126 x 50.6 mm', Form Factor '2.53 Slot' (declarado explicitamente, no inferido), Recommended PSU '750W'. La fila 'Power Connectors' existe en la tabla pero el valor textual no pudo extraerse con certeza en dos intentos de fetch (contenido dinamico incompleto en la respuesta) -- se dejo power.connector=null + unknownFields en vez de asumir un valor no confirmado. No se uso ningun retailer como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-asus-rtx5090oc-01",
+      "sourceId": "src-asus-rtx5090oc-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de especificaciones tecnicas de ASUS (asus.com, dominio propio del fabricante) para 'ASUS TUF Gaming GeForce RTX 5090 32GB GDDR7 OC Edition'. Cita textual: Model 'TUF-RTX5090-O32G-GAMING', GPU 'NVIDIA GeForce RTX 5090', CUDA Cores 21760, Video Memory '32GB GDDR7', Memory Speed '28 Gbps', Memory Interface '512-bit', Boost Clock 'OC mode: 2580 MHz' / 'Default mode: 2550 MHz', Dimensions '348 x 146 x 72 mm', Form Factor '3.6 Slot' (declarado explicitamente), Power Connectors '1 x 16-pin', Recommended PSU '1000W'. El valor literal '16-pin' se guarda tal cual en technical.power.connector, sin convertir a '12VHPWR'/'12V-2x6' ni agregarlo a compatibility.requires (no coincide con el vocabulario controlado). Power Consumption/TGP no aparecio especificado en la tabla -> power.consumptionW null + unknownFields. No se uso ningun retailer como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-asus-rtx5080oc-01",
+      "sourceId": "src-asus-rtx5080oc-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de especificaciones tecnicas de ASUS (asus.com, dominio propio del fabricante) para 'ASUS TUF Gaming GeForce RTX 5080 16GB GDDR7 OC Edition'. Cita textual: Model 'TUF-RTX5080-O16G-GAMING', GPU 'NVIDIA GeForce RTX 5080', CUDA Cores 10752, Video Memory '16GB GDDR7', Memory Speed '30 Gbps', Memory Interface '256-bit', Boost Clock 'OC mode: 2730 MHz / Default mode: 2700 MHz', Dimensions '348 x 146 x 72 mm', Form Factor '3.6 Slot' (declarado explicitamente), Power Connectors '1 x 16-pin', Recommended PSU '850W'. El valor literal '16-pin' se guarda tal cual en technical.power.connector, sin convertir a '12VHPWR'/'12V-2x6' ni agregarlo a compatibility.requires (no coincide con el vocabulario controlado). Power Consumption/TGP no aparecio especificado en la tabla -> power.consumptionW null + unknownFields. No se uso ningun retailer como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-corsair-vengeance-ddr5-family-01",
+      "sourceId": "src-corsair-vengeance-ddr5-family-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante) para el kit VENGEANCE CMK32GX5M2B6000C36. Cita textual: 'Memory Type: DDR5 UDIMM'. Se usa como fuente para la family 'DDR5 SDRAM' (categoria ram) porque el intento de acceder a la fuente ideal -- JEDEC.org, organismo oficial del estandar DDR5 (paginas /category/technology-focus-area/main-memory-ddr-sdram y /standards-documents/docs/jesd79-5d) -- dio 403 Forbidden en ambos intentos. Se documenta esta limitacion en vez de omitir la evidencia o inferir el dato.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-corsair-vengeance-ddr5-6000-01",
+      "sourceId": "src-corsair-vengeance-ddr5-6000-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante) para 'VENGEANCE 32GB (2x16GB) DDR5 DRAM Up To 6000MT/s CL36 Memory Kit — Black'. Cita textual: SKU/Part Number 'CMK32GX5M2B6000C36', Memory Type 'DDR5 UDIMM', Capacity '32GB total (2 x 16GB modules)', Speed '6000MT/s (PC5-48000)', CAS Latency/Timings '36-38-38-76 (tested); 40-40-40-77 (SPD)', Voltage '1.25V (tested); 1.1V (SPD)', Pin Configuration '288-pin', Weight '0.115kg', Default SPD Speed '4800MHz'. Todos los campos tecnicos quedan respaldados; no hay unknownFields para este producto. No se uso ningun retailer como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-asus-tufz890-01",
+      "sourceId": "src-asus-tufz890-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de especificaciones tecnicas de ASUS (asus.com, dominio propio del fabricante) para 'TUF GAMING Z890-PRO WIFI'. Cita textual usada para la family 'Intel Z890 Chipset': CPU Socket 'Support Intel Core Ultra Processors (Series 2), LGA1851', Chipset 'Intel Z890'. Se usa como fuente para la family porque el intento de acceder a la fuente ideal -- intel.com/content/www/us/en/products/sku/237777/intel-z890-chipset/specifications.html y el PDF cdrdv2-public.intel.com/832633/intel-z890-chipset-brief.pdf -- dio 403 Forbidden en ambos casos. Se documenta esta limitacion en vez de omitir la evidencia o inferir el dato (mismo patron que family-memory-ddr5 con JEDEC bloqueado).",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-asus-tufz890-02",
+      "sourceId": "src-asus-tufz890-02",
+      "claim": "Fetch directo exitoso de la pagina oficial de especificaciones tecnicas de ASUS (asus.com, dominio propio del fabricante) para 'TUF GAMING Z890-PRO WIFI'. Cita textual: Model 'TUF GAMING Z890-PRO WIFI', CPU Socket 'Support Intel Core Ultra Processors (Series 2), LGA1851', Chipset 'Intel Z890', Memory '4 DIMM slots, dual channel architecture, DDR5, Non-ECC, Unbuffered, maximum capacity 256GB, up to 9066+MT/s (OC)', Expansion Slots '1x PCIe 5.0 x16 (CPU-connected), 1x PCIe 4.0 x16 (x4 mode supported), 1x PCIe 4.0 x4, 2x PCIe 4.0 x1', Storage 'M.2 slots: 4 total (PCIe 5.0 x4, PCIe 4.0 x4 variants), 4 x SATA 6Gb/s ports', Form Factor 'ATX Form Factor, 12 inch x 9.6 inch (30.5 cm x 24.4 cm)'. Todos los campos tecnicos quedan respaldados; no hay unknownFields para este producto. No se uso ningun retailer como fuente. La pagina no distingue un codigo de part number separado del nombre comercial 'TUF GAMING Z890-PRO WIFI'; se uso ese mismo texto literal como model/partNumber en vez de inventar un codigo alfanumerico distinto.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-msi-magz890tomahawk-01",
+      "sourceId": "src-msi-magz890tomahawk-01",
+      "claim": "Datasheet oficial en PDF de MSI (storage-asset.msi.com, dominio propio del fabricante, fetch directo + pdftotext), generado por MSI el 2026-05-20, para 'MAG Z890 TOMAHAWK WIFI'. Cita textual: Model Name 'MAG Z890 TOMAHAWK WIFI', CPU Support 'Supports Intel Core Ultra Processors (Series 2)', CPU Socket 'LGA 1851', Chipset 'Intel Z890 Chipset', Expansion Slots '1x PCIe 5.0 x16 slot, 2x PCIe 4.0 x16 slots', Memory Support '4 DIMMs, Dual Channel DDR5 - 9200+ MT/s (OC)', Storage '1x M.2 Gen5 x4 128Gbps slot, 3x M.2 Gen4 x4 64Gbps slots, 4x SATA 6Gbps ports'. El documento NO declara capacidad maxima de memoria en GB ni form factor (ATX) ni dimensiones fisicas -- estos campos quedan null + unknownFields en vez de asumirse por convencion de mercado. La pagina no distingue un codigo de part number separado del nombre comercial 'MAG Z890 TOMAHAWK WIFI'; se uso ese mismo texto literal como model/partNumber. No se uso ningun retailer como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-asrock-z890proa-01",
+      "sourceId": "src-asrock-z890proa-01",
+      "claim": "Manual oficial en PDF de ASRock (download.asrock.com, dominio propio del fabricante, fetch directo + pdftotext) para 'ASRock Z890 Pro-A'. Cita textual de la seccion de especificaciones: Chipset 'Intel Z890'; Memory 'Dual Channel DDR5 Memory Technology, 4 x DDR5 DIMM Slots, Supports DDR5 non-ECC, un-buffered memory up to 9066+(OC), Max. capacity of system memory: 256GB'; Expansion Slot 'CPU: 1 x PCIe 5.0 x16 Slot (PCIE1); Chipset: 2 x PCIe 4.0 x4 Slots (PCIE3 and PCIE4), 1 x PCIe 4.0 x1 Slot (PCIE2)'; Storage 'CPU: 1 x Blazing M.2 Socket (M2_1) PCIe Gen5x4; 1 x Hyper M.2 Socket (M2_2) PCIe Gen4x4; Chipset: 1 x Hyper M.2 Socket (M2_3) PCIe Gen4x4, 1 x Hyper M.2 Socket (M2_4) PCIe Gen4x4/SATA3, 4 x SATA3 6.0 Gb/s Connectors'. Form factor confirmado textualmente dos veces: 'ASRock Z890 Pro-A Motherboard (ATX Form Factor)' y 'This is an ATX form factor motherboard'. El socket se documenta en el manual como 'Socket 1851'/'1851-Pin CPU'; se normaliza a 'LGA1851' (mismo socket fisico referenciado por ASUS y MSI en sus propias fuentes con esa notacion). Dimensiones fisicas exactas en mm no aparecen en el documento -> physical.widthMm/depthMm quedan null + unknownFields. No se uso ningun retailer como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-intel-atx-psu-01",
+      "sourceId": "src-intel-atx-psu-01",
+      "claim": "Fetch directo exitoso del portal oficial de diseno de Intel (edc.intel.com, dominio propio de Intel) para el documento 'ATX Version 3.0 Multi Rail Desktop Platform Power Supply' design guide. El documento describe ATX como plataforma estandarizada de fuentes de poder para sistemas de escritorio, estableciendo parametros de diseno comunes entre multiples factores de forma relacionados (ATX12V, SFX12V, TFX12V, CFX12V, LFX12V, Flex ATX). Se usa unicamente para confirmar 'ATX' como el tipo/plataforma tecnica generica de la family (category=psu) -- deliberadamente NO se codifica la version especifica (3.0/3.1) ni la certificacion 80 PLUS en la family, siguiendo instruccion explicita del usuario de que esos datos pertenecen al product cuando esten documentados.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-msi-a850glpcie5-01",
+      "sourceId": "src-msi-a850glpcie5-01",
+      "claim": "Datasheet oficial en PDF de MSI (storage-asset.msi.com, dominio propio del fabricante, fetch directo + pdftotext), generado por MSI el 2025-12-03, para 'MAG A850GL PCIE5'. Cita textual: 'ATX 3.1 ready, native PCIe 5.1 dual-color 16-pin cable', Efficiency Rating '80 PLUS Gold (up to 90%)', Modular 'Yes (full modular)', Fan Size '120 mm', Fan Bearing 'Fluid Dynamic Bearing', Dimensions (DxWxH) '140 x 150 x 86 mm', PFC Type 'Active PFC', Input Voltage Range '100~240 VAC', Power Watt '850W', Power Excursion '1700W (up to 200% of the PSU's rated power for 100s)', Input Frequency Range '47-63Hz', Protection 'OCP / OVP / OPP / OTP / SCP / UVP', conectores 'ATX (24 pin) x1, EPS (4+4 pin) x2, PCI-E 5.0 (16 pin) x1 (600W), PCI-E (6+2 pin) x4, SATA (15 pin) x8, PERIPHERAL (4 pin) x4, FDD (4 pin) x1'. Todos los campos tecnicos quedan respaldados; no hay unknownFields para este producto. No se uso ningun retailer como fuente. No se agrego el conector PCI-E 5.0 de 16 pines a compatibility.provides/requires porque '16-pin' no coincide con el vocabulario controlado gpuPowerConnector (mismo criterio ya aplicado a las GPU MSI/ASUS).",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-corsair-rm1000e-01",
+      "sourceId": "src-corsair-rm1000e-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante) para 'RMe Series RM1000e - Fully Modular Low-Noise ATX Power Supply - White'. Cita textual: SKU/Part Number 'CP-9020294-NA', Wattage '1000 Watts', Efficiency Rating 'Cybenetics Gold certified (up to 89% efficiency)', ATX Version '3.1 Certified', Modularity 'Fully Modular', Fan '120mm rifle bearing fan', Dimensions '140 x 150 x 86 mm', Input Voltage '100-240V (47~63Hz)', Weight '3.23 kg', MTBF '100,000 hours', Warranty '7 years', conectores '1x ATX 24-Pin, 2x EPS/ATX 12V 8-Pin (4+4), 1x 12V-2x6 (12+4) Pin (native 600W-capable), 2x PCIe 8-Pin (6+2), 6x SATA, 2x PATA'. El conector '12V-2x6' coincide EXACTAMENTE con el vocabulario controlado gpuPowerConnector (a diferencia del '16-pin' generico usado por las fuentes de GPU MSI/ASUS), por lo que si se agrego a compatibility.provides -- no es una conversion ni inferencia, es el termino literal que usa esta fuente oficial. Todos los campos tecnicos quedan respaldados; no hay unknownFields para este producto. No se uso ningun retailer como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-samsung-990pro-family-01",
+      "sourceId": "src-samsung-990pro-family-01",
+      "claim": "Datasheet oficial en PDF de Samsung (download.semiconductor.samsung.com, dominio propio del fabricante, fetch directo + pdftotext), 'Samsung V-NAND SSD 990 PRO' Data Sheet Rev.1.0 (2022). Cita textual: 'Usage Application ... PCIe Gen 4.0 x4, NVMe 2.0'. Se usa como fuente para la family 'NVMe SSD (PCIe Gen 4.0 x4)' (categoria storage) porque el intento de acceder a la fuente ideal -- NVM Express, Inc. (nvmexpress.org/specifications/), organismo oficial del estandar NVMe -- dio 403 Forbidden. Se documenta esta limitacion en vez de omitir la evidencia o inferir el dato (mismo patron ya aplicado en family-memory-ddr5 con JEDEC bloqueado y family-intel-z890 con intel.com bloqueado).",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-samsung-990pro-2tb-01",
+      "sourceId": "src-samsung-990pro-2tb-01",
+      "claim": "Datasheet oficial en PDF de Samsung (download.semiconductor.samsung.com, dominio propio del fabricante, fetch directo + pdftotext), 'Samsung V-NAND SSD 990 PRO' Data Sheet Rev.1.0, columna de capacidad 2TB, Model Code 'MZ-V9P2T0B/AM' (Model Name 'MZ-V9P2T0'). Cita textual: Interface 'PCIe Gen 4.0 x4, NVMe 2.0'; Controller 'Samsung in-house Controller'; NAND Flash Memory 'Samsung V-NAND TLC'; DRAM Cache Memory '2GB LPDDR4'; Dimension 'Max 80.0 x Max 22 x Max 2.3 (mm)'; Form Factor 'M.2 (2280)'; Sequential Read '7,450 MB/s'; Sequential Write '6,900 MB/s'; Random Read (QD32 Thread16) '1400K IOPS'; Random Write (QD32 Thread16) '1,550K IOPS'; Idle power (APST on) '55mW'; Active Read (Avg.) '5.8W'; Active Write (Avg.) '5.1W'; Warranty 'MTBF 1.5 million hours, TBW 1,200TB (para 2TB), 5 years limited'. El datasheet no declara un peso (weight) del producto -- physical.weightG queda null + unknownFields en vez de asumirse. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-wd-sn850x-1tb-01",
+      "sourceId": "src-wd-sn850x-1tb-01",
+      "claim": "Datasheet oficial en PDF de Western Digital / SanDisk Corporation (documents.sandisk.com, dominio propio del fabricante -- SanDisk Corporation es la entidad que opera la marca WD_BLACK tras la escision 2025 de Western Digital; el propio documento declara 'WD_BLACK and the WD_BLACK logo are ... trademarks of Western Digital Corporation'; fetch directo + pdftotext), 'WD_BLACK SN850X NVMe SSD' Data Sheet (julio 2025), columna de capacidad 1TB sin heatsink, modelo 'WDS100T2X0E'. Cita textual: Interface/NAND 'PCIe Gen4 16GT/s, up to 4 lanes' + 'SanDisk TLC 3D NAND'; Sequential Read (columna 1TB) '7,300MB/s'; Sequential Write '6,300MB/s'; Random Read '800K IOPS'; Random Write '1,100K IOPS'; Endurance (TBW) '600'; Dimensions (1 & 2TB sin heatsink) Length '80 +/-0.15mm', Width '22 +/-0.15mm', Height '2.38mm', Weight '7.5G +/-1g'; System Compatibility 'TCG OPAL V2.01'; Limited Warranty '5 Years'. El documento no incluye ninguna cifra de consumo de energia (power) para este modelo -- por eso technical.power no se incluye (ningun campo de esa seccion se crea como null+unknownFields porque la seccion misma no existe en la fuente, a diferencia de un campo que aparece en la tabla pero sin valor). Se evaluo Crucial/Micron (assets.micron.com y crucial.com) como segundo fabricante candidato: ambos dominios rechazaron el fetch directo ('Request Rejected', proteccion anti-bot), por lo que no se creo ningun producto Crucial en este paso. No se uso ningun retailer/agregador como fuente para este producto.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-samsung-870evo-family-01",
+      "sourceId": "src-samsung-870evo-family-01",
+      "claim": "Datasheet oficial en PDF de Samsung (download.semiconductor.samsung.com, dominio propio del fabricante, fetch directo + pdftotext), 'Samsung V-NAND SSD 870 EVO' Data Sheet Rev.1.1 (2021). Cita textual: 'Interface ... SATA 6 Gb/s Interface, compatible with SATA 3 Gb/s & 1.5 interfaces'. Se usa como fuente para la family 'SATA SSD (2.5-inch)' (categoria storage), analoga a family-storage-nvme-pcie4 pero para el bus SATA. No se declara protocolo logico (AHCI) de forma explicita en este datasheet -- el campo 'protocol' se omite en vez de asumirse por convencion de mercado.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-samsung-870evo-1tb-01",
+      "sourceId": "src-samsung-870evo-1tb-01",
+      "claim": "Datasheet oficial en PDF de Samsung (download.semiconductor.samsung.com, dominio propio del fabricante, fetch directo + pdftotext), 'Samsung V-NAND SSD 870 EVO' Data Sheet Rev.1.1, columna de capacidad 1TB, Model Name 'MZ-77E1T0', Model Code 'MZ-77E1T0B/AM'. Cita textual: Interface 'SATA 6 Gb/s Interface, compatible with SATA 3 Gb/s & 1.5 interfaces'; Controller 'Samsung MKX Controller'; NAND Flash Memory 'Samsung V-NAND 3bit MLC'; DRAM Cache Memory (columna 1TB) '1GB LPDDR4'; Dimensions '100 x 69.85 x 6.8(mm)'; Form Factor '2.5 inch'; Sequential Read '560 MB/s'; Sequential Write (tras Intelligent TurboWrite, aplicable a 1TB/2TB/4TB) '530 MB/s'; MTBF '1.5 million hours'; TBW (columna 1TB) '600TB'; Warranty Period '5 year limited'; Data Security 'AES 256-bit Full Disk Encryption, TCG/Opal V2.0, Encrypted Drive(IEEE1667)'. Las filas de IOPS aleatorios (4KB QD1/QD32) y de consumo de energia (idle/active) se extrajeron con columnas visualmente desalineadas entre si en el PDF (valores de energia y de IOPS intercalados de forma ambigua tras la conversion a texto) -- para evitar atribuir un numero incorrecto a la capacidad equivocada, esos campos NO se cargaron en este producto (ni como valor ni como null/unknownFields, ya que la ambiguedad esta en la extraccion, no en la ausencia del dato en la fuente). No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-samsung-9100pro-family-01",
+      "sourceId": "src-samsung-9100pro-family-01",
+      "claim": "Datasheet oficial en PDF de Samsung (download.semiconductor.samsung.com, dominio propio del fabricante, fetch directo + pdftotext), 'Samsung V-NAND SSD 9100 PRO' Data Sheet Rev.1.0 (2025). Cita textual: 'Interface ... PCIe 5.0 x4, NVMe 2.0'. Se usa como fuente para la family 'NVMe SSD (PCIe Gen 5.0 x4)' (categoria storage), analoga a family-storage-nvme-pcie4 pero para PCIe Gen5. Mismo criterio ya aplicado en esa family: la fuente ideal (NVM Express, Inc., nvmexpress.org) esta bloqueada (403), documentado en ev-samsung-990pro-family-01.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-samsung-9100pro-4tb-01",
+      "sourceId": "src-samsung-9100pro-4tb-01",
+      "claim": "Datasheet oficial en PDF de Samsung (download.semiconductor.samsung.com, dominio propio del fabricante, fetch directo + pdftotext), 'Samsung V-NAND SSD 9100 PRO' Data Sheet Rev.1.0, columna de capacidad 4TB, Model Name 'MZ-VAP4T0', Model Code 'MZ-VAP4T0B/AM'. Cita textual: Interface 'PCIe 5.0 x4, NVMe 2.0'; Controller 'Samsung in-house Controller'; NAND Flash Memory 'Samsung V-NAND TLC'; Cache Memory (columna 4TB) '4GB LPDDR4X'; Dimension (1TB/2TB/4TB) 'Max 80.15 x Max 22.15 x Max 2.38 (mm)'; Form Factor 'M.2 (2280)'; Sequential Read (columna 4TB, confirmada sin marcador TBD, a diferencia de la columna 8TB que si lo tiene) '14,800 MB/s'; Sequential Write '13,400 MB/s'; Random Read (QD256 Thread32) '2,200 KIOPS'; Random Write '2,600 KIOPS'; Active Power Read (Avg.) '9.0 W'; Active Power Write (Avg.) '8.2 W'; Idle PS3(APST on) '6.5 mW'; Idle PS4(L1.2) '5.7 mW'; MTBF '1.5 million hours'; TBW (columna 4TB) '2,400 TB'; Warranty Period '5 years limited'; Data Security 'AES 256-bit Full Disk Encryption, TCG/Opal V2.0, Encrypted Drive (IEEE1667)'. El texto extraido en orden lineal (sin -layout) confirma sin ambiguedad que la columna 4TB no lleva el marcador '(TBD)' que si aparece en la columna 8TB para estas metricas -- se verifico el orden exacto de las 4 columnas antes de asignar cada valor, evitando el problema de desalineacion visual encontrado en el datasheet SATA 870 EVO (ver ev-samsung-870evo-1tb-01). El datasheet no declara un peso (weight) del producto -- physical.weightG queda null + unknownFields. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-corsair-4000dairflow-family-01",
+      "sourceId": "src-corsair-4000dairflow-family-01",
+      "claim": "Pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante, fetch directo exitoso) para '4000D AIRFLOW Tempered Glass Mid-Tower ATX Case — White' (CC-9011201-WW). El propio nombre comercial del producto declara textualmente 'Mid-Tower ATX Case', usado como evidencia para el campo 'class=mid-tower' de la family 'ATX Mid-Tower Case'. Motherboard Support declarado: 'Mini-ITX, Micro-ATX, ATX, E-ATX (305mm x 277mm)'.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-corsair-4000dairflow-01",
+      "sourceId": "src-corsair-4000dairflow-01",
+      "claim": "Pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante, fetch directo exitoso) para '4000D AIRFLOW Tempered Glass Mid-Tower ATX Case — White', part number CC-9011201-WW. Cita textual: Motherboard Support 'Mini-ITX, Micro-ATX, ATX, E-ATX (305mm x 277mm)'; Maximum GPU Length 'Maximum GPU Length: 360mm'; Maximum CPU Cooler Height 'Maximum CPU Cooler Height: 170mm'; Power Supply 'ATX form factor; Maximum PSU Length: 220mm'; Storage Drives 'Internal 2.5\" Drive Bays: 4; Internal 3.5\" Drive Bays: 2'; Radiator Support 'Front: 360mm, 280mm, 240mm; Bottom: None; Side: None; Rear: 120mm' (se confirmo con una segunda consulta dirigida que no existe soporte de radiador en la parte superior/top -- por eso radiatorSupport.topMm queda null + unknownFields, junto con side y bottom, que la fuente declara explicitamente como 'None'); Case Dimensions '453mm x 230mm x 466mm' (la fuente no etiqueta cual valor corresponde a ancho/alto/profundidad, por lo que se guardo como texto literal sin decodificar el eje, en vez de asumir un orden); Weight '9.15kg'; Front Panel I/O '(1x) USB 3.1 Type C, (1x) USB 3.0, (1x) Audio in/out'. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-corsair-7000dairflow-family-01",
+      "sourceId": "src-corsair-7000dairflow-family-01",
+      "claim": "Pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante, fetch directo exitoso) para '7000D AIRFLOW Full-Tower ATX PC Case — Black' (CC-9011218-WW). El propio nombre comercial del producto declara textualmente 'Full-Tower ATX', usado como evidencia para el campo 'class=full-tower' de la family 'ATX Full-Tower Case'. Motherboard Support declarado: 'Mini-ITX, Micro-ATX, ATX, E-ATX (305mm x 277mm)'. Se evaluo previamente el CORSAIR 5000D AIRFLOW (CC-9011210-WW) como candidato para este mismo escenario legacy: fetch directo confirmo GPU 420mm pero cooler solo 170mm, por debajo del minimo requerido por el legacy (180mm) -- descartado sin crear ningun registro. Tambien se evaluo el Fractal Design Define 7 XL via WebSearch: cooler 185mm valido, pero la cifra de GPU length resulto ambigua/dependiente de layout (359mm en 'storage layout' vs hasta 549mm en 'open layout') sin fetch directo a fractal-design.com que la desambiguara -- se prefirio el 7000D AIRFLOW por tener una cifra unica e inequivoca confirmada por fetch directo.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-corsair-7000dairflow-01",
+      "sourceId": "src-corsair-7000dairflow-01",
+      "claim": "Pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante, fetch directo exitoso) para '7000D AIRFLOW Full-Tower ATX PC Case — Black', part number CC-9011218-WW. Cita textual: Motherboard Support 'Mini-ITX, Micro-ATX, ATX, E-ATX (305mm x 277mm)'; Maximum GPU Length '450 mm'; Maximum CPU Cooler Height '190 mm'; Power Supply 'ATX form factor; maximum length of 225 mm'; Storage Bays '6 internal 3.5\" drive bays; 4 internal 2.5\" drive bays'; Radiator Compatibility 'Supports 120mm, 140mm, 240mm, 280mm, 360mm, 420mm, 480mm radiators' (la fuente no desglosa por ubicacion front/top/side/rear como si lo hace el 4000D AIRFLOW, por lo que se guardo como lista unica de tamanios soportados en vez de inventar una distribucion por ubicacion); Case Dimensions 'Height: 600 mm; Length: 550 mm; Width: 248 mm' (aqui si vienen etiquetados los ejes, a diferencia del 4000D AIRFLOW); Weight '20.7 kg'; Front Panel I/O '(4x) USB 3.0, (1x) USB 3.1 Type C, (1x) Audio in/out'. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-deepcool-ak400-family-01",
+      "sourceId": "src-deepcool-ak400-family-01",
+      "claim": "Pagina oficial de producto de DeepCool (deepcool.com, dominio propio del fabricante, fetch directo exitoso) para 'AK400', categorizado por el propio fabricante bajo 'cpuaircoolers' (CPU air cooler). Usado como evidencia para el campo 'type=aire' de la family 'Air Tower CPU Cooler'.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-deepcool-ak400-01",
+      "sourceId": "src-deepcool-ak400-01",
+      "claim": "Pagina oficial de producto de DeepCool (deepcool.com, dominio propio del fabricante, fetch directo exitoso) para 'AK400', P/N 'R-AK400-BKNNMN-G-1'. Cita textual: Socket Compatibility Intel 'LGA1851, LGA1700, LGA1200, LGA1151, LGA1150, LGA1155', AMD 'AM5, AM4'; Product dimensions '127x97x155 mm(LxWxH)'; Heatsink dimensions '120x45x152 mm(LxWxH)' (se guardan ambas cifras de altura -- productHeightMm=155 y heatsinkHeightMm=152 -- sin colapsarlas en un unico numero, ya que la fuente las declara por separado); Net weight '661 g'; Heat pipes 'O6 mm x4 pcs'; Heat dissipation capacity 'up to 220W' (supera el minimo requerido por el legacy cool-torre-simple, 95W); Fan '120x120x25 mm', Speed range '500~1850 RPM+/-10%', Airflow '66.47 CFM', Noise level '<=29 dB(A)'. No se uso ningun retailer/agregador como fuente. compatibility.requires solo incluye los sockets del vocabulario controlado (AM5, AM4, LGA1700, LGA1851, LGA1200); LGA1151/1150/1155 (tambien declarados por la fuente) quedan solo en technical.socketSupport por no pertenecer al vocabulario 'socket'.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-deepcool-ak620wh-01",
+      "sourceId": "src-deepcool-ak620wh-01",
+      "claim": "Pagina oficial de producto de DeepCool (global.deepcool.com, dominio propio del fabricante, fetch directo exitoso) para 'AK620 WH', P/N 'R-AK620-WHNNMT-G-1' -- se eligio esta variante 2024 (con '1851' explicito en la URL/nombre) en vez del AK620 base de 2021 (cuya URL no menciona 1851), para no asumir compatibilidad con LGA1851 no confirmada explicitamente en esa SKU. Cita textual: Socket Compatibility Intel 'LGA2066/2011-v3/2011/1851/1700/1200/1151/1150/1155', AMD 'AM5/AM4'; Product dimensions '129x138x160 mm(LxWxH)' y 'Height compatibility: 160mm' (coincide exactamente con el legacy cool-torre-premium); Heatsink dimensions '127x110x157 mm(LxWxH)'; Net Weight '1456 g'; RAM clearance '43mm (59mm en configuracion single fan)'; Heatpipes 'O6 mm x6 pcs'; Heat dissipation capacity '260W maximum' (supera el minimo legacy de 180W); Fan (dual, 120mm) Speed range '500~1850 RPM+/-10%', Airflow '68.99 CFM', Noise level '<=28 dB(A)'. No se uso ningun retailer/agregador como fuente. compatibility.requires solo incluye los sockets del vocabulario controlado.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-corsair-h150i-family-01",
+      "sourceId": "src-corsair-h150i-family-01",
+      "claim": "Pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante, fetch directo exitoso) para 'iCUE LINK H150i RGB AIO Liquid CPU Cooler'. El propio nombre comercial declara textualmente 'Liquid CPU Cooler', usado como evidencia para el campo 'type=liquida' de la family 'AIO Liquid CPU Cooler'.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-corsair-h150i-01",
+      "sourceId": "src-corsair-h150i-01",
+      "claim": "Pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante, fetch directo exitoso) para 'iCUE LINK H150i RGB AIO Liquid CPU Cooler', part number 'CW-9061003-WW'. Cita textual: Socket Compatibility 'Intel 1851, Intel 1700, Intel 1200, Intel 1150, Intel 1151, Intel 1155, Intel 1156, AMD AM5, AMD AM4'; Radiator Dimensions '397mm (L) x 120mm (W) x 27mm (H)'; Radiator Size '360mm' (coincide con el legacy cool-aio-360); Fan 'Quantity: 3, Size: 120mm x 25mm, QX120 RGB', Speed Range '480 - 2400RPM +/-10%', Airflow '16.44 - 63.1 CFM'; Tubing 'Black Sleeved Low-Permeation Rubber, 450mm length'; Cold Plate 'Copper, 56 x 56mm, XTM70 pre-applied'; Weight '2.654kg'; Warranty 'Six-year warranty'. La pagina NO declara ninguna cifra de TDP/potencia termica soportada en watts -- se verifico tambien la pagina oficial de NZXT Kraken 360 (nzxt.com) como referencia cruzada de la industria y tampoco publica esa metrica, confirmando que es una ausencia estructural de los fabricantes de AIO y no un dato omitido por descuido -- por eso thermalDissipationW queda null + unknownFields en vez de inferirse a partir del valor 350W del legacy. No se uso ningun retailer/agregador como fuente. compatibility.requires solo incluye los sockets del vocabulario controlado (AM5, AM4, LGA1700, LGA1851, LGA1200); LGA1150/1151/1155/1156 (tambien declarados) quedan solo en technical.socketSupport.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-corsair-vengeance-ddr5-6000-64gb-01",
+      "sourceId": "src-corsair-vengeance-ddr5-6000-64gb-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante) para 'VENGEANCE 64GB (2x32GB) DDR5 DRAM 6000MHz C40 Memory Kit — Black'. Cita textual: SKU/Part Number 'CMK64GX5M2B6000C40'; Memory Type 'DDR5'; Form Factor 'UDIMM', pin count '288'; Capacity '64GB consisting of two 32GB modules'; Speed '6000 MT/s (PC5-48000)'; Tested Timings '40-40-40-77'; SPD Timings '40-40-40-77'; Tested Voltage '1.35V'; SPD Voltage '1.1V'; Default SPD Speed '4800MHz'; Weight '0.115kg'; Heatspreader 'Aluminum'. Se verifico previamente que NO existe un SKU CL36 para la capacidad de 64GB en la linea Vengeance (solo CL30 o CL40 estan disponibles oficialmente) -- se eligio el CL40 no-RGB negro por ser el mas directamente analogo (misma linea/acabado) al kit de 32GB ya cargado (prod-corsair-vengeance-ddr5-6000-32gb). Todos los campos tecnicos quedan respaldados; no hay unknownFields para este producto. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-thermaltake-bx3-550w-01",
+      "sourceId": "src-thermaltake-bx3-550w-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de producto de Thermaltake (thermaltakeusa.com, dominio propio del fabricante) para 'Smart BX3 Bronze 550W'. Cita textual: P/N 'PS-SPD-0550NNFABU-3', Model 'SPD-0550AH2NLB-3'; Power Rating '550W'; Efficiency '80 PLUS Bronze'; ATX Compliance 'built to ATX 3.1 specifications' (coincide exactamente con el requisito diferenciador del legacy psu-550); Modularity 'Non-modular with flat cable design'; Cooling '12cm FDB Fan'; Dimensions '150mm(W)x86mm(H)x140mm(D)'; Connectors 'Main Power (24-pin): 1, ATX 12V (4+4-pin): 1, PCIe (6+2-pin): 2, SATA (5-pin): 4, Peripheral: 4'; Protections 'OCP/OVP/UVP/OPP/OTP/SCP'; Warranty '5-year'. Se descartaron previamente MSI MAG A550BN y MAG A550BNL (datasheets oficiales de storage-asset.msi.com verificados por fetch directo) por no declarar ATX 3.0/3.1 en ningun lugar del documento. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-corsair-rm650e-01",
+      "sourceId": "src-corsair-rm650e-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante) para 'RMe Series RM650e Fully Modular Low-Noise ATX Power Supply', part number CP-9020302-NA. Cita textual: Continuous Power '650 Watts'; Cybenetics Rating 'Gold'; ATX Version '3.1' (coincide exactamente con el legacy psu-650); PCIe Compliance '5.1 compatible'; Dimensions '140x150x86 mm'; Weight '2.728kg'; Fan '120mm rifle bearing fan'; Modularity 'Fully modular'; AC Input '100-240V', Frequency '47~63Hz'; MTBF '100,000 hours'; Connectors 'ATX 24-pin: 1, EPS/ATX 12V 8-pin (4+4): 2, 12V-2x6 (12+4) Pin: 1 native, PCIe 8-pin (6+2): 3 total, SATA: 6, PATA: 2'; Warranty '7 Year'. El conector '12V-2x6' coincide exactamente con el vocabulario controlado gpuPowerConnector (mismo criterio ya aplicado en prod-corsair-rm1000e-atx31), por lo que se agrego a compatibility.provides. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-corsair-rm750e-01",
+      "sourceId": "src-corsair-rm750e-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante) para 'RMe Series RM750e Fully Modular Low-Noise ATX Power Supply', part number CP-9020295-NA. Cita textual: Power Output '750W continuous power'; Efficiency 'Cybenetics Gold-certified, up to 89% overall efficiency'; ATX Certification 'Intel ATX 3.1 Certified' (coincide exactamente con el legacy psu-750); PCIe Compliance 'PCIe 5.1 compatible'; Modularity 'Fully-Modular design'; Fan '120mm rifle bearing fan with zero RPM mode'; Dimensions '140x150x86 mm'; Input Voltage '100-240V AC, 47~63Hz'; Weight '2.901 kg'; Warranty '7 Year'; Connectors 'ATX 24-pin: 1, EPS 12V 8-pin (4+4): 2, PCIe 8-pin (6+2): 3 total, Native 600W-capable 12V-2x6 cable (1 unit), SATA: 6 connectors, PATA: 2 connectors'. El conector '12V-2x6' coincide exactamente con el vocabulario controlado gpuPowerConnector, por lo que se agrego a compatibility.provides. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-corsair-hx1200i-01",
+      "sourceId": "src-corsair-hx1200i-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de producto de Corsair (corsair.com, dominio propio del fabricante) para 'HXi Series HX1200i 80 PLUS Platinum Fully Modular Ultra Low Noise ATX 3.1 and PCIE 5.1 Power Supply', part number CP-9020307-NA. Cita textual: Power Output '1200 Watts continuous power'; Efficiency '80 PLUS Efficiency: Platinum', 'Cybenetics Platinum certified'; Standards Compliance 'ATX 3.1 certified, PCIe 5.1 compatible', 'Intel ATX 3.1 certified' (coincide exactamente con el legacy psu-1200, 'ATX 3.1 / PCIe 5.x'); Modularity 'Fully modular'; Fan '140mm Fluid Dynamic Bearing'; Connectors 'ATX 24-pin: 1, EPS 8-pin (4+4): 2, PCIe 8-pin (6+2): 5, Dual 12V-2x6 cables, SATA: 8, PATA: 6'; Input '100-240V, 47Hz-63Hz'; Weight '4.84kg'; Warranty '10-year'; MTBF '100,000 hours'. Esta pagina NO declara dimensiones fisicas (WxHxD) del producto -- a diferencia de RM650e/RM750e/BX3, que si las declaran -- por eso 'dimensions' queda null + unknownFields en vez de asumirse igual a otros modelos de la misma familia. Se descartaron previamente dos SKU distintos de 'HX1200i' (CP-9020070-NA, que declara 'ATX12V v2.4 and EPS12V 2.92 standards' -- NO ATX3.1 -- y CP-9020281-NA, no verificado) por corresponder a revisiones anteriores del mismo nombre comercial sin el estandar ATX 3.1 requerido por el legacy; se uso exclusivamente CP-9020307-NA, confirmado con ATX3.1/PCIe5.1 explicito. El conector '12V-2x6' coincide con el vocabulario controlado gpuPowerConnector. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-asus-tufb650plus-family-01",
+      "sourceId": "src-asus-tufb650plus-family-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de especificaciones tecnicas de ASUS (asus.com, dominio propio del fabricante) para 'TUF GAMING B650-PLUS'. Cita textual usada para la family 'AMD AM5 Socket Platform': CPU Socket 'Socket AM5' soportando 'AMD Ryzen 9000 & 8000 & 7000 Series Desktop Processors'. Se usa como fuente para la family porque el intento de acceder a la fuente ideal -- pagina oficial de chipsets AMD, amd.com/en/products/processors/chipsets/am5.html -- dio timeout (misma proteccion anti-bot ya documentada repetidamente en este proyecto para amd.com). No se creo family separada por chipset (B650/X870/X870E): siguiendo el mismo patron ya usado en family-intel-z890 (cuyo unico campo tecnico es 'socket', sin codificar el chipset), esta family solo codifica 'socket=AM5'; el chipset especifico queda a nivel product.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-asus-tufb650plus-01",
+      "sourceId": "src-asus-tufb650plus-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de especificaciones tecnicas de ASUS (asus.com, dominio propio del fabricante) para 'TUF GAMING B650-PLUS'. Cita textual: Model 'TUF GAMING B650-PLUS'; CPU Socket 'Socket AM5' ('AMD Ryzen 9000 & 8000 & 7000 Series Desktop Processors'); Chipset 'AMD B650'; Memory '4 x DIMM, Max. 256GB, DDR5, ECC & Non-ECC Un-buffered Memory, Dual Channel Memory Architecture, 4800 MHz to 7600+ MHz (OC)'; Expansion Slots '1 x PCIe 4.0/3.0 x16 slot(s), 1 x PCIe 4.0/3.0 x16 slot (supports x4 mode), 2 x PCIe 4.0/3.0 x1 slots'; Storage 'Three total M.2 slots (2242/2260/2280): M.2_1 PCIe 5.0 x4 mode (Ryzen 9000/7000 only), M.2_2 y M.2_3 PCIe 4.0 x4 mode; 4 x SATA 6Gb/s ports'; Form Factor 'ATX Form Factor, 12 inch x 9.6 inch (30.5 cm x 24.4 cm)'. La pagina no distingue un codigo de part number separado del nombre comercial 'TUF GAMING B650-PLUS'; se uso ese mismo texto literal como model/partNumber, igual que en los products de family-intel-z890. No se uso ningun retailer como fuente. Se verifico deliberadamente que la URL consultada correspondiera a la variante SIN WiFi ('tuf-gaming-b650-plus', no 'tuf-gaming-b650-plus-wifi').",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-asus-tufx870pluswifi-01",
+      "sourceId": "src-asus-tufx870pluswifi-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de especificaciones tecnicas de ASUS (asus.com, dominio propio del fabricante) para 'TUF GAMING X870-PLUS WIFI'. Cita textual: Model 'TUF GAMING X870-PLUS WIFI'; CPU Socket 'AMD Socket AM5 for AMD Ryzen 9000 & 8000 & 7000 Series Desktop Processors'; Chipset 'AMD X870 Chipset'; Memory '4 x DIMM slots, max. 256GB, DDR5, up to 8000+MT/s(OC) with Ryzen 9000 & 8000 & 7000 Series Processors, ECC and non-ECC unbuffered, dual-channel'; Expansion Slots '1 x PCIe 5.0 x16 slot (Ryzen 9000 & 7000), 1 x PCIe 4.0 x16 slot supports x8/x4 mode (Ryzen 8000), 1 x PCIe 4.0 x16 slot supports x4 mode (chipset)'; Storage '4 x M.2 slots, 2 x SATA 6Gb/s ports'; Form Factor 'ATX Form Factor, 12 inch x 9.6 inch (30.5 cm x 24.4 cm)'. La pagina no distingue un codigo de part number separado del nombre comercial; se uso el mismo texto literal como model/partNumber. No se uso ningun retailer como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-asus-rogstrixx870ee-01",
+      "sourceId": "src-asus-rogstrixx870ee-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de especificaciones tecnicas de ASUS ROG (rog.asus.com, dominio propio del fabricante) para 'ROG STRIX X870E-E GAMING WIFI'. Cita textual: Model 'ROG STRIX X870E-E GAMING WIFI'; CPU Socket 'AMD Socket AM5 for AMD Ryzen 9000 & 8000 & 7000 Series Desktop Processors'; Chipset 'AMD X870E'; Memory '4 x DIMM slots, max. 256GB, DDR5, up to 8000+MT/s (Ryzen 9000), 8400+MT/s (Ryzen 8000), 8000+MT/s (Ryzen 7000), Supports AMD EXPO'; Expansion Slots '1 x PCIe 5.0 x16 slot supports x16 mode (Ryzen 9000 & 7000), 1 x PCIe 4.0 x16 slot supports x8/x4 mode (Ryzen 8000), 1 x PCIe 4.0 x16 slot supports x4 mode (chipset)'; Storage 'Total supports 5 x M.2 slots (PCIe 5.0/4.0 x4 segun generacion de CPU y slot), 4 x SATA 6Gb/s ports'; Form Factor 'ATX Form Factor, 12 inch x 9.6 inch (30.5 cm x 24.4 cm)'. La pagina no distingue un codigo de part number separado del nombre comercial; se uso el mismo texto literal como model/partNumber. No se uso ningun retailer como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-gskill-tz5neo-32gb-01",
+      "sourceId": "src-gskill-tz5neo-32gb-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de producto de G.SKILL (gskill.com, dominio propio del fabricante) para el part number F5-6000J3038F16GX2-TZ5NR (Trident Z5 Neo RGB). Cita textual: capacidad total 32GB, configuracion '2x16GB' (dual-channel kit), tipo DDR5, velocidad 'Up to DDR5-6000' (requiere overclock via AMD EXPO o Intel XMP 3.0), timings 'CL30-38-38-96', voltaje '1.35V', form factor U-DIMM. La pagina no declara un pin count explicito (no se encontro la cifra '288-pin' en el texto extraido) -- physical.pinCount queda null + unknownFields en vez de asumirse por ser el estandar tipico de DDR5 UDIMM. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-kingston-furybeast-32gb-01",
+      "sourceId": "src-kingston-furybeast-32gb-01",
+      "claim": "Datasheet oficial en PDF de Kingston (kingston.com/datasheets/KF560C30BBEAK2-32.pdf, dominio propio del fabricante, fetch directo + pdftotext) -- se uso el PDF porque la pagina HTML de producto en kingston.com rechazo el fetch directo con 403 Forbidden (misma proteccion anti-bot ya vista en otros fabricantes). Cita textual: titulo '32GB (16GB 2G x 64-Bit x 2 pcs.) DDR5-6000 CL30 288-Pin DIMM Kit'; Description 'Kingston FURY KF560C30BBEAK2-32 is a kit of two 2G x 64-bit (16GB) DDR5-6000 CL30 SDRAM ... Total kit capacity is 32GB'; Factory Timing Parameters 'EXPO Profile #0: DDR5-6000 CL30-36-36 @1.4V', 'XMP Profile #1: DDR5-6000 CL30-36-36 @1.4V', Default (JEDEC) 'DDR5-4800 CL40-39-39 @1.1V'; 'Height 1.66\" (42.23mm), w/heatsink'; dimensiones del modulo '133.35 mm' de largo. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-teamgroup-deltargb-32gb-01",
+      "sourceId": "src-teamgroup-deltargb-32gb-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de producto de TeamGroup (teamgroupinc.com, dominio propio del fabricante) para el part number FF3D532G6000HC30DC01 (T-FORCE DELTA RGB). Cita textual: capacidad '32GB (2x16GB)', tipo DDR5 Desktop, velocidad '6000MHz', timings 'CL30' (la fuente no desglosa tRCD/tRP/tRAS, solo el valor CL -- se guarda tal cual como texto literal en vez de inventar el resto de la cadena de timings), voltaje '1.35V', form factor U-DIMM, dimensiones '46.1(H) x 144.2(L) x 7(W)mm', compatibilidad 'Intel 800/700 series; AMD 800/600 series', garantia de por vida. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-gskill-tz5neo-64gb-01",
+      "sourceId": "src-gskill-tz5neo-64gb-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de producto de G.SKILL (gskill.com, dominio propio del fabricante) para el part number F5-6000J3040G32GX2-TZ5NR (Trident Z5 Neo RGB). Cita textual: capacidad total 64GB, configuracion '2x32GB' (dual-channel kit), 32GB por modulo, tipo DDR5, velocidad 'Up to DDR5-6000' (requiere overclock via AMD EXPO o Intel XMP 3.0), timings 'CL30-40-40-96', voltaje '1.40V', form factor U-DIMM. La pagina no declara un pin count explicito -- physical.pinCount queda null + unknownFields, mismo criterio que el kit de 32GB de la misma linea. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-pny-rtx5070oc-01",
+      "sourceId": "src-pny-rtx5070oc-01",
+      "claim": "Brochure oficial en PDF de PNY (pny.com, dominio propio del fabricante, fetch directo + pdftotext), 'PNY GEFORCE RTX 5070 12GB Overclocked Triple Fan DLSS 4', part number 'VCG507012TFXPB1-O', UPC '751492794464' (enero 2025). Cita textual: NVIDIA CUDA Cores '6144'; Clock Speed '2325 MHz'; Boost Speed '2587 MHz'; Memory Speed '28' (Gbps); Memory Size '12GB GDDR7'; Memory Interface '192-bit'; Memory Bandwidth (GB/s) '672'; TDP '250 W'; Bus Type 'PCI-Express 5.0 x16'; Power Input '1x16 (1x16 to 2x8 adapter included)' (conector 16-pin literal, no convertido a 12V-2x6/12VHPWR, mismo criterio ya aplicado en otros productos GPU con este mismo tipo de conector); System Requirements 'Two 8-pin supplementary power connectors', '650 W or greater system power supply'; Card Dimensions '11.80\" x 4.73\" x1.9\"; 2.4 Slot' = '299.5 x 120.0 x 48.0mm; 2.4 Slot'. El brochure no declara el peso de la tarjeta (solo dimensiones de la caja) -- por eso no se incluyo ningun campo physical.weightCardG/weightPackageG (la seccion misma no existe en la fuente, igual que en otros productos donde una seccion completa esta ausente). Todos los campos tecnicos incluidos quedan respaldados; no hay unknownFields para este producto. No se uso ningun retailer/agregador como fuente. Se intento previamente GIGABYTE para RTX 5080 (gigabyte.com/Graphics-Card/GV-N5080GAMING-OC-16GD/sp) -> 403 Forbidden, cuarto bloqueo consecutivo confirmado de ese fabricante tras RTX5070/RTX5060(x2); se descarto continuar con GIGABYTE en este intento y se uso PNY en su lugar. Tambien se reintento ZOTAC (paginas de producto y 4 brochures PDF distintos) -> 403/468 en todos los casos, mismo bloqueo ya documentado en la Fase 2 (ver seccion Fase 2 del CONTRATO_V2.md); no se creo ningun registro ZOTAC.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-amd-9600x-03",
+      "sourceId": "src-amd-9600x-03",
+      "claim": "Fetch directo exitoso (via curl con user-agent de navegador; el mecanismo WebFetch previamente usado seguia dando timeout en amd.com, documentado en sesiones anteriores) a la pagina oficial de producto de AMD (amd.com, dominio propio del fabricante) para 'AMD Ryzen 5 9600X'. Cita textual de la seccion 'Product IDs': 'Product ID Boxed: 100-100001405WOF', 'Product ID Tray: 100-000001405' -- primera vez que se obtiene el Product ID/OPN oficial de un CPU AMD en este proyecto. Cita textual de la tabla de especificaciones: '# of CPU Cores: 6', 'Multithreading (SMT): Yes', '# of Threads: 12', 'Max. Boost Clock: Up to 5.4 GHz', 'Base Clock: 3.9 GHz', 'L1 Cache: 480 KB', 'L2 Cache: 6 MB', 'L3 Cache: 32 MB', 'Default TDP: 65W', 'CPU Socket: AM5', 'PCI Express Version: PCIe 5.0'. Estos valores corroboran exactamente los ya cargados desde ir.amd.com (ev-amd-9600x-01/02) y agregan el desglose L1/L2 que antes no se tenia. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-amd-9700x-03",
+      "sourceId": "src-amd-9700x-03",
+      "claim": "Fetch directo exitoso (via curl con user-agent de navegador) a la pagina oficial de producto de AMD (amd.com) para 'AMD Ryzen 7 9700X'. Cita textual de la seccion 'Product IDs': 'Product ID Boxed: 100-100001404WOF', 'Product ID Tray: 100-000001404'. Cita textual de la tabla de especificaciones: '# of CPU Cores: 8', '# of Threads: 16', 'Max. Boost Clock: Up to 5.5 GHz', 'Base Clock: 3.8 GHz', 'L1 Cache: 640 KB', 'L2 Cache: 8 MB', 'L3 Cache: 32 MB', 'Default TDP: 65W', 'CPU Socket: AM5', 'PCI Express Version: PCIe 5.0'. Corrobora exactamente los valores ya cargados desde ir.amd.com y agrega el desglose L1/L2. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-amd-9850x3d-03",
+      "sourceId": "src-amd-9850x3d-03",
+      "claim": "Fetch directo exitoso (via curl con user-agent de navegador) a la pagina oficial de producto de AMD (amd.com) para 'AMD Ryzen 7 9850X3D' -- pagina que en sesiones anteriores solo se habia podido acceder via WebFetch a un press release de ir.amd.com sin el desglose L2/L3 ni el socket confirmado explicitamente. Cita textual de la seccion 'Product IDs': 'Product ID Boxed: 100-100001973WOF', 'Product ID Tray: 100-000001973'. Cita textual de la tabla de especificaciones: '# of CPU Cores: 8', '# of Threads: 16', 'Max. Boost Clock: Up to 5.6 GHz', 'Base Clock: 4.7 GHz', 'L1 Cache: 640 KB', 'L2 Cache: 8 MB', 'L3 Cache: 96 MB', 'Default TDP: 120W', 'CPU Socket: AM5', 'PCI Express Version: PCIe 5.0'. El valor L2(8MB)+L3(96MB)=104MB coincide exactamente con el 'cache total' de 104MB ya cargado desde ir.amd.com (ev-amd-9850x3d-02), confirmando consistencia entre ambas fuentes oficiales independientes. Con esta evidencia, family-amd-ryzen7-9850x3d actualiza socket (null->AM5) y cache.l3MB (null->96); ambos campos salen de unknownFields. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-amd-9950x3d-03",
+      "sourceId": "src-amd-9950x3d-03",
+      "claim": "Fetch directo exitoso (via curl con user-agent de navegador) a la pagina oficial de producto de AMD (amd.com) para 'AMD Ryzen 9 9950X3D'. Cita textual de la seccion 'Product IDs': 'Product ID Boxed: 100-100000719WOF', 'Product ID Tray: 100-000000719'. Cita textual de la tabla de especificaciones: '# of CPU Cores: 16', '# of Threads: 32', 'Max. Boost Clock: Up to 5.7 GHz', 'Base Clock: 4.3 GHz', 'L1 Cache: 1280 KB', 'L2 Cache: 16 MB', 'L3 Cache: 128 MB', 'Default TDP: 170W', 'CPU Socket: AM5', 'PCI Express Version: PCIe 5.0'. El valor L2(16MB)+L3(128MB)=144MB coincide exactamente con el 'cache total' de 144MB ya cargado desde ir.amd.com (ev-amd-9950x3d-02). Con esta evidencia, family-amd-ryzen9-9950x3d actualiza socket (null->AM5) y cache.l3MB (null->128); ambos campos salen de unknownFields. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-amd-rx9070xt-01",
+      "sourceId": "src-amd-rx9070xt-01",
+      "claim": "Fetch directo exitoso (via curl con user-agent de navegador; mismo mecanismo que resolvio AMD CPU en esta Fase 4 -- WebFetch seguia sin funcionar en amd.com) a la pagina oficial de producto de AMD (amd.com) para 'Radeon RX 9070 XT'. URL real encontrada via busqueda dirigida (slug '9070xt' sin guion, distinto del patron usado para otras paginas de la serie). Cita textual: Compute Units '64'; Boost Frequency 'Up to 2970 MHz'; Game Frequency '2400 MHz'; Ray Accelerators '64'; AI Accelerators '128'; Stream Processors '4096'; Typical Board Power (Desktop) '304W'; Minimum PSU Recommendation '750W'; AMD Infinity Cache Technology '64 MB'; Memory Speed 'Up to 20 Gbps'; Max Memory Size '16 GB'; Memory Type 'GDDR6'; Memory Interface '256-bit'; Memory Bandwidth 'Up to 640 GB/s'. La pagina NO declara la generacion de PCIe en ningun lugar del documento (se busco explicitamente 'PCIe'/'PCI Express'/'Bus Standard' sin ningun resultado) -- interface.pcieGen queda null + unknownFields a nivel family, sin inferirlo del vocabulario controlado ni de la evidencia del producto (que si lo declara, pero es informacion especifica de esa placa, no del chip). No se uso ningun retailer/agregador como fuente. Esto crea la primera family AMD GPU real del proyecto, cubriendo el legacy gpu-9070xt.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-asus-primerx9070xt-01",
+      "sourceId": "src-asus-primerx9070xt-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de especificaciones tecnicas de ASUS (asus.com, dominio propio del fabricante) para 'ASUS Prime Radeon RX 9070 XT OC Edition'. Cita textual: Model 'PRIME-RX9070XT-O16G'; GPU 'AMD Radeon RX 9070 XT'; Stream Processors '4096'; Boost Clock 'up to 3030 MHz (OC mode)' / 'up to 3010 MHz (default mode)'; Memory '16GB GDDR6', Memory Speed '20 Gbps', Memory Interface Width '256-bit'; Dimensions '312 x 130 x 50 mm'; Power Connectors '3 x 8-pin'; Recommended PSU '750W'; Form Factor '2.5 Slot'; Bus Standard 'PCI Express 5.0'. El consumo de energia (power.consumptionW) no aparece explicitamente en la tabla de especificaciones -- queda null + unknownFields en vez de asumirse a partir del TGP del chip (304W), que corresponde al chip de referencia y no necesariamente a esta placa AIB especifica. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-amd-rx9060xt-01",
+      "sourceId": "src-amd-rx9060xt-01",
+      "claim": "Fetch directo exitoso (via curl con user-agent de navegador; mismo mecanismo que resolvio AMD CPU y RX 9070 XT en esta Fase 4) a la pagina oficial de producto de AMD (amd.com) para 'Radeon RX 9060 XT', slug 'amd-radeon-rx-9060xt.html' (sin guion, mismo patron que 9070xt). Cita textual: Compute Units '32'; Stream Processors '2048'; Boost Frequency 'Up to 3130 MHz'; Game Frequency '2530 MHz'; Ray Accelerators '32'; AI Accelerators '64'; Typical Board Power (Desktop) '160W'; Minimum PSU Recommendation '450W'; AMD Infinity Cache Technology '32 MB'; Memory Speed 'Up to 20 Gbps'; Max Memory Size '16 GB'; Memory Type 'GDDR6'; Memory Interface '128-bit'; Memory Bandwidth 'Up to 320 GB/s'. La pagina oficial de AMD solo documenta la variante de 16GB (no aparece ninguna mencion a una variante de 8GB en el documento), coincidiendo sin ambiguedad con el legacy gpu-9060xt ('AMD RX 9060 XT 16GB'). La pagina NO declara la generacion de PCIe en ningun lugar (se busco explicitamente 'PCIe'/'PCI Express'/'Bus Standard' sin resultado) -- interface.pcieGen queda null + unknownFields, mismo criterio ya aplicado en family-amd-rx9070xt. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-asus-primerx9060xt-01",
+      "sourceId": "src-asus-primerx9060xt-01",
+      "claim": "Fetch directo exitoso de la pagina oficial de especificaciones tecnicas de ASUS (asus.com, dominio propio del fabricante) para 'ASUS Prime Radeon RX 9060 XT OC Edition 16GB GDDR6'. Cita textual: Model 'PRIME-RX9060XT-O16G'; GPU 'AMD Radeon RX 9060 XT'; Stream Processors '2048'; Boost Clock 'up to 3330 MHz (OC mode) / up to 3310 MHz (Default mode)'; Memory '16GB GDDR6', Memory Speed '20 Gbps', Memory Interface '128-bit'; Dimensions '304 x 126 x 50mm'; Power Connector '1 x 8-pin'; Recommended PSU '550W' (nota explicita de ASUS: basada en 'a fully overclocked GPU and CPU system configuration'); Slot Width '2.5 Slot'. El campo 'Bus Standard' de esta pagina contiene el valor claramente erroneo/mezclado 'OpenGL' -- mismo problema de extraccion ya detectado antes en el ASUS RTX 5060 (ver evidencia ev-asus-rtx5060oc-01) -- por eso NO se uso para interface.pcieGen, que queda null + unknownFields tanto a nivel product como a nivel family. power.consumptionW tampoco aparece declarado explicitamente en la tabla (solo la recomendacion de PSU) -- queda null + unknownFields. No se uso ningun retailer/agregador como fuente.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-intel-arrowlakes-productbrief-01",
+      "sourceId": "src-intel-arrowlakes-productbrief-01",
+      "claim": "EVIDENCIA TIER-1 (identidad y especificaciones, NO el MPN). Fetch directo exitoso (200 OK) al Product Brief oficial de Intel en PDF (download.intel.com, dominio propio del fabricante, no bloqueado a diferencia de ark.intel.com/intel.com/products/sku que devuelven 403) para 'Intel Core Ultra 200S series processors'. Contiene una tabla 'SKU Chart' comparativa de 285K/265K/265KF/245K/245KF. Cita textual/tabular usada para Core Ultra 7 265K: 20 cores (8 P-cores + 12 E-cores), 20 threads, P-core Base Clock 3.9 GHz, E-core Base Clock 3.3 GHz, P-core Max Turbo Frequency 5.4 GHz, Max Turbo Frequency con Thermal Velocity Boost 5.5 GHz, Base Power 125W, Maximum Turbo Power 250W, memoria DDR5-6400 2 canales maximo 192GB. Para Core Ultra 9 285K: 24 cores (8 P-cores + 16 E-cores), 24 threads, P-core Base Clock 3.7 GHz, E-core Base Clock 3.2 GHz, P-core Max Turbo Frequency 5.5 GHz, Max Turbo Frequency con Thermal Velocity Boost 5.7 GHz, Base Power 125W, Maximum Turbo Power 250W, misma memoria DDR5-6400 2 canales maximo 192GB. IMPORTANTE: este documento NO incluye socket explicito (se conoce por otras fuentes del proyecto -- placas Z890, coolers -- que la plataforma Arrow Lake-S usa LGA1851, pero al no estar citado en ESTE documento para el CPU especificamente, se deja socket=null + unknownFields en ambas family, en vez de presentarlo como confirmado por este Product Brief). Este documento tampoco incluye ningun ordering code / MPN / codigo de caja -- ver ev-intel-265k-mpn-tier3-01 / ev-intel-285k-mpn-tier3-01 para el MPN, que es evidencia Tier-3 separada y no debe confundirse con esta.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-22T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-intel-265k-mpn-tier3-01",
+      "sourceId": "src-intel-265k-mpn-tier3-01",
+      "claim": "EVIDENCIA TIER-3 (retailer, NO oficial de Intel) -- usada exclusivamente bajo la excepcion formal y cerrada documentada en docs/CONTRATO_V2.md §0.37, unicamente para el campo identity.partNumber de 'cpu-ultra7-265k'. Listado de Newegg para 'Intel Core Ultra 7 265K, Arrow Lake 20-Core (8P+12E), LGA 1851, 125W Desktop Processor' que cita el codigo de producto 'BX80768265K'. ARK, el Specification Update completo (documento que normalmente contendria la tabla oficial de S-Spec/ordering code) y las paginas 'Ordering and Compliance Information' de intel.com devolvieron 403 de forma consistente en todos los intentos documentados (incluido curl con user-agent de navegador), por lo que no existe evidencia Tier-1/Tier-2 accesible para este MPN. Este dato NUNCA debe tratarse como confirmado por Intel ni citarse como si proviniera de una fuente oficial.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-23T00:00:00Z"
+    },
+    {
+      "evidenceId": "ev-intel-285k-mpn-tier3-01",
+      "sourceId": "src-intel-285k-mpn-tier3-01",
+      "claim": "EVIDENCIA TIER-3 (retailer, NO oficial de Intel) -- usada exclusivamente bajo la excepcion formal y cerrada documentada en docs/CONTRATO_V2.md §0.37, unicamente para el campo identity.partNumber de 'cpu-ultra9-285k'. Listado de Newegg para 'Intel Core Ultra 9 285K, Arrow Lake 24-Core (8P+16E), LGA 1851, 125W Desktop Processor' que cita el codigo de producto 'BX80768285K'. ARK, el Specification Update completo y las paginas 'Ordering and Compliance Information' de intel.com devolvieron 403 de forma consistente en todos los intentos documentados (incluido curl con user-agent de navegador), por lo que no existe evidencia Tier-1/Tier-2 accesible para este MPN. Este dato NUNCA debe tratarse como confirmado por Intel ni citarse como si proviniera de una fuente oficial.",
+      "accessedAt": "2026-08-22T00:00:00Z",
+      "verifiedAt": "2026-08-23T00:00:00Z"
+    }
+  ]
+}

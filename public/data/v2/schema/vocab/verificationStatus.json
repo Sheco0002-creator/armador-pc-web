@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "2.0.0",
+  "key": "verificationStatus",
+  "description": "Estado de verificacion de una entrada de catalog.v2.json (family o product). Ver regla V-01.",
+  "values": ["verified", "partial", "unknown", "rejected"]
+}

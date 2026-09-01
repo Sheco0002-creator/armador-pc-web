@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://armapc.local/schema/evidence.v2.schema.json",
+  "title": "ArmaPC evidence.v2.json",
+  "description": "Archivo separado de evidencia (decision aprobada: NO embebido en catalog.v2.json). catalog.v2.json referencia estos registros via technicalFieldEvidence[path] -> evidenceId (V-05/V-07).",
+  "type": "object",
+  "required": ["schemaVersion", "generatedAt", "evidence"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": "2.0.0" },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["evidenceId", "sourceId", "claim", "accessedAt", "verifiedAt"],
+        "additionalProperties": false,
+        "properties": {
+          "evidenceId": { "type": "string", "minLength": 1 },
+          "sourceId": { "type": "string", "description": "debe existir como officialSources[].sourceId en catalog.v2.json (V-07)" },
+          "claim": { "type": "string", "minLength": 1 },
+          "accessedAt": { "type": "string", "format": "date-time" },
+          "verifiedAt": { "type": "string", "format": "date-time", "description": "no puede ser anterior a accessedAt (V-11)" }
+        }
+      }
+    }
+  }
+}

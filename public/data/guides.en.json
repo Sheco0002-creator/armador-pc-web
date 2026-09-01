@@ -1,0 +1,77 @@
+{
+  "updated": "2026-07",
+  "guides": [
+    {
+      "slug": "glosario",
+      "file": "guias/glosario.html",
+      "tag": "BASICS",
+      "title": "Beginner's glossary",
+      "summary": "What each PC part is, explained in plain words: CPU, GPU, RAM, motherboard and the rest, no jargon.",
+      "readMinutes": 7
+    },
+    {
+      "slug": "compatibilidad",
+      "file": "guias/compatibilidad.html",
+      "tag": "GUIDE",
+      "title": "Component compatibility",
+      "summary": "The rules that make parts fit together: socket, RAM type, case size, and PSU wattage. The same checks the configurator runs.",
+      "readMinutes": 9
+    },
+    {
+      "slug": "elegir-gpu",
+      "file": "guias/elegir-gpu.html",
+      "tag": "GPU",
+      "title": "How to choose your graphics card",
+      "summary": "The part that defines your gaming experience the most. How to choose one based on the resolution you play at, without overpaying or falling short.",
+      "readMinutes": 8
+    },
+    {
+      "slug": "errores-comunes",
+      "file": "guias/errores-comunes.html",
+      "tag": "TIPS",
+      "title": "Common mistakes when building your first PC",
+      "summary": "The most frequent trip-ups when building your first rig — cheap PSU, bad budgeting, forgetting about cooling — and how to avoid all of them.",
+      "readMinutes": 8
+    },
+    {
+      "slug": "cuanta-ram",
+      "file": "guias/cuanta-ram.html",
+      "tag": "RAM",
+      "title": "How much RAM do I need?",
+      "summary": "16 GB, 32 GB or more: how much memory you actually need based on what you do with your PC, without overspending or falling short.",
+      "readMinutes": 6
+    },
+    {
+      "slug": "fuente-de-poder",
+      "file": "guias/fuente-de-poder.html",
+      "tag": "PSU",
+      "title": "Power supply guide",
+      "summary": "How many watts you need, what the 80+ certification means, and why the PSU is the one part you shouldn't cut corners on.",
+      "readMinutes": 7
+    },
+    {
+      "slug": "elegir-cpu",
+      "file": "guias/elegir-cpu.html",
+      "tag": "CPU",
+      "title": "How to choose your processor",
+      "summary": "Cores, cache, and socket: what actually matters when choosing the brain of your PC, and why the most expensive option isn't always the best for gaming.",
+      "readMinutes": 8
+    },
+    {
+      "slug": "almacenamiento",
+      "file": "guias/almacenamiento.html",
+      "tag": "SSD",
+      "title": "Storage guide (SSD)",
+      "summary": "NVMe vs SATA, how many GB or TB you need, and why speed matters more for loading games than for your FPS.",
+      "readMinutes": 6
+    },
+    {
+      "slug": "gabinete-refrigeracion",
+      "file": "guias/gabinete-refrigeracion.html",
+      "tag": "CASE",
+      "title": "Case and cooling guide",
+      "summary": "Form factor, airflow, and air vs liquid (AIO) cooling: how to choose without overcomplicating it.",
+      "readMinutes": 7
+    }
+  ]
+}

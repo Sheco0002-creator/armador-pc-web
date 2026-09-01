@@ -1,0 +1,9 @@
+{
+  "meta": {
+    "homeTitle": "ArmaPC — Build your ideal gaming PC, on any budget",
+    "homeDesc": "Learn how to build your own gaming PC, from the most affordable build to the most powerful, with a configurator that checks compatibility in real time."
+  },
+  "nav": { "inicio": "Home", "configurador": "Configurator", "presupuesto": "Budgets", "guias": "Guides", "contacto": "Contact", "sobre": "About", "comenzar": "Get started" },
+  "footer": { "sobre": "About", "contacto": "Contact", "privacidad": "Privacy", "copyright": "© 2026 ArmaPC" },
+  "lang": { "label": "English" }
+}

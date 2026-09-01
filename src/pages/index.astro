@@ -1,7 +1,13 @@
 ---
+import Base from '../layouts/Base.astro';
+import { t } from '../i18n';
 ---
-<!doctype html>
-<html lang="es">
-  <head><meta charset="utf-8" /><title>ArmaPC</title></head>
-  <body><p>Astro scaffold OK</p></body>
-</html>
+<Base
+  lang="es"
+  title={t('es', 'meta.homeTitle')}
+  description={t('es', 'meta.homeDesc')}
+  canonical="https://tupcgamer.com/"
+  ogLocale="es_PE"
+>
+  <p>home es — pendiente Task 5</p>
+</Base>

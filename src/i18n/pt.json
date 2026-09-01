@@ -1,0 +1,9 @@
+{
+  "meta": {
+    "homeTitle": "ArmaPC — Monte o PC gamer ideal, para qualquer orçamento",
+    "homeDesc": "Aprenda a montar seu próprio PC gamer, do modelo mais econômico ao mais potente, com um configurador que verifica a compatibilidade em tempo real."
+  },
+  "nav": { "inicio": "Início", "configurador": "Configurador", "presupuesto": "Orçamento", "guias": "Guias", "contacto": "Contato", "sobre": "Sobre", "comenzar": "Começar" },
+  "footer": { "sobre": "Sobre", "contacto": "Contato", "privacidad": "Privacidade", "copyright": "© 2026 ArmaPC" },
+  "lang": { "label": "Português" }
+}

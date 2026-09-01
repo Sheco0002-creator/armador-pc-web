@@ -15,7 +15,7 @@ const home = lang === 'es' ? '/' : `/${lang}/`;
       </svg>
       <span class="logo-text">Arma<span>PC</span></span>
     </a>
-    <nav class="main-nav" id="main-nav" aria-label="Principal">
+    <nav class="main-nav" id="main-nav" aria-label={t(lang, 'nav.ariaNav')}>
       <a href={home} class={current === 'inicio' ? 'is-current' : undefined} aria-current={current === 'inicio' ? 'page' : undefined}>{t(lang, 'nav.inicio')}</a>
       <a href={`${p}/configurador.html`}>{t(lang, 'nav.configurador')}</a>
       <a href="#presupuestos">{t(lang, 'nav.presupuesto')}</a>
@@ -37,7 +37,7 @@ const home = lang === 'es' ? '/' : `/${lang}/`;
         </div>
       </div>
     </nav>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+    <button class="nav-toggle" id="nav-toggle" aria-label={t(lang, 'nav.ariaOpenMenu')} aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>

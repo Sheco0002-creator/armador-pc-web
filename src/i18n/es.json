@@ -3,7 +3,7 @@
     "homeTitle": "ArmaPC — Arma tu PC gamer ideal, sin importar tu presupuesto",
     "homeDesc": "Aprende a armar tu propia PC gamer, desde el modelo más económico hasta el más caro, con un configurador que verifica la compatibilidad en tiempo real."
   },
-  "nav": { "inicio": "Inicio", "configurador": "Configurador", "presupuesto": "Presupuesto", "guias": "Guías", "contacto": "Contacto", "sobre": "Sobre", "comenzar": "Comenzar" },
+  "nav": { "inicio": "Inicio", "configurador": "Configurador", "presupuesto": "Presupuesto", "guias": "Guías", "contacto": "Contacto", "sobre": "Sobre", "comenzar": "Comenzar", "ariaNav": "Principal", "ariaOpenMenu": "Abrir menú" },
   "footer": { "sobre": "Sobre", "contacto": "Contacto", "privacidad": "Privacidad", "copyright": "© 2026 ArmaPC" },
   "lang": { "label": "Español" }
 }

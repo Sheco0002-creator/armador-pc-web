@@ -6,8 +6,9 @@ interface Props {
   description: string;
   canonical: string;
   ogLocale: string;
+  bodyClass?: string;
 }
-const { lang, title, description, canonical, ogLocale } = Astro.props;
+const { lang, title, description, canonical, ogLocale, bodyClass } = Astro.props;
 ---
 <!doctype html>
 <html lang={lang}>
@@ -43,7 +44,7 @@ const { lang, title, description, canonical, ogLocale } = Astro.props;
     gtag('config', 'G-GH7D533JHR');
   </script>
 </head>
-<body>
+<body class={bodyClass}>
   <slot />
 </body>
 </html>

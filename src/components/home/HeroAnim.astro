@@ -1,11 +1,14 @@
 <script>
   import anime from 'animejs';
 
+  anime.suspendWhenDocumentHidden = false;
+
   // Marca de que el motor de entrada del hero (animejs) se cargó.
   document.documentElement.classList.add('hero-anime-ready');
 
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!prefersReduced) {
+
+  function runEntrance() {
     const copy = document.querySelector('.lp-hero-copy');
     const layers = document.querySelectorAll('.lp-hero-art .lp-layer');
 
@@ -26,6 +29,21 @@
         delay: anime.stagger(80, { start: 150 }),
         easing: 'easeOutQuad',
         duration: 500,
+      });
+    }
+  }
+
+  if (!prefersReduced) {
+    if (document.visibilityState === 'visible') {
+      runEntrance();
+    } else {
+      // Tab loaded in background: rAF is paused, so anime would freeze the
+      // hero at opacity:0. Wait for the first real paint instead.
+      document.addEventListener('visibilitychange', function onVisible() {
+        if (document.visibilityState === 'visible') {
+          document.removeEventListener('visibilitychange', onVisible);
+          runEntrance();
+        }
       });
     }
   }
